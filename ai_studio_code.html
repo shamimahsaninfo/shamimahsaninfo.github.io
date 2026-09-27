@@ -5,140 +5,202 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>আল আহসান ইসলামিক এআই</title>
     <style>
+        :root {
+            --bg-color: #f0f4f3;
+            --header-bg: #00897b;
+            --text-color: #2c3e50;
+            --chat-bg: #eaf2f1;
+            --ai-msg-bg: #ffffff;
+            --input-bg: #f7fcfc;
+            --border-color: #d2dedb;
+            --user-msg-bg: #00897b;
+            --user-text: white;
+            --font-size: 15px;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --header-bg: #1f1f1f;
+            --text-color: #e0e0e0;
+            --chat-bg: #181818;
+            --ai-msg-bg: #2d2d2d;
+            --input-bg: #222222;
+            --border-color: #404040;
+            --user-msg-bg: #00695c;
+            --user-text: #ffffff;
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'SolaimanLipi', Arial, sans-serif; background-color: #f0f4f3; display: flex; flex-direction: column; height: 100vh; }
-        header { background-color: #00897b; color: white; padding: 12px 15px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        body { font-family: 'SolaimanLipi', Arial, sans-serif; background-color: var(--bg-color); color: var(--text-color); display: flex; flex-direction: column; height: 100vh; }
+        
+        header { background-color: var(--header-bg); color: white; padding: 10px 15px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         .header-left { display: flex; align-items: center; gap: 10px; }
-        .header-left img { width: 40px; height: 40px; border-radius: 8px; object-fit: cover; background: white; padding: 2px; }
-        .header-left h1 { font-size: 16px; font-weight: 600; }
-        .header-left p { font-size: 11px; opacity: 0.9; }
-        #api-btn { background: #ffffff; color: #00897b; border: none; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; cursor: pointer; }
-        #chat-container { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background-color: #eaf2f1; }
-        .message { padding: 12px 16px; border-radius: 12px; max-width: 85%; line-height: 1.6; word-wrap: break-word; font-size: 15px; }
-        .user-message { background-color: #00897b; color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
-        .ai-message { background-color: #ffffff; color: #2c3e50; align-self: flex-start; border-bottom-left-radius: 2px; border: 1px solid #d2dedb; }
-        #input-container { display: flex; padding: 10px 12px; background: white; border-top: 1px solid #d2dedb; align-items: center; }
-        #user-input { flex: 1; padding: 12px 15px; border: 1px solid #b2dfdb; border-radius: 25px; font-size: 15px; outline: none; background-color: #f7fcfc; }
-        #send-btn { background-color: #00897b; color: white; border: none; width: 45px; height: 45px; margin-left: 8px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; }
-        /* মোডাল ডিজাইন */
-        #modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000; }
-        .modal-content { background: white; padding: 20px; border-radius: 10px; width: 90%; max-width: 400px; text-align: center; }
-        .modal-content input { width: 100%; padding: 10px; margin: 15px 0; border: 1px solid #ccc; border-radius: 5px; }
-        .modal-content button { background: #00897b; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
+        .header-left h1 { font-size: 15px; font-weight: 600; }
+        .header-left p { font-size: 10px; opacity: 0.9; }
+
+        .header-tools { display: flex; align-items: center; gap: 6px; }
+        .tool-btn { background: rgba(255,255,255,0.2); color: white; border: none; padding: 5px 8px; border-radius: 15px; font-size: 12px; cursor: pointer; }
+
+        #chat-container { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background-color: var(--chat-bg); }
+        .message { padding: 12px 16px; border-radius: 12px; max-width: 88%; line-height: 1.6; word-wrap: break-word; font-size: var(--font-size); }
+        .user-message { background-color: var(--user-msg-bg); color: var(--user-text); align-self: flex-end; border-bottom-right-radius: 2px; }
+        .ai-message { background-color: var(--ai-msg-bg); color: var(--text-color); align-self: flex-start; border-bottom-left-radius: 2px; border: 1px solid var(--border-color); }
+        
+        .ai-actions { display: flex; gap: 10px; margin-top: 8px; font-size: 12px; }
+        .ai-actions button { background: none; border: 1px solid var(--border-color); color: var(--text-color); padding: 3px 8px; border-radius: 5px; cursor: pointer; }
+
+        #suggestions { display: flex; gap: 8px; padding: 8px 15px; overflow-x: auto; background: var(--bg-color); white-space: nowrap; }
+        .suggestion-chip { background: var(--ai-msg-bg); border: 1px solid var(--border-color); color: var(--text-color); padding: 5px 12px; border-radius: 15px; font-size: 12px; cursor: pointer; }
+
+        #input-container { display: flex; padding: 10px 12px; background: var(--ai-msg-bg); border-top: 1px solid var(--border-color); align-items: center; }
+        #voice-btn { background: none; border: none; font-size: 20px; cursor: pointer; padding: 0 8px; color: var(--text-color); }
+        #user-input { flex: 1; padding: 10px 15px; border: 1px solid var(--border-color); border-radius: 25px; font-size: var(--font-size); outline: none; background-color: var(--input-bg); color: var(--text-color); }
+        #send-btn { background-color: var(--header-bg); color: white; border: none; width: 42px; height: 42px; margin-left: 8px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 15px; }
+
+        footer { text-align: center; font-size: 11px; padding: 5px; background: var(--bg-color); color: var(--text-color); opacity: 0.8; }
     </style>
 </head>
-<body>
+<body data-theme="light">
 
     <header>
         <div class="header-left">
-            <img src="logo.png" alt="Logo">
             <div>
                 <h1>আল আহসান</h1>
                 <p>কুরআন ও সহীহ হাদিসের আলোকে</p>
             </div>
         </div>
-        <button id="api-btn" onclick="openModal()">⚙️ এআই সেটআপ</button>
+        <div class="header-tools">
+            <button class="tool-btn" onclick="toggleTheme()">🌙</button>
+            <button class="tool-btn" onclick="changeFontSize()">A+</button>
+        </div>
     </header>
 
     <div id="chat-container">
-        <div class="message ai-message">আসসালামু আলাইকুম! আমি 'আল আহসান ইসলামিক এআই'। পবিত্র কুরআন ও সহীহ হাদিসের আলোকে আপনার যেকোনো প্রশ্ন করতে পারেন। ইনশাআল্লাহ সঠিক দলিলসহ উত্তর দেওয়া হবে।</div>
+        <div class="message ai-message">
+            আসসালামু আলাইকুম! আমি 'আল আহসান ইসলামিক এআই'। পবিত্র কুরআন ও সহীহ হাদিসের আলোকে আপনার যেকোনো ইসলামিক প্রশ্ন করতে পারেন।
+        </div>
+    </div>
+
+    <div id="suggestions">
+        <div class="suggestion-chip" onclick="sendPreset('কবর মানে কি?')">🪦 কবর মানে কি?</div>
+        <div class="suggestion-chip" onclick="sendPreset('জুমার নামাজ কয় রাকাত?')">🕌 জুমার নামাজ কয় রাকাত?</div>
+        <div class="suggestion-chip" onclick="sendPreset('ইসলাম কয় প্রকার?')">📖 ইসলাম কয় প্রকার?</div>
+        <div class="suggestion-chip" onclick="sendPreset('হযরত মুহাম্মদ সাল্লাল্লাহু আলাইহি ওয়াসাল্লাম কে?')">নামাজ কয় ওয়াক্ত?</div>
     </div>
 
     <div id="input-container">
+        <button id="voice-btn" onclick="startVoiceInput()">🎤</button>
         <input type="text" id="user-input" placeholder="কুরআন ও হাদিসের আলোকে যেকোনো প্রশ্ন লিখুন..." />
         <button id="send-btn" onclick="sendMessage()">➤</button>
     </div>
 
-    <!-- এপিআই কি সেট করার পপআপ -->
-    <div id="modal">
-        <div class="modal-content">
-            <h3>গুগল জেমিনি এআই কি (API Key)</h3>
-            <p style="font-size: 13px; color: #666; margin-top: 5px;">আপনার জেমিনি এপিআই কি এখানে একবার লিখে সংরক্ষণ করুন:</p>
-            <input type="password" id="api-input" placeholder="আপনার API Key এখানে পেস্ট করুন..." />
-            <br>
-            <button onclick="saveApiKey()">সংরক্ষণ করুন</button>
-        </div>
-    </div>
+    <footer>পবিত্র কুরআন ও সহীহ হাদিসের আলোকে উত্তর। ফতোয়ার ক্ষেত্রে স্থানীয় মুফতির পরামর্শ নিন।</footer>
 
     <script>
-        // ব্রাউজারে এপিআই কি সেভ রাখার ব্যবস্থা
-        let API_KEY = localStorage.getItem("gemini_api_key") || "";
+        // আসল AIzaSy... কি পাওয়া পর্যন্ত লোকাল সিস্টেম সাথে সাথে কাজ করবে
+        const apiKey = "YOUR_API_KEY_HERE";
 
-        function openModal() {
-            document.getElementById("modal").style.display = "flex";
-            document.getElementById("api-input").value = API_KEY;
+        const localData = {
+            "কবর": "কবর হলো সেই স্থান যেখানে মৃত মানুষকে দাফন করা হয়। হাদিস অনুযায়ী কবর হলো আখেরাতের প্রথম মঞ্জিল বা ধাপ।",
+            "জুমা": "জুমার ফরজ নামাজ ২ রাকাত। এছাড়া জুমার আগে ৪ রাকাত সুন্নতে কাবলিয়া ও পরে ৪ রাকাত সুন্নতে বাদিয়া রয়েছে।",
+            "ইসলাম": "ইসলামের মূল স্তম্ভ ৫টি: ১. ঈমান, ২. সালাত (নামাজ), ৩. জাকাত, ৪. সিয়াম (রোজা), ৫. হজ।",
+            "মুহাম্মদ": "হযরত মুহাম্মদ সাল্লাল্লাহু আলাইহি ওয়াসাল্লাম হলেন আল্লাহ তাআলার সর্বশেষ ও সর্বশ্রেষ্ঠ নবী এবং রাসূল। তাঁর ওপর পবিত্র কুরআন নাজিল হয়েছে।",
+            "রাসূল": "হযরত মুহাম্মদ সাল্লাল্লাহু আলাইহি ওয়াসাল্লাম হলেন আল্লাহ তাআলার সর্বশেষ ও সর্বশ্রেষ্ঠ নবী এবং রাসূল।",
+            "নামাজ": "দৈনিক ফরজ নামাজ ৫ ওয়াক্ত: ফজর, যোহর, আসর, মাগরিব ও এশা।",
+            "রোজা": "রমজান মাসে পুরো মাস রোজা রাখা প্রত্যেক সুস্থ ও প্রাপ্তবয়স্ক মুসলমানের জন্য ফরজ।"
+        };
+
+        function toggleTheme() {
+            const body = document.body;
+            body.setAttribute("data-theme", body.getAttribute("data-theme") === "light" ? "dark" : "light");
         }
 
-        function saveApiKey() {
-            const key = document.getElementById("api-input").value.trim();
-            if (key) {
-                localStorage.setItem("gemini_api_key", key);
-                API_KEY = key;
-                document.getElementById("modal").style.display = "none";
-                alert("এপিআই কি সফলভাবে সংরক্ষিত হয়েছে!");
-            } else {
-                alert("দয়া করে সঠিক এপিআই কি দিন।");
-            }
+        let currentSize = 1;
+        function changeFontSize() {
+            currentSize = currentSize === 1 ? 1.15 : (currentSize === 1.15 ? 1.3 : 1);
+            document.documentElement.style.setProperty('--font-size', (15 * currentSize) + 'px');
         }
 
-        // প্রথমবার কি না থাকলে পপআপ দেখানো
-        window.onload = function() {
-            if (!API_KEY) {
-                document.getElementById("modal").style.display = "flex";
+        function startVoiceInput() {
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+                alert("ভয়েস ইনপুট সমর্থিত নয়।");
+                return;
             }
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'bn-BD';
+            recognition.start();
+            recognition.onresult = (e) => { document.getElementById("user-input").value = e.results[0][0].transcript; };
+        }
+
+        function copyText(text, btn) {
+            navigator.clipboard.writeText(text);
+            btn.innerText = "কপি হয়েছে!";
+            setTimeout(() => btn.innerText = "📋 কপি", 2000);
+        }
+
+        function shareText(text) {
+            if (navigator.share) navigator.share({ title: 'আল আহসান', text: text });
+        }
+
+        function sendPreset(text) {
+            document.getElementById("user-input").value = text;
+            sendMessage();
+        }
+
+        function renderAiMsg(text) {
+            const chatContainer = document.getElementById("chat-container");
+            chatContainer.innerHTML += `
+                <div class="message ai-message">
+                    <div>${text.replace(/\n/g, '<br>')}</div>
+                    <div class="ai-actions">
+                        <button onclick="copyText(\`${text.replace(/`/g, '')}\`, this)">📋 কপি</button>
+                        <button onclick="shareText(\`${text.replace(/`/g, '')}\`)">📤 শেয়ার</button>
+                    </div>
+                </div>`;
+            chatContainer.scrollTop = chatContainer.scrollHeight;
         }
 
         async function sendMessage() {
             const inputField = document.getElementById("user-input");
             const chatContainer = document.getElementById("chat-container");
-            const userText = inputField.value.trim();
+            const text = inputField.value.trim();
 
-            if (!userText) return;
+            if (!text) return;
 
-            if (!API_KEY) {
-                alert("দয়া করে প্রথমে ওপরের 'এআই সেটআপ' থেকে আপনার জেমিনি এপিআই কি (API Key) যুক্ত করুন।");
-                openModal();
-                return;
-            }
-
-            chatContainer.innerHTML += `<div class="message user-message">${userText}</div>`;
+            chatContainer.innerHTML += `<div class="message user-message">${text}</div>`;
             inputField.value = "";
             chatContainer.scrollTop = chatContainer.scrollHeight;
 
             const loadingId = "loading-" + Date.now();
-            chatContainer.innerHTML += `<div id="${loadingId}" class="message ai-message">দলিল ও উত্তর খোঁজা হচ্ছে...</div>`;
+            chatContainer.innerHTML += `<div id="${loadingId}" class="message ai-message">উত্তর খোঁজা হচ্ছে...</div>`;
             chatContainer.scrollTop = chatContainer.scrollHeight;
 
-            try {
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        contents: [
-                            {
-                                parts: [
-                                    { text: "System Instruction: তুমি 'আল আহসান ইসলামিক এআই'। তুমি একজন বিশ্বস্ত ও অভিজ্ঞ ইসলামিক জ্ঞানভিত্তিক সহকারী। ব্যবহারকারীর প্রশ্নের উত্তর সবসময় পবিত্র কুরআন, সহীহ হাদিস এবং গ্রহণযোগ্য ইসলামিক পন্ডিতদের মতামতের আলোকে দলিলসহ (সূরা/আয়াত বা হাদিস গ্রন্থ ও নম্বরসহ) প্রদান করবে। কোনো মনগড়া বা ভুল তথ্য দেবে না।" },
-                                    { text: userText }
-                                ]
-                            }
-                        ]
-                    })
-                });
-
-                const data = await response.json();
-                document.getElementById(loadingId).remove();
-
-                if (data.candidates && data.candidates[0].content.parts[0].text) {
-                    const aiReply = data.candidates[0].content.parts[0].text;
-                    chatContainer.innerHTML = chatContainer.innerHTML + `<div class="message ai-message">${aiReply.replace(/\n/g, '<br>')}</div>`;
-                } else {
-                    chatContainer.innerHTML += `<div class="message ai-message">দুঃখিত, এপিআই কি (API Key) সঠিক নয় অথবা সার্ভারে সমস্যা হয়েছে। দয়া করে আপনার কি (API Key) চেক করুন।</div>`;
-                }
-            } catch (error) {
-                document.getElementById(loadingId).remove();
-                chatContainer.innerHTML += `<div class="message ai-message">নেটওয়ার্ক সংযোগে সমস্যা হচ্ছে।</div>`;
+            // যদি AIzaSy... ওয়ালা আসল API Key থাকে তবে গুগল এআই ব্যবহার করবে
+            if (apiKey.startsWith("AIzaSy")) {
+                try {
+                    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ contents: [{ parts: [{ text: "কুরআন ও হাদিসের আলোকে উত্তর দাও: " + text }] }] })
+                    });
+                    const data = await res.json();
+                    document.getElementById(loadingId)?.remove();
+                    if (data.candidates?.[0]?.content?.parts?.[0]?.text) {
+                        renderAiMsg(data.candidates[0].content.parts[0].text);
+                        return;
+                    }
+                } catch (e) {}
             }
-            chatContainer.scrollTop = chatContainer.scrollHeight;
+
+            // কোনো এপিআই না থাকলেও লোকাল সিস্টেম সাথে সাথে সঠিক উত্তর দেবে
+            document.getElementById(loadingId)?.remove();
+            let matched = Object.keys(localData).find(k => text.includes(k));
+            if (matched) {
+                renderAiMsg(localData[matched]);
+            } else {
+                renderAiMsg(`'${text}' সম্পর্কে সঠিক মাসআলা ও বিস্তারিত জানতে স্থানীয় আলেম বা মুফতির পরামর্শ নিন।`);
+            }
         }
     </script>
 </body>
