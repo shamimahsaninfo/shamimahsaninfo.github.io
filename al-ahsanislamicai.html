@@ -43,8 +43,13 @@
           <p class="text-xs text-emerald-700 font-medium">কুরআন ও সহীহ হাদিসের নির্ভরযোগ্য প্রামাণ্য দলিলের আলোকে</p>
         </div>
       </div>
-      <div class="text-xs text-emerald-800 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200 font-semibold">
-        প্রতিষ্ঠাতা: শামীমা আহসান
+      <div class="flex items-center gap-2">
+        <button onclick="openApiKeyModal()" title="লাইভ এআই সেটিংস" class="text-xs text-emerald-800 bg-emerald-50 hover:bg-emerald-100 px-3 py-1.5 rounded-xl border border-emerald-200 font-medium flex items-center gap-1 transition">
+          ⚙️ এআই মোড
+        </button>
+        <span class="text-xs text-emerald-800 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200 font-semibold hidden sm:inline">
+          প্রতিষ্ঠাতা: শামীমা আহসান
+        </span>
       </div>
     </div>
   </header>
@@ -56,17 +61,32 @@
       <p class="text-xs text-slate-500 mt-1">পরম করুণাময় ও অসীম দয়ালু আল্লাহর নামে শুরু করছি</p>
     </div>
 
+    <!-- Daily Verse -->
+    <div class="my-3 p-5 rounded-2xl bg-white border border-emerald-200/80 shadow-sm">
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-xs font-bold text-emerald-700 uppercase">পবিত্র কুরআনের আলোকবর্তিকা</span>
+        <span class="text-xs px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 font-semibold border border-emerald-200">সূরা আল-বাকারাহ: ১৫২</span>
+      </div>
+      <p class="font-arabic text-2xl text-emerald-900 text-right leading-loose my-2" dir="rtl">
+        فَاذْكُرُونِي أَذْكُرْكُمْ وَاشْكُرُوا لِي وَلَا تَكْفُرُونِ
+      </p>
+      <p class="text-sm text-slate-700 leading-relaxed font-normal">
+        "অতএব তোমরা আমাকে স্মরণ কর, আমিও তোমাদেরকে স্মরণ করব। আর আমার কৃতজ্ঞতা জ্ঞাপন কর এবং অকৃতজ্ঞ হয়ো না।"
+      </p>
+    </div>
+
+    <!-- Chat Messages Feed -->
     <div id="chatFeed" class="flex-1 space-y-4 my-4 overflow-y-auto">
       <div class="p-4 rounded-2xl bg-white border border-emerald-200/80 shadow-sm flex items-start gap-3">
         <div class="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-sm shrink-0">আ</div>
         <div class="flex-1 text-sm text-slate-800 leading-relaxed">
           <p class="font-semibold text-emerald-800 mb-1">আসসালামু আলাইকুম ওয়া রাহমাতুল্লাহ!</p>
-          <p>আমি <strong>'আল আহসান ইসলামিক এআই'</strong>। আপনি কুরআন, সহীহ হাদিস, নামাজ, রোজা, যাকাত, হালাল-হারাম বা যেকোনো ইসলামিক প্রশ্ন করতে পারেন। প্রতিটি উত্তর প্রামাণ্য দলিলের আলোকে প্রদান করা হবে ইনশাআল্লাহ।</p>
+          <p>আমি <strong>'আল আহসান ইসলামিক এআই'</strong>। আপনি কুরআন, সহীহ হাদিস, নামাজ, রোজা, যাকাত, হালাল-হারাম বা যেকোনো দ্বীনি প্রশ্ন করতে পারেন। প্রতিটি উত্তর নির্ভরযোগ্য দলিলের আলোকে দেওয়া হবে ইনশাআল্লাহ।</p>
         </div>
       </div>
     </div>
 
-    <!-- Input -->
+    <!-- Input Bar -->
     <div class="sticky bottom-4 mt-auto">
       <div class="bg-white/95 backdrop-blur-md rounded-2xl border-2 border-emerald-500/30 p-2 shadow-xl flex items-center gap-2">
         <input id="userInput" type="text" placeholder="কুরআন ও হাদিসের আলোকে যেকোনো ইসলামিক প্রশ্ন লিখুন..."
@@ -82,8 +102,57 @@
     </div>
   </main>
 
+  <!-- API Key Modal -->
+  <div id="apiKeyModal" class="hidden fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-emerald-200">
+      <h3 class="font-bold text-slate-900 text-lg mb-2">জেমিনি এআই এপিআই কি (Gemini API Key)</h3>
+      <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+        গিটহাব পেজে যেকোনো অজানা প্রশ্নের রিয়েল-টাইম এআই উত্তর পেতে আপনার ফ্রি Google Gemini API Key যোগ করতে পারেন। এটি আপনার ব্রাউজারে সংরক্ষিত থাকবে।
+      </p>
+      <input id="apiKeyInput" type="password" placeholder="AIzaSy..." class="w-full border border-emerald-300 rounded-xl px-3 py-2 text-sm mb-4 focus:outline-emerald-500" />
+      <div class="flex items-center justify-end gap-2">
+        <button onclick="closeApiKeyModal()" class="px-4 py-2 rounded-xl text-slate-600 hover:bg-slate-100 text-xs font-semibold">বাতিল</button>
+        <button onclick="saveApiKey()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold">সংরক্ষণ করুন</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     const KNOWLEDGE_BANK = [
+      {
+        keywords: ['ভালো আছেন', 'কেমন আছেন', 'কি খবর', 'কেমন চলতেছে', 'কেমন চলছে'],
+        answer: `**আলহামদুলিল্লাহ! মহান আল্লাহ সুবহানাহু ওয়া তাআলার অশেষ রহমতে আমি ভালো আছি।** 
+
+আপনি কেমন আছেন? মহান আল্লাহ আপনাকে ও আপনার পরিবারকে সর্বদা সুস্থ, নিরাপদ ও ঈমানের সাথে রাখুন। আজ দ্বীন বা ইসলামিক শরিয়তের কোনো বিষয়ে আপনার কোনো জিজ্ঞাসা আছে কি?`
+      },
+      {
+        keywords: ['কথা বলা যাবে না', 'কথা বলা যাবে', 'কথা বলুন', 'কথা বলতে চাই', 'শুনছেন'],
+        answer: `**অবশ্যই কথা বলা যাবে! আমি সর্বদা আপনার সেবায় প্রস্তুত আছি।** 
+
+পবিত্র কুরআনুল কারীম, সহীহ হাদিস, নামাজের নিয়ম ও মাসআলা, রোজা, যাকাত, হজ, হালাল-হারাম বা যেকোনো দ্বীনি বিষয়ে আপনি প্রশ্ন করতে পারেন। আমি সহীহ দলিলের আলোকে উত্তর দিতে আনন্দিত হব ইনশাআল্লাহ। বলুন, আপনি কী জানতে চাচ্ছেন?`
+      },
+      {
+        keywords: ['শামীমা আহসান', 'শামীমা', 'নির্মাতা', 'কে তৈরি করেছে', 'কে বানিয়েছে', 'আমার নাম শামীমা'],
+        answer: `**মাশাআল্লাহ! সম্মানিত শামীমা আহসান (Shamima Ahsan)।**
+
+মহান আল্লাহ সুবহানাহু ওয়া তাআলা আপনাকে প্রভূত কল্যাণ ও উত্তম প্রতিদান দান করুন (*জাযাকাল্লাহু খাইরান ফিদ-দুনয়া ওয়াল আখিরাহ*)। 
+
+**'আল আহসান ইসলামিক এআই'** পবিত্র কুরআনুল কারীম ও সহীহ হাদিসের প্রামাণ্য দলিলের আলোকে দ্বীনি বিশুদ্ধ জ্ঞান প্রচার ও মুসলিম উম্মাহর খিদমতে নিবেদিত একটি বরকতময় উদ্যোগ। 
+
+মহান রাব্বুল আলামীন আপনার এই মহতী প্রচেষ্টাকে কবুল করুন, আপনার ইলম ও আমলে বরকত দিন এবং এটিকে আপনার ও আপনার পরিবারের জন্য আখেরাতের অবিরাম সদকায়ে জারিয়া হিসেবে কবুল করুন। আমীন ইয়া রব্বাল আলামীন। 🤲`
+      },
+      {
+        keywords: ['সালাম', 'আসসালামু আলাইকুম'],
+        answer: `**ওয়ালাইকুম আসসালাম ওয়া রাহমাতুল্লাহি ওয়া বারাকাতুহু।**
+
+'আল আহসান ইসলামিক এআই'-এ আপনাকে আন্তরিক স্বাগতম। মহান আল্লাহ তাআলা আপনার দিনটিকে বরকতময় করুন। আজ আপনি কোন বিষয়ে জানতে চাচ্ছেন?`
+      },
+      {
+        keywords: ['ধন্যবাদ', 'শুকরিয়া', 'জাযাকাল্লাহ'],
+        answer: `**জাযাকাল্লাহু খাইরান (جَزَاكَ ٱللَّٰهُ خَيْرًا)!** 
+
+মহান আল্লাহ আপনাকে উত্তম প্রতিদান দান করুন। আপনার যেকোনো ইসলামিক জিজ্ঞাসায় আমি সবসময় আপনার পাশে আছি।`
+      },
       {
         keywords: ['ফজর', 'ফজরের নামাজ', 'ফজর কয় রাকাত', 'ফজরের নামাজ কয় রাকাত', 'ফজর কই রাকাত'],
         answer: `**ফজরের নামাজ মোট ৪ রাকাত:**
@@ -91,23 +160,15 @@
 ১. **২ রাকাত সুন্নাতে মুয়াক্কাদা** (ফরজের পূর্বে)
 ২. **২ রাকাত ফরজ** (জামাতের সাথে বা একাকী)
 
----
-### সহীহ হাদিস থেকে দলিল:
-উম্মুল মুমিনীন হযরত আয়েশা (রাদিয়াল্লাহু আনহা) থেকে বর্ণিত, রাসূলুল্লাহ (সাল্লাল্লাহু আলাইহি ওয়াসাল্লাম) বলেছেন:
-> **"ফজরের দুই রাকাত (সুন্নাত) সালাত দুনিয়া এবং দুনিয়ার মধ্যে যা কিছু আছে তার চেয়েও উত্তম।"**
-> [সহীহ মুসলিম: ৭২৫, জামে তিরমিযী: ৪১৬]
-
-হযরত আয়েশা (রা.) আরও বর্ণনা করেন:
-> **"নবীজী (ﷺ) নফল ও সুন্নাত সালাতসমূহের মধ্যে ফজরের দুই রাকাত সুন্নাতকে অন্য সবকিছুর চেয়ে সর্বাধিক গুরুত্ব দিতেন ও যত্ন সহকারে আদায় করতেন।"**
-> [সহীহুল বুখারী: ১১৬৩, সহীহ মুসলিম: ৭২৪]`
+দলিল: পবিত্র কুরআন [সূরা বনী ইসরাঈল: ৭৮], সহীহ মুসলিম: ৭২৫, সহীহুল বুখারী: ১১৬৩`
       },
       {
         keywords: ['যোহর', 'যোহরের নামাজ', 'যোহর কয় রাকাত', 'যোহরের নামাজ কয় রাকাত', 'জোহর'],
         answer: `**যোহরের নামাজ মোট ১২ রাকাত:**
-১. **৪ রাকাত সুন্নাতে মুয়াক্কাদা** (ফরজের পূর্বে)
-২. **৪ রাকাত ফরজ**
-৩. **২ রাকাত সুন্নাতে মুয়াক্কাদা** (ফরজের পর)
-৪. **২ রাকাত নফল**
+১. ৪ রাকাত সুন্নাতে মুয়াক্কাদা (ফরজের পূর্বে)
+২. ৪ রাকাত ফরজ
+৩. ২ রাকাত সুন্নাতে মুয়াক্কাদা (ফরজের পর)
+৪. ২ রাকাত নফল
 
 দলিল: সহীহ মুসলিম: ৭২৮, জামে তিরমিযী: ৪১৫`
       },
@@ -120,43 +181,23 @@
       {
         keywords: ['মাগরিব', 'মাগরিবের নামাজ', 'মাগরিব কয় রাকাত'],
         answer: `**মাগরিবের নামাজ মোট ৭ রাকাত:**
-১. **৩ রাকাত ফরজ**
-২. **২ রাকাত সুন্নাতে মুয়াক্কাদা**
-৩. **২ রাকাত নফল**
+১. ৩ রাকাত ফরজ
+২. ২ রাকাত সুন্নাতে মুয়াক্কাদা
+৩. ২ রাকাত নফল
 দলিল: সহীহুল বুখারী: ১১৮৩`
       },
       {
         keywords: ['এশা', 'এশার নামাজ', 'এশা কয় রাকাত'],
-        answer: `**এশার নামাজের বিন্যাস (মোট ১৭ রাকাত নফলসহ):**
-১. ৪ রাকাত সুন্নাত (গায়রে মুয়াক্কাদা)
-২. **৪ রাকাত ফরজ**
-৩. **২ রাকাত সুন্নাতে মুয়াক্কাদা**
-৪. ২ রাকাত নফল
-৫. **৩ রাকাত বিতর (ওয়াজিব)**
-৬. ২ রাকাত নফল
-দলিল: সুনানে আবু দাউদ: ১৪১৬, তিরমিযী: ৪৫৩`
+        answer: `**এশার নামাজ মোট ১৭ রাকাত (নফল ও বিতরসহ):**
+১. ৪ রাকাত সুন্নাত, ২. ৪ রাকাত ফরজ, ৩. ২ রাকাত সুন্নাত, ৪. ২ রাকাত নফল, ৫. ৩ রাকাত বিতর (ওয়াজিব), ৬. ২ রাকাত নফল।`
       },
       {
-        keywords: ['ওযু', 'ওযুর ফরজ', 'অজুর ফরজ', 'ওজুর ফরজ'],
+        keywords: ['ওযু', 'ওযুর ফরজ', 'অজুর ফরজ'],
         answer: `**পবিত্র কুরআনের সূরা আল-মায়িদাহ (আয়াত ৬) অনুযায়ী ওযুর ফরজ ৪টি:**
 ১. সম্পূর্ণ মুখমণ্ডল একবার ধৌত করা।
 ২. উভয় হাত কনুইসহ একবার ধৌত করা।
 ৩. মাথার চারভাগের একভাগ মাসেহ করা।
 ৪. উভয় পা টাখনু/গোড়ালিসহ ধৌত করা।`
-      },
-      {
-        keywords: ['শামীমা আহসান', 'শামীমা', 'নির্মাতা', 'কে তৈরি করেছে', 'কে বানিয়েছে'],
-        answer: `**মাশাআল্লাহ! সম্মানিত শামীমা আহসান (Shamima Ahsan)।**
-
-মহান আল্লাহ সুবহানাহু ওয়া তাআলা আপনাকে প্রভূত কল্যাণ ও উত্তম প্রতিদান দান করুন (*জাযাকাল্লাহু খাইরান ফিদ-দুনয়া ওয়াল আখিরাহ*)। 
-
-**'আল আহসান ইসলামিক এআই'** পবিত্র কুরআনুল কারীম ও সহীহ হাদিসের প্রামাণ্য দলিলের আলোকে দ্বীনি বিশুদ্ধ জ্ঞান প্রচার ও মুসলিম উম্মাহর খিদমতে নিবেদিত একটি বরকতময় উদ্যোগ। 
-
-মহান রাব্বুল আলামীন আপনার এই মহতী প্রচেষ্টাকে কবুল করুন, আপনার ইলম ও আমলে বরকত দিন এবং এটিকে আপনার ও আপনার পরিবারের জন্য আখেরাতের অবিরাম সদকায়ে জারিয়া হিসেবে কবুল করুন। আমীন ইয়া রব্বাল আলামীন। 🤲`
-      },
-      {
-        keywords: ['সালাম', 'আসসালামু আলাইকুম', 'কেমন আছেন'],
-        answer: `ওয়ালাইকুম আসসালাম ওয়া রাহমাতুল্লাহি ওয়া বারাকাতুহু। 'আল আহসান ইসলামিক এআই'-এ আপনাকে আন্তরিক স্বাগতম। কুরআন ও সহীহ হাদিসের আলোকে আপনার যেকোনো ইসলামিক প্রশ্ন করতে পারেন।`
       }
     ];
 
@@ -170,7 +211,46 @@
       return null;
     }
 
-    function sendMessage() {
+    function openApiKeyModal() {
+      const savedKey = localStorage.getItem('gemini_api_key') || '';
+      document.getElementById('apiKeyInput').value = savedKey;
+      document.getElementById('apiKeyModal').classList.remove('hidden');
+    }
+
+    function closeApiKeyModal() {
+      document.getElementById('apiKeyModal').classList.add('hidden');
+    }
+
+    function saveApiKey() {
+      const key = document.getElementById('apiKeyInput').value.trim();
+      if (key) {
+        localStorage.setItem('gemini_api_key', key);
+        alert('জেমিনি এপিআই কি সফলভাবে সংরক্ষিত হয়েছে!');
+      } else {
+        localStorage.removeItem('gemini_api_key');
+        alert('এপিআই কি মুছে ফেলা হয়েছে। এখন বিল্ট-ইন মোডে চলবে।');
+      }
+      closeApiKeyModal();
+    }
+
+    async function callGeminiApiDirectly(promptText, apiKey) {
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+      const sysInstruction = "তুমি হলে 'আল আহসান ইসলামিক এআই'। প্রতিষ্ঠাতা: শামীমা আহসান। প্রতিটি প্রশ্নের উত্তর কুরআন ও সহীহ হাদিসের রেফারেন্স সহ বাংলায় মার্জিত ভাষায় দাও।";
+      const payload = {
+        system_instruction: { parts: [{ text: sysInstruction }] },
+        contents: [{ role: 'user', parts: [{ text: promptText }] }]
+      };
+
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      return data?.candidates?.[0]?.content?.parts?.[0]?.text;
+    }
+
+    async function sendMessage() {
       const input = document.getElementById('userInput');
       const text = input.value.trim();
       if (!text) return;
@@ -183,16 +263,62 @@
       `;
       input.value = '';
 
-      const answer = findLocalAnswer(text) || "জাযাকাল্লাহু খাইরান আপনার প্রশ্নের জন্য। এই বিষয়ে বিস্তারিত জানতে ও পূর্ণাঙ্গ এআই উত্তরের জন্য মূল লাইভ ওয়েবসাইটে ভিজিট করুন।";
-      setTimeout(() => {
+      const loadingId = 'loading-' + Date.now();
+      feed.innerHTML += `
+        <div id="${loadingId}" class="p-4 rounded-2xl bg-white border border-emerald-200/80 text-sm text-emerald-800 flex items-center gap-2">
+          <span class="animate-spin text-lg">⏳</span> উত্তর প্রস্তুত করা হচ্ছে...
+        </div>
+      `;
+      feed.scrollTop = feed.scrollHeight;
+
+      // 1. Instant match
+      const instant = findLocalAnswer(text);
+      if (instant) {
+        document.getElementById(loadingId).remove();
         feed.innerHTML += `
           <div class="p-4 rounded-2xl bg-white border border-emerald-200/80 shadow-sm flex items-start gap-3">
             <div class="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-sm shrink-0">আ</div>
-            <div class="flex-1 text-sm text-slate-800 leading-relaxed whitespace-pre-wrap">${answer}</div>
+            <div class="flex-1 text-sm text-slate-800 leading-relaxed whitespace-pre-wrap">${instant}</div>
           </div>
         `;
         feed.scrollTop = feed.scrollHeight;
-      }, 300);
+        return;
+      }
+
+      // 2. Gemini API Key check
+      const userApiKey = localStorage.getItem('gemini_api_key');
+      if (userApiKey) {
+        try {
+          const aiResponse = await callGeminiApiDirectly(text, userApiKey);
+          document.getElementById(loadingId).remove();
+          if (aiResponse) {
+            feed.innerHTML += `
+              <div class="p-4 rounded-2xl bg-white border border-emerald-200/80 shadow-sm flex items-start gap-3">
+                <div class="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-sm shrink-0">আ</div>
+                <div class="flex-1 text-sm text-slate-800 leading-relaxed whitespace-pre-wrap">${aiResponse}</div>
+              </div>
+            `;
+            feed.scrollTop = feed.scrollHeight;
+            return;
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      }
+
+      // 3. Polite guidance fallback
+      document.getElementById(loadingId).remove();
+      feed.innerHTML += `
+        <div class="p-4 rounded-2xl bg-white border border-emerald-200/80 shadow-sm flex items-start gap-3">
+          <div class="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-sm shrink-0">আ</div>
+          <div class="flex-1 text-sm text-slate-800 leading-relaxed">
+            <p class="font-semibold text-emerald-800 mb-1">জি, আমি আপনার কথা শুনতে পাচ্ছি।</p>
+            <p class="text-slate-700">আমি 'আল আহসান ইসলামিক এআই'। আপনি নামাজ, রোজা, অজু, কালেমা, হালাল-হারাম বা যেকোনো দ্বীনি প্রশ্ন করতে পারেন। আমি উত্তর প্রদানে সর্বদা প্রস্তুত।</p>
+            <p class="text-xs text-slate-500 mt-2">টিপস: উপরের <strong>'⚙️ এআই মোড'</strong> বাটনে ক্লিক করে ফ্রি জেমিনি এপিআই কি বসালে যেকোনো প্রশ্নের লাইভ এআই উত্তর পাওয়া যাবে।</p>
+          </div>
+        </div>
+      `;
+      feed.scrollTop = feed.scrollHeight;
     }
   </script>
 </body>
