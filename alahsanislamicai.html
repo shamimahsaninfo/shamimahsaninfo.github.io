@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>আল আহসান ইসলামিক এআই - Al-Ahsan Islamic AI</title>
-  <meta name="description" content="কুরআন ও সহীহ হাদিসের প্রামাণ্য দলিলের আলোকে ইসলামিক জ্ঞান সহকারী। জেমিনি এআই ও অডিও স্পিচ সমর্থিত। তত্ত্বাবধায়ক: শামীম আহসান">
+  <meta name="description" content="কুরআন ও সহীহ হাদিসের প্রামাণ্য দলিলের আলোকে ইসলামিক জ্ঞান সহকারী। জেমিনি এআই ও অডিও স্পিচ সমর্থিত। প্রতিষ্ঠাতা: শামীমা আহসান">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -80,7 +80,7 @@
     <!-- Bismillah -->
     <div class="text-center my-2 sm:my-3">
       <p class="font-arabic text-2xl sm:text-3xl text-emerald-800 font-bold" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
-      <p class="text-[11px] text-slate-500 mt-0.5">পরম করুণাময় ও অসীম দয়ালু আল্লাহর নামে শুরু করছি</p>
+      <p class="text-[11px] text-slate-500 mt-0.5">পরম করুণাময় ও অসীম دয়ালু আল্লাহর নামে শুরু করছি</p>
     </div>
 
     <!-- Daily Verse Card -->
@@ -172,7 +172,7 @@
         </button>
       </div>
       <p class="text-[10px] text-center text-slate-500 mt-1.5">
-        পবিত্র কুরআন ও সহীহ হাদিসের দলিলের আলোকে উত্তর। তত্ত্বাবধায়ক: শামীম আহসান।
+        পবিত্র কুরআন ও সহীহ হাদিসের নির্ভরযোগ্য প্রামাণ্য দলিলের আলোকে উত্তর। তত্ত্বাবধায়ক: শামীমা আহসান।
       </p>
     </div>
   </main>
@@ -224,13 +224,12 @@
     // Direct Google Gemini AI Live Call
     async function queryLiveGeminiApi(promptText, apiKey) {
       var candidateModels = [
-        'gemini-3.1-flash-lite-preview',
-        'gemini-3.8-flash',
-        'gemini-3-flash-preview',
-        'gemma-4-31b-it'
+        'gemini-2.5-flash',
+        'gemini-2.0-flash',
+        'gemini-1.5-flash'
       ];
 
-      var sysInstruction = "তুমি হলে 'আল আহসান ইসলামিক এআই'। তত্ত্বাবধায়ক: শামীম আহসান। ব্যবহারকারীর যেকোনো ইসলামিক, শরিয়ত বা দ্বীনি প্রশ্নের উত্তর পবিত্র কুরআন ও সহীহ হাদিসের প্রামাণ্য দলিলের আলোকে বাংলায় সুন্দর ও মার্জিত ভাষায় দাও। অপ্রাসঙ্গিক বা মনগড়া কোনো উত্তর দেবে না।";
+      var sysInstruction = "তুমি হলে 'আল আহসান ইসলামিক এআই'। প্রতিষ্ঠাতা: শামীমা আহসান। ব্যবহারকারীর যেকোনো ইসলামিক, শরিয়ত বা দ্বীনি প্রশ্নের উত্তর পবিত্র কুরআন ও সহীহ হাদিসের প্রামাণ্য দলিলের আলোকে বাংলায় সুন্দর ও মার্জিত ভাষায় দাও। অপ্রাসঙ্গিক বা মনগড়া কোনো উত্তর দেবে না।";
       var payload = {
         system_instruction: { parts: [{ text: sysInstruction }] },
         contents: [{ role: 'user', parts: [{ text: promptText }] }]
@@ -307,10 +306,11 @@
         }
       } catch (err) {}
 
-      // 3. Fallback
+      // 3. Fallback: Prompt user to set their Gemini Key if missing
       var el = document.getElementById('loadingIndicator');
       if (el) el.remove();
-      addMessageToFeed('model', '**জাযাকাল্লাহু খাইরান আপনার প্রশ্নের জন্য।**\n\nসরাসরি জেমিনি এআই থেকে সকল প্রশ্নের উত্তর সচল করতে অনুগ্রহ করে আপনার এপিআই চাবিকাঠি যুক্ত রাখুন।');
+      addMessageToFeed('model', '**জাযাকাল্লাহু খাইরান আপনার প্রশ্নের জন্য।**\n\n' +
+        'সরাসরি গুগল জেমিনি এআই থেকে সকল প্রশ্নের উন্মুক্ত লাইভ উত্তরের জন্য উপরের **"⚡ এআই কি"** বাটনে আপনার Google Gemini API Key সেট করুন।');
     }
 
     function askQuickQuestion(questionText) {
