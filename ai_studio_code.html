@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>আল আহসান ইসলামিক এআই - Al-Ahsan Islamic AI</title>
-  <meta name="description" content="কুরআন ও সহীহ হাদিসের প্রামাণ্য দলিলের আলোকে ইসলামিক জ্ঞান সহকারী। জেমিনি এআই ও অডিও স্পিচ সমর্থিত। প্রতিষ্ঠাতা: শামীমা আহসান">
+  <meta name="description" content="কুরআন ও সহীহ হাদিসের প্রামাণ্য দলিলের আলোকে ইসলামিক জ্ঞান সহকারী। জেমিনি এআই ও অডিও স্পিচ সমর্থিত। তত্ত্বাবধায়ক: শামীম আহসান">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -172,7 +172,7 @@
         </button>
       </div>
       <p class="text-[10px] text-center text-slate-500 mt-1.5">
-        পবিত্র কুরআন ও সহীহ হাদিসের দলিলের আলোকে উত্তর। প্রতিষ্ঠাতা: শামীমা আহসান।
+        পবিত্র কুরআন ও সহীহ হাদিসের দলিলের আলোকে উত্তর। তত্ত্বাবধায়ক: শামীম আহসান।
       </p>
     </div>
   </main>
@@ -230,7 +230,7 @@
         'gemma-4-31b-it'
       ];
 
-      var sysInstruction = "তুমি হলে 'আল আহসান ইসলামিক এআই'। প্রতিষ্ঠাতা: শামীমা আহসান। ব্যবহারকারীর যেকোনো ইসলামিক, শরিয়ত বা দ্বীনি প্রশ্নের উত্তর পবিত্র কুরআন ও সহীহ হাদিসের প্রামাণ্য দলিলের আলোকে বাংলায় সুন্দর ও মার্জিত ভাষায় দাও। অপ্রাসঙ্গিক বা মনগড়া কোনো উত্তর দেবে না।";
+      var sysInstruction = "তুমি হলে 'আল আহসান ইসলামিক এআই'। তত্ত্বাবধায়ক: শামীম আহসান। ব্যবহারকারীর যেকোনো ইসলামিক, শরিয়ত বা দ্বীনি প্রশ্নের উত্তর পবিত্র কুরআন ও সহীহ হাদিসের প্রামাণ্য দলিলের আলোকে বাংলায় সুন্দর ও মার্জিত ভাষায় দাও। অপ্রাসঙ্গিক বা মনগড়া কোনো উত্তর দেবে না।";
       var payload = {
         system_instruction: { parts: [{ text: sysInstruction }] },
         contents: [{ role: 'user', parts: [{ text: promptText }] }]
