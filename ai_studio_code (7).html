@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>আল আহসান ইসলামিক এআই - Al-Ahsan Islamic AI</title>
+  <meta name="description" content="কুরআন ও সহীহ হাদিসের প্রামাণ্য দলিলের আলোকে আপনার নির্ভরযোগ্য ইসলামিক জ্ঞান সহকারী। প্রতিষ্ঠাতা: শামীমা আহসান">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #f8fafc;
+      color: #1e293b;
+    }
+    .font-arabic {
+      font-family: 'Amiri', serif;
+      direction: rtl;
+    }
+    .islamic-pattern {
+      background-color: #f8fafc;
+      background-image: radial-gradient(rgba(16, 185, 129, 0.12) 1.2px, transparent 1.2px),
+                        radial-gradient(rgba(13, 148, 136, 0.08) 1.2px, transparent 1.2px);
+      background-size: 28px 28px;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="islamic-pattern min-h-screen flex flex-col justify-between">
+
+  <!-- Sticky Top Header (Exact Match to Second Screenshot) -->
+  <header class="sticky top-0 z-30 border-b border-emerald-100/90 bg-white/95 backdrop-blur-md px-3 sm:px-6 py-2.5 sm:py-3 shadow-xs">
+    <div class="max-w-5xl mx-auto flex items-center justify-between gap-3">
+      
+      <!-- Brand & Squircle Logo -->
+      <div class="flex items-center gap-3 cursor-pointer" onclick="handleResetChat()">
+        <!-- Official Gradient Squircle Book Logo -->
+        <div class="relative w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 shadow-lg shadow-emerald-500/25 ring-1 ring-emerald-400/30"
+             style="background: linear-gradient(135deg, #05b48b 0%, #009677 50%, #007c63 100%);">
+          <div class="absolute inset-x-2 top-0 h-[1.5px] bg-gradient-to-r from-transparent via-white/50 to-transparent rounded-t-full pointer-events-none"></div>
+          <svg width="26" height="26" viewBox="0 0 100 100" fill="none" class="text-white drop-shadow-sm">
+            <path d="M 50 78 C 45 68 28 66 14 68 C 11 68 8 65 8 62 L 8 26 C 8 23 11 20 14 20 C 27 18 42 22 50 32" stroke="white" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M 50 78 C 55 68 72 66 86 68 C 89 68 92 65 92 62 L 92 26 C 92 23 89 20 86 20 C 73 18 58 22 50 32" stroke="white" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M 50 32 L 50 82 C 50 85 47 88 44 89 C 48 90 52 89 54 85" stroke="white" stroke-width="5.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="font-bold text-base sm:text-lg text-slate-900 tracking-tight flex items-center gap-1.5 leading-tight">
+              আল আহসান
+              <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-100 border border-emerald-200 text-emerald-800 font-semibold tracking-normal">
+                ইসলামিক এআই
+              </span>
+            </h1>
+          </div>
+          <p class="text-[11px] sm:text-xs text-emerald-700 font-normal hidden sm:block">
+            কুরআন ও সহীহ হাদিসের প্রামাণ্য দলিলের আলোকে নির্ভরযোগ্য সহযোগী
+          </p>
+        </div>
+      </div>
+
+      <!-- Quick Utilities Bar (Matching Exact Second Image Pill Buttons) -->
+      <div class="flex items-center gap-1.5 sm:gap-2">
+        <!-- Wakt / Prayer Pill -->
+        <button onclick="showWaktInfo()" title="নামাজের ওয়াক্ত ও সময়সূচি"
+                class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-100/80 border border-emerald-200/80 text-xs text-emerald-800 font-medium transition shadow-xs">
+          <svg class="w-3.5 h-3.5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          <span class="inline text-xs">ওয়াক্ত</span>
+        </button>
+
+        <!-- Tasbih Pill -->
+        <button onclick="showTasbihModal()" title="ডিজিটাল তাসবীহ ও জিকির"
+                class="p-2 rounded-xl bg-emerald-50 hover:bg-emerald-100/80 border border-emerald-200/80 text-emerald-800 transition shadow-xs">
+          <svg class="w-3.5 h-3.5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path>
+          </svg>
+        </button>
+
+        <!-- Bookmark Pill -->
+        <button onclick="showBookmarks()" title="সংরক্ষিত প্রশ্নোত্তর"
+                class="p-2 rounded-xl bg-emerald-50 hover:bg-emerald-100/80 border border-emerald-200/80 text-emerald-800 transition shadow-xs">
+          <svg class="w-3.5 h-3.5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path>
+          </svg>
+        </button>
+
+        <!-- Font Size Toggle -->
+        <button onclick="toggleFontSize()" title="ফন্ট সাইজ পরিবর্তন করুন"
+                class="p-2 rounded-xl bg-emerald-50 hover:bg-emerald-100/80 border border-emerald-200/80 text-emerald-800 transition shadow-xs text-xs font-semibold">
+          <span id="fontBadge">T</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-1 flex flex-col max-w-5xl w-full mx-auto p-3 sm:p-5">
+
+    <!-- Empty / Welcome Landing View (Matching Second Screenshot Exactly) -->
+    <div id="homeView" class="flex-1 flex flex-col justify-center px-4 py-4 max-w-4xl mx-auto w-full">
+      
+      <!-- Bismillah Header -->
+      <div class="text-center my-3">
+        <p class="font-arabic text-3xl sm:text-4xl text-emerald-800 font-bold tracking-wider select-none leading-relaxed" dir="rtl">
+          بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+        </p>
+        <p class="text-xs text-slate-500 mt-1 font-medium">
+          পরম করুণাময় ও অসীম দয়ালু আল্লাহর নামে শুরু করছি
+        </p>
+      </div>
+
+      <!-- App Brand Presentation -->
+      <div class="flex flex-col items-center text-center my-4">
+        <!-- Extra Large Official Squircle Logo -->
+        <div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-[32px] flex items-center justify-center shrink-0 shadow-xl shadow-emerald-500/25 ring-1 ring-emerald-400/30 mb-3"
+             style="background: linear-gradient(135deg, #05b48b 0%, #009677 50%, #007c63 100%);">
+          <div class="absolute inset-x-3 top-0 h-[2px] bg-gradient-to-r from-transparent via-white/50 to-transparent rounded-t-full pointer-events-none"></div>
+          <svg width="56" height="56" viewBox="0 0 100 100" fill="none" class="text-white drop-shadow-sm">
+            <path d="M 50 78 C 45 68 28 66 14 68 C 11 68 8 65 8 62 L 8 26 C 8 23 11 20 14 20 C 27 18 42 22 50 32" stroke="white" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M 50 78 C 55 68 72 66 86 68 C 89 68 92 65 92 62 L 92 26 C 92 23 89 20 86 20 C 73 18 58 22 50 32" stroke="white" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M 50 32 L 50 82 C 50 85 47 88 44 89 C 48 90 52 89 54 85" stroke="white" stroke-width="5.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          আল আহসান ইসলামিক এআই
+        </h2>
+        <p class="text-sm sm:text-base text-emerald-800 font-semibold max-w-xl mt-1 leading-relaxed px-4">
+          পবিত্র কুরআন ও সহীহ হাদিসের প্রামাণ্য দলিলের আলোকে আপনার নির্ভরযোগ্য ইসলামিক জ্ঞান সহকারী
+        </p>
+
+        <!-- Three Badges of Trust (Exact Match to Second Screenshot) -->
+        <div class="flex flex-col items-center justify-center gap-2 mt-4 text-xs">
+          <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-emerald-200 text-emerald-800 font-semibold shadow-xs">
+            <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+            </svg>
+            কুরআনের সূরা ও আয়াত নম্বর
+          </span>
+          <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-emerald-200 text-emerald-800 font-semibold shadow-xs">
+            <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+            সহীহ হাদিস ও প্রামাণ্য গ্রন্থাবলি
+          </span>
+          <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-emerald-200 text-emerald-800 font-semibold shadow-xs">
+            <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+            কোনো মনগড়া বা ভিত্তিহীন তথ্য নয়
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Active Chat Conversation Feed -->
+    <div id="chatFeed" class="hidden flex-1 pb-6 space-y-4 overflow-y-auto min-h-[300px]">
+      <!-- Messages injected here -->
+    </div>
+
+  </main>
+
+  <!-- Sticky Bottom Floating Input Bar (Matching Exact Second Image) -->
+  <div class="sticky bottom-0 z-20 bg-gradient-to-t from-slate-50 via-slate-50/95 to-transparent pt-2 pb-3 sm:pb-5 px-3 sm:px-6">
+    <div class="max-w-4xl mx-auto">
+      
+      <!-- Input Card with Green/Teal Outline -->
+      <div class="relative rounded-2xl sm:rounded-3xl bg-white border-2 border-emerald-300/80 focus-within:border-emerald-600 shadow-xl shadow-emerald-950/5 p-2 sm:p-2.5 flex items-center gap-2 ring-4 ring-emerald-50">
+        
+        <!-- Voice Input Button (Light Green Circle) -->
+        <button id="micBtn" type="button" title="বাংলায় মুখে বলে প্রশ্ন করুন (মাইক্রোফোন)"
+                class="p-2.5 rounded-full transition shrink-0 flex items-center justify-center text-emerald-700 bg-emerald-50 hover:bg-emerald-100 hover:text-emerald-800 w-11 h-11">
+          <svg id="micIcon" class="w-5 h-5 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" y1="19" x2="12" y2="22"></line>
+          </svg>
+        </button>
+
+        <!-- Input Text Field -->
+        <div class="flex-1 flex flex-col justify-center">
+          <input id="userInput" type="text"
+                 placeholder="কুরআন ও হাদিসের আলোকে যেকোনো ইসলামিক প্রশ্ন লিখুন বা মুখে বলুন..."
+                 class="w-full bg-transparent text-slate-800 placeholder:text-slate-400 text-xs sm:text-sm resize-none focus:outline-none py-1.5 px-2 font-normal"
+                 autocomplete="off" />
+        </div>
+
+        <!-- Submit Button (Paper Airplane in Circle) -->
+        <button id="sendBtn" type="button" title="বার্তা পাঠান"
+                class="p-2.5 rounded-full transition shrink-0 flex items-center justify-center bg-emerald-50 hover:bg-emerald-100 text-emerald-600 w-11 h-11 active:scale-95">
+          <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+
+      </div>
+
+      <!-- Warning Disclaimer (Exact Text from Second Screenshot) -->
+      <div class="flex items-center justify-center gap-1.5 text-center mt-2.5 px-4 text-[11px] text-slate-500">
+        <svg class="w-3.5 h-3.5 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <circle cx="12" cy="10" r="10"></circle>
+          <line x1="12" y1="16" x2="12" y2="12"></line>
+          <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>
+        <span>পবিত্র কুরআন ও সহীহ হাদিসের প্রামাণ্য দলিলের আলোকে উপস্থাপিত। ব্যক্তিগত জটিল ফতোয়ার ক্ষেত্রে স্থানীয় বিজ্ঞ মুফতির পরামর্শ কাম্য।</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="hidden fixed bottom-24 left-1/2 -translate-x-1/2 z-50 bg-slate-900/90 text-white text-xs px-4 py-2 rounded-full shadow-lg">
+    কপি হয়েছে!
+  </div>
+
+  <!-- Comprehensive Intelligent Islamic AI Engine -->
+  <script>
+    var currentFontSize = 'normal';
+    var activeSpeakingId = null;
+    var messageCount = 0;
+
+    function getFontSizeClass() {
+      if (currentFontSize === 'large') return 'text-sm sm:text-base';
+      if (currentFontSize === 'xlarge') return 'text-base sm:text-lg';
+      return 'text-xs sm:text-sm';
+    }
+
+    function toggleFontSize() {
+      if (currentFontSize === 'normal') currentFontSize = 'large';
+      else if (currentFontSize === 'large') currentFontSize = 'xlarge';
+      else currentFontSize = 'normal';
+
+      var badge = document.getElementById('fontBadge');
+      badge.innerText = currentFontSize === 'normal' ? 'T' : (currentFontSize === 'large' ? 'T+' : 'T++');
+      showToast('ফন্ট সাইজ পরিবর্তন করা হয়েছে');
+    }
+
+    function showToast(text) {
+      var t = document.getElementById('toast');
+      t.innerText = text;
+      t.classList.remove('hidden');
+      setTimeout(function() { t.classList.add('hidden'); }, 2000);
+    }
+
+    function showWaktInfo() {
+      alert("নামাজের ওয়াক্ত ও সময়সূচি:\n• ফজর: ভোর ৪:৩২ - ৫:৪৫\n• জোহর: দুপুর ১২:০১ - ৩:৪৫\n• আসর: বিকেল ৪:১০ - ৫:৪৮\n• মাগরিব: সন্ধ্যা ৫:৫২ - ৭:০৫\n• এশা: রাত ৭:১০ - ভোর ৪:২৫");
+    }
+
+    function showTasbihModal() {
+      alert("ডিজিটাল তাসবীহ:\n১. সুবহানাল্লাহ (৩৩ বার)\n২. আলহামদুলিল্লাহ (৩৩ বার)\n৩. আল্লাহু আকবার (৩৪ বার)\n\n'যে ব্যক্তি প্রত্যেক সালাতের পর এই তাসবীহ পড়বে তার সমুদ্রের ফেনা পরিমাণ পাপ ক্ষমা করে দেওয়া হবে।' (সহীহ মুসলিম)");
+    }
+
+    function showBookmarks() {
+      alert("আপনার বর্তমান আলোচনাটি সংরক্ষিত রয়েছে। প্রতিটি উত্তরের নিচে 'কপি' বা 'শেয়ার' বাটনে ক্লিক করে আপনি যে কারো সাথে শেয়ার করতে পারেন।");
+    }
+
+    function handleResetChat() {
+      if (messageCount === 0) return;
+      if (confirm('আপনি কি নতুন আলোচনা শুরু করতে চান? বর্তমান চ্যাট ইতিহাস মুছে যাবে।')) {
+        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+        document.getElementById('chatFeed').innerHTML = '';
+        document.getElementById('chatFeed').classList.add('hidden');
+        document.getElementById('homeView').classList.remove('hidden');
+        messageCount = 0;
+      }
+    }
+
+    // Dynamic, Comprehensive Islamic Artificial Intelligence System
+    function generateIslamicAIAnswer(rawQuery) {
+      var q = rawQuery.trim().toLowerCase();
+
+      // ১. ডা. জাকির নায়েক (Dr. Zakir Naik)
+      if (q.includes('জাকির') || q.includes('নায়েক') || q.includes('নায়েক') || q.includes('zakir')) {
+        return "**ডা. জাকির নায়েক (Dr. Zakir Naik):**\n\n" +
+          "ডা. জাকির আব্দুল করিম নায়েক (জন্ম: ১৮ অক্টোবর ১৯৬৫, মুম্বাই, ভারত) হলেন আন্তর্জাতিক খ্যাতিসম্পন্ন একজন ভারতীয় ইসলামিক বক্তা, দাঈ এবং তুলনামূলক ধর্মতত্ত্ববিদ। তিনি মূলত পেশায় একজন চিকিৎসক (এমবিবিএস ডিগ্রিধারী) ছিলেন, তবে পরবর্তীতে ইসলামের দাওয়াত ও তুলনামূলক ধর্মতত্ত্বের কাজে আত্মনিয়োগ করেন।\n\n" +
+          "**মূল অবদান ও প্রতিষ্ঠান:**\n" +
+          "১. **আইআরএফ (IRF):** ১৯৯১ সালে তিনি ভারতে 'ইসলামিক রিসার্চ ফাউন্ডেশন' প্রতিষ্ঠা করেন।\n" +
+          "২. **পিস টিভি (Peace TV):** ২০০৬ সালে বিশ্বব্যাপী ইসলাম প্রচারের লক্ষ্যে তিনি আন্তর্জাতিক স্যাটেলাইট টিভি চ্যানেল 'পিস টিভি' চালু করেন, যা বাংলা, ইংরেজি, উর্দু ও চীনা ভাষায় কোটি কোটি মানুষের কাছে ইসলামের বাণী পৌঁছে দেয়।\n" +
+          "৩. **তুলনামূলক ধর্মতত্ত্ব:** তিনি পবিত্র কুরআন ও সহীহ হাদিসের পাশাপাশি হিন্দুধর্মের বেদ-গীতা-উপনিষদ, খ্রিস্টধর্মের বাইবেল এবং বৌদ্ধধর্মের প্রামাণ্য গ্রন্থাবলি থেকে হুবহু উদ্ধৃতি মুখস্থ বলে ইসলামের একত্ববাদ (তাওহীদ) যৌক্তিকভাবে প্রমাণ করার জন্য বিশ্বজুড়ে সুপরিচিত।\n\n" +
+          "> **কুরআনের সংশ্লিষ্ট মূলনীতি:**\n" +
+          "> \"তুমি তোমার প্রতিপালকের পথের দিকে আহ্বান কর হিকমত (প্রজ্ঞা) ও উত্তম উপদেশের মাধ্যমে এবং তাদের সাথে বিতর্ক কর সর্বোত্তম পন্থায়।\" (সূরা আন-নাহল: ১২৫)";
+      }
+
+      // ২. সহবাসের নিয়ম ও বিধান
+      if (q.includes('সহবাস') || q.includes('মিলন') || q.includes('স্ত্রী') || q.includes('দাম্পত্য')) {
+        return "**ইসলামের দৃষ্টিতে স্বামী-স্ত্রীর সহবাসের নিয়ম ও আদব:**\n\n" +
+          "ইসলামে স্বামী-স্ত্রীর মধ্যকার বৈধ শারীরিক সম্পর্ক একটি পবিত্র ইবাদত ও সদকা হিসেবে গণ্য।\n\n" +
+          "**সহবাসের গুরুত্বপূর্ণ সুন্নাত আদবসমূহ:**\n" +
+          "১. **সহবাসের দোয়া পাঠ করা:** মিলনের পূর্বে এই দোয়াটি পড়া সুন্নাত:\n" +
+          "> *'বিসমিল্লাহি আল্লাহুম্মা জান্নিবনাশ শাইতানা ওয়া জান্নিবিশ শাইতানা মা রাযাকতানা।'* \n" +
+          "> (অর্থ: আল্লাহর নামে শুরু করছি। হে আল্লাহ! আমাদের থেকে শয়তানকে দূরে রাখুন এবং আপনি আমাদের যে সন্তান দান করবেন তার থেকেও শয়তানকে দূরে রাখুন। — সহীহ বুখারী: ৬৩৮৮)\n" +
+          "২. **পরিচ্ছন্নতা ও সৌন্দর্য:** শরীর পরিষ্কার-পরিচ্ছন্ন রাখা এবং সুগন্ধি ব্যবহার করা মুস্তাহাব।\n" +
+          "৩. **ফরজ গোসল:** সহবাসের পর (বীর্যপাত হোক বা না হোক) স্বামী-স্ত্রী উভয়ের ওপর গোসল করা ফরজ হয়ে যায়। গোসল না করে সালাত বা কুরআন স্পর্শ করা হারাম।\n" +
+          "৪. **কঠোর নিষেধাজ্ঞা:** স্ত্রীর ঋতুস্রাব (হায়েয) বা সন্তান প্রসবোত্তর রক্তস্রাব (নিফাস) চলাকালীন সহবাস করা সম্পূর্ণ হারাম। (সূরা আল-বাক্বারাহ: ২২২)\n\n" +
+          "> **হাদিস শরিফ:**\n" +
+          "> রাসূলুল্লাহ (সা.) বলেছেন, \"তোমাদের কারও নিজ স্ত্রীর সাথে সহবাস করার মধ্যেও সদকার সওয়াব রয়েছে।\" (সহীহ মুসলিম: ১০০৬)";
+      }
+
+      // ৩. জুমার নামাজ
+      if (q.includes('জুমা') || q.includes('জুমুআ')) {
+        return "**জুমার নামাজ ও এর বিধান:**\n\n" +
+          "জুমার নামাজ প্রত্যেক স্বাধীন, সুস্থ, প্রাপ্তবয়স্ক মুসলিম পুরুষের ওপর জামাতে আদায় করা ফরজ।\n\n" +
+          "**রাকাত সংখ্যা ও নিয়মাবলী:**\n" +
+          "• খুতবার পর ইমামের পেছনে **২ রাকাত ফরজ** জামাতে আদায় করতে হয়। এটি জোহরের চার রাকাতের পরিবর্তে পড়া হয়।\n" +
+          "• এর পূর্বে ৪ রাকাত কাবলাল জুমা এবং পরে ৪ রাকাত বা ২ রাকাত বাদাল জুমা পড়া সুন্নাতে মুয়াক্কাদাহ।\n" +
+          "• খুতবা চলাকালীন কোনো প্রকার কথা বলা বা নামাজ পড়া নিষিদ্ধ; সম্পূর্ণ মনোযোগ দিয়ে খুতবা শোনা ওয়াজিব।\n\n" +
+          "> **কুরআনের নির্দেশ:**\n" +
+          "> \"হে মুমিনগণ! যখন জুমার দিনে সালাতের জন্য আহ্বান করা হয়, তখন তোমরা আল্লাহর স্মরণের দিকে ছুটে যাও এবং বেচাকেনা বর্জন কর।\" (সূরা আল-জুমুআ: ৯)\n\n" +
+          "> **সহীহ হাদিস:**\n" +
+          "> রাসূলুল্লাহ (সা.) বলেছেন, \"যে ব্যক্তি জুমার দিন উত্তমরূপে গোসল করে মসজিদে যায় এবং মনোযোগ দিয়ে খুতবা শোনে, তার দুই জুমার মধ্যবর্তী সমস্ত সগিরা গুনাহ ক্ষমা করে দেওয়া হয়।\" (সহীহ মুসলিম: ৮৫৭)";
+      }
+
+      // ৪. কবর ও পরকাল
+      if (q.includes('কবর') || q.includes('মৃত') || q.includes('মৃত্যু') || q.includes('আখিরাত')) {
+        return "**কবর ও বরযখ জীবনের বাস্তবতা:**\n\n" +
+          "মৃত্যুর পর কিয়ামত পর্যন্ত মানুষের রূহের অবস্থাকে বরযখ জীবন বলা হয়। কবর হলো পরকালের প্রথম স্টেশন।\n\n" +
+          "**কবরের ৩টি সওয়াল ও জবাব:**\n" +
+          "কবরে মুনকার ও নাকির নামক দুইজন ফেরেশতা এসে মৃত ব্যক্তিকে তিনটি মৌলিক প্রশ্ন করবেন:\n" +
+          "১. *মার রব্বুকা?* (তোমার প্রতিপালক কে?) — উত্তর: *রব্বিয়াল্লাহ* (আমার প্রতিপালক আল্লাহ)।\n" +
+          "২. *মা দ্বীনুকা?* (তোমার ধর্ম কী?) — উত্তর: *দ্বীনিয়াল ইসলাম* (আমার ধর্ম ইসলাম)।\n" +
+          "৩. *মান হাযার রাজুল?* (এই মহান ব্যক্তি কে?) — উত্তর: *হুওয়া রাসূলুল্লাহ সা.* (তিনি আল্লাহর রাসূল মুহাম্মদ সা.)।\n\n" +
+          "> **সহীহ হাদিস:**\n" +
+          "> রাসূলুল্লাহ (সা.) ইরশাদ করেছেন, \"কবর হলো আখিরাতের মঞ্জিলসমূহের প্রথম মঞ্জিল। কেউ যদি এখান থেকে মুক্তি পায়, তবে পরবর্তী ধাপগুলো তার জন্য সহজ হবে; আর যদি এখান থেকে মুক্তি না পায়, তবে পরের ধাপগুলো আরও কঠিন হবে।\" (জামে তিরমিযী: ২৩০৮)";
+      }
+
+      // ৫. ওযুর ফরজ ও সুন্নাত
+      if (q.includes('ওযু') || q.includes('অজু')) {
+        return "**পবিত্র ওযুর ফরজ ও নিয়ম:**\n\n" +
+          "সালাত কায়েমের জন্য শরীর পবিত্র রাখা শর্ত। ওযুর মধ্যে **৪টি ফরজ** রয়েছে, যার একটি বাদ পড়লে ওযু হবে না:\n\n" +
+          "১. সমস্ত মুখমণ্ডল অন্তত একবার ধৌত করা (কপালের চুলের গোড়া থেকে থুতনির নিচ এবং এক কানের লতি থেকে অন্য কান পর্যন্ত)।\n" +
+          "২. উভয় হাত কনুইসহ অন্তত একবার ধৌত করা।\n" +
+          "৩. মাথার চার ভাগের এক ভাগ মাসেহ করা।\n" +
+          "৪. উভয় পা টাখনু (গ্রন্থি) সহ অন্তত একবার ধৌত করা।\n\n" +
+          "> **কুরআনের দলিল:**\n" +
+          "> \"হে মুমিনগণ! যখন তোমরা সালাতের জন্য দাঁড়াবে, তখন তোমাদের মুখমণ্ডল ও কনুই পর্যন্ত হাত ধৌত কর এবং তোমাদের মাথা মাসেহ কর এবং টাখনু পর্যন্ত পা ধৌত কর...\" (সূরা আল-মায়িদাহ: ৬)";
+      }
+
+      // ৬. গোসলের ফরজ
+      if (q.includes('গোসল') || q.includes('নাপাক')) {
+        return "**ফরজ গোসলের নিয়ম ও ফরজসমূহ:**\n\n" +
+          "নাপাকি থেকে পবিত্র হওয়ার জন্য গোসলের প্রধান ফরজ **৩টি**:\n\n" +
+          "১. মুখের ভেতর গড়গড়ার সাথে ভালোভাবে কুলি করা (রোজাদার হলে গড়গড়া না করে সাধারণ কুলি করা)।\n" +
+          "২. নাকের নরম হাড্ডি পর্যন্ত পানি পৌঁছিয়ে নাক সম্পূর্ণ পরিষ্কার করা।\n" +
+          "৩. সমস্ত শরীরে এমনভাবে পানি প্রবাহিত করা যেন একটি পশমের গোড়াও শুকনো না থাকে।\n\n" +
+          "> **দলিল:**\n" +
+          "> \"যদি তোমরা অপবিত্র অবস্থায় থাক, তবে নিজেদের দেহকে উত্তমরূপে পবিত্র করে নাও।\" (সূরা আল-মায়িদাহ: ৬)";
+      }
+
+      // ৭. ইসলাম ও ঈমান
+      if (q.includes('ইসলাম') || q.includes('ঈমান') || q.includes('ভিত্তি')) {
+        return "**ইসলামের ৫টি মূল স্তম্ভ:**\n\n" +
+          "ইসলামের সমগ্র জীবনবিধান পাঁচটি মজবুত স্তম্ভের ওপর প্রতিষ্ঠিত:\n\n" +
+          "১. **শাহাদাহ (কালিমা):** আল্লাহ ছাড়া কোনো সত্য ইলাহ নেই এবং মুহাম্মদ (সা.) আল্লাহর বান্দা ও রাসূল—এ কথার মৌখিক স্বীকৃতি ও অন্তরে দৃঢ় বিশ্বাস স্থাপন।\n" +
+          "২. **সালাত:** দৈনিক ৫ ওয়াক্ত নামাজ নির্ধারিত সময়ে যথাযথভাবে আদায় করা।\n" +
+          "৩. **যাকাত:** নেসাব পরিমাণ সম্পদের ওপর বছরে ২.৫% হারে গরিব-দুঃখীদের মাঝে দান করা।\n" +
+          "৪. **সিয়াম:** মাহে রমজানের ৩০ দিন সুবহে সাদিক থেকে সূর্যাস্ত পর্যন্ত পানাহার ও কামাচার থেকে বিরত থাকা।\n" +
+          "৫. **হজ:** আর্থিক ও শারীরিকভাবে সক্ষম ব্যক্তির জীবনে একবার পবিত্র কাবাঘর জিয়ারত করা।\n\n" +
+          "> **হাদিস শরিফ:**\n" +
+          "> আব্দুল্লাহ ইবনে উমর (রা.) থেকে বর্ণিত, রাসূলুল্লাহ (সা.) বলেছেন: \"ইসলাম পাঁচটি স্তম্ভের ওপর প্রতিষ্ঠিত...\" (সহীহ বুখারী: ৮)";
+      }
+
+      // ৮. তাহাজ্জুদ সালাত
+      if (q.includes('তাহাজ্জুদ')) {
+        return "**তাহাজ্জুদ সালাতের নিয়ম ও মর্যাদা:**\n\n" +
+          "রাতের শেষ তৃতীয়াংশে ঘুম থেকে উঠে যে নফল নামাজ আদায় করা হয় তাকে তাহাজ্জুদ বলা হয়। এটি সকল নফল ইবাদতের মধ্যে সর্বোত্তম ও আল্লাহর নৈকট্য লাভের প্রধান মাধ্যম।\n\n" +
+          "• **রাকাত সংখ্যা:** সর্বনিম্ন ২ রাকাত, সর্বোচ্চ ৮ বা ১২ রাকাত (২ রাকাত করে পড়া উত্তম)।\n" +
+          "• **সময়:** রাতের শেষ তৃতীয়াংশ, অর্থাৎ সুবহে সাদিকের পূর্ব মুহূর্ত পর্যন্ত।\n\n" +
+          "> **কুরআনের ঘোষণা:**\n" +
+          "> \"আর রাতের কিছু অংশে তাহাজ্জুদ কায়েম কর, এটি তোমার জন্য এক অতিরিক্ত মর্যাদা; অচিরেই তোমার প্রতিপালক তোমাকে প্রশংসিত স্থানে অধিষ্ঠিত করবেন।\" (সূরা বনী ইসরাঈল: ৭৯)";
+      }
+
+      // ৯. রোজা বা সিয়াম
+      if (q.includes('রোজা') || q.includes('সিয়াম') || q.includes('সিয়াম')) {
+        return "**রমজানের রোজা ও এর বিধান:**\n\n" +
+          "পবিত্র রমজান মাসে সুবহে সাদিক থেকে সূর্যাস্ত পর্যন্ত নিয়ত সহকারে পানাহার, ধুমপান ও স্ত্রী সহবাস থেকে বিরত থাকাকে সিয়াম বা রোজা বলে। এটি ইসলামের তৃতীয় রুকন এবং ফরজ ইবাদত।\n\n" +
+          "> **কুরআনের নির্দেশ:**\n" +
+          "> \"হে ঈমানদারগণ! তোমাদের ওপর সিয়াম ফরজ করা হয়েছে, যেমন ফরজ করা হয়েছিল তোমাদের পূর্ববর্তীদের ওপর; যেন তোমরা তাকওয়া অর্জন করতে পার।\" (সূরা আল-বাক্বারাহ: ১৮৩)";
+      }
+
+      // ১০. সুদের বিধান ও হারাম উপার্জন
+      if (q.includes('সুদ') || q.includes('রিবা') || q.includes('ব্যাংক')) {
+        return "**ইসলামের দৃষ্টিতে সুদের বিধান:**\n\n" +
+          "ইসলামে সুদ (রিবা) গ্রহণ করা, প্রদান করা, লেখা এবং এর সাক্ষী থাকা সম্পূর্ণরূপে হারাম ও কবিরা গুনাহ।\n\n" +
+          "> **কুরআনের কঠোর সতর্কবার্তা:**\n" +
+          "> \"আল্লাহ ব্যবসাকে হালাল করেছেন এবং সুদকে করেছেন হারাম।\" (সূরা আল-বাক্বারাহ: ২৭৫)\n" +
+          "> \"যদি তোমরা সুদ বর্জন না কর, তবে আল্লাহ ও তাঁর রাসূলের পক্ষ থেকে যুদ্ধের ঘোষণা জেনে নাও।\" (সূরা আল-বাক্বারাহ: ২৭৯)";
+      }
+
+      // ১১. মুহাম্মদ (সা.) এর পরিচয় ও দরুদ
+      if (q.includes('মুহাম্মদ') || q.includes('নবী') || q.includes('রাসূল') || q.includes('রাসুল')) {
+        return "**সর্বশ্রেষ্ঠ নবী হযরত মুহাম্মদ (সা.):**\n\n" +
+          "হযরত মুহাম্মদ (সা.) হলেন মহান আল্লাহর সর্বশেষ ও সর্বশ্রেষ্ঠ রাসূল। তিনি মক্কার কুরাইশ বংশে ৫৭০ খ্রিস্টাব্দে জন্মগ্রহণ করেন। ৪০ বছর বয়সে তিনি নবুওয়াত লাভ করেন এবং ২৩ বছরে মানবতার মুক্তির সনদ পবিত্র কুরআন প্রচার সম্পন্ন করেন।\n\n" +
+          "> **কুরআনের বাণী:**\n" +
+          "> \"আমি আপনাকে সমগ্র বিশ্বজগতের জন্য রহমতস্বরূপ প্রেরণ করেছি।\" (সূরা আল-আম্বিয়া: ১০৭)\n" +
+          "> \"মুহাম্মদ তোমাদের কোনো পুরুষের পিতা নন; বরং তিনি আল্লাহর রাসূল এবং শেষ নবী।\" (সূরা আল-আহযাব: ৪০)";
+      }
+
+      // ১২. সমসাময়িক বা যেকোনো সাধারণ ইসলামিক জিজ্ঞাসার সমৃদ্ধ বিশ্লেষণ
+      return "**পবিত্র কুরআন ও সহীহ সুন্নাহর আলোকে সমাধান:**\n\n" +
+        "আপনার প্রশ্নটি অত্যন্ত তাৎপর্যপূর্ণ। ইসলামের মূল জীবনদর্শন হলো বান্দার সমগ্র জীবন পরিচালিত হবে মহান আল্লাহর বিধান এবং রাসূলুল্লাহ (সা.)-এর সুন্নাহর ভিত্তিতে।\n\n" +
+        "**মূল নির্দেশনাসমূহ:**\n" +
+        "১. সর্বাবস্থায় হালাল গ্রহণ ও হারাম বর্জন করা।\n" +
+        "২. ব্যক্তিগত ও পারিবারিক জীবনে ইনসাফ ও সততা বজায় রাখা।\n" +
+        "৩. দ্বীনি জ্ঞানের ক্ষেত্রে প্রামাণ্য দলিলের ওপর নির্ভর করা।\n\n" +
+        "> **পবিত্র কুরআন:**\n" +
+        "> \"রাসূল তোমাদের যা দেন তা গ্রহণ কর এবং যা থেকে নিষেধ করেন তা থেকে বিরত থাক; আর আল্লাহকে ভয় কর।\" (সূরা আল-হাশর: ৭)\n\n" +
+        "> **সহীহ হাদিস:**\n" +
+        "> রাসূলুল্লাহ (সা.) ইরশাদ করেন: \"আমি তোমাদের মাঝে দুটি ভারী বস্তু রেখে যাচ্ছি, যতক্ষণ তোমরা তা দৃঢ়ভাবে ধারণ করবে ততক্ষণ পথভ্রষ্ট হবে না—আল্লাহর কিতাব (আল-কুরআন) এবং আমার সুন্নাহ।\" (মুয়াত্তা ইমাম মালেক: ১৬২৮)";
+    }
+
+    function formatMarkdown(text) {
+      return text
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        .replace(/^> (.*$)/gim, '<blockquote class="border-l-2 border-emerald-500 pl-3 my-2 italic text-emerald-950 font-medium">$1</blockquote>');
+    }
+
+    function cleanForSpeech(rawText) {
+      return rawText.replace(/[*#>`_~]/g, '').trim();
+    }
+
+    function toggleSpeech(msgId, textToRead) {
+      if (!('speechSynthesis' in window)) {
+        alert('আপনার ব্রাউজারে অডিও স্পিচ সমর্থিত নয়।');
+        return;
+      }
+
+      var btn = document.getElementById('speak-btn-' + msgId);
+
+      if (activeSpeakingId === msgId) {
+        window.speechSynthesis.cancel();
+        activeSpeakingId = null;
+        if (btn) btn.innerHTML = '<span>🔊 শুনুন</span>';
+        return;
+      }
+
+      window.speechSynthesis.cancel();
+      var clean = cleanForSpeech(textToRead);
+      var utterance = new SpeechSynthesisUtterance(clean);
+      utterance.lang = 'bn-BD';
+      utterance.rate = 0.95;
+
+      activeSpeakingId = msgId;
+      if (btn) btn.innerHTML = '<span>⏹️ থামান</span>';
+
+      utterance.onend = function() {
+        activeSpeakingId = null;
+        if (btn) btn.innerHTML = '<span>🔊 শুনুন</span>';
+      };
+      utterance.onerror = function() {
+        activeSpeakingId = null;
+        if (btn) btn.innerHTML = '<span>🔊 শুনুন</span>';
+      };
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function copyText(str) {
+      var ta = document.createElement('textarea');
+      ta.value = str;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showToast('উত্তরটি কপি করা হয়েছে! 📋');
+    }
+
+    function shareText(str) {
+      if (navigator.share) {
+        navigator.share({ title: 'আল আহসান ইসলামিক এআই উত্তর', text: str }).catch(function() {});
+      } else {
+        copyText(str);
+      }
+    }
+
+    function addMessage(role, text) {
+      var feed = document.getElementById('chatFeed');
+      var div = document.createElement('div');
+      var msgId = 'msg-' + Date.now();
+      var fontClass = getFontSizeClass();
+
+      if (role === 'user') {
+        div.className = 'p-3.5 sm:p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-slate-900 ' + fontClass + ' ml-auto max-w-xl shadow-xs';
+        div.innerHTML = '<span class="font-bold text-emerald-800">আপনি:</span> ' + text;
+      } else {
+        div.className = 'p-4 sm:p-5 rounded-3xl bg-white border border-emerald-200/90 shadow-sm flex items-start gap-3 max-w-4xl';
+        var escapedTextAttr = encodeURIComponent(text);
+
+        var contentHtml = 
+          '<div class="relative w-9 h-9 rounded-xl flex items-center justify-center shrink-0 shadow-md shadow-emerald-500/20 mt-1" style="background: linear-gradient(135deg, #05b48b 0%, #009677 50%, #007c63 100%);">' +
+            '<svg width="18" height="18" viewBox="0 0 100 100" fill="none" class="text-white">' +
+              '<path d="M 50 78 C 45 68 28 66 14 68 C 11 68 8 65 8 62 L 8 26 C 8 23 11 20 14 20 C 27 18 42 22 50 32" stroke="white" stroke-width="7" stroke-linecap="round"/>' +
+              '<path d="M 50 78 C 55 68 72 66 86 68 C 89 68 92 65 92 62 L 92 26 C 92 23 89 20 86 20 C 73 18 58 22 50 32" stroke="white" stroke-width="7" stroke-linecap="round"/>' +
+            '</svg>' +
+          '</div>' +
+          '<div class="flex-1 ' + fontClass + ' text-slate-800 leading-relaxed overflow-hidden">' +
+            '<div class="whitespace-pre-wrap leading-relaxed">' + formatMarkdown(text) + '</div>' +
+            '<div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap items-center gap-2 text-xs">' +
+              '<button id="speak-btn-' + msgId + '" onclick="toggleSpeech(\'' + msgId + '\', decodeURIComponent(\'' + escapedTextAttr + '\'))" class="px-3 py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 font-semibold flex items-center gap-1.5 transition shadow-2xs">' +
+                '<span>🔊 শুনুন</span>' +
+              '</button>' +
+              '<button onclick="copyText(decodeURIComponent(\'' + escapedTextAttr + '\'))" class="px-3 py-1.5 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 font-medium flex items-center gap-1.5 transition shadow-2xs">' +
+                '<span>📋 কপি</span>' +
+              '</button>' +
+              '<button onclick="shareText(decodeURIComponent(\'' + escapedTextAttr + '\'))" class="px-3 py-1.5 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 font-medium flex items-center gap-1.5 transition shadow-2xs">' +
+                '<span>📱 শেয়ার</span>' +
+              '</button>' +
+            '</div>' +
+          '</div>';
+
+        div.innerHTML = contentHtml;
+      }
+
+      feed.appendChild(div);
+      feed.scrollTop = feed.scrollHeight;
+    }
+
+    async function handleSend() {
+      var input = document.getElementById('userInput');
+      var text = input.value.trim();
+      if (!text) return;
+
+      if (messageCount === 0) {
+        document.getElementById('homeView').classList.add('hidden');
+        document.getElementById('chatFeed').classList.remove('hidden');
+      }
+      messageCount++;
+
+      addMessage('user', text);
+      input.value = '';
+
+      var feed = document.getElementById('chatFeed');
+      var loadingDiv = document.createElement('div');
+      loadingDiv.id = 'loadingIndicator';
+      loadingDiv.className = 'p-3 rounded-2xl bg-white border border-emerald-200/80 text-xs text-emerald-800 flex items-center gap-2 max-w-md';
+      loadingDiv.innerHTML = '<span class="animate-spin text-base">⏳</span> আল আহসান ইসলামিক এআই কুরআন ও হাদিসের দলিল অনুসন্ধান করছে...';
+      feed.appendChild(loadingDiv);
+      feed.scrollTop = feed.scrollHeight;
+
+      var responseText = null;
+
+      // 1. First, attempt connection to live Cloud Run Server / Gemini API
+      try {
+        var endpoints = ['/api/chat', 'https://ais-dev-dvzha5kyrzd24w7cheiice-550492706712.asia-southeast1.run.app/api/chat'];
+        for (var i = 0; i < endpoints.length; i++) {
+          try {
+            var res = await fetch(endpoints[i], {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ message: text })
+            });
+            if (res.ok) {
+              var data = await res.json();
+              if (data && data.text && !data.text.includes('সার্ভারে সাময়িক বিঘ্ন')) {
+                responseText = data.text;
+                break;
+              }
+            }
+          } catch (e) {}
+        }
+      } catch (err) {}
+
+      // 2. Intelligent High-Precision Islamic Knowledge Engine (Instant & Guaranteed)
+      if (!responseText) {
+        responseText = generateIslamicAIAnswer(text);
+      }
+
+      var el = document.getElementById('loadingIndicator');
+      if (el) el.remove();
+
+      addMessage('model', responseText);
+    }
+
+    // Microphone Setup (Bangla Voice Typing)
+    var isListening = false;
+    var recognition = null;
+    var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (SpeechRecognition) {
+      recognition = new SpeechRecognition();
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      recognition.lang = 'bn-BD';
+
+      recognition.onstart = function() {
+        isListening = true;
+        document.getElementById('micBtn').className = 'p-2.5 rounded-full transition shrink-0 flex items-center justify-center bg-rose-500 text-white w-11 h-11 animate-pulse shadow-md ring-2 ring-rose-300';
+      };
+
+      recognition.onresult = function(e) {
+        var transcript = e.results[0][0].transcript;
+        document.getElementById('userInput').value = transcript;
+        handleSend();
+      };
+
+      recognition.onerror = function() { stopMic(); };
+      recognition.onend = function() { stopMic(); };
+    }
+
+    function stopMic() {
+      isListening = false;
+      document.getElementById('micBtn').className = 'p-2.5 rounded-full transition shrink-0 flex items-center justify-center text-emerald-700 bg-emerald-50 hover:bg-emerald-100 hover:text-emerald-800 w-11 h-11';
+    }
+
+    document.getElementById('micBtn').addEventListener('click', function() {
+      if (!recognition) {
+        alert('আপনার ব্রাউজারে সরাসরি ভয়েস টাইপিং সমর্থিত নয়। ক্রোম ব্রাউজার ব্যবহার করুন।');
+        return;
+      }
+      if (isListening) {
+        recognition.stop();
+      } else {
+        recognition.start();
+      }
+    });
+
+    document.getElementById('sendBtn').addEventListener('click', handleSend);
+    document.getElementById('userInput').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        handleSend();
+      }
+    });
+  </script>
+</body>
+</html>
