@@ -10,15 +10,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body {
-      font-family: 'Hind Siliguri', -apple-system, sans-serif;
-      background-color: #f8fafc;
-      color: #1e293b;
-    }
-    .font-arabic {
-      font-family: 'Amiri', serif;
-      direction: rtl;
-    }
+    body { font-family: 'Hind Siliguri', -apple-system, sans-serif; background-color: #f8fafc; color: #1e293b; }
+    .font-arabic { font-family: 'Amiri', serif; direction: rtl; }
     .islamic-pattern {
       background-color: #f8fafc;
       background-image: radial-gradient(rgba(16, 185, 129, 0.12) 1.2px, transparent 1.2px),
@@ -28,11 +21,10 @@
   </style>
 </head>
 <body class="islamic-pattern min-h-screen flex flex-col">
-  <!-- Top Navigation Header -->
+  <!-- Header -->
   <header class="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-emerald-100 shadow-sm px-4 py-3">
     <div class="max-w-5xl mx-auto flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <!-- Emerald Book Logo -->
         <div class="w-11 h-11 rounded-2xl flex items-center justify-center shadow-md shadow-emerald-600/20"
              style="background: linear-gradient(135deg, #05b48b 0%, #009677 50%, #007c63 100%);">
           <svg width="26" height="26" viewBox="0 0 100 100" fill="none">
@@ -51,40 +43,22 @@
           <p class="text-xs text-emerald-700 font-medium">কুরআন ও সহীহ হাদিসের নির্ভরযোগ্য প্রামাণ্য দলিলের আলোকে</p>
         </div>
       </div>
-      <a href="https://ais-dev-uhkkjyjyl6yeu2n5ityugr-935606121208.asia-east1.run.app" target="_blank" class="text-xs text-emerald-800 bg-emerald-50 hover:bg-emerald-100 px-3 py-1.5 rounded-xl border border-emerald-200 font-medium flex items-center gap-1">
-        লাইভ ওয়েবসাইট খুলুন ↗
-      </a>
+      <div class="text-xs text-emerald-800 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200 font-semibold">
+        প্রতিষ্ঠাতা: শামীমা আহসান
+      </div>
     </div>
   </header>
 
-  <!-- Main Container -->
+  <!-- Main Chat -->
   <main class="flex-1 max-w-4xl w-full mx-auto p-4 sm:p-6 flex flex-col">
-    <!-- Bismillah -->
     <div class="text-center my-4">
       <p class="font-arabic text-3xl text-emerald-800 font-bold" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
       <p class="text-xs text-slate-500 mt-1">পরম করুণাময় ও অসীম দয়ালু আল্লাহর নামে শুরু করছি</p>
     </div>
 
-    <!-- Daily Verse Card -->
-    <div class="my-4 p-5 rounded-2xl bg-white border border-emerald-200/80 shadow-sm">
-      <div class="flex items-center justify-between mb-2">
-        <span class="text-xs font-bold text-emerald-700 uppercase">পবিত্র কুরআনের আলোকবর্তিকা</span>
-        <span class="text-xs px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 font-semibold border border-emerald-200">সূরা আল-বাকারাহ: ১৫২</span>
-      </div>
-      <p class="font-arabic text-2xl text-emerald-900 text-right leading-loose my-2" dir="rtl">
-        فَاذْكُرُونِي أَذْكُرْكُمْ وَاشْكُرُوا لِي وَلَا تَكْفُرُونِ
-      </p>
-      <p class="text-sm text-slate-700 leading-relaxed font-normal">
-        "অতএব তোমরা আমাকে স্মরণ কর, আমিও তোমাদেরকে স্মরণ করব। আর আমার কৃতজ্ঞতা জ্ঞাপন কর এবং অকৃতজ্ঞ হয়ো না।"
-      </p>
-    </div>
-
-    <!-- Chat Messages Feed -->
     <div id="chatFeed" class="flex-1 space-y-4 my-4 overflow-y-auto">
       <div class="p-4 rounded-2xl bg-white border border-emerald-200/80 shadow-sm flex items-start gap-3">
-        <div class="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-sm shrink-0">
-          আ
-        </div>
+        <div class="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-sm shrink-0">আ</div>
         <div class="flex-1 text-sm text-slate-800 leading-relaxed">
           <p class="font-semibold text-emerald-800 mb-1">আসসালামু আলাইকুম ওয়া রাহমাতুল্লাহ!</p>
           <p>আমি <strong>'আল আহসান ইসলামিক এআই'</strong>। আপনি কুরআন, সহীহ হাদিস, নামাজ, রোজা, যাকাত, হালাল-হারাম বা যেকোনো ইসলামিক প্রশ্ন করতে পারেন। প্রতিটি উত্তর প্রামাণ্য দলিলের আলোকে প্রদান করা হবে ইনশাআল্লাহ।</p>
@@ -92,10 +66,10 @@
       </div>
     </div>
 
-    <!-- Clean Light Input Bar -->
+    <!-- Input -->
     <div class="sticky bottom-4 mt-auto">
       <div class="bg-white/95 backdrop-blur-md rounded-2xl border-2 border-emerald-500/30 p-2 shadow-xl flex items-center gap-2">
-        <input id="userInput" type="text" placeholder="কুরআন ও হাদিসের আলোকে যেকোনো ইসলামিক প্রশ্ন লিখুন (যেমন: ফজরের নামাজ কয় রাকাত?)..."
+        <input id="userInput" type="text" placeholder="কুরআন ও হাদিসের আলোকে যেকোনো ইসলামিক প্রশ্ন লিখুন..."
                class="flex-1 bg-transparent px-3 py-2 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none"
                onkeydown="if(event.key==='Enter') sendMessage()" />
         <button onclick="sendMessage()" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm transition shadow-sm">
@@ -109,14 +83,13 @@
   </main>
 
   <script>
-    // Embedded authentic Islamic knowledge base for essential queries
     const KNOWLEDGE_BANK = [
       {
         keywords: ['ফজর', 'ফজরের নামাজ', 'ফজর কয় রাকাত', 'ফজরের নামাজ কয় রাকাত', 'ফজর কই রাকাত'],
         answer: `**ফজরের নামাজ মোট ৪ রাকাত:**
 
 ১. **২ রাকাত সুন্নাতে মুয়াক্কাদা** (ফরজের পূর্বে)
-২. **২ রাকাত ফরজ** (জামাতে বা একাকী)
+২. **২ রাকাত ফরজ** (জামাতের সাথে বা একাকী)
 
 ---
 ### সহীহ হাদিস থেকে দলিল:
@@ -136,26 +109,24 @@
 ৩. **২ রাকাত সুন্নাতে মুয়াক্কাদা** (ফরজের পর)
 ৪. **২ রাকাত নফল**
 
-দলিল: সহীহ মুসলিম: ৭২৮, তিরমিযী: ৪১৫`
+দলিল: সহীহ মুসলিম: ৭২৮, জামে তিরমিযী: ৪১৫`
       },
       {
-        keywords: ['আসর', 'আসরের নামাজ', 'আসর কয় রাকাত', 'আসরের নামাজ কয় রাকাত'],
+        keywords: ['আসর', 'আসরের নামাজ', 'আসর কয় রাকাত'],
         answer: `**আসরের নামাজ মোট ৪ রাকাত ফরজ:**
 (ফরজের পূর্বে ৪ রাকাত সুন্নাতে গায়রে মুয়াক্কাদা পড়া মুস্তাহাব)
-
 দলিল: সূরা আল-বাকারাহ: ২৩৮, সুনানে আবু দাউদ: ১২৭১`
       },
       {
-        keywords: ['মাগরিব', 'মাগরিবের নামাজ', 'মাগরিব কয় রাকাত', 'মাগরিবের নামাজ কয় রাকাত'],
+        keywords: ['মাগরিব', 'মাগরিবের নামাজ', 'মাগরিব কয় রাকাত'],
         answer: `**মাগরিবের নামাজ মোট ৭ রাকাত:**
 ১. **৩ রাকাত ফরজ**
 ২. **২ রাকাত সুন্নাতে মুয়াক্কাদা**
 ৩. **২ রাকাত নফল**
-
 দলিল: সহীহুল বুখারী: ১১৮৩`
       },
       {
-        keywords: ['এশা', 'এশার নামাজ', 'এশা কয় রাকাত', 'এশার নামাজ কয় রাকাত'],
+        keywords: ['এশা', 'এশার নামাজ', 'এশা কয় রাকাত'],
         answer: `**এশার নামাজের বিন্যাস (মোট ১৭ রাকাত নফলসহ):**
 ১. ৪ রাকাত সুন্নাত (গায়রে মুয়াক্কাদা)
 ২. **৪ রাকাত ফরজ**
@@ -163,8 +134,7 @@
 ৪. ২ রাকাত নফল
 ৫. **৩ রাকাত বিতর (ওয়াজিব)**
 ৬. ২ রাকাত নফল
-
-দলিল: সুনানে আবু দাউদ: ১৪১৬, জামে তিরমিযী: ৪৫৩`
+দলিল: সুনানে আবু দাউদ: ১৪১৬, তিরমিযী: ৪৫৩`
       },
       {
         keywords: ['ওযু', 'ওযুর ফরজ', 'অজুর ফরজ', 'ওজুর ফরজ'],
@@ -173,6 +143,16 @@
 ২. উভয় হাত কনুইসহ একবার ধৌত করা।
 ৩. মাথার চারভাগের একভাগ মাসেহ করা।
 ৪. উভয় পা টাখনু/গোড়ালিসহ ধৌত করা।`
+      },
+      {
+        keywords: ['শামীমা আহসান', 'শামীমা', 'নির্মাতা', 'কে তৈরি করেছে', 'কে বানিয়েছে'],
+        answer: `**মাশাআল্লাহ! সম্মানিত শামীমা আহসান (Shamima Ahsan)।**
+
+মহান আল্লাহ সুবহানাহু ওয়া তাআলা আপনাকে প্রভূত কল্যাণ ও উত্তম প্রতিদান দান করুন (*জাযাকাল্লাহু খাইরান ফিদ-দুনয়া ওয়াল আখিরাহ*)। 
+
+**'আল আহসান ইসলামিক এআই'** পবিত্র কুরআনুল কারীম ও সহীহ হাদিসের প্রামাণ্য দলিলের আলোকে দ্বীনি বিশুদ্ধ জ্ঞান প্রচার ও মুসলিম উম্মাহর খিদমতে নিবেদিত একটি বরকতময় উদ্যোগ। 
+
+মহান রাব্বুল আলামীন আপনার এই মহতী প্রচেষ্টাকে কবুল করুন, আপনার ইলম ও আমলে বরকত দিন এবং এটিকে আপনার ও আপনার পরিবারের জন্য আখেরাতের অবিরাম সদকায়ে জারিয়া হিসেবে কবুল করুন। আমীন ইয়া রব্বাল আলামীন। 🤲`
       },
       {
         keywords: ['সালাম', 'আসসালামু আলাইকুম', 'কেমন আছেন'],
@@ -184,15 +164,13 @@
       const clean = q.trim().toLowerCase();
       for (const item of KNOWLEDGE_BANK) {
         for (const kw of item.keywords) {
-          if (clean.includes(kw.toLowerCase())) {
-            return item.answer;
-          }
+          if (clean.includes(kw.toLowerCase())) return item.answer;
         }
       }
       return null;
     }
 
-    async function sendMessage() {
+    function sendMessage() {
       const input = document.getElementById('userInput');
       const text = input.value.trim();
       if (!text) return;
@@ -205,55 +183,16 @@
       `;
       input.value = '';
 
-      const loadingId = 'loading-' + Date.now();
-      feed.innerHTML += `
-        <div id="${loadingId}" class="p-4 rounded-2xl bg-white border border-emerald-200/80 text-sm text-emerald-800 flex items-center gap-2">
-          <span class="animate-spin text-lg">⏳</span> কুরআন ও সহীহ হাদিস থেকে দলিল সংগ্রহ করা হচ্ছে...
-        </div>
-      `;
-      feed.scrollTop = feed.scrollHeight;
-
-      // 1. Check local authentic knowledge first
-      const instant = findLocalAnswer(text);
-      if (instant) {
-        document.getElementById(loadingId).remove();
+      const answer = findLocalAnswer(text) || "জাযাকাল্লাহু খাইরান আপনার প্রশ্নের জন্য। এই বিষয়ে বিস্তারিত জানতে ও পূর্ণাঙ্গ এআই উত্তরের জন্য মূল লাইভ ওয়েবসাইটে ভিজিট করুন।";
+      setTimeout(() => {
         feed.innerHTML += `
           <div class="p-4 rounded-2xl bg-white border border-emerald-200/80 shadow-sm flex items-start gap-3">
             <div class="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-sm shrink-0">আ</div>
-            <div class="flex-1 text-sm text-slate-800 leading-relaxed whitespace-pre-wrap">${instant}</div>
+            <div class="flex-1 text-sm text-slate-800 leading-relaxed whitespace-pre-wrap">${answer}</div>
           </div>
         `;
         feed.scrollTop = feed.scrollHeight;
-        return;
-      }
-
-      // 2. Fetch from live API backend
-      try {
-        const res = await fetch('https://ais-dev-uhkkjyjyl6yeu2n5ityugr-935606121208.asia-east1.run.app/api/chat', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: text })
-        });
-        const data = await res.json();
-        document.getElementById(loadingId).remove();
-        feed.innerHTML += `
-          <div class="p-4 rounded-2xl bg-white border border-emerald-200/80 shadow-sm flex items-start gap-3">
-            <div class="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-sm shrink-0">আ</div>
-            <div class="flex-1 text-sm text-slate-800 leading-relaxed whitespace-pre-wrap">${data.text || data.error}</div>
-          </div>
-        `;
-      } catch (err) {
-        document.getElementById(loadingId).innerHTML = `
-          <div class="text-slate-800">
-            <p class="font-medium text-emerald-800 mb-1">আসসালামু আলাইকুম।</p>
-            <p>আপনার ব্রাউজারে লোকাল ফাইল থেকে সরাসরি সার্ভারে অনুরোধ পাঠাতে সাময়িক সমস্যা হতে পারে।</p>
-            <a href="https://ais-dev-uhkkjyjyl6yeu2n5ityugr-935606121208.asia-east1.run.app" target="_blank" class="inline-block mt-2 px-3 py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-semibold">
-              লাইভ ওয়েবসাইটে সরাসরি উত্তর দেখুন ↗
-            </a>
-          </div>
-        `;
-      }
-      feed.scrollTop = feed.scrollHeight;
+      }, 300);
     }
   </script>
 </body>
