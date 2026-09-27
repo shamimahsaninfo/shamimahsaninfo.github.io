@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>আল আহসান ইসলামিক এআই - Al-Ahsan Islamic AI</title>
+  <meta name="description" content="কুরআন ও সহীহ হাদিসের প্রামাণ্য দলিলের আলোকে ইসলামিক জ্ঞান সহকারী। জেমিনি এআই ও অডিও স্পিচ সমর্থিত। প্রতিষ্ঠাতা: শামীমা আহসান">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #f8fafc;
+      color: #1e293b;
+    }
+    .font-arabic {
+      font-family: 'Amiri', serif;
+      direction: rtl;
+    }
+    .islamic-pattern {
+      background-color: #f8fafc;
+      background-image: radial-gradient(rgba(16, 185, 129, 0.12) 1.2px, transparent 1.2px),
+                        radial-gradient(rgba(13, 148, 136, 0.08) 1.2px, transparent 1.2px);
+      background-size: 28px 28px;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="islamic-pattern min-h-screen flex flex-col">
+  <!-- Top Navigation Header -->
+  <header class="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-emerald-100 shadow-sm px-3 sm:px-4 py-2.5">
+    <div class="max-w-4xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2 sm:gap-2.5">
+        <!-- Logo Squircle -->
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center shadow-md shadow-emerald-600/20 bg-emerald-600">
+          <svg width="24" height="24" viewBox="0 0 100 100" fill="none">
+            <path d="M 50 78 C 45 68 28 66 14 68 C 11 68 8 65 8 62 L 8 26 C 8 23 11 20 14 20 C 27 18 42 22 50 32" stroke="white" stroke-width="6.5" stroke-linecap="round"/>
+            <path d="M 50 78 C 55 68 72 66 86 68 C 89 68 92 65 92 62 L 92 26 C 92 23 89 20 86 20 C 73 18 58 22 50 32" stroke="white" stroke-width="6.5" stroke-linecap="round"/>
+            <path d="M 50 32 L 50 82 C 50 85 47 88 44 89 C 48 90 52 89 54 85" stroke="white" stroke-width="5.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="text-base sm:text-lg font-bold text-slate-900 flex items-center gap-1.5 leading-tight">
+            আল আহসান
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-800 font-semibold border border-emerald-200">
+              ইসলামিক এআই
+            </span>
+          </h1>
+          <p class="text-[11px] text-slate-500 font-normal">কুরআন ও সহীহ হাদিসের প্রামাণ্য দলিলের আলোকে</p>
+        </div>
+      </div>
+
+      <!-- Action Tools in Header -->
+      <div class="flex items-center gap-1.5 sm:gap-2">
+        <button id="autoVoiceToggle" title="স্বয়ংক্রিয় অডিও উত্তর চালু/বন্ধ" class="text-xs text-slate-700 bg-slate-50 hover:bg-slate-100 px-2 py-1.5 rounded-xl border border-slate-200 font-medium flex items-center gap-1 transition">
+          <span id="autoVoiceIcon">🔈</span>
+          <span class="hidden sm:inline text-[11px]" id="autoVoiceText">ওয়াক্ত</span>
+        </button>
+
+        <button id="fontToggleBtn" title="ফন্ট সাইজ পরিবর্তন করুন" class="text-xs text-slate-700 bg-slate-50 hover:bg-slate-100 px-2.5 py-1.5 rounded-xl border border-slate-200 font-bold transition">
+          <span id="fontBadge">A+</span>
+        </button>
+
+        <button id="clearChatBtn" title="নতুন আলোচনা শুরু করুন" class="text-xs text-rose-700 bg-rose-50 hover:bg-rose-100 px-2 py-1.5 rounded-xl border border-rose-200 font-medium transition flex items-center gap-1">
+          🗑️
+        </button>
+
+        <!-- API Key Status / Connection Button -->
+        <button id="apiKeyBtn" title="জেমিনি এআই লাইভ সেটিংস" class="text-xs text-emerald-800 bg-emerald-50 hover:bg-emerald-100 px-2.5 py-1.5 rounded-xl border border-emerald-200 font-medium flex items-center gap-1 transition">
+          <span id="keyStatusBadge">⚡ এআই সংযুক্ত</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-1 max-w-3xl w-full mx-auto p-3 sm:p-5 flex flex-col justify-between">
+    
+    <!-- Home Landing Screen (Visible only when chat is empty) -->
+    <div id="homeView" class="flex-1 flex flex-col justify-center py-6">
+      <!-- Bismillah Header -->
+      <div class="text-center my-3">
+        <p class="font-arabic text-3xl sm:text-4xl text-emerald-800 font-bold tracking-wider select-none" dir="rtl">
+          بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+        </p>
+        <p class="text-xs text-slate-500 mt-1 font-medium">
+          পরম করুণাময় ও অসীম দয়ালু আল্লাহর নামে শুরু করছি
+        </p>
+      </div>
+
+      <!-- App Brand Presentation -->
+      <div class="flex flex-col items-center text-center my-4">
+        <!-- Squircle Book Logo (XL Size) -->
+        <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl flex items-center justify-center shadow-lg shadow-emerald-600/20 bg-emerald-600 mb-4">
+          <svg width="48" height="48" viewBox="0 0 100 100" fill="none" class="sm:w-14 sm:h-14">
+            <path d="M 50 78 C 45 68 28 66 14 68 C 11 68 8 65 8 62 L 8 26 C 8 23 11 20 14 20 C 27 18 42 22 50 32" stroke="white" stroke-width="6.5" stroke-linecap="round"/>
+            <path d="M 50 78 C 55 68 72 66 86 68 C 89 68 92 65 92 62 L 92 26 C 92 23 89 20 86 20 C 73 18 58 22 50 32" stroke="white" stroke-width="6.5" stroke-linecap="round"/>
+            <path d="M 50 32 L 50 82 C 50 85 47 88 44 89 C 48 90 52 89 54 85" stroke="white" stroke-width="5.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          আল আহসান ইসলামিক এআই
+        </h2>
+        <p class="text-sm sm:text-base text-emerald-800 font-semibold max-w-xl mt-1 leading-relaxed px-4">
+          পবিত্র কুরআন ও সহীহ হাদিসের প্রামাণ্য দলিলের আলোকে আপনার নির্ভরযোগ্য ইসলামিক জ্ঞান সহকারী
+        </p>
+
+        <!-- Badges of trust -->
+        <div class="flex flex-col items-center justify-center gap-2 mt-5 text-xs sm:text-sm">
+          <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white border border-emerald-200 text-emerald-800 font-semibold shadow-xs">
+            📖 কুরআনের সূরা ও আয়াত নম্বর
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white border border-emerald-200 text-emerald-800 font-semibold shadow-xs">
+            🛡️ সহীহ হাদিস ও প্রামাণ্য গ্রন্থাবলি
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white border border-emerald-200 text-emerald-800 font-semibold shadow-xs">
+            ✅ কোনো মনগড়া বা ভিত্তিহীন তথ্য নয়
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chat Messages Feed (Visible when chat starts) -->
+    <div id="chatFeed" class="hidden flex-1 space-y-3.5 my-2.5 overflow-y-auto min-h-[250px] pb-4">
+      <!-- Chat bubbles will be dynamically rendered here -->
+    </div>
+
+    <!-- Quick Suggested Topic Chips -->
+    <div class="my-2">
+      <div class="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs no-scrollbar">
+        <button onclick="askQuickQuestion('কবর মানে কি? কুরআন ও হাদিসের আলোকে বিস্তারিত বলো।')" class="shrink-0 bg-white hover:bg-emerald-50 border border-emerald-200 text-emerald-900 px-3 py-1.5 rounded-full text-[11px] font-medium transition shadow-2xs">
+          🪦 কবর মানে কি?
+        </button>
+        <button onclick="askQuickQuestion('জুমার নামাজ কয় রাকাত? দলিলের আলোকে বলো।')" class="shrink-0 bg-white hover:bg-emerald-50 border border-emerald-200 text-emerald-900 px-3 py-1.5 rounded-full text-[11px] font-medium transition shadow-2xs">
+          🕌 জুমার নামাজ কয় রাকাত?
+        </button>
+        <button onclick="askQuickQuestion('বেদ কিতাব সম্পর্কে ইসলামের দৃষ্টিতে কি বলা আছে?')" class="shrink-0 bg-white hover:bg-emerald-50 border border-emerald-200 text-emerald-900 px-3 py-1.5 rounded-full text-[11px] font-medium transition shadow-2xs">
+          📜 বেদ কিতাব চিনো?
+        </button>
+        <button onclick="askQuickQuestion('ইসলাম মানে কি এবং এর ভিত্তি কয়টি?')" class="shrink-0 bg-white hover:bg-emerald-50 border border-emerald-200 text-emerald-900 px-3 py-1.5 rounded-full text-[11px] font-medium transition shadow-2xs">
+          📖 ইসলাম মানে কি?
+        </button>
+        <button onclick="askQuickQuestion('ওযুর ফরজ কয়টি ও কি কি?')" class="shrink-0 bg-white hover:bg-emerald-50 border border-emerald-200 text-emerald-900 px-3 py-1.5 rounded-full text-[11px] font-medium transition shadow-2xs">
+          💧 ওযুর ফরজ কয়টি?
+        </button>
+        <button onclick="askQuickQuestion('তাহাজ্জুদ নামাজের নিয়ম ও ফজিলত কি?')" class="shrink-0 bg-white hover:bg-emerald-50 border border-emerald-200 text-emerald-900 px-3 py-1.5 rounded-full text-[11px] font-medium transition shadow-2xs">
+          🤲 তাহাজ্জুদ নামাজের নিয়ম
+        </button>
+      </div>
+    </div>
+
+    <!-- Voice Live Status -->
+    <div id="voiceStatus" class="hidden my-1.5 p-2 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-semibold flex items-center justify-center gap-2 animate-pulse">
+      <span class="w-2.5 h-2.5 rounded-full bg-rose-600"></span>
+      <span>মাইক্রোফোন চালু আছে... বাংলায় আপনার প্রশ্নটি মুখে বলুন</span>
+    </div>
+
+    <!-- Input Bar with squircle search design -->
+    <div class="sticky bottom-2 mt-auto pt-1">
+      <div class="bg-white rounded-3xl border border-emerald-200 p-1.5 sm:p-2 shadow-lg flex items-center gap-2 max-w-3xl mx-auto w-full">
+        <!-- Direct Microphone Button -->
+        <button id="micBtn" type="button" title="বাংলায় মুখে বলে প্রশ্ন করুন (মাইক্রোফোন)"
+                class="w-10 h-10 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-700 hover:text-emerald-900 flex items-center justify-center shrink-0 transition active:scale-95">
+          <svg id="micIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" y1="19" x2="12" y2="22"></line>
+          </svg>
+        </button>
+
+        <!-- Input Box -->
+        <input id="userInput" type="text" placeholder="কুরআন ও হাদিসের আলোকে যেকোনো ইসলামিক প্রশ্ন লিখুন বা মুখে বলুন..."
+               class="flex-1 bg-transparent px-2.5 py-2 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none"
+               autocomplete="off" />
+
+        <!-- Send Button with Paper Airplane icon -->
+        <button id="sendBtn" type="button" class="w-10 h-10 rounded-full bg-emerald-50 hover:bg-emerald-100 flex items-center justify-center shrink-0 transition active:scale-95">
+          <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Warning Disclaimer at bottom of input -->
+      <p class="text-[10px] text-slate-500 text-center mt-2 px-4 leading-relaxed">
+        ⚠️ পবিত্র কুরআন ও সহীহ হাদিসের প্রামাণ্য দলিলের আলোকে উপস্থাপিত। ব্যক্তিগত জটিল ফতোয়ার ক্ষেত্রে স্থানীয় বিজ্ঞ মুফতির পরামর্শ কাম্য।
+      </p>
+    </div>
+  </main>
+
+  <!-- API Key Modal -->
+  <div id="apiKeyModal" class="hidden fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-emerald-200">
+      <h3 class="font-bold text-slate-900 text-base mb-2">গুগল জেমিনি এআই লাইভ কানেকশন</h3>
+      <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+        এখানে আপনার <strong>Gemini API Key</strong> সেট করা আছে, যার মাধ্যমে সরাসরি গুগল জেমিনি এআই প্রতিটি প্রশ্নের উত্তর দিচ্ছে।
+      </p>
+      <input id="apiKeyInput" type="text" placeholder="AIzaSy..." class="w-full border border-emerald-300 rounded-xl px-3 py-2 text-sm mb-3 focus:outline-emerald-500 font-mono text-xs" />
+      <div class="flex items-center justify-end gap-2">
+        <button id="closeKeyModalBtn" class="px-4 py-2 rounded-xl text-slate-600 hover:bg-slate-100 text-xs font-semibold">বাতিল</button>
+        <button id="saveKeyBtn" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold">সংরক্ষণ করুন</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="hidden fixed bottom-24 left-1/2 -translate-x-1/2 z-50 bg-slate-900/90 text-white text-xs px-4 py-2 rounded-full shadow-lg transition-all">
+    কপি হয়েছে!
+  </div>
+
+  <script>
+    var autoVoiceEnabled = localStorage.getItem('auto_voice') === 'true';
+    var currentFontSize = localStorage.getItem('chat_font_size') || 'normal';
+    var activeSpeakingId = null;
+    var messageCount = 0;
+
+    function escapeHtml(str) {
+      return str.replace(/[&<>"']/g, function(m) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+      });
+    }
+
+    function formatMarkdown(str) {
+      return str
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        .replace(/^> (.*$)/gim, '<blockquote class="border-l-2 border-emerald-500 pl-3 my-1.5 italic text-emerald-900 font-medium">$1</blockquote>');
+    }
+
+    // Direct Google Gemini AI Live Call
+    async function queryLiveGeminiApi(promptText, apiKey) {
+      var candidateModels = [
+        'gemini-1.5-flash',
+        'gemini-2.0-flash',
+        'gemini-1.5-pro'
+      ];
+
+      var sysInstruction = "তুমি হলে 'আল আহসান ইসলামিক এআই'। প্রতিষ্ঠাতা: শামীমা আহসান। ব্যবহারকারীর যেকোনো ইসলামিক, শরিয়ত বা দ্বীনি প্রশ্নের উত্তর পবিত্র কুরআন ও সহীহ হাদিসের প্রামাণ্য দলিলের আলোকে বাংলায় সুন্দর ও মার্জিত ভাষায় দাও। অপ্রাসঙ্গিক বা মনগড়া কোনো উত্তর দেবে না।";
+      var payload = {
+        contents: [{ role: 'user', parts: [{ text: promptText }] }],
+        systemInstruction: { parts: [{ text: sysInstruction }] },
+        system_instruction: { parts: [{ text: sysInstruction }] }
+      };
+
+      for (var i = 0; i < candidateModels.length; i++) {
+        var model = candidateModels[i];
+        var url = 'https://generativelanguage.googleapis.com/v1beta/models/' + model + ':generateContent?key=' + apiKey;
+        try {
+          var res = await fetch(url, {
+            method: 'POST',
+            headers: { 
+              'Content-Type': 'application/json',
+              'X-Goog-Api-Key': apiKey
+            },
+            body: JSON.stringify(payload)
+          });
+          var data = await res.json();
+          if (data && data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0]) {
+            return data.candidates[0].content.parts[0].text;
+          }
+        } catch (e) {
+          console.warn('Model ' + model + ' error, trying next fallback model...');
+        }
+      }
+      return null;
+    }
+
+    // Primary Message Handler
+    async function handleSend() {
+      var input = document.getElementById('userInput');
+      var text = input.value.trim();
+      if (!text) return;
+
+      // Hide landing page on first message
+      if (messageCount === 0) {
+        document.getElementById('homeView').classList.add('hidden');
+        document.getElementById('chatFeed').classList.remove('hidden');
+      }
+      messageCount++;
+
+      addMessageToFeed('user', text);
+      input.value = '';
+
+      var feed = document.getElementById('chatFeed');
+      var loadingDiv = document.createElement('div');
+      loadingDiv.id = 'loadingIndicator';
+      loadingDiv.className = 'p-3 rounded-2xl bg-white border border-emerald-200/80 text-xs text-emerald-800 flex items-center gap-2';
+      loadingDiv.innerHTML = '<span class="animate-spin text-base">⏳</span> জেমিনি এআই কুরআন ও হাদিসের দলিল অনুসন্ধান করছে...';
+      feed.appendChild(loadingDiv);
+      feed.scrollTop = feed.scrollHeight;
+
+      // 1. Direct Gemini AI Call (Checks saved API Key first, fallbacks to embedded default)
+      var userKey = localStorage.getItem('gemini_api_key') || 'AQ.Ab8RN6IywMgGipCl6DmiRZyPnr868xEoOuccXDCIbav5zgexA';
+      if (userKey && userKey.trim().length > 5) {
+        try {
+          var aiText = await queryLiveGeminiApi(text, userKey.trim());
+          var el = document.getElementById('loadingIndicator');
+          if (el) el.remove();
+          if (aiText) {
+            addMessageToFeed('model', aiText);
+            return;
+          }
+        } catch (err) {
+          console.error('Gemini Live API Error:', err);
+        }
+      }
+
+      // 2. Try Backend Server (/api/chat) if running on node/server
+      try {
+        var res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: text })
+        });
+        if (res.ok) {
+          var data = await res.json();
+          if (data && data.text) {
+            var el = document.getElementById('loadingIndicator');
+            if (el) el.remove();
+            addMessageToFeed('model', data.text);
+            return;
+          }
+        }
+      } catch (err) {}
+
+      // 3. Fallback
+      var el = document.getElementById('loadingIndicator');
+      if (el) el.remove();
+      addMessageToFeed('model', '**জাযাকাল্লাহু খাইরান আপনার প্রশ্নের জন্য।**\n\n' +
+        'সরাসরি গুগল জেমিনি এআই থেকে সকল প্রশ্নের উন্মুক্ত লাইভ উত্তরের জন্য উপরের **"⚡ এআই কি"** বাটনে আপনার Google Gemini API Key সেট করুন।');
+    }
+
+    function askQuickQuestion(questionText) {
+      document.getElementById('userInput').value = questionText;
+      handleSend();
+    }
+
+    function showToast(msg) {
+      var toast = document.getElementById('toast');
+      toast.innerText = msg;
+      toast.classList.remove('hidden');
+      setTimeout(function() {
+        toast.classList.add('hidden');
+      }, 2000);
+    }
+
+    function cleanForSpeech(rawText) {
+      return rawText
+        .replace(/[*#>`_~]/g, '')
+        .replace(/\[(.*?)\]/g, '$1')
+        .trim();
+    }
+
+    function toggleSpeech(msgId, textToRead) {
+      if (!('speechSynthesis' in window)) {
+        alert('আপনার ব্রাউজার বা ডিভাইসে অডিও স্পিচ সমর্থিত নয়।');
+        return;
+      }
+
+      var btn = document.getElementById('speak-btn-' + msgId);
+
+      if (activeSpeakingId === msgId) {
+        window.speechSynthesis.cancel();
+        activeSpeakingId = null;
+        if (btn) {
+          btn.innerHTML = '<span>🔊 শুনুন</span>';
+          btn.classList.remove('bg-emerald-600', 'text-white');
+        }
+        return;
+      }
+
+      window.speechSynthesis.cancel();
+      if (activeSpeakingId) {
+        var prevBtn = document.getElementById('speak-btn-' + activeSpeakingId);
+        if (prevBtn) {
+          prevBtn.innerHTML = '<span>🔊 শুনুন</span>';
+          prevBtn.classList.remove('bg-emerald-600', 'text-white');
+        }
+      }
+
+      var clean = cleanForSpeech(textToRead);
+      var utterance = new SpeechSynthesisUtterance(clean);
+      utterance.lang = 'bn-BD';
+      utterance.rate = 0.95;
+
+      activeSpeakingId = msgId;
+      if (btn) {
+        btn.innerHTML = '<span>⏹️ থামান</span>';
+        btn.classList.add('bg-emerald-600', 'text-white');
+      }
+
+      utterance.onend = function() {
+        activeSpeakingId = null;
+        if (btn) {
+          btn.innerHTML = '<span>🔊 শুনুন</span>';
+          btn.classList.remove('bg-emerald-600', 'text-white');
+        }
+      };
+
+      utterance.onerror = function() {
+        activeSpeakingId = null;
+        if (btn) {
+          btn.innerHTML = '<span>🔊 শুনুন</span>';
+          btn.classList.remove('bg-emerald-600', 'text-white');
+        }
+      };
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function speakWelcome() {
+      toggleSpeech('welcome-msg', 'আসসালামু আলাইকুম ওয়া রাহমাতুল্লাহ। আমি আল আহসান ইসলামিক এআই। আপনি কুরআন ও হাদিসের আলোকে যেকোনো ইসলামিক প্রশ্ন করতে পারেন।');
+    }
+
+    function copyMessage(text) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showToast('উত্তরটি কপি করা হয়েছে! 📋');
+    }
+
+    function shareMessage(text) {
+      if (navigator.share) {
+        navigator.share({
+          title: 'আল আহসান ইসলামিক এআই উত্তর',
+          text: text
+        }).catch(function() {});
+      } else {
+        copyMessage(text);
+      }
+    }
+
+    function addMessageToFeed(role, text) {
+      var feed = document.getElementById('chatFeed');
+      var div = document.createElement('div');
+      var msgId = 'msg-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
+      var fontClass = getFontSizeClass();
+
+      if (role === 'user') {
+        div.className = 'p-3 rounded-2xl bg-emerald-50 border border-emerald-200 text-slate-800 ' + fontClass + ' ml-auto max-w-lg';
+        div.innerHTML = '<strong>আপনি:</strong> ' + escapeHtml(text);
+      } else {
+        div.className = 'p-3.5 sm:p-4 rounded-2xl bg-white border border-emerald-200/80 shadow-xs flex items-start gap-2.5';
+        var escapedTextAttr = encodeURIComponent(text);
+
+        var contentHtml = '<div class="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">আ</div>' +
+          '<div class="flex-1 ' + fontClass + ' text-slate-800 leading-relaxed overflow-hidden">' +
+          '<div class="whitespace-pre-wrap">' + formatMarkdown(text) + '</div>' +
+          '<div class="mt-3 pt-2 border-t border-slate-100 flex flex-wrap items-center gap-1.5 text-xs text-slate-600">' +
+            '<button id="speak-btn-' + msgId + '" onclick="toggleSpeech(\'' + msgId + '\', decodeURIComponent(\'' + escapedTextAttr + '\'))" class="px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 font-semibold flex items-center gap-1 transition">' +
+              '<span>🔊 শুনুন</span>' +
+            '</button>' +
+            '<button onclick="copyMessage(decodeURIComponent(\'' + escapedTextAttr + '\'))" class="px-2 py-1 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 font-medium flex items-center gap-1 transition" title="কপি করুন">' +
+              '<span>📋 কপি</span>' +
+            '</button>' +
+            '<button onclick="shareMessage(decodeURIComponent(\'' + escapedTextAttr + '\'))" class="px-2 py-1 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 font-medium flex items-center gap-1 transition" title="শেয়ার করুন">' +
+              '<span>📲 শেয়ার</span>' +
+            '</button>' +
+          '</div>' +
+          '</div>';
+
+        div.innerHTML = contentHtml;
+
+        if (autoVoiceEnabled) {
+          setTimeout(function() {
+            toggleSpeech(msgId, text);
+          }, 300);
+        }
+      }
+
+      feed.appendChild(div);
+      feed.scrollTop = feed.scrollHeight;
+    }
+
+    // Speech-to-Text Setup (Bangla Microphone)
+    var isRecording = false;
+    var recognition = null;
+    var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (SpeechRecognition) {
+      recognition = new SpeechRecognition();
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      recognition.lang = 'bn-BD';
+
+      recognition.onstart = function() {
+        isRecording = true;
+        document.getElementById('voiceStatus').classList.remove('hidden');
+        document.getElementById('micBtn').className = 'w-10 h-10 rounded-full bg-rose-500 text-white flex items-center justify-center shrink-0 transition animate-pulse ring-2 ring-rose-300';
+      };
+
+      recognition.onresult = function(e) {
+        var transcript = e.results[0][0].transcript;
+        document.getElementById('userInput').value = transcript;
+        handleSend();
+      };
+
+      recognition.onerror = function() { stopRecordingUI(); };
+      recognition.onend = function() { stopRecordingUI(); };
+    }
+
+    function stopRecordingUI() {
+      isRecording = false;
+      document.getElementById('voiceStatus').classList.add('hidden');
+      document.getElementById('micBtn').className = 'w-10 h-10 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-700 hover:text-emerald-900 flex items-center justify-center shrink-0 transition active:scale-95';
+    }
+
+    document.getElementById('micBtn').addEventListener('click', function() {
+      if (!recognition) {
+        alert('আপনার ব্রাউজার বা ডিভাইসে সরাসরি ভয়েস টাইপিং সমর্থিত নয়। অনুগ্রহ করে ক্রোম ব্রাউজার ব্যবহার করুন।');
+        return;
+      }
+      if (isRecording) {
+        recognition.stop();
+      } else {
+        try {
+          recognition.start();
+        } catch (e) {
+          console.error(e);
+        }
+      }
+    });
+
+    document.getElementById('sendBtn').addEventListener('click', handleSend);
+    document.getElementById('userInput').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        handleSend();
+      }
+    });
+
+    // Font size changes
+    document.getElementById('fontToggleBtn').addEventListener('click', function() {
+      if (currentFontSize === 'normal') currentFontSize = 'large';
+      else if (currentFontSize === 'large') currentFontSize = 'xlarge';
+      else currentFontSize = 'normal';
+
+      localStorage.setItem('chat_font_size', currentFontSize);
+      document.getElementById('fontBadge').innerText = currentFontSize === 'normal' ? 'A' : (currentFontSize === 'large' ? 'A+' : 'A++');
+      showToast('ফন্ট সাইজ পরিবর্তন করা হয়েছে');
+    });
+
+    // Clear Chat
+    document.getElementById('clearChatBtn').addEventListener('click', function() {
+      if (confirm('আপনি কি পূর্ববর্তী সকল বার্তা মুছে নতুন আলোচনা শুরু করতে চান?')) {
+        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+        messageCount = 0;
+        document.getElementById('chatFeed').innerHTML = '';
+        document.getElementById('chatFeed').classList.add('hidden');
+        document.getElementById('homeView').classList.remove('hidden');
+      }
+    });
+
+    // Auto Voice toggle
+    function updateAutoVoiceUI() {
+      var icon = document.getElementById('autoVoiceIcon');
+      var text = document.getElementById('autoVoiceText');
+      if (autoVoiceEnabled) {
+        icon.innerText = '🔊';
+        text.innerText = 'অটো অডিও: চালু';
+        document.getElementById('autoVoiceToggle').classList.add('bg-emerald-50', 'text-emerald-800', 'border-emerald-300');
+      } else {
+        icon.innerText = '🔈';
+        text.innerText = 'অটো অডিও: বন্ধ';
+        document.getElementById('autoVoiceToggle').classList.remove('bg-emerald-50', 'text-emerald-800', 'border-emerald-300');
+      }
+    }
+
+    document.getElementById('autoVoiceToggle').addEventListener('click', function() {
+      autoVoiceEnabled = !autoVoiceEnabled;
+      localStorage.setItem('auto_voice', autoVoiceEnabled);
+      updateAutoVoiceUI();
+    });
+
+    // Setup initial Key badge connection status
+    function updateKeyBadge() {
+      var saved = localStorage.getItem('gemini_api_key') || 'AQ.Ab8RN6IywMgGipCl6DmiRZyPnr868xEoOuccXDCIbav5zgexA';
+      var badge = document.getElementById('keyStatusBadge');
+      if (saved && saved.trim().length > 5) {
+        badge.innerText = '⚡ এআই সংযুক্ত';
+        badge.parentElement.classList.add('bg-emerald-100', 'text-emerald-900', 'border-emerald-400');
+      }
+    }
+
+    document.getElementById('apiKeyBtn').addEventListener('click', function() {
+      document.getElementById('apiKeyInput').value = localStorage.getItem('gemini_api_key') || 'AQ.Ab8RN6IywMgGipCl6DmiRZyPnr868xEoOuccXDCIbav5zgexA';
+      document.getElementById('apiKeyModal').classList.remove('hidden');
+    });
+
+    document.getElementById('closeKeyModalBtn').addEventListener('click', function() {
+      document.getElementById('apiKeyModal').classList.add('hidden');
+    });
+
+    document.getElementById('saveKeyBtn').addEventListener('click', function() {
+      var val = document.getElementById('apiKeyInput').value.trim();
+      if (val) {
+        localStorage.setItem('gemini_api_key', val);
+      } else {
+        localStorage.removeItem('gemini_api_key');
+      }
+      updateKeyBadge();
+      document.getElementById('apiKeyModal').classList.add('hidden');
+    });
+
+    updateAutoVoiceUI();
+    updateKeyBadge();
+  </script>
+</body>
+</html>
