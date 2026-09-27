@@ -51,9 +51,9 @@
           <p class="text-xs text-emerald-700 font-medium">কুরআন ও সহীহ হাদিসের নির্ভরযোগ্য প্রামাণ্য দলিলের আলোকে</p>
         </div>
       </div>
-      <div class="text-xs text-emerald-800 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200 font-medium">
-        আজকের ওয়াক্ত ও দলিলভিত্তিক সার্চ
-      </div>
+      <a href="https://ais-dev-uhkkjyjyl6yeu2n5ityugr-935606121208.asia-east1.run.app" target="_blank" class="text-xs text-emerald-800 bg-emerald-50 hover:bg-emerald-100 px-3 py-1.5 rounded-xl border border-emerald-200 font-medium flex items-center gap-1">
+        লাইভ ওয়েবসাইট খুলুন ↗
+      </a>
     </div>
   </header>
 
@@ -95,7 +95,7 @@
     <!-- Clean Light Input Bar -->
     <div class="sticky bottom-4 mt-auto">
       <div class="bg-white/95 backdrop-blur-md rounded-2xl border-2 border-emerald-500/30 p-2 shadow-xl flex items-center gap-2">
-        <input id="userInput" type="text" placeholder="কুরআন ও হাদিসের আলোকে যেকোনো ইসলামিক প্রশ্ন লিখুন..."
+        <input id="userInput" type="text" placeholder="কুরআন ও হাদিসের আলোকে যেকোনো ইসলামিক প্রশ্ন লিখুন (যেমন: ফজরের নামাজ কয় রাকাত?)..."
                class="flex-1 bg-transparent px-3 py-2 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none"
                onkeydown="if(event.key==='Enter') sendMessage()" />
         <button onclick="sendMessage()" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm transition shadow-sm">
@@ -109,13 +109,95 @@
   </main>
 
   <script>
+    // Embedded authentic Islamic knowledge base for essential queries
+    const KNOWLEDGE_BANK = [
+      {
+        keywords: ['ফজর', 'ফজরের নামাজ', 'ফজর কয় রাকাত', 'ফজরের নামাজ কয় রাকাত', 'ফজর কই রাকাত'],
+        answer: `**ফজরের নামাজ মোট ৪ রাকাত:**
+
+১. **২ রাকাত সুন্নাতে মুয়াক্কাদা** (ফরজের পূর্বে)
+২. **২ রাকাত ফরজ** (জামাতে বা একাকী)
+
+---
+### সহীহ হাদিস থেকে দলিল:
+উম্মুল মুমিনীন হযরত আয়েশা (রাদিয়াল্লাহু আনহা) থেকে বর্ণিত, রাসূলুল্লাহ (সাল্লাল্লাহু আলাইহি ওয়াসাল্লাম) বলেছেন:
+> **"ফজরের দুই রাকাত (সুন্নাত) সালাত দুনিয়া এবং দুনিয়ার মধ্যে যা কিছু আছে তার চেয়েও উত্তম।"**
+> [সহীহ মুসলিম: ৭২৫, জামে তিরমিযী: ৪১৬]
+
+হযরত আয়েশা (রা.) আরও বর্ণনা করেন:
+> **"নবীজী (ﷺ) নফল ও সুন্নাত সালাতসমূহের মধ্যে ফজরের দুই রাকাত সুন্নাতকে অন্য সবকিছুর চেয়ে সর্বাধিক গুরুত্ব দিতেন ও যত্ন সহকারে আদায় করতেন।"**
+> [সহীহুল বুখারী: ১১৬৩, সহীহ মুসলিম: ৭২৪]`
+      },
+      {
+        keywords: ['যোহর', 'যোহরের নামাজ', 'যোহর কয় রাকাত', 'যোহরের নামাজ কয় রাকাত', 'জোহর'],
+        answer: `**যোহরের নামাজ মোট ১২ রাকাত:**
+১. **৪ রাকাত সুন্নাতে মুয়াক্কাদা** (ফরজের পূর্বে)
+২. **৪ রাকাত ফরজ**
+৩. **২ রাকাত সুন্নাতে মুয়াক্কাদা** (ফরজের পর)
+৪. **২ রাকাত নফল**
+
+দলিল: সহীহ মুসলিম: ৭২৮, তিরমিযী: ৪১৫`
+      },
+      {
+        keywords: ['আসর', 'আসরের নামাজ', 'আসর কয় রাকাত', 'আসরের নামাজ কয় রাকাত'],
+        answer: `**আসরের নামাজ মোট ৪ রাকাত ফরজ:**
+(ফরজের পূর্বে ৪ রাকাত সুন্নাতে গায়রে মুয়াক্কাদা পড়া মুস্তাহাব)
+
+দলিল: সূরা আল-বাকারাহ: ২৩৮, সুনানে আবু দাউদ: ১২৭১`
+      },
+      {
+        keywords: ['মাগরিব', 'মাগরিবের নামাজ', 'মাগরিব কয় রাকাত', 'মাগরিবের নামাজ কয় রাকাত'],
+        answer: `**মাগরিবের নামাজ মোট ৭ রাকাত:**
+১. **৩ রাকাত ফরজ**
+২. **২ রাকাত সুন্নাতে মুয়াক্কাদা**
+৩. **২ রাকাত নফল**
+
+দলিল: সহীহুল বুখারী: ১১৮৩`
+      },
+      {
+        keywords: ['এশা', 'এশার নামাজ', 'এশা কয় রাকাত', 'এশার নামাজ কয় রাকাত'],
+        answer: `**এশার নামাজের বিন্যাস (মোট ১৭ রাকাত নফলসহ):**
+১. ৪ রাকাত সুন্নাত (গায়রে মুয়াক্কাদা)
+২. **৪ রাকাত ফরজ**
+৩. **২ রাকাত সুন্নাতে মুয়াক্কাদা**
+৪. ২ রাকাত নফল
+৫. **৩ রাকাত বিতর (ওয়াজিব)**
+৬. ২ রাকাত নফল
+
+দলিল: সুনানে আবু দাউদ: ১৪১৬, জামে তিরমিযী: ৪৫৩`
+      },
+      {
+        keywords: ['ওযু', 'ওযুর ফরজ', 'অজুর ফরজ', 'ওজুর ফরজ'],
+        answer: `**পবিত্র কুরআনের সূরা আল-মায়িদাহ (আয়াত ৬) অনুযায়ী ওযুর ফরজ ৪টি:**
+১. সম্পূর্ণ মুখমণ্ডল একবার ধৌত করা।
+২. উভয় হাত কনুইসহ একবার ধৌত করা।
+৩. মাথার চারভাগের একভাগ মাসেহ করা।
+৪. উভয় পা টাখনু/গোড়ালিসহ ধৌত করা।`
+      },
+      {
+        keywords: ['সালাম', 'আসসালামু আলাইকুম', 'কেমন আছেন'],
+        answer: `ওয়ালাইকুম আসসালাম ওয়া রাহমাতুল্লাহি ওয়া বারাকাতুহু। 'আল আহসান ইসলামিক এআই'-এ আপনাকে আন্তরিক স্বাগতম। কুরআন ও সহীহ হাদিসের আলোকে আপনার যেকোনো ইসলামিক প্রশ্ন করতে পারেন।`
+      }
+    ];
+
+    function findLocalAnswer(q) {
+      const clean = q.trim().toLowerCase();
+      for (const item of KNOWLEDGE_BANK) {
+        for (const kw of item.keywords) {
+          if (clean.includes(kw.toLowerCase())) {
+            return item.answer;
+          }
+        }
+      }
+      return null;
+    }
+
     async function sendMessage() {
       const input = document.getElementById('userInput');
       const text = input.value.trim();
       if (!text) return;
 
       const feed = document.getElementById('chatFeed');
-      // Append user bubble
       feed.innerHTML += `
         <div class="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 text-slate-800 text-sm ml-auto max-w-xl">
           <strong>আপনি:</strong> ${text}
@@ -123,7 +205,6 @@
       `;
       input.value = '';
 
-      // Append assistant loading
       const loadingId = 'loading-' + Date.now();
       feed.innerHTML += `
         <div id="${loadingId}" class="p-4 rounded-2xl bg-white border border-emerald-200/80 text-sm text-emerald-800 flex items-center gap-2">
@@ -132,6 +213,21 @@
       `;
       feed.scrollTop = feed.scrollHeight;
 
+      // 1. Check local authentic knowledge first
+      const instant = findLocalAnswer(text);
+      if (instant) {
+        document.getElementById(loadingId).remove();
+        feed.innerHTML += `
+          <div class="p-4 rounded-2xl bg-white border border-emerald-200/80 shadow-sm flex items-start gap-3">
+            <div class="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-sm shrink-0">আ</div>
+            <div class="flex-1 text-sm text-slate-800 leading-relaxed whitespace-pre-wrap">${instant}</div>
+          </div>
+        `;
+        feed.scrollTop = feed.scrollHeight;
+        return;
+      }
+
+      // 2. Fetch from live API backend
       try {
         const res = await fetch('https://ais-dev-uhkkjyjyl6yeu2n5ityugr-935606121208.asia-east1.run.app/api/chat', {
           method: 'POST',
@@ -147,7 +243,15 @@
           </div>
         `;
       } catch (err) {
-        document.getElementById(loadingId).innerHTML = 'দুঃখিত, উত্তর আনতে সমস্যা হয়েছে। ইন্টারনেট বা লাইভ ব্যাকএন্ড চালু রয়েছে কি না দেখুন।';
+        document.getElementById(loadingId).innerHTML = `
+          <div class="text-slate-800">
+            <p class="font-medium text-emerald-800 mb-1">আসসালামু আলাইকুম।</p>
+            <p>আপনার ব্রাউজারে লোকাল ফাইল থেকে সরাসরি সার্ভারে অনুরোধ পাঠাতে সাময়িক সমস্যা হতে পারে।</p>
+            <a href="https://ais-dev-uhkkjyjyl6yeu2n5ityugr-935606121208.asia-east1.run.app" target="_blank" class="inline-block mt-2 px-3 py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-semibold">
+              লাইভ ওয়েবসাইটে সরাসরি উত্তর দেখুন ↗
+            </a>
+          </div>
+        `;
       }
       feed.scrollTop = feed.scrollHeight;
     }
