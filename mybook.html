@@ -3,1423 +3,271 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>মাই বুক - নবম শ্রেণির ১৪টি সম্পূর্ণ পাঠ্যবই ও আসল পিডিএফ (My Book)</title>
-  <meta name="description" content="নবম শ্রেণির ১৪টি সম্পূর্ণ বইয়ের আসল পিডিএফ ফাইল, সরাসরি বই পড়ার পাঠকক্ষ, সায়েন্টিফিক ক্যালকুলেটর ও সূত্রভান্ডার সরাসরি কোডে অন্তর্ভুক্ত।">
+  <title>মাই বুক - নবম শ্রেণি ও দাখিল মাদ্রাসা শিক্ষা বোর্ডের সম্পূর্ণ পাঠ্যবই ও আসল পিডিএফ (My Book)</title>
+  <meta name="description" content="নবম শ্রেণি ও দাখিল মাদ্রাসা শিক্ষা বোর্ডের সকল পাঠ্যবই, আসল পিডিএফ ভিউয়ার, সরাসরি ডাউনলোড, সৃজনশীল ও বহুনির্বাচনী প্রশ্ন, সূত্রভান্ডার ও সায়েন্টিফিক ক্যালকুলেটর।">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <style>
-    /* =========================================================
-       মাই বুক (My Book) - ১০০% স্বয়ংসম্পূর্ণ ও নিরাপদ সিএসএস
-       যেকোনো ব্রাউজারে অফলাইনে খুললেও হুবহু চমৎকার ডিজাইন দেখাবে
-       ========================================================= */
-    :root {
-      --primary: #e11d48;
-      --primary-hover: #be123c;
-      --secondary: #4f46e5;
-      --emerald: #059669;
-      --bg: #f8fafc;
-      --card-bg: #ffffff;
-      --text: #0f172a;
-      --text-muted: #64748b;
-      --border: #e2e8f0;
-      --radius: 16px;
-      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
-      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  <!-- Tailwind CSS CDN for 100% exact styling in any browser -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Hind Siliguri"', 'sans-serif'],
+          }
+        }
+      }
     }
+  </script>
 
+  <style>
     * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
       font-family: 'Hind Siliguri', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
-
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
     }
-
-    /* Top Announcement Bar */
-    .top-bar {
-      background: linear-gradient(90deg, #e11d48, #db2777, #4f46e5);
-      color: #ffffff;
-      text-align: center;
-      padding: 9px 16px;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    /* Header */
-    header {
-      background: #ffffff;
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      box-shadow: var(--shadow-sm);
-    }
-    .header-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 12px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: inherit;
-      cursor: pointer;
-    }
-    .logo-icon {
-      width: 44px;
-      height: 44px;
-      background: linear-gradient(135deg, #e11d48, #db2777, #9333ea);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 22px;
-      box-shadow: 0 4px 10px rgba(225, 29, 72, 0.3);
-    }
-    .logo-text h1 {
-      font-size: 20px;
-      font-weight: 800;
-      color: #0f172a;
-      line-height: 1.1;
-    }
-    .logo-text p {
-      font-size: 11px;
-      color: var(--text-muted);
-      font-weight: 600;
-    }
-
-    .nav-tabs {
-      display: flex;
-      gap: 6px;
+    ::-webkit-scrollbar-track {
       background: #f1f5f9;
-      padding: 4px;
-      border-radius: 12px;
-      flex-wrap: wrap;
     }
-    .nav-tab-btn {
-      padding: 8px 14px;
-      border-radius: 9px;
-      font-size: 13px;
-      font-weight: 700;
-      border: none;
-      background: transparent;
-      color: #475569;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
     }
-    .nav-tab-btn.active {
-      background: #ffffff;
-      color: var(--primary);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
     }
-    .nav-tab-btn:hover:not(.active) {
-      color: var(--primary);
-    }
-
-    /* Main Container */
-    main {
-      flex: 1;
-      max-width: 1200px;
-      width: 100%;
-      margin: 0 auto;
-      padding: 24px 20px 48px;
-    }
-
-    /* Hero Section */
-    .hero-banner {
-      background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 50%, #e0e7ff 100%);
-      border: 1px solid #fecdd3;
-      border-radius: 24px;
-      padding: 36px 32px;
-      margin-bottom: 32px;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: #ffffff;
-      color: var(--primary);
-      padding: 6px 14px;
-      border-radius: 50px;
-      font-size: 12px;
-      font-weight: 800;
-      margin-bottom: 12px;
-      box-shadow: var(--shadow-sm);
-    }
-    .hero-title {
-      font-size: 32px;
-      font-weight: 900;
-      color: #0f172a;
-      line-height: 1.25;
-      margin-bottom: 12px;
-    }
-    .hero-desc {
-      font-size: 15px;
-      color: #475569;
-      max-width: 760px;
-      line-height: 1.6;
-      margin-bottom: 24px;
-    }
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 12px;
-      max-width: 650px;
-    }
-    .stat-pill {
-      background: rgba(255, 255, 255, 0.9);
-      border: 1px solid rgba(226, 232, 240, 0.8);
-      border-radius: 14px;
-      padding: 12px;
-      text-align: center;
-    }
-    .stat-num {
-      font-size: 18px;
-      font-weight: 800;
-      color: var(--primary);
-    }
-    .stat-lbl {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text-muted);
-    }
-
-    /* Filter Bar */
-    .filter-bar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-    .category-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .cat-pill {
-      padding: 8px 14px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: #ffffff;
-      color: #475569;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-    .cat-pill:hover, .cat-pill.active {
-      background: var(--primary);
-      color: #ffffff;
-      border-color: var(--primary);
-    }
-    .search-input {
-      padding: 10px 16px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      font-size: 14px;
-      width: 260px;
-      outline: none;
-      background: #ffffff;
-    }
-    .search-input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.1);
-    }
-
-    /* Books Grid */
-    .books-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 20px;
-    }
-    .book-card {
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      box-shadow: var(--shadow-sm);
-      transition: all 0.2s ease;
-    }
-    .book-card:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-lg);
-      border-color: #cbd5e1;
-    }
-    .book-card-header {
-      padding: 18px 20px;
-      background: linear-gradient(135deg, #e11d48, #be123c);
-      color: #ffffff;
-    }
-    .book-category-tag {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      background: rgba(255, 255, 255, 0.2);
-      padding: 3px 10px;
-      border-radius: 50px;
-      margin-bottom: 8px;
-    }
-    .book-card-title {
-      font-size: 18px;
-      font-weight: 800;
-      line-height: 1.3;
-      margin-bottom: 2px;
-    }
-    .book-card-subtitle {
-      font-size: 12px;
-      opacity: 0.9;
-      font-weight: 500;
-    }
-    .book-card-body {
-      padding: 20px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .book-card-desc {
-      font-size: 13px;
-      color: #475569;
-      line-height: 1.5;
-      margin-bottom: 16px;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .book-meta-strip {
-      background: #f8fafc;
-      border: 1px solid #f1f5f9;
-      border-radius: 12px;
-      padding: 10px 14px;
-      font-size: 12px;
-      color: #64748b;
-      margin-bottom: 16px;
-      display: flex;
-      justify-content: space-between;
-      font-weight: 600;
-    }
-    .book-meta-strip strong {
-      color: #0f172a;
-    }
-    .book-actions-group {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .btn-read-full {
-      width: 100%;
-      padding: 11px;
-      background: var(--primary);
-      color: #ffffff;
-      border: none;
-      border-radius: 12px;
-      font-size: 14px;
-      font-weight: 800;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      box-shadow: 0 4px 10px rgba(225, 29, 72, 0.2);
-      transition: background 0.15s;
-    }
-    .btn-read-full:hover {
-      background: var(--primary-hover);
-    }
-    .btn-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
-    .btn-sub-action {
-      padding: 8px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: #f8fafc;
-      color: #334155;
-      font-size: 12px;
-      font-weight: 700;
-      cursor: pointer;
-      text-align: center;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-      transition: all 0.15s;
-    }
-    .btn-sub-action:hover {
-      background: #e2e8f0;
-      color: #0f172a;
-    }
-    .btn-download-action {
-      background: #ecfdf5;
-      border-color: #a7f3d0;
-      color: #065f46;
-    }
-    .btn-download-action:hover {
-      background: #d1fae5;
-    }
-
-    /* =========================================================
-       BOOK READER VIEW (ডিজিটাল বই পাঠকক্ষ - ১০০% দৃশ্যমান ও নিরাপদ)
-       ========================================================= */
-    #view-book-reader {
+    .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
-    .reader-top-bar {
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 14px 20px;
-      margin-bottom: 20px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      box-shadow: var(--shadow-sm);
-    }
-    .reader-back-btn {
-      padding: 8px 16px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: #f8fafc;
-      color: #334155;
-      font-size: 13px;
-      font-weight: 800;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .reader-back-btn:hover {
-      background: #e2e8f0;
-    }
-    .reader-title-box h2 {
-      font-size: 18px;
-      font-weight: 900;
-      color: #0f172a;
-      line-height: 1.2;
-    }
-    .reader-title-box p {
-      font-size: 12px;
-      color: var(--primary);
-      font-weight: 700;
-    }
-    .reader-view-modes {
-      display: flex;
-      gap: 6px;
-      background: #f1f5f9;
-      padding: 4px;
-      border-radius: 12px;
-    }
-    .reader-mode-btn {
-      padding: 8px 14px;
-      border-radius: 9px;
-      font-size: 13px;
-      font-weight: 700;
-      border: none;
-      background: transparent;
-      color: #475569;
-      cursor: pointer;
-    }
-    .reader-mode-btn.active {
-      background: var(--primary);
-      color: #ffffff;
-      box-shadow: var(--shadow-sm);
-    }
-
-    /* Digital Book Layout */
-    .digital-book-layout {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 24px;
-      align-items: start;
-    }
-    .chapter-sidebar {
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 16px;
-      box-shadow: var(--shadow-sm);
-      position: sticky;
-      top: 90px;
-      max-height: calc(100vh - 120px);
-      overflow-y: auto;
-    }
-    .chapter-sidebar h4 {
-      font-size: 13px;
-      font-weight: 800;
-      color: var(--primary);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 12px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--border);
-    }
-    .chapter-item-btn {
-      width: 100%;
-      text-align: left;
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: 1px solid transparent;
-      background: transparent;
-      font-size: 13px;
-      font-weight: 700;
-      color: #334155;
-      cursor: pointer;
-      margin-bottom: 6px;
-      line-height: 1.35;
-      transition: all 0.15s;
-    }
-    .chapter-item-btn:hover {
-      background: #f8fafc;
-      border-color: #e2e8f0;
-    }
-    .chapter-item-btn.active {
-      background: #fff1f2;
-      border-color: #fecdd3;
-      color: var(--primary);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .chapter-reading-pane {
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 32px;
-      box-shadow: var(--shadow-sm);
-    }
-    .chapter-badge-strip {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 14px;
-      margin-bottom: 20px;
-      font-size: 12px;
-      color: var(--text-muted);
-      font-weight: 600;
-    }
-    .chapter-header-title {
-      font-size: 26px;
-      font-weight: 900;
-      color: #0f172a;
-      line-height: 1.3;
-      margin-bottom: 18px;
-    }
-    .chapter-summary-card {
-      background: #f8fafc;
-      border-left: 4px solid var(--primary);
-      border-radius: 0 12px 12px 0;
-      padding: 16px 20px;
-      font-size: 15px;
-      color: #334155;
-      line-height: 1.7;
-      margin-bottom: 28px;
-    }
-    .section-block {
-      margin-bottom: 28px;
-      padding-bottom: 24px;
-      border-bottom: 1px dashed var(--border);
-    }
-    .section-block:last-child {
-      border-bottom: none;
-    }
-    .section-title {
-      font-size: 18px;
-      font-weight: 800;
-      color: #1e293b;
-      margin-bottom: 12px;
-    }
-    .section-text {
-      font-size: 16px;
-      color: #334155;
-      line-height: 1.8;
-      white-space: pre-line;
-      margin-bottom: 16px;
-    }
-    .key-points-box {
-      background: #fff1f2;
-      border: 1px solid #ffe4e6;
-      border-radius: 14px;
-      padding: 16px 20px;
-      margin-top: 14px;
-    }
-    .key-points-title {
-      font-size: 13px;
-      font-weight: 800;
-      color: var(--primary);
-      margin-bottom: 8px;
-    }
-    .key-points-box ul {
-      margin-left: 18px;
-      font-size: 14px;
-      color: #475569;
-      line-height: 1.6;
-    }
-
-    /* Questions & Answers */
-    .questions-box {
-      margin-top: 32px;
-      background: #f8fafc;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 24px;
-    }
-    .questions-box h4 {
-      font-size: 16px;
-      font-weight: 800;
-      color: #0f172a;
-      margin-bottom: 16px;
-    }
-    .question-item {
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 12px;
-    }
-    .question-prompt {
-      font-weight: 700;
-      font-size: 15px;
-      color: #0f172a;
-      margin-bottom: 8px;
-    }
-    .question-ans {
-      font-size: 14px;
-      color: #059669;
-      background: #ecfdf5;
-      padding: 10px 14px;
-      border-radius: 8px;
-      margin-top: 8px;
-      font-weight: 600;
-    }
-
-    /* PDF HUB MODE */
-    .pdf-hub-container {
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
-    }
-    .pdf-hero-card {
-      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-      color: #ffffff;
-      padding: 32px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-    .pdf-hero-info h3 {
-      font-size: 24px;
-      font-weight: 900;
-      margin-bottom: 6px;
-    }
-    .pdf-hero-info p {
-      font-size: 14px;
-      color: #cbd5e1;
-    }
-    .pdf-hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    .btn-pdf-hero-open {
-      padding: 12px 22px;
-      background: var(--emerald);
-      color: #ffffff;
-      border-radius: 12px;
-      font-size: 14px;
-      font-weight: 800;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 4px 12px rgba(5, 150, 105, 0.4);
-      transition: background 0.15s;
-    }
-    .btn-pdf-hero-open:hover {
-      background: #047857;
-    }
-    .btn-pdf-hero-dl {
-      padding: 12px 22px;
-      background: var(--primary);
-      color: #ffffff;
-      border-radius: 12px;
-      font-size: 14px;
-      font-weight: 800;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 4px 12px rgba(225, 29, 72, 0.4);
-      transition: background 0.15s;
-    }
-    .btn-pdf-hero-dl:hover {
-      background: var(--primary-hover);
-    }
-
-    .pdf-iframe-wrapper {
-      padding: 24px;
-      background: #f8fafc;
-    }
-    .pdf-notice-banner {
-      background: #fffbeb;
-      border: 1px solid #fde68a;
-      border-radius: 12px;
-      padding: 12px 18px;
-      font-size: 13px;
-      color: #92400e;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .pdf-live-frame {
-      width: 100%;
-      height: 750px;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      background: #ffffff;
-    }
-
-    /* Calculator Styles */
-    .calc-card {
-      max-width: 400px;
-      margin: 0 auto;
-      background: #0f172a;
-      border-radius: 24px;
-      padding: 24px;
-      box-shadow: var(--shadow-lg);
-    }
-    .calc-screen {
-      background: #020617;
-      padding: 18px;
-      border-radius: 14px;
-      text-align: right;
-      font-size: 32px;
-      font-family: monospace;
-      color: #ffffff;
-      margin-bottom: 20px;
-      min-height: 75px;
-      border: 1px solid #334155;
-      word-break: break-all;
-    }
-    .calc-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-    }
-    .c-key {
-      padding: 14px;
-      font-size: 18px;
-      font-weight: 800;
-      border-radius: 12px;
-      border: none;
-      cursor: pointer;
-      background: #1e293b;
-      color: #ffffff;
-    }
-    .c-key:hover { background: #334155; }
-    .c-key.op { background: var(--primary); }
-    .c-key.clear { background: #b91c1c; }
-    .c-key.eval { background: var(--emerald); }
-
-    /* Formulas Grid */
-    .formulas-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 18px;
-    }
-    .formula-card {
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: var(--shadow-sm);
-    }
-    .formula-subject {
-      font-size: 11px;
-      font-weight: 800;
-      color: var(--primary);
-      text-transform: uppercase;
-      margin-bottom: 4px;
-    }
-    .formula-title {
-      font-size: 16px;
-      font-weight: 800;
-      color: #0f172a;
-      margin-bottom: 10px;
-    }
-    .formula-math {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      padding: 10px 14px;
-      border-radius: 10px;
-      font-family: monospace;
-      font-size: 16px;
-      font-weight: 700;
-      color: #0f172a;
-      margin-bottom: 10px;
-    }
-    .formula-desc {
-      font-size: 13px;
-      color: #64748b;
-      line-height: 1.5;
-    }
-
-    /* Notes Box */
-    .notes-box {
-      max-width: 700px;
-      margin: 0 auto;
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 24px;
-      box-shadow: var(--shadow-sm);
-    }
-    .note-input {
-      width: 100%;
-      padding: 12px 16px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      font-size: 15px;
-      font-weight: 700;
-      margin-bottom: 14px;
-      outline: none;
-    }
-    .note-textarea {
-      width: 100%;
-      height: 250px;
-      padding: 16px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      font-size: 14px;
-      line-height: 1.6;
-      resize: none;
-      outline: none;
-      margin-bottom: 16px;
-    }
-
-    /* Footer */
-    footer {
-      background: #0f172a;
-      color: #94a3b8;
-      padding: 32px 20px;
-      text-align: center;
-      font-size: 13px;
-      border-top: 1px solid #1e293b;
-      margin-top: 48px;
-    }
-    footer strong { color: #ffffff; }
-
-    @media (max-width: 860px) {
-      .digital-book-layout {
-        grid-template-columns: 1fr;
-      }
-      .chapter-sidebar {
-        position: static;
-        max-height: 300px;
-      }
-      .hero-title { font-size: 26px; }
-      .search-input { width: 100%; }
-      .pdf-live-frame { height: 550px; }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
   </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col antialiased">
 
-  <!-- TOP BANNER -->
-  <div class="top-bar">
-    🇧🇩 নবম শ্রেণির ১৪টি সম্পূর্ণ পাঠ্যবই ও আসল পিডিএফ — সরাসরি ব্রাউজারে সম্পূর্ণ বিনামূল্যে!
+  <!-- TOP ANNOUNCEMENT BAR -->
+  <div class="bg-gradient-to-r from-rose-600 via-pink-600 to-indigo-600 text-white text-xs font-semibold py-1.5 px-4 text-center">
+    <span>🇧🇩 নবম শ্রেণি ও দাখিল মাদ্রাসা শিক্ষা বোর্ডের সম্পূর্ণ পাঠ্যবই ও আসল পিডিএফ (২০২৬ সংস্করণ) — সরাসরি ব্রাউজারে সম্পূর্ণ বিনামূল্যে!</span>
   </div>
 
   <!-- HEADER -->
-  <header>
-    <div class="header-inner">
-      <div class="logo-container" onclick="showTab('books')">
-        <div class="logo-icon">📖</div>
-        <div class="logo-text">
-          <h1>মাই বুক (My Book)</h1>
-          <p>নবম শ্রেণির সম্পূর্ণ পাঠাগার ও আসল পিডিএফ</p>
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        
+        <!-- Logo -->
+        <div class="flex items-center gap-3 cursor-pointer" onclick="switchTab('books'); backToBooks();">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-rose-600 via-pink-600 to-purple-600 flex items-center justify-center text-white shadow-md shadow-pink-500/20">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+          </div>
+          <div>
+            <div class="flex items-center gap-1.5">
+              <span class="text-2xl font-black tracking-tight text-slate-900 hover:text-rose-600 transition-colors">
+                মাই বুক
+              </span>
+              <span class="bg-rose-100 text-rose-700 text-[10px] font-bold px-1.5 py-0.5 rounded-full uppercase tracking-wider">
+                ২০২৬ সংস্করণ
+              </span>
+            </div>
+            <p class="text-[11px] text-slate-500 font-medium -mt-1 hidden sm:block">
+              সাধারণ ও মাদ্রাসা শিক্ষা বোর্ড পাঠ্যবই
+            </p>
+          </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <nav class="hidden md:flex items-center gap-1 bg-slate-100 p-1 rounded-xl">
+          <button id="nav-btn-books" onclick="switchTab('books')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-sm font-bold transition-all bg-white text-rose-600 shadow-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+            <span>বইসমূহ</span>
+          </button>
+          <button id="nav-btn-calculator" onclick="switchTab('calculator')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-sm font-bold transition-all text-slate-600 hover:text-slate-900">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+            <span>ক্যালকুলেটর</span>
+          </button>
+          <button id="nav-btn-formulas" onclick="switchTab('formulas')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-sm font-bold transition-all text-slate-600 hover:text-slate-900">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            <span>সূত্রভান্ডার</span>
+          </button>
+          <button id="nav-btn-quiz" onclick="switchTab('quiz')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-sm font-bold transition-all text-slate-600 hover:text-slate-900">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <span>কুইজ টেস্ট</span>
+          </button>
+          <button id="nav-btn-notes" onclick="switchTab('notes')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-sm font-bold transition-all text-slate-600 hover:text-slate-900">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+            <span>নোটবুক</span>
+          </button>
+        </nav>
+
+        <!-- Right Action Tools -->
+        <div class="flex items-center gap-2">
+          <!-- Helpline badge -->
+          <div class="hidden lg:flex items-center gap-1.5 text-xs font-bold text-slate-700 bg-slate-100 px-3 py-1.5 rounded-full border border-slate-200">
+            <svg class="w-3.5 h-3.5 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+            <span>১৬৭৮০</span>
+          </div>
+
+          <!-- Bookmarks button -->
+          <button onclick="toggleBookmarksDrawer()" class="relative p-2 text-slate-600 hover:text-rose-600 hover:bg-slate-100 rounded-lg transition-colors" title="বুকমার্কসমূহ">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path></svg>
+            <span id="header-bookmarks-badge" class="hidden absolute -top-1 -right-1 w-4 h-4 bg-rose-600 text-white rounded-full text-[10px] font-bold flex items-center justify-center">0</span>
+          </button>
         </div>
       </div>
 
-      <div class="nav-tabs">
-        <button id="btn-tab-books" class="nav-tab-btn active" onclick="showTab('books')">📚 পাঠ্যবই (১৪টি)</button>
-        <button id="btn-tab-calculator" class="nav-tab-btn" onclick="showTab('calculator')">🧮 ক্যালকুলেটর</button>
-        <button id="btn-tab-formulas" class="nav-tab-btn" onclick="showTab('formulas')">📐 সূত্রভান্ডার</button>
-        <button id="btn-tab-notes" class="nav-tab-btn" onclick="showTab('notes')">📝 নোটবুক</button>
+      <!-- Mobile Nav Pills -->
+      <div class="flex md:hidden overflow-x-auto py-2 gap-1 border-t border-slate-100 no-scrollbar">
+        <button onclick="switchTab('books')" class="px-3 py-1 text-xs font-bold whitespace-nowrap rounded-md bg-rose-600 text-white">📚 বইসমূহ</button>
+        <button onclick="switchTab('calculator')" class="px-3 py-1 text-xs font-bold whitespace-nowrap rounded-md text-slate-600 bg-slate-100">🧮 ক্যালকুলেটর</button>
+        <button onclick="switchTab('formulas')" class="px-3 py-1 text-xs font-bold whitespace-nowrap rounded-md text-slate-600 bg-slate-100">📐 সূত্রভান্ডার</button>
+        <button onclick="switchTab('quiz')" class="px-3 py-1 text-xs font-bold whitespace-nowrap rounded-md text-slate-600 bg-slate-100">🎯 কুইজ</button>
+        <button onclick="switchTab('notes')" class="px-3 py-1 text-xs font-bold whitespace-nowrap rounded-md text-slate-600 bg-slate-100">📝 নোটবুক</button>
       </div>
     </div>
   </header>
 
-  <!-- MAIN AREA -->
-  <main>
+  <!-- MAIN CONTAINER -->
+  <main class="flex-1">
 
-    <!-- 1. BOOKS LIST VIEW -->
-    <div id="view-books">
-      <section class="hero-banner">
-        <div class="hero-badge">✨ জাতীয় শিক্ষাক্রম ও পাঠ্যপুস্তক বোর্ড (NCTB)</div>
-        <h2 class="hero-title">নবম শ্রেণির সকল পাঠ্যবই ও মূল পিডিএফ লাইব্রেরি</h2>
-        <p class="hero-desc">
-          কোনো সরকারি ওয়েবসাইটে না গিয়ে সরাসরি এই ওয়েবপেজেই নবম শ্রেণির সকল বইয়ের মূল অধ্যায়, কবিতা, গদ্য, সূত্রাবলি ও সৃজনশীল প্রশ্নোত্তর পড়ুন অথবা এক ক্লিকে সম্পূর্ণ মূল পিডিএফ ডাউনলোড করুন।
-        </p>
-        <div class="hero-stats">
-          <div class="stat-pill">
-            <div class="stat-num">১৪টি</div>
-            <div class="stat-lbl">সম্পূর্ণ পাঠ্যবই</div>
+    <!-- TAB 1: BOOKS TAB -->
+    <div id="tab-books-content">
+      
+      <!-- HERO AREA (Shown when not reading a book) -->
+      <section id="hero-area" class="relative overflow-hidden bg-gradient-to-b from-sky-400/25 via-sky-100/50 to-white pt-10 pb-14 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-sky-200 text-sky-800 text-xs sm:text-sm font-bold shadow-xs mb-5">
+            <span class="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>মাই বুক • নবম শ্রেণি ও দাখিল মাদ্রাসা শিক্ষা বোর্ডের ২০২৬ সালের নতুন পাঠ্যবই</span>
           </div>
-          <div class="stat-pill">
-            <div class="stat-num">৩,২০০+</div>
-            <div class="stat-lbl">মোট পৃষ্ঠা (PDF)</div>
-          </div>
-          <div class="stat-pill">
-            <div class="stat-num">১০০% ফ্রি</div>
-            <div class="stat-lbl">আজীবন উন্মুক্ত</div>
+
+          <h1 class="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight sm:leading-none mb-4">
+            একাডেমিক নবম শ্রেণি ও দাখিলের <br class="hidden sm:inline" />
+            <span class="bg-gradient-to-r from-rose-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent">
+              ২০২৬ সালের সকল মূল পাঠ্যবই ও পিডিএফ
+            </span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-700 font-medium leading-relaxed mb-8 max-w-2xl mx-auto">
+            কোনো অতিরিক্ত ওয়েবসাইটে যাওয়া ছাড়াই সরাসরি ব্রাউজারে পড়ুন নবম শ্রেণি ও দাখিল মাদ্রাসা বোর্ডের ২০২৬ সালের নতুন কারিকুলামের সব বইয়ের আসল পিডিএফ, পাঠ ও সায়েন্টিফিক ক্যালকুলেটর।
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5">
+            <button onclick="scrollToBooksSection()" class="w-full sm:w-auto px-8 py-3.5 bg-rose-600 hover:bg-rose-700 active:scale-95 text-white font-bold text-base rounded-2xl shadow-lg shadow-rose-600/25 transition-all flex items-center justify-center gap-2.5">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+              <span>২০২৬ সালের বইসমূহ পড়ুন</span>
+            </button>
+
+            <button onclick="switchTab('calculator')" class="w-full sm:w-auto px-8 py-3.5 bg-white hover:bg-slate-50 active:scale-95 text-slate-800 border-2 border-slate-200 hover:border-slate-300 font-bold text-base rounded-2xl shadow-xs transition-all flex items-center justify-center gap-2.5">
+              <svg class="w-5 h-5 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+              <span>সায়েন্টিফিক ক্যালকুলেটর</span>
+            </button>
           </div>
         </div>
       </section>
 
-      <div class="filter-bar">
-        <div class="category-pills">
-          <button class="cat-pill active" onclick="filterCategory('all', this)">সব বই (১৪টি)</button>
-          <button class="cat-pill" onclick="filterCategory('science', this)">🔬 বিজ্ঞান</button>
-          <button class="cat-pill" onclick="filterCategory('math', this)">📐 গণিত</button>
-          <button class="cat-pill" onclick="filterCategory('language', this)">📚 ভাষা ও সাহিত্য</button>
-          <button class="cat-pill" onclick="filterCategory('humanities', this)">🌍 সামাজিক ও মানবিক</button>
-          <button class="cat-pill" onclick="filterCategory('general', this)">💡 প্রায়োগিক দক্ষতা</button>
-        </div>
-        <input type="text" id="searchBox" class="search-input" placeholder="বইয়ের নাম বা বিষয় খুঁজুন..." oninput="handleSearch()">
-      </div>
+      <!-- BOOK LIST SECTION -->
+      <section id="books-list-area" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <!-- Title and Search -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+          <div>
+            <div class="inline-flex items-center gap-1.5 text-xs font-bold text-rose-600 bg-rose-50 px-3 py-1 rounded-full mb-2">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+              <span>২০২৬ শিক্ষাবর্ষের পাঠাগার</span>
+            </div>
+            <h2 id="books-count-title" class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+              নবম শ্রেণি ও দাখিলের ২০২৬ সালের নতুন বইসমূহ
+            </h2>
+            <p class="text-slate-600 text-sm mt-1">
+              যে কোনো বইয়ে ক্লিক করে সরাসরি ২০২৬ সালের সংস্করণ পড়া শুরু করুন
+            </p>
+          </div>
 
-      <div class="books-grid" id="booksGrid"></div>
-    </div>
-
-    <!-- 2. IN-PAGE INTERACTIVE BOOK READER (১০০% দৃশ্যমান, কোনো কালো পর্দা বা রিলোড সমস্যা নেই) -->
-    <div id="view-book-reader">
-      <div class="reader-top-bar">
-        <div style="display:flex; align-items:center; gap:12px;">
-          <button class="reader-back-btn" onclick="closeBookReader()">⬅ বই তালিকায় ফিরুন</button>
-          <div class="reader-title-box">
-            <h2 id="readerBookTitle">বইয়ের নাম</h2>
-            <p id="readerBookGrade">নবম শ্রেণি • জাতীয় শিক্ষাক্রম বোর্ড</p>
+          <!-- Search Bar -->
+          <div class="relative w-full md:w-80">
+            <svg class="w-5 h-5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            <input
+              type="text"
+              id="search-input"
+              oninput="filterBooks()"
+              placeholder="২০২৬ সালের বই বা অধ্যায় খুঁজুন..."
+              class="w-full pl-10 pr-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm font-medium focus:outline-hidden focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 shadow-xs"
+            />
           </div>
         </div>
 
-        <div class="reader-view-modes">
-          <button id="btnReaderModeText" class="reader-mode-btn active" onclick="switchReaderMode('text')">
-            📖 বইয়ের সম্পূর্ণ অধ্যায় ও পাঠ
-          </button>
-          <button id="btnReaderModePdf" class="reader-mode-btn" onclick="switchReaderMode('pdf')">
-            📄 আসল পিডিএফ ও ডাউনলোড
-          </button>
-        </div>
-      </div>
-
-      <!-- SUB-MODE A: FULL DIGITAL CHAPTERS -->
-      <div id="readerTextContainer" class="digital-book-layout">
-        <!-- Sidebar: Chapter Navigation -->
-        <div class="chapter-sidebar">
-          <h4>অধ্যায় তালিকা</h4>
-          <div id="chapterListButtons"></div>
+        <!-- Category Filters -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-3 mb-8 no-scrollbar" id="category-pills">
+          <button onclick="selectCategory('all')" id="cat-all" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all bg-rose-600 text-white shadow-sm shadow-rose-600/20">সব বই</button>
+          <button onclick="selectCategory('madrasah')" id="cat-madrasah" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all bg-white text-slate-600 hover:bg-slate-100 border border-slate-200">🕌 দাখিল (২০২৬)</button>
+          <button onclick="selectCategory('science')" id="cat-science" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all bg-white text-slate-600 hover:bg-slate-100 border border-slate-200">🔬 বিজ্ঞান (২০২৬)</button>
+          <button onclick="selectCategory('math')" id="cat-math" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all bg-white text-slate-600 hover:bg-slate-100 border border-slate-200">📐 গণিত (২০২৬)</button>
+          <button onclick="selectCategory('language')" id="cat-language" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all bg-white text-slate-600 hover:bg-slate-100 border border-slate-200">📚 ভাষা ও সাহিত্য</button>
+          <button onclick="selectCategory('humanities')" id="cat-humanities" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all bg-white text-slate-600 hover:bg-slate-100 border border-slate-200">🌍 মানবিক ও সামাজিক</button>
+          <button onclick="selectCategory('general')" id="cat-general" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all bg-white text-slate-600 hover:bg-slate-100 border border-slate-200">💡 দক্ষতা ও প্রায়োগিক</button>
         </div>
 
-        <!-- Main Reading Pane -->
-        <div class="chapter-reading-pane" id="chapterContentArea">
-          <!-- Populated by JS -->
+        <!-- Book Cards Grid -->
+        <div id="books-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <!-- Dynamically populated with 2026 Curriculum Books -->
         </div>
-      </div>
+      </section>
 
-      <!-- SUB-MODE B: ORIGINAL PDF HUB & LIVE VIEWER -->
-      <div id="readerPdfContainer" class="pdf-hub-container" style="display:none;">
-        <div class="pdf-hero-card">
-          <div class="pdf-hero-info">
-            <h3 id="pdfHeroTitle">বইয়ের মূল পিডিএফ ফাইল</h3>
-            <p id="pdfHeroSubtitle">জাতীয় শিক্ষাক্রম ও পাঠ্যপুস্তক বোর্ড অনুমোদিত সম্পূর্ণ মূল বই • সব পৃষ্ঠা অন্তর্ভুক্ত</p>
+      <!-- BOOK READER CONTAINER (Shown when a book is clicked) -->
+      <section id="book-reader-view" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        
+        <!-- Reader Top Navigation Bar -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm mb-6 flex flex-wrap items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <button onclick="backToBooks()" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs sm:text-sm font-bold rounded-xl flex items-center gap-1.5 transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+              <span>২০২৬ সালের বইয়ে ফিরে যান</span>
+            </button>
+            <div id="reader-book-badge" class="hidden sm:inline-block px-3 py-1 rounded-full text-xs font-bold bg-rose-50 text-rose-700 border border-rose-200">
+              <!-- Book title -->
+            </div>
           </div>
-          <div class="pdf-hero-buttons">
-            <a id="btnPdfOpenDirect" href="#" target="_blank" class="btn-pdf-hero-open">
-              🌐 বড় পর্দায় আসল বই খুলুন ➔
-            </a>
-            <a id="btnPdfDownloadDirect" href="#" target="_blank" download class="btn-pdf-hero-dl">
-              ⬇ সম্পূর্ণ বই ডাউনলোড (.pdf)
-            </a>
-          </div>
-        </div>
 
-        <div class="pdf-iframe-wrapper">
-          <div class="pdf-notice-banner">
-            <span>💡 ব্রাউজার সিকিউরিটি বা অফলাইন মোডে যদি নিচের ফ্রেম লোড না হয়, তবে উপরের সবুজ বোতাম <strong>'বড় পর্দায় আসল বই খুলুন'</strong> চাপুন। যেকোনো মোবাইল বা কম্পিউটারে ঝকঝকে পিডিএফ সাথে সাথে ওপেন হবে।</span>
-            <button onclick="reloadReaderPdfIframe()" style="padding:4px 10px; border-radius:6px; border:1px solid #d97706; background:#fef3c7; color:#92400e; font-weight:bold; cursor:pointer;">
-              🔄 রিফ্রেশ ফ্রেম
+          <!-- Reader Mode Toggle: Chapter Reader vs PDF Hub -->
+          <div class="flex items-center bg-slate-100 p-1 rounded-xl">
+            <button id="reader-mode-btn-chapters" onclick="setReaderMode('chapters')" class="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold transition-all bg-white text-rose-600 shadow-xs flex items-center gap-1.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+              <span>📖 পাঠ্যবই রিডার (২০২৬)</span>
+            </button>
+            <button id="reader-mode-btn-pdf" onclick="setReaderMode('pdf')" class="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold transition-all text-slate-600 hover:text-slate-900 flex items-center gap-1.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+              <span>📑 আসল বইয়ের পিডিএফ (PDF Hub)</span>
             </button>
           </div>
 
-          <iframe
-            id="readerPdfFrame"
-            src=""
-            class="pdf-live-frame"
-            title="মূল পাঠ্যবই পিডিএফ"
-            allow="fullscreen"
-          ></iframe>
+          <!-- Utility Controls: Audio, Font Size -->
+          <div class="flex items-center gap-2">
+            <button onclick="toggleSpeech()" id="btn-speech" class="p-2 text-slate-600 hover:text-rose-600 bg-slate-50 hover:bg-slate-100 rounded-lg text-xs font-bold flex items-center gap-1 border border-slate-200" title="বাংলায় পড়ে শোনান (Audio Reader)">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+              <span id="speech-btn-text">শুনুন</span>
+            </button>
+            <div class="flex items-center border border-slate-200 rounded-lg overflow-hidden bg-slate-50">
+              <button onclick="adjustFontSize(-1)" class="px-2.5 py-1 text-slate-600 hover:bg-slate-200 font-bold text-xs">A-</button>
+              <button onclick="adjustFontSize(0)" class="px-2 py-1 text-slate-600 hover:bg-slate-200 font-bold text-xs border-x border-slate-200">A</button>
+              <button onclick="adjustFontSize(1)" class="px-2.5 py-1 text-slate-600 hover:bg-slate-200 font-bold text-xs">A+</button>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
+
     </div>
-
-    <!-- 3. SCIENTIFIC CALCULATOR -->
-    <div id="view-calculator" style="display:none;">
-      <h2 style="text-align:center; font-size:24px; font-weight:800; margin-bottom:4px;">সায়েন্টিফিক ক্যালকুলেটর</h2>
-      <p style="text-align:center; color:#64748b; font-size:13px; margin-bottom:20px;">নবম শ্রেণির গণিত, পদার্থ ও রসায়নের নির্ভুল হিসাব</p>
-      
-      <div class="calc-card">
-        <div class="calc-screen" id="calcDisplay">0</div>
-        <div class="calc-grid">
-          <button class="c-key clear" onclick="calcClear()">AC</button>
-          <button class="c-key" onclick="calcFunc('sqrt')">√</button>
-          <button class="c-key" onclick="calcFunc('sq')">x²</button>
-          <button class="c-key op" onclick="calcOp('/')">÷</button>
-
-          <button class="c-key" onclick="calcFunc('sin')">sin</button>
-          <button class="c-key" onclick="calcFunc('cos')">cos</button>
-          <button class="c-key" onclick="calcFunc('tan')">tan</button>
-          <button class="c-key op" onclick="calcOp('*')">×</button>
-
-          <button class="c-key" onclick="calcNum('7')">7</button>
-          <button class="c-key" onclick="calcNum('8')">8</button>
-          <button class="c-key" onclick="calcNum('9')">9</button>
-          <button class="c-key op" onclick="calcOp('-')">-</button>
-
-          <button class="c-key" onclick="calcNum('4')">4</button>
-          <button class="c-key" onclick="calcNum('5')">5</button>
-          <button class="c-key" onclick="calcNum('6')">6</button>
-          <button class="c-key op" onclick="calcOp('+')">+</button>
-
-          <button class="c-key" onclick="calcNum('1')">1</button>
-          <button class="c-key" onclick="calcNum('2')">2</button>
-          <button class="c-key" onclick="calcNum('3')">3</button>
-          <button class="c-key eval" style="grid-row: span 2;" onclick="calcEvaluate()">=</button>
-
-          <button class="c-key" style="grid-column: span 2;" onclick="calcNum('0')">0</button>
-          <button class="c-key" onclick="calcNum('.')">.</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- 4. FORMULAS BANK -->
-    <div id="view-formulas" style="display:none;">
-      <h2 style="text-align:center; font-size:24px; font-weight:800; margin-bottom:4px;">নবম শ্রেণির গুরুত্বপূর্ণ সূত্রভান্ডার</h2>
-      <p style="text-align:center; color:#64748b; font-size:13px; margin-bottom:24px;">পদার্থবিজ্ঞান, রসায়ন ও গণিতের সকল সূত্র ও প্রয়োগ</p>
-      <div id="formulasContainer" class="formulas-grid"></div>
-    </div>
-
-    <!-- 5. NOTEBOOK -->
-    <div id="view-notes" style="display:none;">
-      <h2 style="text-align:center; font-size:24px; font-weight:800; margin-bottom:4px;">আমার পড়ার নোটবুক</h2>
-      <p style="text-align:center; color:#64748b; font-size:13px; margin-bottom:20px;">পড়াশোনার সময় জরুরি বিষয় নোট রাখুন, ব্রাউজারে স্বয়ংক্রিয়ভাবে সেভ থাকবে</p>
-      <div class="notes-box">
-        <input type="text" id="noteTitle" class="note-input" placeholder="নোটের শিরোনাম...">
-        <textarea id="noteText" class="note-textarea" placeholder="এখানে আপনার পড়ার নোট বিস্তারিত লিখুন..."></textarea>
-        <div style="display:flex; justify-content:space-between; gap:10px;">
-          <button onclick="downloadNote()" class="reader-back-btn">⬇ ফাইল ডাউনলোড করুন</button>
-          <button onclick="saveNote()" class="btn-pdf-hero-open" style="border:none; cursor:pointer;">💾 নোট সেভ করুন</button>
-        </div>
-      </div>
-    </div>
-
   </main>
 
-  <!-- FOOTER -->
-  <footer>
-    <div style="font-weight:800; color:white; font-size:16px; margin-bottom:6px;">মাই বুক (My Book) — নবম শ্রেণির স্বয়ংসম্পূর্ণ উন্মুক্ত প্ল্যাটফর্ম</div>
-    <p>বাংলাদেশের ১৮ কোটি মানুষের সেবায় উন্মুক্ত শিক্ষামূলক উদ্যোগ • জাতীয় শিক্ষাক্রম ও পাঠ্যপুস্তক বোর্ড (NCTB) কারিকুলাম ভিত্তিক</p>
-    <p style="margin-top:6px; color:#64748b;">© 2026 মাই বুক • ১৪টি সম্পূর্ণ বই ও মূল পিডিএফ কোডে অন্তর্ভুক্ত • অফলাইনে ১০০% কার্যকর</p>
+  <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
+    <p>© ২০২৬ মাই বুক • শামীম আহসান কতৃক । সর্বস্বত্ব সংরক্ষিত।</p>
   </footer>
 
-  <!-- SCRIPT LOGIC -->
-  <script>
-    const BOOKS_DATA = [{"id":"bangla-sahitya","title":"বাংলা সাহিত্য ও ব্যাকরণ","titleEn":"Bangla Sahitya & Grammar","category":"language","categoryBn":"ভাষা ও সাহিত্য","color":"emerald","gradient":"from-emerald-500 to-teal-700","badgeColor":"bg-emerald-100 text-emerald-800","iconName":"BookOpen","description":"নবম শ্রেণির সাহিত্য সঞ্চয়ন (গদ্য, কবিতা), নাটিকা ও বাংলা দ্বিতীয় পত্র ব্যাকরণ।","classGrade":"নবম শ্রেণি (Class 9)","curriculum":"জাতীয় শিক্ষাক্রম ও পাঠ্যপুস্তক বোর্ড (NCTB)","totalChapters":6,"chapters":[{"id":"b-ch-1","chapterNumber":1,"title":"কপোতাক্ষ নদ — মাইকেল মধুসূদন দত্ত","titleEn":"Kopotakkho Nod by Michael Madhusudan Dutt","summary":"কপোতাক্ষ নদ কবিতাটি কবির চতুর্দশপদী কবিতাবলী থেকে সংগৃহীত। প্রবাসজীবনে কবি স্বদেশের শৈশবস্মৃতিবিজড়িত কপোতাক্ষ নদের প্রতি গভীর কাতরতা ও ভালোবাসার অনুভূতি প্রকাশ করেছেন।","sections":[{"id":"b-s-1","title":"মূল পাঠ ও বঙ্গানুবাদ বিশ্লেষণ","content":"সতত, হে নদ, তুমি পড় মোর মনে!\nসতত তোমার কথা ভাবি এ বিরলে;\nসতত (যেমতি লোক নিশার স্বপনে\nশোনে মায়া-কলধ্বনি) জুড়াই এ কান\nভ্রান্তির ছলনে! বহু দেশে দেখিয়াছি বহু নদ-দলে,\nকিন্তু এ স্নেহের তৃষ্ণা মিটে কার জলে?\nদুগ্ধ-স্রোতোরূপী তুমি জন্মভূমি-স্তনে।\n\nকবি ফ্রান্সে বসে যখন শৈশবের কথা স্মরণ করেন, তখন যশোহর জেলার কপোতাক্ষ নদের স্মৃতি তাকে বেদনার্ত করে তোলে। কবির মনে হয় নদীটি যেন মাতৃদুগ্ধের মতো তাকে স্নেহের বাঁধনে বেঁধে রেখেছে।","keyPoints":["কপোতাক্ষ নদ বাংলা সাহিত্যের একটি কালজয়ী সনেট (চতুর্দশপদী কবিতা)।","কবিতাটির অন্ত্যমিল বিন্যাস: কখ কখ কখ কখ + ঘঙচ ঘঙচ।","কবিতার প্রথম ৮ চরণকে বলা হয় অষ্টক (ভাবের প্রবর্তনা) এবং শেষ ৬ চরণকে বলা হয় ষষ্ঠক (ভাবের পরিণতি)।"],"examples":["দুগ্ধ-স্রোতোরূপী তুমি জন্মভূমি-স্তনে — এখানে উপমা ও রূপক অলঙ্কারের মাধ্যমে নদীর পবিত্র জলকে মাতৃস্তন্যের সাথে তুলনা করা হয়েছে।"]},{"id":"b-s-2","title":"শব্দার্থ ও টীকা","content":"১. সতত = সর্বদা, সব সময়।\n২. বিরলে = নির্জনে, একা একা।\n৩. নিশার স্বপনে = রাতের স্বপ্নে।\n৪. কলধ্বনি = নদীর কলকল মিষ্টি সুর।\n৫. ভ্রান্তির ছলনে = ভুলের মায়ায় বা কল্পনায়।","keyPoints":["কবি কোনোদিন ভুলতে পারবেন না স্বদেশের মাটিকে।","শেষ চরণে কবি কপোতাক্ষ নদের কাছে বিনীত প্রার্থনা করেছেন যেন নদীটিও কবিকে সপ্রেম স্মরণে মনে রাখে।"]}],"questions":[{"id":"b-q-1","question":"কপোতাক্ষ নদ কবিতাটি কোন ধরনের কবিতা?","type":"mcq","options":["মহাকাব্য","চতুর্দশপদী কবিতা (সনেট)","গীতিকবিতা","গাথা"],"correctAnswer":1,"answer":"চতুর্দশপদী কবিতা (সনেট)। এটি ১৪ চরণের এবং প্রতিটি চরণে ১৪টি মাত্রা থাকে।"},{"id":"b-q-2","question":"\"দুগ্ধ-স্রোতোরূপী তুমি জন্মভূমি-স্তনে\" — চরণটি দ্বারা কবি কী বুঝিয়েছেন?","type":"creative","answer":"উদ্ধৃত চরণে কবি স্বদেশের মাটির কপোতাক্ষ নদকে মায়ের বুকের দুধের সঙ্গে তুলনা করেছেন। শিশু যেমন মাতৃস্তন্য পান করে বেঁচে থাকে এবং অপার্থিব তৃপ্তি পায়, কবিও কপোতাক্ষের জলে অবগাহন ও জলপান করে মাতৃস্নেহের পরম পরশ পেয়েছিলেন। বিদেশে অসংখ্য নদ-নদী দেখেও কবির সেই তৃষ্ণা মেটেনি।"}],"keyVocab":[{"term":"সনেট (Sonnet)","meaning":"১৪ চরণের অন্ত্যমিলযুক্ত সুনির্দিষ্ট ভাবসমৃদ্ধ কবিতা।"},{"term":"অষ্টক","meaning":"সনেটের প্রথম আট চরণ যেখানে মূল ভাবের সূচনা ঘটে।"},{"term":"ষষ্ঠক","meaning":"সনেটের শেষ ছয় চরণ যেখানে ভাবের সমাপ্তি বা পরিণতি প্রকাশ পায়।"}]},{"id":"b-ch-2","chapterNumber":2,"title":"শুভা — রবীন্দ্রনাথ ঠাকুর","titleEn":"Shuva by Rabindranath Tagore","summary":"বাকপ্রতিবন্ধী কিশোরী শুভার অন্তরের অব্যক্ত বেদনা, প্রকৃতির সঙ্গে তার আত্মিক বন্ধুত্ব এবং সমাজের অবহেলার হৃদয়স্পর্শী গল্প।","sections":[{"id":"b-s-3","title":"গল্পের মূল ভাব ও চরিত্র পর্যালোচনা","content":"মেয়েটির নাম যখন সুভাষিণী রাখা হইয়াছিল তখন কে জানিত সে বোবা হইবে! তাহার দুটি বড় বোনকে সুকেশিনী ও সুহাসিনী নাম দেওয়া হইয়াছিল, তাই মিলের অনুরোধে তাহার বাপ তাহার নাম সুভাষিণী রাখে। সংক্ষেপে সকলে তাহাকে শুভা বলে।\n\nশুভা কথা বলতে পারে না, কিন্তু তার চোখ দুটি ছিল গভীর ও ভাবময়। প্রকৃতির নদী, আকাশ ও অবলা জীব-জন্তুর (গাভী প্রতাপ ও সর্বশী) সাথে তার গড়ে উঠেছিল ভাষার অতীত এক নিবিড় মৈত্রী।","keyPoints":["শুভার পিতার নাম বাণীকণ্ঠ, যিনি তাকে অন্যান্য বোনদের চেয়ে বেশি ভালোবাসতেন।","শুভার মা শুভাষিণীকে নিজের গর্ভের এক কলঙ্ক মনে করতেন।","প্রতিবন্ধী শিশুদের প্রতি সমাজের সংবেদনশীল দৃষ্টিভঙ্গি তৈরি এই গল্পের প্রধান বার্তা।"]}],"questions":[{"id":"b-q-3","question":"শুভার গৃহপালিত দুটি গাভীর নাম কী ছিল?","type":"mcq","options":["শ্যামলী ও ধবলী","সর্বশী ও পাঙ্গুলি","রাঙী ও কালী","গৌরী ও মুক্তা"],"correctAnswer":1,"answer":"সর্বশী ও পাঙ্গুলি।"}]},{"id":"b-ch-3","chapterNumber":3,"title":"বাংলা ব্যাকরণ: ধ্বনিতত্ত্ব, সন্ধি ও সমাস","titleEn":"Bangla Grammar: Phonology, Sandhi & Samas","summary":"নবম শ্রেণির বাংলা ব্যাকরণের মূল স্তম্ভ — ধ্বনি পরিবর্তন, স্বরসন্ধি, ব্যঞ্জনসন্ধি এবং ৬ প্রকার সমাস।","sections":[{"id":"b-s-4","title":"সন্ধি ও এর নিয়মাবলি","content":"সন্ধি শব্দের অর্থ মিলন। পাশাপাশি অবস্থিত দুটি ধ্বনির মিলনকে সন্ধি বলে।\n\n১. স্বরসন্ধি: স্বরধ্বনির সাথে স্বরধ্বনির মিলন।\nযেমন: বিদ্যা + আলয় = বিদ্যালয় (আ + আ = আ)\nহিম + অচল = হিমাচল (অ + অ = আ)\n\n২. ব্যঞ্জনসন্ধি: স্বর ও ব্যঞ্জনে, ব্যঞ্জন ও স্বরে কিংবা ব্যঞ্জনে ব্যঞ্জনে মিলন।\nযেমন: দিক্ + অন্ত = দিগন্ত\nউৎ + চারণ = উচ্চারণ\nবিপদ + জনক = বিপজ্জনক","keyPoints":["সন্ধি উচ্চারণের সুবিধা দেয় এবং ভাষাকে শ্রুতিমধুর করে।","তৎসম শব্দে সন্ধির প্রয়োগ সর্বাধিক।"],"formulas":["অ/আ + অ/আ = আকার (া)","ই/ঈ + ই/ঈ = দীর্ঘ ঈকার (ী)","উ/ঊ + উ/ঊ = দীর্ঘ ঊকার (ূ)"]},{"id":"b-s-5","title":"সমাসের শ্রেণিবিন্যাস","content":"পরস্পর অর্থসঙ্গতিবিশিষ্ট দুই বা ততোধিক পদ এক পদে পরিণত হওয়াকে সমাস বলে।\nসমাস প্রধানত ৬ প্রকার:\n১. দ্বন্দ্ব সমাস (মা ও বাবা = মা-বাবা)\n২. দ্বিগু সমাস (তিন কালের সমাহার = ত্রিকাল)\n৩. কর্মধারয় সমাস (যা কাঁচা তাই মিঠা = কাঁচামিঠা)\n৪. তৎপুরুষ সমাস (রাজার পুত্র = রাজপুত্র)\n৫. বহুব্রীহি সমাস (দশ আনন যার = দশানন)\n৬. অব্যয়ীভাব সমাস (কূলের সমীপে = উপকূল)","keyPoints":["সমস্ত পদ: সমাস নিষ্পন্ন পদটিকে সমস্ত পদ বলে।","ব্যাসবাক্য: সমস্ত পদকে ভাঙলে যে বাক্যাংশ পাওয়া যায় তা ব্যাসবাক্য বা বিগ্রহবাক্য।"]}],"questions":[{"id":"b-q-4","question":"\"সিংহ চিহ্নিত আসন = সিংহাসন\" এটি কোন সমাস?","type":"mcq","options":["দ্বন্দ্ব সমাস","মধ্যপদলোপী কর্মধারয় সমাস","অব্যয়ীভাব সমাস","বহুব্রীহি সমাস"],"correctAnswer":1,"answer":"মধ্যপদলোপী কর্মধারয় সমাস। কারণ ব্যাসবাক্যের মাঝের পদ \"চিহ্নিত\" বিলুপ্ত হয়েছে।"}]}]},{"id":"english-first-second","title":"English for Today & Grammar","titleEn":"English for Today & Advanced Grammar","category":"language","categoryBn":"ভাষা ও সাহিত্য","color":"blue","gradient":"from-blue-600 to-indigo-800","badgeColor":"bg-blue-100 text-blue-800","iconName":"Languages","description":"NCTB Class 9 English for Today units, unseen comprehension, right forms of verbs, narration, transformational grammar and writing.","classGrade":"Class 9","curriculum":"National Curriculum and Textbook Board (NCTB)","totalChapters":5,"chapters":[{"id":"eng-ch-1","chapterNumber":1,"title":"Unit 1: Father of the Nation","titleEn":"Bangabandhu Sheikh Mujibur Rahman and His Vision","summary":"Explores the historic leadership of Bangabandhu, the historic speech of 7th March 1971, and his return to liberated Bangladesh.","sections":[{"id":"eng-s-1","title":"The Historic 7th March Speech Analysis","content":"The 7th March Speech delivered by Bangabandhu Sheikh Mujibur Rahman at the Race Course Ground in 1971 is recognized by UNESCO as part of the Memory of the World International Register. In just 19 minutes, Bangabandhu gave a complete roadmap for the liberation war, asking the people to prepare with whatever they had (\"তোমাদের যা কিছু আছে তাই নিয়ে প্রস্তুত থাকো\").","keyPoints":["Delivered on 7 March 1971 at Suhrawardy Udyan (Race Course).","Declared: \"The struggle this time is for our emancipation! The struggle this time is for our independence!\"","Included in the UNESCO Memory of the World Register in 2017."]}],"questions":[{"id":"eng-q-1","question":"When was Bangabandhu’s historic 7th March speech recognized by UNESCO?","type":"mcq","options":["1971","1999","2017","2021"],"correctAnswer":2,"answer":"In 2017, UNESCO registered the speech as World Documentary Heritage."}],"keyVocab":[{"term":"Emancipation","meaning":"মুক্তিমুক্ত হওয়া বা স্বাধীনতা অর্জন (Freedom from political/legal restraint)"},{"term":"Documentary Heritage","meaning":"ঐতিহাসিক প্রামাণ্য দলিল ও ঐতিহ্য"}]},{"id":"eng-ch-2","chapterNumber":2,"title":"Unit 3: Events and Festivals","titleEn":"International Mother Language Day & Pahela Baishakh","summary":"Describes national and cultural celebrations: 21st February (Language Martyrs’ Day) and traditional Pahela Baishakh festivities.","sections":[{"id":"eng-s-2","title":"21st February: International Mother Language Day","content":"21 February is observed as Shaheed Dibosh across Bangladesh and International Mother Language Day worldwide. On this day in 1952, Salam, Barkat, Rafiq, Jabbar, and Shafiur laid down their lives to establish Bangla as a state language. In 1999, UNESCO declared February 21st as International Mother Language Day to promote linguistic and cultural diversity.","keyPoints":["Solemn barefoot procession (Provat Feri) singing \"Amar Bhaier Rokte Rangano Ekushey February\".","Central Shaheed Minar floral tribute at zero hour.","Global celebration of all mother tongues."]}],"questions":[{"id":"eng-q-2","question":"Why did the students sacrifice their lives on 21 February 1952?","type":"creative","answer":"The students of Dhaka University and common patriots sacrificed their lives to resist the imposing of Urdu and establish Bangla as one of the state languages of Pakistan, ensuring cultural identity and democratic dignity."}]},{"id":"eng-ch-3","chapterNumber":3,"title":"English Grammar: Right Forms of Verbs & Voice Change","titleEn":"Grammar Mastery: Tenses, Subject-Verb Agreement, Active & Passive","summary":"Essential grammatical rules for Class 9 SSC examination preparation.","sections":[{"id":"eng-s-3","title":"Right Forms of Verbs Rules","content":"Rule 1: Universal Truth & Habitual Fact take Present Indefinite Tense.\nExample: The sun rises in the east.\n\nRule 2: Sentences with 'just', 'already', 'recently', 'lately' take Present Perfect Tense.\nExample: He has just arrived.\n\nRule 3: If 'since' connects two clauses and the first clause is Present Indefinite/Perfect, the second is Past Indefinite.\nExample: It is many years since I met him.\n\nRule 4: 'Lest' is followed by 'should' + base form of verb.\nExample: Walk fast lest you should miss the train.","keyPoints":["Subject singular হলে verb singular হবে (He plays cricket).","Subject plural হলে verb plural হবে (They play cricket)."],"formulas":["Active: Subject + Verb + Object","Passive: Object Subject + Be-verb + V3 + by + Subject Object"]}],"questions":[{"id":"eng-q-3","question":"Change the voice: \"The student solved the difficult problem.\"","type":"creative","answer":"Passive: \"The difficult problem was solved by the student.\""}]}]},{"id":"general-math","title":"সাধারণ গণিত","titleEn":"General Mathematics","category":"math","categoryBn":"গণিত ও বিজ্ঞান","color":"amber","gradient":"from-amber-500 to-orange-700","badgeColor":"bg-amber-100 text-amber-900","iconName":"Calculator","description":"বাস্তব সংখ্যা, সেট ও ফাংশন, বীজগাণিতিক রাশি, সূচক ও লগারিদম, জ্যামিতি, ত্রিকোণমিতি এবং পরিসংখ্যান।","classGrade":"নবম শ্রেণি (Class 9)","curriculum":"NCTB কারিকুলাম","totalChapters":6,"chapters":[{"id":"math-ch-1","chapterNumber":1,"title":"১ম অধ্যায়: বাস্তব সংখ্যা (Real Numbers)","titleEn":"Chapter 1: Real Numbers, Rational & Irrational","summary":"স্বাভাবিক সংখ্যা, পূর্ণসংখ্যা, ভগ্নাংশ, মূলদ ও অমূলদ সংখ্যা, আবৃত্ত দশমিক ভগ্নাংশ ও প্রমাণ যে √২ একটি অমূলদ সংখ্যা।","sections":[{"id":"math-s-1","title":"মূলদ ও অমূলদ সংখ্যার পরিচয়","content":"১. মূলদ সংখ্যা (Rational Number): যে সংখ্যাকে p/q আকারে প্রকাশ করা যায়, যেখানে p ও q পূর্ণসংখ্যা এবং q ≠ 0, তাকে মূলদ সংখ্যা বলে। যেমন: ৩, ০.৫ = ১/২, ইত্যাদি।\n\n২. অমূলদ সংখ্যা (Irrational Number): যে সংখ্যাকে p/q আকারে প্রকাশ করা যায় না, তাকে অমূলদ সংখ্যা বলে। যেমন: √২, √৩, √৫, π ইত্যাদি।\nপূর্ণবর্গ নয় এমন যেকোনো স্বাভাবিক সংখ্যার বর্গমূল অমূলদ সংখ্যা।","keyPoints":["সকল পূর্ণসংখ্যা ও সসীম দশমিক সংখ্যা মূলদ।","আবৃত্ত (পৌনঃপুনিক) দশমিক সংখ্যা মূলদ সংখ্যা।","অসীম অনাবৃত্ত দশমিক ভগ্নাংশ সর্বদা অমূলদ সংখ্যা।"],"examples":["প্রমাণ কর যে, √২ একটি অমূলদ সংখ্যা: যদি √২ মূলদ হয়, তবে √২ = p/q (যেখানে p, q সহমৌলিক পূর্ণসংখ্যা)। উভয়পাশে বর্গ করলে ২ = p²/q² বা 2q = p²/q। বামপক্ষ পূর্ণসংখ্যা কিন্তু ডানপক্ষ ভগ্নাংশ, যা অসম্ভব। সুতরাং √২ অমূলদ।"]}],"questions":[{"id":"math-q-1","question":"নিচের কোনটি অমূলদ সংখ্যা?","type":"mcq","options":["√৯","√১৬","√৩","০.২৫"],"correctAnswer":2,"answer":"√৩ একটি অমূলদ সংখ্যা, কারণ ৩ একটি পূর্ণবর্গ সংখ্যা নয়।"}],"importantFormulas":["স্বাভাবিক সংখ্যার সেট: N = {1, 2, 3, 4, ...}","পূর্ণসংখ্যার সেট: Z = {..., -3, -2, -1, 0, 1, 2, 3, ...}","মূলদ সংখ্যার সেট: Q = {p/q : p, q ∈ Z এবং q ≠ 0}"]},{"id":"math-ch-2","chapterNumber":2,"title":"২য় অধ্যায়: সেট ও ফাংশন (Sets and Functions)","titleEn":"Chapter 2: Sets, Subsets, Venn Diagrams & Functions","summary":"সেট প্রকাশের পদ্ধতি (তালিকা ও সেট গঠন), সার্বিক সেট, সংযোগ ও ছেদ সেট, পূরক সেট, শক্তি সেট ও কার্তেসীয় গুণজ।","sections":[{"id":"math-s-2","title":"সেটের মৌলিক নিয়মাবলি","content":"সেট প্রকাশের দুটি প্রধান পদ্ধতি:\n১. তালিকা পদ্ধতি (Roster Method): A = {2, 4, 6, 8}\n২. সেট গঠন পদ্ধতি (Set Builder Method): A = {x : x জোড় সংখ্যা এবং x ≤ 8}\n\nসংযোগ সেট (Union of Sets, A ∪ B): A বা B বা উভয় সেটের সকল উপাদান নিয়ে গঠিত সেট।\nছেদ সেট (Intersection of Sets, A ∩ B): A ও B উভয়ের সাধারণ (common) উপাদান নিয়ে গঠিত সেট।\nপূরক সেট (Complement of Set, A'): A' = U - A (সার্বিক সেট থেকে A বাদ দিলে যা থাকে)।","keyPoints":["ফাঁকা সেট (Empty Set): উপাদানহীন সেট, প্রতীক ∅ বা {}।","শক্তি সেট (Power Set, P(A)): কোনো সেটের সকল উপসেট নিয়ে গঠিত সেট। উপসেটের সংখ্যা = 2ⁿ।"],"formulas":["A ∪ B = {x : x ∈ A অথবা x ∈ B}","A ∩ B = {x : x ∈ A এবং x ∈ B}","P(A) এর মোট সদস্য সংখ্যা = 2ⁿ (যেখানে n হলো A সেটের উপাদান সংখ্যা)"]}],"questions":[{"id":"math-q-2","question":"A = {a, b, c} হলে A এর উপসেটের সংখ্যা কত?","type":"mcq","options":["৩","৬","৮","১৬"],"correctAnswer":2,"answer":"উপসেট সংখ্যা = 2³ = ৮টি।"}]},{"id":"math-ch-3","chapterNumber":3,"title":"৩য় অধ্যায়: বীজগাণিতিক রাশি (Algebraic Expressions)","titleEn":"Chapter 3: Algebraic Formulas, Expansions and Factorization","summary":"বর্গ ও ঘনের সূত্রাবলী, মান নির্ণয়, উৎপাদকে বিশ্লেষণ এবং ভাগশেষ উপপাদ্য।","sections":[{"id":"math-s-3","title":"বর্গ ও ঘনের প্রয়োজনীয় সূত্রাবলি","content":"১. (a + b)² = a² + 2ab + b²\n২. (a - b)² = a² - 2ab + b²\n৩. a² - b² = (a + b)(a - b)\n৪. (a + b + c)² = a² + b² + c² + 2(ab + bc + ca)\n৫. a² + b² = (a + b)² - 2ab = (a - b)² + 2ab\n৬. (a + b)³ = a³ + 3a²b + 3ab² + b³ = a³ + b³ + 3ab(a + b)\n৭. a³ + b³ = (a + b)(a² - ab + b²)\n৮. a³ - b³ = (a - b)(a² + ab + b²)","keyPoints":["4ab = (a + b)² - (a - b)²","2(a² + b²) = (a + b)² + (a - b)²"],"examples":["যদি x + 1/x = 3 হয়, তবে x² + 1/x² এর মান নির্ণয়:\nx² + 1/x² = (x + 1/x)² - 2(x)(1/x) = 3² - 2 = 9 - 2 = 7।"]}],"questions":[{"id":"math-q-3","question":"যদি a + b = 5 এবং ab = 6 হয়, তবে a³ + b³ এর মান কত?","type":"creative","answer":"a³ + b³ = (a + b)³ - 3ab(a + b) = (5)³ - 3(6)(5) = 125 - 90 = 35।"}],"importantFormulas":["(a + b)² = a² + 2ab + b²","a² - b² = (a + b)(a - b)","a³ + b³ = (a + b)³ - 3ab(a + b)","a³ - b³ = (a - b)³ + 3ab(a - b)"]},{"id":"math-ch-9","chapterNumber":9,"title":"৯ম অধ্যায়: ত্রিকোণমিতিক অনুপাত (Trigonometric Ratios)","titleEn":"Chapter 9: Trigonometry Ratios, Standard Angles & Identities","summary":"সমকোণী ত্রিভুজ, sin, cos, tan, cot, sec, cosec এর সংজ্ঞা, ০°, ৩০°, ৪৫°, ৬০°, ৯০° এর মান ও অভেদাবলী।","sections":[{"id":"math-s-4","title":"ত্রিকোণমিতিক সূত্র ও ছক","content":"সমকোণী ত্রিভুজের ক্ষেত্রে:\n১. sin θ = লম্ব / অতিভুজ\n২. cos θ = ভূমি / অতিভুজ\n৩. tan θ = লম্ব / ভূমি = sin θ / cos θ\n৪. cot θ = ভূমি / লম্ব = 1 / tan θ\n৫. sec θ = অতিভুজ / ভূমি = 1 / cos θ\n৬. cosec θ = অতিভুজ / লম্ব = 1 / sin θ\n\nমৌলিক অভেদসমূহ:\n• sin² θ + cos² θ = 1\n• sec² θ - tan² θ = 1  => sec² θ = 1 + tan² θ\n• cosec² θ - cot² θ = 1 => cosec² θ = 1 + cot² θ","keyPoints":["sin 0° = 0, sin 30° = 1/2, sin 45° = 1/√2, sin 60° = √3/2, sin 90° = 1","cos 0° = 1, cos 30° = √3/2, cos 45° = 1/√2, cos 60° = 1/2, cos 90° = 0","tan 0° = 0, tan 30° = 1/√3, tan 45° = 1, tan 60° = √3, tan 90° = অসংজ্ঞায়িত"]}],"questions":[{"id":"math-q-4","question":"tan 45° এর মান কত?","type":"mcq","options":["০","১/২","১","√৩"],"correctAnswer":2,"answer":"tan 45° = ১।"}],"importantFormulas":["sin² θ + cos² θ = 1","tan θ = sin θ / cos θ","sec² θ = 1 + tan² θ"]}]},{"id":"higher-math","title":"উচ্চতর গণিত","titleEn":"Higher Mathematics","category":"math","categoryBn":"গণিত ও বিজ্ঞান","color":"violet","gradient":"from-violet-600 to-purple-800","badgeColor":"bg-violet-100 text-violet-800","iconName":"Shapes","description":"উচ্চতর সেট, দ্বিপদী বিস্তৃতি, স্থানাঙ্ক জ্যামিতি, জ্যামিতিক অঙ্কন, রেডিয়ান পরিমাপ ও সম্ভাবনা।","classGrade":"নবম শ্রেণি (Class 9)","curriculum":"NCTB কারিকুলাম","totalChapters":4,"chapters":[{"id":"hmath-ch-1","chapterNumber":1,"title":"১০ম অধ্যায়: দ্বিপদী বিস্তৃতি (Binomial Expansion)","titleEn":"Chapter 10: Binomial Expansion & Pascal Triangle","summary":"প্যাসকেলের ত্রিভুজ, দ্বিপদী সহগ ও (1 + x)ⁿ এবং (a + b)ⁿ এর বিস্তৃতি।","sections":[{"id":"hmath-s-1","title":"প্যাসকেলের ত্রিভুজ ও দ্বিপদী উপপাদ্য","content":"প্যাসকেলের ত্রিভুজের সাহায্যে সহগ নির্ণয়:\nঘাত ০: 1\nঘাত ১: 1  1\nঘাত ২: 1  2  1\nঘাত ৩: 1  3  3  1\nঘাত ৪: 1  4  6  4  1\n\nদ্বিপদী উপপাদ্য অনুযায়ী:\n(a + b)ⁿ = ⁿC₀ aⁿ + ⁿC₁ aⁿ⁻¹b + ⁿC₂ aⁿ⁻²b² + ... + ⁿCₙ bⁿ\nএখানে পদ সংখ্যা সর্বদা (n + 1) টি।","keyPoints":["n ঘাত বিশিষ্ট দ্বিপদী রাশির বিস্তৃতিতে পদসংখ্যা হবে (n + 1) টি।","সাধারণ পদ: Tᵣ₊₁ = ⁿCᵣ aⁿ⁻ʳ bʳ।"]}],"questions":[{"id":"hmath-q-1","question":"(x + y)⁶ এর বিস্তৃতিতে মোট কতটি পদ থাকবে?","type":"mcq","options":["৫টি","৬টি","৭টি","৮টি"],"correctAnswer":2,"answer":"পদ সংখ্যা = n + 1 = 6 + 1 = ৭টি।"}],"importantFormulas":["ⁿCᵣ = n! / (r! × (n - r)!)","(1 + x)ⁿ = 1 + nx + [n(n-1)/2!]x² + ...","সাধারণ পদ Tᵣ₊₁ = ⁿCᵣ aⁿ⁻ʳ bʳ"]},{"id":"hmath-ch-2","chapterNumber":11,"title":"১১শ অধ্যায়: স্থানাঙ্ক জ্যামিতি (Coordinate Geometry)","titleEn":"Chapter 11: Distance, Slope and Area of Triangles","summary":"কার্তেসীয় সমতলে দুটি বিন্দুর দূরত্ব, ঢাল ও ত্রিভুজের ক্ষেত্রফল নির্ণয়।","sections":[{"id":"hmath-s-2","title":"দূরত্ব ও ঢালের সূত্র","content":"১. দুটি বিন্দু A(x₁, y₁) এবং B(x₂, y₂) এর মধ্যবর্তী দূরত্ব:\nAB = √[(x₂ - x₁)² + (y₂ - y₁)²]\n\n২. সরলরেখার ঢাল (m):\nm = (y₂ - y₁) / (x₂ - x₁) = tan θ\n\n৩. শীর্ষবিন্দু A(x₁, y₁), B(x₂, y₂), C(x₃, y₃) বিশিষ্ট ত্রিভুজের ক্ষেত্রফল:\nΔ = ½ |(x₁y₂ + x₂y₃ + x₃y₁) - (x₂y₁ + x₃y₂ + x₁y₃)| বর্গ একক।","keyPoints":["যদি তিনটি বিন্দু সমরেখ হয়, তবে ত্রিভুজের ক্ষেত্রফল শূন্য (০) হবে এবং ঢাল সমান হবে।"]}],"questions":[{"id":"hmath-q-2","question":"মূলবিন্দু (0,0) থেকে (3,4) বিন্দুর দূরত্ব কত?","type":"mcq","options":["৩","৪","৫","২৫"],"correctAnswer":2,"answer":"দূরত্ব = √(3² + 4²) = √(9 + 16) = √25 = 5 একক।"}],"importantFormulas":["d = √[(x₂ - x₁)² + (y₂ - y₁)²]","Slope m = (y₂ - y₁) / (x₂ - x₁)"]}]},{"id":"physics","title":"পদার্থবিজ্ঞান","titleEn":"Physics","category":"science","categoryBn":"বিজ্ঞান","color":"rose","gradient":"from-rose-500 to-pink-700","badgeColor":"bg-rose-100 text-rose-800","iconName":"Atom","description":"ভৌত রাশি ও পরিমাপ, গতিবিদ্যা, বল ও নিউটনের সূত্র, কাজ-ক্ষমতা-শক্তি, পদার্থের অবস্থা ও চাপ এবং তরঙ্গ-শব্দ।","classGrade":"নবম শ্রেণি (Class 9)","curriculum":"NCTB কারিকুলাম","totalChapters":5,"chapters":[{"id":"phy-ch-1","chapterNumber":2,"title":"২য় অধ্যায়: গতি (Motion)","titleEn":"Chapter 2: Distance, Velocity, Acceleration & Motion Equations","summary":"স্কেলার ও ভেক্টর রাশি, দূরত্ব ও সরণ, দ্রুতি ও বেগ, সুষম ত্বরণ এবং গতির ৪টি মৌলিক সমীকরণ।","sections":[{"id":"phy-s-1","title":"গতির ৪টি মৌলিক সমীকরণ ও প্রয়োগ","content":"যেখানে:\nu = আদিবেগ (m/s)\nv = শেষবেগ (m/s)\na = ত্বরণ (m/s²)\nt = সময় (s)\ns = দূরত্ব বা সরণ (m)\n\nসমীকরণসমূহ:\n১. v = u + at\n২. s = [(u + v) / 2] × t\n৩. s = ut + ½ at²\n৪. v² = u² + 2as\n\nযদি বস্তু স্থির অবস্থান থেকে যাত্রা শুরু করে, তবে u = 0:\n• v = at\n• s = ½ at²\n• v² = 2as","keyPoints":["ত্বরণ (a) = (v - u) / t","অভিকর্ষের প্রভাবে পড়ন্ত বস্তুর ক্ষেত্রে a এর জায়গায় g (৯.৮ m/s²) বসবে: v = u + gt, h = ut + ½ gt²।"],"examples":["একটি গাড়ি স্থির অবস্থান থেকে 2 m/s² সুষম ত্বরণে 10 সেকেন্ড চললে শেষবেগ কত?\nv = u + at = 0 + (2 × 10) = 20 m/s।"]}],"questions":[{"id":"phy-q-1","question":"একটি বস্তুর আদিবেগ 5 m/s এবং ত্বরণ 2 m/s² হলে 4 সেকেন্ড পর বেগ কত হবে?","type":"mcq","options":["8 m/s","10 m/s","13 m/s","15 m/s"],"correctAnswer":2,"answer":"v = u + at = 5 + (2 × 4) = 5 + 8 = 13 m/s।"}],"importantFormulas":["v = u + at","s = ut + ½ at²","v² = u² + 2as","g = 9.8 m/s²"]},{"id":"phy-ch-2","chapterNumber":3,"title":"৩য় অধ্যায়: বল (Force)","titleEn":"Chapter 3: Newton’s Laws of Motion, Momentum & Friction","summary":"জড়তা, নিউটনের প্রথম, দ্বিতীয় ও তৃতীয় সূত্র, ভরবেগ ও ভরবেগের সংরক্ষণ সূত্র, ঘর্ষণ বল।","sections":[{"id":"phy-s-2","title":"নিউটনের গতিসূত্র ও ভরবেগ","content":"১. নিউটনের ১ম সূত্র: বাহ্যিক কোনো বল প্রয়োগ না করলে স্থির বস্তু চিরকাল স্থির থাকবে এবং গতিশীল বস্তু সুষম দ্রুতিতে সরলপথে চলতে থাকবে (জড়তার ধারণা)।\n\n২. নিউটনের ২য় সূত্র: বস্তুর ভরবেগের পরিবর্তনের হার তার উপর প্রযুক্ত বলের সমানুপাতিক এবং বল যেদিকে ক্রিয়া করে ভরবেগের পরিবর্তনও সেদিকে ঘটে।\nগাণিতিক রূপ: F = ma (বল = ভর × ত্বরণ)\nবলের একক: নিউটন (N = kg·m/s²)\n\n৩. নিউটনের ৩য় সূত্র: প্রত্যেক ক্রিয়ারই একটি সমান ও বিপরীত প্রতিক্রিয়া আছে। (F₁ = -F₂)","keyPoints":["ভরবেগ (p) = m × v (একক: kg·m/s)","ভরবেগের সংরক্ষণ সূত্র: m₁u₁ + m₂u₂ = m₁v₁ + m₂v₂"]}],"questions":[{"id":"phy-q-2","question":"10 kg ভরের বস্তুর উপর 50 N বল প্রয়োগ করলে ত্বরণ কত হবে?","type":"creative","answer":"F = ma সূত্র হতে, ত্বরণ a = F / m = 50 N / 10 kg = 5 m/s²।"}],"importantFormulas":["F = ma","p = mv","m₁u₁ + m₂u₂ = m₁v₁ + m₂v₂"]},{"id":"phy-ch-3","chapterNumber":4,"title":"৪র্থ অধ্যায়: কাজ, ক্ষমতা ও শক্তি (Work, Energy & Power)","titleEn":"Chapter 4: Work, Kinetic Energy, Potential Energy & Power","summary":"কাজ, ধনাত্মক ও ঋণাত্মক কাজ, গতিশক্তি, বিভবশক্তি, শক্তির নিত্যতা সূত্র এবং কর্মদক্ষতা।","sections":[{"id":"phy-s-3","title":"কাজ ও শক্তির রূপান্তর","content":"কাজ (W): বল ও বলের দিকে সরণের গুণফলকে কাজ বলে।\nW = F × s (যদি কোণ থাকে: W = Fs cos θ)\nকাজের একক: জুল (J)\n\nগতিশক্তি (Ek): গতির জন্য যে শক্তি অর্জিত হয়।\nEk = ½ mv²\n\nবিভবশক্তি (Ep): অবস্থান পরিবর্তনের জন্য সঞ্চিত শক্তি।\nEp = mgh (যেখানে h = উচ্চতা)\n\nক্ষমতা (P): কাজ করার হারকে ক্ষমতা বলে।\nP = W / t (একক: ওয়াট বা Watt)","keyPoints":["শক্তির সৃষ্টি বা ধ্বংস নেই, শক্তি কেবল এক রূপ থেকে অন্য রূপে পরিবর্তিত হয়।","কর্মদক্ষতা (η) = (লভ্য কার্যকর শক্তি / মোট প্রদত্ত শক্তি) × ১০০%"]}],"questions":[{"id":"phy-q-3","question":"2 kg ভরের একটি বস্তু 4 m/s বেগে চললে তার গতিশক্তি কত?","type":"mcq","options":["8 J","16 J","32 J","64 J"],"correctAnswer":1,"answer":"Ek = ½ mv² = ½ × 2 × (4)² = 16 জুল (J)।"}],"importantFormulas":["W = Fs","Ek = ½ mv²","Ep = mgh","P = W / t"]}]},{"id":"chemistry","title":"রসায়ন","titleEn":"Chemistry","category":"science","categoryBn":"বিজ্ঞান","color":"cyan","gradient":"from-cyan-600 to-teal-800","badgeColor":"bg-cyan-100 text-cyan-800","iconName":"FlaskConical","description":"পদার্থের অবস্থা, পরমাণুর গঠন, বোর ও রাদারফোর্ড মডেল, পর্যায় সারণি, ইলেকট্রন বিন্যাস এবং রাসায়নিক বন্ধন।","classGrade":"নবম শ্রেণি (Class 9)","curriculum":"NCTB কারিকুলাম","totalChapters":4,"chapters":[{"id":"chem-ch-1","chapterNumber":3,"title":"৩য় অধ্যায়: পদার্থের গঠন (Structure of Matter)","titleEn":"Chapter 3: Atomic Models, Subatomic Particles & Electron Configuration","summary":"পরমাণুর মূল কণিকা (ইলেকট্রন, প্রোটন, নিউট্রন), রাদারফোর্ড ও বোরের মডেল, পারমাণবিক সংখ্যা ও ভর সংখ্যা, আইসোটোপ ও ইলেকট্রন বিন্যাস (2n² সূত্র ও 1s, 2s, 2p)।","sections":[{"id":"chem-s-1","title":"পরমাণুর মূল কণিকা ও ইলেকট্রন বিন্যাস","content":"পরমাণুর কেন্দ্রস্থলে থাকে নিউক্লিয়াস যাতে ধনাত্মক প্রোটন ও আধানহীন নিউট্রন থাকে। বাইরে নির্দিষ্ট কক্ষপথে ঋণাত্মক ইলেকট্রন আবর্তন করে।\n\n১. পারমাণবিক সংখ্যা (Z): কোনো মৌলের প্রোটন সংখ্যা।\n২. ভর সংখ্যা (A): প্রোটন সংখ্যা + নিউট্রন সংখ্যা (A = Z + N)।\n৩. আইসোটোপ: যেসব পরমাণুর প্রোটন সংখ্যা সমান কিন্তু ভর সংখ্যা ভিন্ন (যেমন: হাইড্রোজেন এর প্রোটিয়াম, ডিউটেরিয়াম ও ট্রিটিয়াম)।\n\nইলেকট্রন বিন্যাসের নীতি (আউফবাউ নীতি):\nইলেকট্রন প্রথমে নিম্ন শক্তির অরবিটালে প্রবেশ করে এবং পরে উচ্চ শক্তির অরবিটালে যায়।\nঅরবিটালের শক্তিক্রম: 1s < 2s < 2p < 3s < 3p < 4s < 3d...","keyPoints":["কক্ষপথে সর্বোচ্চ ইলেকট্রন ধারণ ক্ষমতা = 2n² (K=2, L=8, M=18, N=32)।","ক্রোমিয়াম (Cr-24) ও কপার (Cu-29) অর্ধপূর্ণ ও পূর্ণ d-অরবিটালের কারণে ব্যতিক্রম ইলেকট্রন বিন্যাস প্রদর্শন করে।"],"examples":["Na (11): 1s² 2s² 2p⁶ 3s¹","Cl (17): 1s² 2s² 2p⁶ 3s² 3p⁵","Cr (24): 1s² 2s² 2p⁶ 3s² 3p⁶ 3d⁵ 4s¹ (ব্যতিক্রম স্থায়িত্বের জন্য)"]}],"questions":[{"id":"chem-q-1","question":"সোডিয়াম (Na) পরমাণুর শেষ কক্ষপথে কয়টি ইলেকট্রন থাকে?","type":"mcq","options":["১টি","২টি","৭টি","৮টি"],"correctAnswer":0,"answer":"১টি। সোডিয়ামের ইলেকট্রন বিন্যাস ২, ৮, ১।"}],"keyVocab":[{"term":"আইসোটোপ","meaning":"একই প্রোটন সংখ্যা কিন্তু ভিন্ন ভর সংখ্যা বিশিষ্ট পরমাণু।"},{"term":"আইসোবার","meaning":"একই ভর সংখ্যা কিন্তু ভিন্ন প্রোটন সংখ্যা বিশিষ্ট মৌল।"}]},{"id":"chem-ch-2","chapterNumber":4,"title":"৪র্থ অধ্যায়: পর্যায় সারণি (Periodic Table)","titleEn":"Chapter 4: Modern Periodic Table, Groups, Periods & Periodic Properties","summary":"আধুনিক পর্যায় সূত্র (পারমাণবিক সংখ্যার ভিত্তিতে), ৭টি পর্যায় ও ১৮টি গ্রুপ, মৌলের পর্যায়বৃত্ত ধর্ম (ধাতব ধর্ম, পরমাণুর আকার, আয়নীকরণ শক্তি)।","sections":[{"id":"chem-s-2","title":"পর্যায় সারণির বৈশিষ্ট্য ও পর্যায়বৃত্ত ধর্ম","content":"আধুনিক পর্যায় সারণিতে মোট ১১৮টি মৌল স্থান পেয়েছে। এতে ৭টি পর্যায় (অনুভূমিক সারি) এবং ১৮টি গ্রুপ (উলম্ব কলাম) রয়েছে।\n\nপর্যায়বৃত্ত ধর্মাবলীর পরিবর্তন:\n১. পারমাণবিক আকার (ব্যাসার্ধ): একই পর্যায়ে বাম থেকে ডানে গেলে পরমাণুর আকার কমে। একই গ্রুপে উপর থেকে নিচে নামলে আকার বাড়ে।\n২. আয়নীকরণ শক্তি: একই পর্যায়ে বাম থেকে ডানে গেলে আয়নীকরণ শক্তি বাড়ে, উপর থেকে নিচে কমতে থাকে।\n৩. তড়িৎ ঋণাত্মকতা: ফ্লোরিন (F) পর্যায় সারণির সবচেয়ে বেশি তড়িৎ ঋণাত্মক মৌল।\n৪. নিষ্ক্রিয় গ্যাস: গ্রুপ ১৮ মৌলগুলো (He, Ne, Ar, Kr, Xe, Rn) স্থিতিশীল অষ্টক বা দ্বিত্ব পূর্ণ থাকে।","keyPoints":["গ্রুপ ১: ক্ষার ধাতু (Li, Na, K, Rb, Cs, Fr)","গ্রুপ ২: মৃৎক্ষার ধাতু (Be, Mg, Ca, Sr, Ba, Ra)","গ্রুপ ১৭: হ্যালোজেন বা লবণ উৎপাদক (F, Cl, Br, I, At)"]}],"questions":[{"id":"chem-q-2","question":"পর্যায় সারণির সবচেয়ে বেশি তড়িৎ ঋণাত্মক মৌল কোনটি?","type":"mcq","options":["ক্লোরিন (Cl)","অক্সিজেন (O)","ফ্লোরিন (F)","নাইট্রোজেন (N)"],"correctAnswer":2,"answer":"ফ্লোরিন (F)। এর তড়িৎ ঋণাত্মকতার মান ৪.০।"}]},{"id":"chem-ch-3","chapterNumber":5,"title":"৫ম অধ্যায়: রাসায়নিক বন্ধন (Chemical Bonds)","titleEn":"Chapter 5: Valence Electrons, Ionic Bond & Covalent Bond","summary":"যোজ্যতা ও যোজনী ইলেকট্রন, অষ্টক ও দুইয়ের নিয়ম, আয়ন সৃষ্টি, আয়নিল বন্ধন ও সমযোজী বন্ধনের গঠন প্রক্রিয়া।","sections":[{"id":"chem-s-3","title":"আয়নিক ও সমযোজী বন্ধন","content":"১. আয়নিক বন্ধন (Ionic Bond): ধাতু ও অধাতুর মধ্যে ইলেকট্রন আদান-প্রদানের মাধ্যমে ধনাত্মক ক্যাটায়ন ও ঋণাত্মক অ্যানায়ন সৃষ্টি হয়ে যে স্থির বৈদ্যুতিক আকর্ষণে বন্ধন গঠিত হয়।\nউদাহরণ: NaCl (Na → Na⁺ + e⁻ এবং Cl + e⁻ → Cl⁻ => NaCl)।\n\n২. সমযোজী বন্ধন (Covalent Bond): দুটি অধাতব পরমাণু নিজেদের মধ্যে ইলেকট্রন শেয়ারের মাধ্যমে বন্ধন তৈরি করে।\nউদাহরণ: H₂O, CH₄, O₂, CO₂।","keyPoints":["আয়নিক যৌগের গলনাঙ্ক ও স্ফুটনাঙ্ক উচ্চ এবং এরা জলীয় দ্রবণে বিদ্যুৎ পরিবহন করে।","সমযোজী যৌগ সাধারণত উদবায়ী, কম গলনাঙ্ক বিশিষ্ট এবং জলীয় দ্রবণে বিদ্যুৎ পরিবহন করে না (ব্যতিক্রম এসিড)।"]}],"questions":[{"id":"chem-q-3","question":"মিথেন (CH₄) অণুতে কোন ধরনের বন্ধন বিদ্যমান?","type":"mcq","options":["আয়নিক বন্ধন","সমযোজী বন্ধন","ধাতব বন্ধন","সন্নিবেশ বন্ধন"],"correctAnswer":1,"answer":"সমযোজী বন্ধন (কার্বন ও হাইড্রোজেনের ইলেকট্রন শেয়ারিং)।"}]}]},{"id":"biology","title":"জীববিজ্ঞান","titleEn":"Biology","category":"science","categoryBn":"বিজ্ঞান","color":"green","gradient":"from-green-600 to-emerald-800","badgeColor":"bg-green-100 text-green-800","iconName":"Dna","description":"জীবন পাঠ ও দ্বিপদ নামকরণ, উদ্ভিদ ও প্রাণী কোষের অঙ্গাণু, টিস্যু, কোষ বিভাজন, জীবনীশক্তি ও রক্ত সংবহন।","classGrade":"নবম শ্রেণি (Class 9)","curriculum":"NCTB কারিকুলাম","totalChapters":4,"chapters":[{"id":"bio-ch-1","chapterNumber":1,"title":"১ম অধ্যায়: জীবন পাঠ (Lesson of Life)","titleEn":"Chapter 1: Classification of Living Organisms & Binomial Nomenclature","summary":"জীববিজ্ঞানের প্রধান শাখাসমূহ, জীবজগতের শ্রেণিবিন্যাস (হুইটেকারের পঞ্চজগৎ: মনেরা, প্রোটিস্টা, ফানজাই, প্লান্টি, অ্যানিম্যালিয়া) এবং ক্যারোলাস লিনিয়াসের দ্বিপদ নামকরণ।","sections":[{"id":"bio-s-1","title":"দ্বিপদ নামকরণের নিয়মাবলী","content":"সুইডিশ বিজ্ঞানী ক্যারোলাস লিনিয়াস দ্বিপদ নামকরণ পদ্ধতির প্রবর্তক।\nনিয়মাবলি:\n১. বৈজ্ঞানিক নাম দুটি পদ নিয়ে গঠিত— প্রথমটি গণ (Genus) এবং দ্বিতীয়টি প্রজাতি (Species)।\n২. নাম ল্যাটিন ভাষায় বা ল্যাটিন রূপান্তর হতে হবে।\n৩. মুদ্রণের সময় ইটালিক (বাঁকা) অক্ষরে লিখতে হবে। হাতে লিখলে আলাদা দাগ দিতে হবে।\n৪. গণের প্রথম অক্ষর বড় হাতের (Capital) এবং প্রজাতির সকল অক্ষর ছোট হাতের হবে।\n\nগুরুত্বপূর্ণ বৈজ্ঞানিক নাম:\n• মানুষ: Homo sapiens\n• ধান: Oryza sativa\n• পাট: Corchorus capsularis\n• রুই মাছ: Labeo rohita\n• রয়েল বেঙ্গল টাইগার: Panthera tigris\n• কাঁঠাল: Artocarpus heterophyllus","keyPoints":["হুইটেকারের পঞ্চজগৎ: Monera, Protista, Fungi, Plantae, Animalia।"]}],"questions":[{"id":"bio-q-1","question":"দ্বিপদ নামকরণের প্রবর্তক কে?","type":"mcq","options":["অ্যারিস্টটল","ক্যারোলাস লিনিয়াস","রবার্ট হুক","চার্লস ডারউইন"],"correctAnswer":1,"answer":"ক্যারোলাস লিনিয়াস।"}]},{"id":"bio-ch-2","chapterNumber":2,"title":"২য় অধ্যায়: জীবকোষ ও টিস্যু (Cell & Tissue)","titleEn":"Chapter 2: Plant & Animal Cells, Mitochondria, Plastids & Tissues","summary":"উদ্ভিদ ও প্রাণী কোষের তুলনা, কোষপ্রাচীর, প্লাস্টিড, মাইটোকন্ড্রিয়া, গলজি বস্তু, সেন্ট্রোসোম এবং মানবদেহের সরল ও জটিল টিস্যু।","sections":[{"id":"bio-s-2","title":"মাইটোকন্ড্রিয়া ও প্লাস্টিড","content":"১. মাইটোকন্ড্রিয়া (Mitochondria): একে কোষের \"পাওয়ার হাউস\" বা শক্তিঘর বলা হয়। এর ভেতরে শক্তি উৎপাদনকারী শ্বসন প্রক্রিয়ার ক্রেবস চক্র সম্পন্ন হয় এবং প্রচুর ATP তৈরি হয়। মাইটোকন্ড্রিয়ার অন্তঃপর্দা ভেতরের দিকে ভাঁজ হয়ে ক্রিস্টি তৈরি করে।\n\n২. প্লাস্টিড (Plastid): উদ্ভিদ কোষের অনন্য বৈশিষ্ট্য। প্লাস্টিড ৩ প্রকার:\n• ক্লোরোপ্লাস্ট: সবুজ রঙের (ক্লোরোফিল থাকে), সালোকসংশ্লেষণে খাদ্য তৈরি করে।\n• ক্রোমোপ্লাস্ট: লাল, হলুদ, কমলা রঙের (ফুল ও ফলকে আকর্ষণীয় করে)।\n• লিউকোপ্লাস্ট: বর্ণহীন, খাদ্য সঞ্চয় করে (মূলের কোষে)।","keyPoints":["উদ্ভিদ কোষে কোষপ্রাচীর ও প্লাস্টিড থাকে, কিন্তু উন্নত প্রাণী কোষে তা অনুপস্থিত।","প্রাণী কোষে সেন্ট্রোসোম থাকে যা কোষ বিভাজনে স্পিন্ডল তন্তু সৃষ্টিতে সাহায্য করে।"]}],"questions":[{"id":"bio-q-2","question":"কোষের শক্তিঘর (Powerhouse) কাকে বলা হয়?","type":"mcq","options":["রাইবোসোম","গলজি বস্তু","মাইটোকন্ড্রিয়া","প্লাস্টিড"],"correctAnswer":2,"answer":"মাইটোকন্ড্রিয়াকে কোষের শক্তিঘর বলা হয়।"}]}]},{"id":"general-science","title":"বিজ্ঞান (অনুসন্ধানী ও অনুশীলনী পাঠ)","titleEn":"General Science - Investigative & Practical Study","category":"science","categoryBn":"বিজ্ঞান","color":"teal","gradient":"from-teal-600 to-emerald-900","badgeColor":"bg-teal-100 text-teal-800","iconName":"Microscope","description":"নতুন শিক্ষাক্রমের নবম শ্রেণির অনুসন্ধানী পাঠ: বল, গতি, মহাকর্ষ, জৈব অণু, পরিবেশ ও জলবায়ু পরিবর্তন।","classGrade":"নবম শ্রেণি (Class 9)","curriculum":"নতুন জাতীয় শিক্ষাক্রম (New Curriculum)","totalChapters":3,"chapters":[{"id":"gsci-ch-1","chapterNumber":1,"title":"১ম অধ্যায়: বল, চাপ ও শক্তি","titleEn":"Forces, Atmospheric Pressure and Energy Conservation","summary":"বল প্রয়োগের বৈজ্ঞানিক তদন্ত, বায়ুমণ্ডলীয় চাপ, টরিসেলির পরীক্ষা, আর্কিমিডিসের নীতি এবং প্লবতা।","sections":[{"id":"gsci-s-1","title":"আর্কিমিডিসের নীতি ও তরলের চাপ","content":"১. আর্কিমিডিসের নীতি: কোনো বস্তুকে স্থির তরল বা বায়বীয় পদার্থে আংশিক বা সম্পূর্ণ নিমজ্জিত করলে বস্তুটি কিছু ওজন হারায় বলে মনে হয়। এই আপাত হারানো ওজন বস্তু কর্তৃক অপসারিত তরলের ওজনের সমান।\n\n২. প্লবতা (Buoyancy): নিমজ্জিত বস্তুর উপর তরলের ঊর্ধ্বমুখী লব্ধি বল।\nপ্লবতা FB = V × ρ × g\nযেখানে V = আয়তন, ρ = তরলের ঘনত্ব, g = অভিকর্ষজ ত্বরণ।\n\n৩. বস্তুর ভাসন ও নিমজ্জনের শর্ত:\n• যদি বস্তুর ওজন > অপসারিত তরলের ওজন হয়, তবে বস্তুটি ডুবে যাবে।\n• যদি বস্তুর ওজন = অপসারিত তরলের ওজন হয়, বস্তু সম্পূর্ণ নিমজ্জিত অবস্থায় ভাসবে।\n• যদি বস্তুর ওজন < অপসারিত তরলের ওজন হয়, বস্তু আংশিক ভেসে থাকবে।","keyPoints":["তরলের অভ্যন্তরে কোনো বিন্দুতে চাপ: P = hρg (উচ্চতা ও ঘনত্বের সমানুপাতিক)।"]}],"questions":[{"id":"gsci-q-1","question":"একটি লোহার টুকরা পানিতে ডুবে যায় কিন্তু বিশাল লোহার জাহাজ ভাসে কেন?","type":"creative","answer":"জাহাজের ভেতরে ফাঁপা স্থান থাকে এবং এর গড় ঘনত্ব পানির ঘনত্বের চেয়ে কম হয়। জাহাজটি পানিতে নিমজ্জিত হলে তার নিচের বিশাল তলদেশ যে পরিমাণ পানি অপসারণ করে, সেই অপসারিত পানির ওজন জাহাজের মোট ওজনের চেয়ে বেশি বা সমান হয়। ফলে প্লবতা বল জাহাজকে ভাসিয়ে রাখে।"}]}]},{"id":"bangladesh-global-studies","title":"বাংলাদেশ ও বিশ্বপরিচয়","titleEn":"Bangladesh & Global Studies (BGS)","category":"humanities","categoryBn":"সামাজিক ও মানবিক","color":"orange","gradient":"from-orange-500 to-amber-700","badgeColor":"bg-orange-100 text-orange-800","iconName":"Globe","description":"পূর্ব বাংলার আন্দোলন, ১৯৭১ সালের মুক্তিযুদ্ধ, ভৌগোলিক অবস্থান, জলবায়ু, সংবিধান, রাষ্ট্রীয় কাঠামো এবং নাগরিক অধিকার।","classGrade":"নবম শ্রেণি (Class 9)","curriculum":"NCTB কারিকুলাম","totalChapters":4,"chapters":[{"id":"bgs-ch-1","chapterNumber":1,"title":"১ম অধ্যায়: পূর্ব বাংলার আন্দোলন ও জাতীয়তাবাদের উত্থান (১৯৪৭-১৯৭০)","titleEn":"Chapter 1: Language Movement to Mass Uprising 1969","summary":"১৯৪৮-১৯৫২ সালের ঐতিহাসিক ভাষা আন্দোলন, ১৯৫৪ সালের যুক্তফ্রন্ট নির্বাচন, ১৯৬৬ সালের বাঙালির মুক্তিসনদ ৬ দফা এবং ১৯৬৯ সালের গণঅভ্যুত্থান।","sections":[{"id":"bgs-s-1","title":"ঐতিহাসিক ৬ দফা ও গণঅভ্যুত্থান","content":"১৯৬৬ সালের ৫-৬ ফেব্রুয়ারি লাহোরে বিরোধী দলের সম্মেলনে বঙ্গবন্ধু শেখ মুজিবুর রহমান বাঙালির বাঁচার দাবি হিসেবে ঐতিহাসিক ৬ দফা কর্মসূচি পেশ করেন।\n\n৬ দফার প্রধান বিষয়গুলো:\n১. লাহোর প্রস্তাবের ভিত্তিতে যুক্তরাষ্ট্রীয় শাসন প্রতিষ্ঠা ও প্রাপ্তবয়স্কদের ভোটে পার্লামেন্টারি সরকার গঠন।\n২. কেন্দ্রীয় সরকারের হাতে কেবল প্রতিরক্ষা ও পররাষ্ট্র বিষয় থাকবে।\n৩. দুই অঞ্চলের জন্য পৃথক অথচ সহজে বিনিময়যোগ্য দুটি মুদ্রা অথবা বিশেষ শর্তে একই মুদ্রা চালু।\n৪. কর ও শুল্ক ধার্যের ক্ষমতা থাকবে প্রদেশগুলোর হাতে।\n৫. প্রদেশগুলোর বৈদেশিক বাণিজ্যের হিসাব ও আয় পৃথক থাকবে।\n৬. প্রদেশগুলোর নিরাপত্তার জন্য আধা-সামরিক বাহিনী (প্যারা-মিলিটারি) গঠনের ক্ষমতা প্রদান।\n\n৬ দফাকে বাঙালির \"ম্যাগনাকার্টা\" বা মুক্তির সনদ বলা হয়।","keyPoints":["১৯৬৯ সালের গণঅভ্যুত্থানে আসাদ, ড. জোহা ও মতিউরের আত্মত্যাগ আইয়ুব খানের সামরিক শাসনের পতন ঘটায়।","১৯৬৯ সালের ২৩ ফেব্রুয়ারি ছাত্র সংগ্রাম পরিষদ শেখ মুজিবুর রহমানকে \"বঙ্গবন্ধু\" উপাধিতে ভূষিত করে।"]}],"questions":[{"id":"bgs-q-1","question":"বাঙালির মুক্তিসনদ ঐতিহাসিক ৬ দফা দাবি কে এবং কত সালে উত্থাপন করেন?","type":"mcq","options":["শেরে বাংলা এ কে ফজলুল হক (১৯৪০)","বঙ্গবন্ধু শেখ মুজিবুর রহমান (১৯৬৬)","হোসেন শহীদ সোহরাওয়ার্দী (১৯৫৪)","মাওলানা ভাসানী (১৯৫৭)"],"correctAnswer":1,"answer":"বঙ্গবন্ধু শেখ মুজিবুর রহমান ১৯৬৬ সালে লাহোরে ৬ দফা দাবি উত্থাপন করেন।"}]},{"id":"bgs-ch-2","chapterNumber":2,"title":"২য় অধ্যায়: স্বাধীন বাংলাদেশ ও মহান মুক্তিযুদ্ধ (১৯৭১)","titleEn":"Chapter 2: Liberation War of 1971 & Mujibnagar Government","summary":"২৫ মার্চের কালরাত অপারেশন সার্চলাইট, ২৬ মার্চের স্বাধীনতার ঘোষণা, মুজিবনগর সরকার গঠন, সেক্টর বিভাজন এবং ১৬ ডিসেম্বর ১৯৭১ বিজয় অর্জন।","sections":[{"id":"bgs-s-2","title":"মুজিবনগর সরকার ও মুক্তিযুদ্ধের সেক্টর বিন্যাস","content":"১৯৭১ সালের ১০ এপ্রিল গণপ্রজাতন্ত্রী বাংলাদেশ সরকার গঠিত হয় এবং ১৭ এপ্রিল মেহেরপুরের বৈদ্যনাথতলার আম্রকাননে (বর্তমান মুজিবনগর) শপথ গ্রহণ করে।\n\nমুজিবনগর সরকারের নেতৃত্ব:\n• রাষ্ট্রপতি: বঙ্গবন্ধু শেখ মুজিবুর রহমান (পাকিস্তানের কারাগারে বন্দি)\n• উপ-রাষ্ট্রপতি: সৈয়দ নজরুল ইসলাম (ভারপ্রাপ্ত রাষ্ট্রপতি)\n• প্রধানমন্ত্রী: তাজউদ্দীন আহমদ\n• অর্থমন্ত্রী: এম মনসুর আলী\n• স্বরাষ্ট্র ও ত্রাণমন্ত্রী: এ এইচ এম কামারুজ্জামান\n• প্রধান সেনাপতি: কর্নেল (পরবর্তীতে জেনারেল) এম এ জি ওসমানী\n\nমুক্তিযুদ্ধের সুষ্ঠু পরিচালনার জন্য সমগ্র বাংলাদেশকে ১১টি সেক্টরে ভাগ করা হয়েছিল।","keyPoints":["১০ নং সেক্টর ছিল নৌ-কমান্ডো সেক্টর এবং এর কোনো স্থায়ী সেক্টর কমান্ডার ছিল না।","১৬ ডিসেম্বর ১৯৭১ পাকিস্তানি হানাদার বাহিনীর ৯৩ হাজার সৈন্য নিয়ে ঢাকায় ঐতিহাসিক রেসকোর্স ময়দানে আত্মসমর্পণ করে।"]}],"questions":[{"id":"bgs-q-2","question":"মুক্তিযুদ্ধের কোন সেক্টরে কোনো নিয়মিত সেক্টর কমান্ডার ছিল না?","type":"mcq","options":["১ নং সেক্টর","৭ নং সেক্টর","১০ নং সেক্টর","১১ নং সেক্টর"],"correctAnswer":2,"answer":"১০ নং সেক্টর (নৌ সেক্টর)।"}]}]},{"id":"history-social-science","title":"ইতিহাস ও সামাজিক বিজ্ঞান","titleEn":"History and Social Science","category":"humanities","categoryBn":"সামাজিক ও মানবিক","color":"red","gradient":"from-red-600 to-rose-900","badgeColor":"bg-red-100 text-red-800","iconName":"Landmark","description":"নতুন শিক্ষাক্রমের ইতিহাস, আত্মপরিচয় ও সামাজিক রূপান্তর, প্রাচীন বাংলার ঐতিহ্য ও সমাজতাত্ত্বিক বিবর্তন।","classGrade":"নবম শ্রেণি (Class 9)","curriculum":"নতুন জাতীয় শিক্ষাক্রম (New Curriculum)","totalChapters":3,"chapters":[{"id":"hss-ch-1","chapterNumber":1,"title":"১ম অধ্যায়: আত্মপরিচয় ও সামাজিক রূপান্তর","titleEn":"Self-Identity, Culture and Social Transformation","summary":"মানুষের পরিচয় ও বৈচিত্র্য, স্থানীয় ইতিহাস অন্বেষণ, প্রাচীন জনপদসমূহ (গৌড়, বঙ্গ, পুণ্ড্র, রাঢ়, সমতট ও হরিকেল) এবং প্রত্নতাত্ত্বিক নিদর্শন।","sections":[{"id":"hss-s-1","title":"প্রাচীন বাংলার জনপদ ও প্রত্নতাত্ত্বিক ঐতিহ্য","content":"প্রাচীনকালে সমগ্র বাংলাদেশ একক কোনো নামে পরিচিত ছিল না। বিভিন্ন ভৌগোলিক অংশে বিভক্ত ছিল যা জনপদ নামে পরিচিত:\n• পুণ্ড্র: সবচেয়ে প্রাচীন জনপদ, রাজধানী ছিল পুণ্ড্রনগর (বর্তমান বগুড়ার মহাস্থানগড়)।\n• বঙ্গ: বৃহত্তর ঢাকা, ময়মনসিংহ, ফরিদপুর অঞ্চল।\n• সমতট: বৃহত্তর কুমিল্লা ও নোয়াখালী অঞ্চল (ময়নামতি, শালবন বিহার)।\n• হরিকেল: সিলেট ও চট্টগ্রাম অঞ্চল।\n• গৌড়: চাঁপাইনবাবগঞ্জ ও মালদহ অঞ্চল। রাজা শশাঙ্ক ছিলেন গৌড়ের স্বাধীন নরপতি।","keyPoints":["মহাস্থানগড় বাংলাদেশের সর্বপ্রাচীন ঐতিহাসিক নগর সভ্যতা।","পাহাড়পুরের সোমপুর মহাবিহার রাজা ধর্মপাল কর্তৃক নির্মিত ইউনেস্কো বিশ্ব ঐতিহ্য।"]}],"questions":[{"id":"hss-q-1","question":"প্রাচীন বাংলার সবচেয়ে প্রাচীন জনপদ কোনটি?","type":"mcq","options":["বঙ্গ","পুণ্ড্র","গৌড়","হরিকেল"],"correctAnswer":1,"answer":"পুণ্ড্র (রাজধানী পুণ্ড্রনগর বা মহাস্থানগড়)।"}]}]},{"id":"digital-technology","title":"ডিজিটাল প্রযুক্তি ও আইসিটি","titleEn":"Digital Technology & ICT","category":"science","categoryBn":"তথ্যপ্রযুক্তি ও দক্ষতা","color":"indigo","gradient":"from-indigo-600 to-sky-700","badgeColor":"bg-indigo-100 text-indigo-800","iconName":"Cpu","description":"ডিজিটাল নিরাপত্তা, সাইবার সচেতনতা, নেটওয়ার্কিং, অ্যালগরিদম, ফ্লোচার্ট ও পাইথন প্রোগ্রামিং পরিচিতি।","classGrade":"নবম শ্রেণি (Class 9)","curriculum":"নতুন কারিকুলাম ও আইসিটি","totalChapters":3,"chapters":[{"id":"dt-ch-1","chapterNumber":1,"title":"১ম অধ্যায়: ডিজিটাল নিরাপত্তা ও সাইবার সচেতনতা","titleEn":"Chapter 1: Cybersecurity, Passwords, Phishing & Two-Factor Authentication","summary":"সাইবার অপরাধের ধরন, ফিশিং আক্রমণ, শক্তিশালী পাসওয়ার্ড তৈরির কৌশল, টু-ফ্যাক্টর অথেনটিকেশন (2FA) এবং তথ্য অধিকার আইন।","sections":[{"id":"dt-s-1","title":"সাইবার নিরাপত্তা ও টু-ফ্যাক্টর অথেনটিকেশন","content":"সাইবার সুরক্ষার মূল স্তম্ভসমূহ:\n১. পাসওয়ার্ড সুরক্ষা: পাসওয়ার্ডে বড় হাতের অক্ষর, ছোট হাতের অক্ষর, সংখ্যা এবং বিশেষ চিহ্ন (@, #, $) এর সংমিশ্রণ ব্যবহার করা।\n২. ফিশিং (Phishing): ভুয়া ইমেইল বা ওয়েবসাইটের মাধ্যমে ব্যবহারকারীর গোপন তথ্য (যেমন: পিন, ওটিপি, পাসওয়ার্ড) হাতিয়ে নেওয়ার অপচেষ্টা।\n৩. টু-ফ্যাক্টর অথেনটিকেশন (2FA): অ্যাকাউন্টে কেবল পাসওয়ার্ড নয়, ফোনে আসা ওটিপি (OTP) বা অথেনটিকেটর অ্যাপ কোডের মাধ্যমে দুই স্তরের যাচাই নিশ্চিত করা।\n৪. ডিজিটাল ফুটপ্রিন্ট: ইন্টারনেটে ব্যবহারকারীর রেখে যাওয়া ডিজিটাল পদচিহ্ন সম্পর্কে সচেতন থাকা।","keyPoints":["কখনই কারো সাথে বিকাশ/নগদ/ব্যাংকের পিন বা ওটিপি শেয়ার করবেন না।","এইচটিটিপিএস (HTTPS) সুরক্ষিত ওয়েবসাইটে ব্রাউজ করা নিরাপদ।"]}],"questions":[{"id":"dt-q-1","question":"নিচের কোনটি সবচেয়ে শক্তিশালী ও নিরাপদ পাসওয়ার্ড?","type":"mcq","options":["12345678","bangladesh2026","P@ss#9kL!2","rahim123"],"correctAnswer":2,"answer":"P@ss#9kL!2 কারণ এতে বড় ও ছোট হাতের অক্ষর, সংখ্যা ও বিশেষ প্রতীকের মিশ্রণ রয়েছে।"}]},{"id":"dt-ch-2","chapterNumber":2,"title":"২য় অধ্যায়: প্রোগ্রামিংয়ের লজিক ও অ্যালগরিদম","titleEn":"Chapter 2: Algorithms, Flowcharts and Python Programming","summary":"সমস্যা সমাধানের ধারাবাহিক ধাপ বা অ্যালগরিদম, ফ্লোচার্টের প্রতীকসমূহ এবং পাইথন প্রোগ্রামিংয়ের মৌলিক কোডিং সিনট্যাক্স।","sections":[{"id":"dt-s-2","title":"অ্যালগরিদম ও পাইথন বেসিক","content":"অ্যালগরিদম: কোনো একটি নির্দিষ্ট কাজ সম্পন্ন করার জন্য যুক্তিসঙ্গত ও ধারাবাহিক ধাপসমূহের লিখিত রূপ।\nফ্লোচার্ট: অ্যালগরিদমের চিত্রভিত্তিক প্রকাশ। প্রতীকসমূহ:\n• ডিম্বাকৃতি (Oval): শুরু ও শেষ\n• সামান্তরিক (Parallelogram): ইনপুট ও আউটপুট\n• আয়তক্ষেত্র (Rectangle): প্রক্রিয়াকরণ (Process)\n• হীরক আকৃতি (Diamond): সিদ্ধান্ত বা শর্ত (Decision)\n\nপাইথন প্রোগ্রামিং উদাহরণ:\n# দুটি সংখ্যার যোগফল নির্ণয়\na = int(input(\"প্রথম সংখ্যা: \"))\nb = int(input(\"দ্বিতীয় সংখ্যা: \"))\nsum = a + b\nprint(\"যোগফল:\", sum)","keyPoints":["পাইথন একটি সহজপাঠ্য উচ্চস্তরের প্রোগ্রামিং ভাষা।","প্রিন্ট স্টেটমেন্ট: print(\"Hello Bangladesh\")"]}],"questions":[{"id":"dt-q-2","question":"ফ্লোচার্টে সিদ্ধান্ত (Decision) বোঝাতে কোন প্রতীক ব্যবহৃত হয়?","type":"mcq","options":["বৃত্ত","আয়তক্ষেত্র","সামান্তরিক","হীরক আকৃতি (Diamond)"],"correctAnswer":3,"answer":"হীরক আকৃতি (Diamond বা রম্বস)।"}]}]},{"id":"islam-moral-education","title":"ইসলাম ও নৈতিক শিক্ষা","titleEn":"Islam & Moral Education","category":"humanities","categoryBn":"ধর্ম ও নৈতিকতা","color":"emerald","gradient":"from-emerald-600 to-green-900","badgeColor":"bg-emerald-100 text-emerald-800","iconName":"Moon","description":"আকাইদ ও বিশ্বাস, ইবাদতের তাৎপর্য (সালাত, সাওম, যাকাত, হজ), আখলাকে হামীদা ও মানবসেবা এবং মহানবী (সা.)-এর জীবনাদর্শ।","classGrade":"নবম শ্রেণি (Class 9)","curriculum":"NCTB কারিকুলাম","totalChapters":3,"chapters":[{"id":"isl-ch-1","chapterNumber":1,"title":"১ম অধ্যায়: আকাইদ ও ঈমান (Belief and Faith)","titleEn":"Chapter 1: Tawhid, Risalat, Akhirah and Asmaul Husna","summary":"ইসলামের মৌলিক বিশ্বাস — তাওহীদ (আল্লাহর একত্ববাদ), কুফর ও শিরকের ভয়াবহতা, রিসালাত ও নবুওয়াত, আসমানি কিতাব এবং আখিরাত (পরকাল)।","sections":[{"id":"isl-s-1","title":"তাওহীদ, কুফর ও শিরক","content":"১. তাওহীদ: তাওহীদ শব্দের অর্থ একত্ববাদ। মহান আল্লাহ তায়ালাকে তাঁর সত্তা, গুণাবলি ও সকল ক্ষমতায় একক ও অদ্বিতীয় হিসেবে বিশ্বাস করাকে তাওহীদ বলে। সূরা আল-ইখলাসে বলা হয়েছে: \"বলুন, তিনিই আল্লাহ, একক।\"\n\n২. শিরক: আল্লাহর সাথে কোনো অংশীদার সাব্যস্ত করাকে শিরক বলে। শিরক হলো সবচেয়ে বড় অপরাধ ও মহাপাপ (জুলমুন আজিম)। কুরআনে আল্লাহ বলেন: \"নিশ্চয়ই আল্লাহ তাঁর সাথে শরিক করার অপরাধ ক্ষমা করবেন না।\"\n\n৩. কুফর: ইসলামের মৌলিক কোনো বিষয়কে অবিশ্বাস করা বা অস্বীকার করাকে কুফর বলে।","keyPoints":["ঈমানের ৭টি মূল স্তম্ভ: আল্লাহ, ফেরেশতাগণ, আসমানি কিতাবসমূহ, রাসুলগণ, পরকাল, তাকদীর ও পুনরুত্থান।","নিফাক: অন্তরে কুফর বা অবিশ্বাস গোপন রেখে মুখে ঈমানের দাবি করা।"]}],"questions":[{"id":"isl-q-1","question":"ইসলামে সবচেয়ে বড় ক্ষমার অযোগ্য মহাপাপ কোনটি?","type":"mcq","options":["মিথ্যা বলা","শিরক করা","চুরি করা","অহংকার করা"],"correctAnswer":1,"answer":"শিরক করা (আল্লাহর সাথে শরিক স্থাপন)।"}]},{"id":"isl-ch-2","chapterNumber":2,"title":"২য় অধ্যায়: আখলাক বা চরিত্র","titleEn":"Chapter 2: Akhlaq-e-Hamidah (Noble Character) and Social Duty","summary":"আখলাকে হামীদা (প্রশংসনীয় গুণাবলি): সত্যবাদিতা, আমানতদারী, পিতা-মাতার প্রতি দায়িত্ব, সৃষ্টির সেবা এবং প্রতিবেশীর অধিকার।","sections":[{"id":"isl-s-2","title":"সৃষ্টির সেবা ও সত্যবাদিতা","content":"মহানবী (সা.) বলেছেন: \"সমগ্র সৃষ্টি আল্লাহর পরিবারভুক্ত। অতএব আল্লাহর নিকট সৃষ্টির মধ্যে সর্বাপেক্ষা প্রিয় সেই ব্যক্তি, যে তাঁর পরিবারের প্রতি সদয়।\"\n\nসত্যবাদিতা (সিদক): সত্য মানুষকে মুক্তি দেয় আর মিথ্যা মানুষকে ধ্বংস করে। যিনি সত্যবাদী তাকে সাদিক বলা হয়। মহানবী (সা.) বাল্যকালেই তাঁর পরম সততার জন্য \"আল-আমিন\" (বিশ্বাসী) উপাধি লাভ করেছিলেন।","keyPoints":["পিতা-মাতার অবাধ্যতা অন্যতম কবিরা গুনাহ।","প্রতিবেশীর প্রতি সদয় আচরণ ও তাদের বিপদে এগিয়ে আসা ঈমানের পূর্ণতা।"]}],"questions":[{"id":"isl-q-2","question":"মহানবী (সা.) শৈশবে তাঁর সততা ও আমানতদারীর জন্য কী উপাধি পেয়েছিলেন?","type":"mcq","options":["আস-সাদিক","আল-আমিন","খাতামুন্নাবিয়্যিন","সাইয়্যেদুল মুরসালিন"],"correctAnswer":1,"answer":"আল-আমিন (বিশ্বাসী)।"}]}]},{"id":"agriculture-home-science","title":"কৃষি শিক্ষা ও গার্হস্থ্য বিজ্ঞান","titleEn":"Agriculture Studies & Home Science","category":"general","categoryBn":"প্রয়োগ ও জীবন দক্ষতা","color":"lime","gradient":"from-lime-600 to-emerald-800","badgeColor":"bg-lime-100 text-lime-900","iconName":"Sprout","description":"মাটি ও ফসলের পুষ্টি, বীজ প্রযুক্তি, মৎস্য চাষ ও পশুপালন, গৃহ ব্যবস্থাপনা এবং শিশুর মানসিক বিকাশ।","classGrade":"নবম শ্রেণি (Class 9)","curriculum":"NCTB কারিকুলাম","totalChapters":3,"chapters":[{"id":"agri-ch-1","chapterNumber":1,"title":"১ম পরিচ্ছেদ: মাটি ও উদ্ভিদের অত্যাবশ্যকীয় পুষ্টি উপাদান","titleEn":"Soil Types, Essential Plant Nutrients and Fertilizers","summary":"উদ্ভিদের মোট ১৬টি অত্যাবশ্যকীয় পুষ্টি উপাদান (ম্যাক্রো ও মাইক্রো উপাদান), অভাবজনিত লক্ষণ এবং রাসায়নিক ও জৈব সারের প্রয়োগ।","sections":[{"id":"agri-s-1","title":"ম্যাক্রো ও মাইক্রো পুষ্টি উপাদান","content":"উদ্ভিদের স্বাভাবিক বৃদ্ধি ও প্রজননের জন্য মোট ১৬টি পুষ্টি উপাদান একান্ত অপরিহার্য।\n\n১. মুখ্য বা ম্যাক্রো উপাদান (১০টি): উদ্ভিদ যা বেশি পরিমাণে গ্রহণ করে। যথা: কার্বন (C), হাইড্রোজেন (H), অক্সিজেন (O), নাইট্রোজেন (N), ফসফরাস (P), পটাশিয়াম (K), ক্যালসিয়াম (Ca), ম্যাগনেসিয়াম (Mg), সালফার (S) ও লৌহ (Fe)।\n\n২. গৌণ বা মাইক্রো উপাদান (৬টি): উদ্ভিদ যা অতি সামান্য পরিমাণে গ্রহণ করে। যথা: ম্যাঙ্গানিজ (Mn), বোরন (B), দস্তা (Zn), তামা (Cu), মলিবডেনাম (Mo) ও ক্লোরিন (Cl)।\n\nনাইট্রোজেনের অভাবে গাছের পাতা হলুদ হয়ে যায় (ক্লোরোসিস)। ফসফরাসের অভাবে পাতার বর্ণ কালচে লাল বা বেগুনি রঙ ধারণ করে।","keyPoints":["ইউরিয়া সার নাইট্রোজেনের প্রধান উৎস।","টিএসপি (ট্রিপল সুপার ফসফেট) ফসফরাসের এবং এমওপি (মিউরেট অব পটাশ) পটাশিয়ামের যোগান দেয়।"]}],"questions":[{"id":"agri-q-1","question":"নাইট্রোজেনের অভাবে পাতার সবুজ রঙ হলুদ হয়ে যাওয়াকে কী বলে?","type":"mcq","options":["ডাইব্যাক","ক্লোরোসিস","লিফকার্ল","নেকরোসিস"],"correctAnswer":1,"answer":"ক্লোরোসিস।"}]}]},{"id":"life-livelihoods-health","title":"জীবন ও জীবিকা এবং স্বাস্থ্য সুরক্ষা","titleEn":"Life, Livelihoods & Health Protection","category":"general","categoryBn":"প্রয়োগ ও জীবন দক্ষতা","color":"pink","gradient":"from-pink-500 to-rose-700","badgeColor":"bg-pink-100 text-pink-800","iconName":"HeartHandshake","description":"নতুন শিক্ষাক্রমের জীবন ও জীবিকা: ক্যারিয়ার পরিকল্পনা, ভবিষ্যৎ দক্ষতা, শারীরিক ও মানসিক স্বাস্থ্য, প্রাথমিক চিকিৎসা ও সুস্থ জীবনযাপন।","classGrade":"নবম শ্রেণি (Class 9)","curriculum":"নতুন জাতীয় শিক্ষাক্রম (New Curriculum)","totalChapters":3,"chapters":[{"id":"llh-ch-1","chapterNumber":1,"title":"১ম অধ্যায়: আর্থিক সাক্ষরতা ও পেশা অন্বেষণ","titleEn":"Financial Literacy, Entrepreneurship & Career Exploration","summary":"আয়ের উৎস, পারিবারিক বাজেট প্রণয়ন, সঞ্চয় ও বিনিয়োগের গুরুত্ব এবং একবিংশ শতাব্দীর প্রয়োজনীয় স্মার্ট দক্ষতা।","sections":[{"id":"llh-s-1","title":"পারিবারিক বাজেট ও ভবিষ্যৎ দক্ষতা","content":"বাজেট হলো একটি নির্দিষ্ট সময়ে পরিবারের সম্ভাব্য আয় ও ব্যয়ের সুনির্দিষ্ট লিখিত পরিকল্পনা।\nবাজেটের সুবিধা:\n১. আয় অনুযায়ী ব্যয়ের ভারসাম্য রক্ষা করা যায়।\n২. অপ্রয়োজনীয় ও অপচয়মূলক ব্যয় নিয়ন্ত্রণ সম্ভব হয়।\n৩. ভবিষ্যৎ বিপদ বা বিনিয়োগের জন্য সঞ্চয় বৃদ্ধি পায়।\n\nভবিষ্যৎ পৃথিবীর জন্য প্রয়োজনীয় সফট স্কিলসমূহ:\n• সমস্যা সমাধানের দক্ষতা (Problem Solving)\n• সৃজনশীল চিন্তা ও উদ্ভাবন (Creative Thinking)\n• দলগত কাজের মনোভাব (Teamwork)\n• কার্যকরী যোগাযোগ (Effective Communication)","keyPoints":["বাজেটের ৫০-৩০-২০ নিয়ম: ৫০% মৌলিক প্রয়োজন, ৩০% ব্যক্তিগত চাহিদা এবং ২০% বাধ্যতামূলক সঞ্চয়।"]}],"questions":[{"id":"llh-q-1","question":"পারিবারিক বাজেট তৈরির প্রধান সুফল কোনটি?","type":"mcq","options":["ঋণ বৃদ্ধি পাওয়া","আয়-ব্যয়ের ভারসাম্য রক্ষা ও সঞ্চয় নিশ্চিত হওয়া","ভোগবিলাস বাড়ানো","কর ফাঁকি দেওয়া"],"correctAnswer":1,"answer":"আয়-ব্যয়ের ভারসাম্য রক্ষা ও সঞ্চয় নিশ্চিত হওয়া।"}]},{"id":"llh-ch-2","chapterNumber":2,"title":"২য় অধ্যায়: কৈশোরকালীন স্বাস্থ্য ও প্রাথমিক চিকিৎসা (First Aid)","titleEn":"Adolescent Health, Nutrition, Mental Hygiene and First Aid","summary":"কৈশোরের শারীরিক ও মানসিক পরিবর্তন, সুষম খাদ্য গ্রহণ, মানসিক চাপ নিয়ন্ত্রণ এবং দুর্ঘটনার জরুরি প্রাথমিক চিকিৎসা (RICE পদ্ধতি)।","sections":[{"id":"llh-s-2","title":"মচকানো ও আঘাতের ক্ষেত্রে RICE পদ্ধতি","content":"খেলাধুলা বা চলাফেরার সময় হাত বা পায়ে মচকে গেলে তাত্ক্ষণিক ফার্স্ট এইড হিসেবে R.I.C.E. নিয়ম অনুসরণ করা হয়:\n\n• R = Rest (বিশ্রাম): আঘাতপ্রাপ্ত স্থানকে নড়াচড়া না করে সম্পূর্ণ বিশ্রামে রাখা।\n• I = Ice (বরফ): আঘাতের স্থানে কাপড়ে পেঁচিয়ে ১৫-২০ মিনিট বরফ শেক দেওয়া (ফোলা ও ব্যথা কমায়)।\n• C = Compression (চাপ ব্যান্ডেজ): ক্রেপ ব্যান্ডেজ দিয়ে আলতোভাবে চেপে বেঁধে রাখা।\n• E = Elevation (উঁচু করে রাখা): আঘাতপ্রাপ্ত অঙ্গকে হৃদপিণ্ডের সমতলের চেয়ে কিছুটা উঁচুতে তুলে রাখা।","keyPoints":["আঘাতপ্রাপ্ত স্থানে সাথে সাথে কোনো প্রকার তেল বা গরম সেঁক দেওয়া উচিত নয়।"]}],"questions":[{"id":"llh-q-2","question":"মচকে যাওয়ার প্রাথমিক চিকিৎসায় RICE পদ্ধতির \"I\" দ্বারা কী নির্দেশ করে?","type":"mcq","options":["Injection","Ice (বরফ দেওয়া)","Iodine","Incline"],"correctAnswer":1,"answer":"Ice (বরফ শেক দেওয়া)।"}]}]},{"id":"art-and-culture","title":"শিল্প ও সংস্কৃতি","titleEn":"Art and Culture","category":"general","categoryBn":"সংস্কৃতি ও চারুকলা","color":"purple","gradient":"from-purple-600 to-fuchsia-800","badgeColor":"bg-purple-100 text-purple-800","iconName":"Palette","description":"নবম শ্রেণির শিল্প ও সংস্কৃতি: বাংলার লোকশিল্প, পটচিত্র, নকশিকাঁথা, চারুকলা, সঙ্গীত, নাটক ও ঐতিহ্যবাহী নৃত্য।","classGrade":"নবম শ্রেণি (Class 9)","curriculum":"নতুন জাতীয় শিক্ষাক্রম (New Curriculum)","totalChapters":2,"chapters":[{"id":"art-ch-1","chapterNumber":1,"title":"১ম অধ্যায়: লোকশিল্প ও পটচিত্রের ঐতিহ্য","titleEn":"Folk Art, Scroll Paintings (Patachitra) & Nakshi Kantha","summary":"বাংলার হাজার বছরের সমৃদ্ধ লোকশিল্পের ইতিহাস, পটচিত্রের বর্ণনা, নকশিকাঁথার সেলাই এবং জামদানি ও মৃৎশিল্প।","sections":[{"id":"art-s-1","title":"নকশিকাঁথা ও জামদানি শিল্প","content":"১. নকশিকাঁথা: গ্রামবাংলার নারীদের মমতাময়ী হাতের অনন্য সৃষ্টি। পুরনো শাড়ি ও সুতা দিয়ে বিভিন্ন জ্যামিতিক নকশা, গাছপালা, পাখি ও লোকগাথা ফুটিয়ে তোলা হয়। কবি জসীমউদ্দীন একে অমর করে রেখেছেন তাঁর বিখ্যাত কাব্যগ্রন্থ \"নকশী কাঁথার মাঠ\"-এ।\n\n২. জামদানি: বাংলাদেশের প্রাচীন ঐতিহ্যের ঢাকাই মসলিনের আধুনিক রূপ। জামদানি ইউনেস্কোর ইনট্যাঞ্জিবল কালচারাল হেরিটেজ (Intangible Cultural Heritage) হিসেবে স্বীকৃত। এর সূক্ষ্ম বুনন ও কারুকাজ বিশ্বখ্যাত।\n\n৩. পটচিত্র: কাপড়ের ওপর প্রাকৃতিক রঙ দিয়ে বিভিন্ন পৌরাণিক ও সামাজিক ঘটনা এঁকে পটুয়ারা গান গেয়ে গল্প বলতেন যা বাংলার আদি দৃশ্যশিল্পের নিদর্শন।","keyPoints":["ইউনেস্কোর ইনট্যাঞ্জিবল কালচারাল হেরিটেজ: জামদানি ও শীতলপাটি।","শিল্পাচার্য জয়নুল আবেদিন সোনারগাঁওয়ে লোক ও কারুশিল্প জাদুঘর প্রতিষ্ঠা করেন।"]}],"questions":[{"id":"art-q-1","question":"সোনারগাঁওয়ে অবস্থিত বাংলাদেশ লোক ও কারুশিল্প ফাউন্ডেশন কে প্রতিষ্ঠা করেন?","type":"mcq","options":["পটুয়া কামরুল হাসান","শিল্পাচার্য জয়নুল আবেদিন","এস এম সুলতান","কাইয়ুম চৌধুরী"],"correctAnswer":1,"answer":"শিল্পাচার্য জয়নুল আবেদিন।"}]}]},{"id":"finance-banking-accounting","title":"ব্যবসায় উদ্যোগ ও হিসাববিজ্ঞান","titleEn":"Business Entrepreneurship & Accounting","category":"general","categoryBn":"ব্যবসায় শিক্ষা","color":"emerald","gradient":"from-emerald-700 to-teal-900","badgeColor":"bg-emerald-100 text-emerald-800","iconName":"Receipt","description":"ব্যবসায় উদ্যোগ, উদ্যোক্তার গুণাবলি, দুতরফা দাখিলা পদ্ধতি, জাবেদা, খতিয়ান, রেওয়ামিল এবং আর্থিক বিবরণী।","classGrade":"নবম শ্রেণি (Class 9)","curriculum":"NCTB কারিকুলাম","totalChapters":3,"chapters":[{"id":"acc-ch-1","chapterNumber":1,"title":"১ম অধ্যায়: দুতরফা দাখিলা পদ্ধতি ও হিসাব সমীকরণ","titleEn":"Double Entry System and Accounting Equation","summary":"লুকা প্যাসিওলির দুতরফা দাখিলা পদ্ধতির মূলনীতি, ডেবিট ও ক্রেডিট নির্ণয়ের নিয়ম এবং মৌলিক হিসাব সমীকরণ A = L + E।","sections":[{"id":"acc-s-1","title":"হিসাব সমীকরণ ও ডেবিট-ক্রেডিট নির্ণয়","content":"১৪৯৪ সালে ইতালীয় গণিতবিদ লুকা প্যাসিওলি তাঁর বিখ্যাত \"Summa de Arithmetica\" গ্রন্থে দুতরফা দাখিলা পদ্ধতির মূলনীতি ব্যাখ্যা করেন।\n\nমৌলিক হিসাব সমীকরণ:\nA = L + E\nযেখানে:\nA = Assets (সম্পদ)\nL = Liabilities (দায়)\nE = Equity (মালিকানাস্বত্ব = মূলধন + আয় - ব্যয় - উত্তোলন)\n\nডেবিট ও ক্রেডিট নির্ণয়ের স্বর্ণসূত্র:\n• সম্পদ (Assets) বৃদ্ধি পেলে ডেবিট (+), হ্রাস পেলে ক্রেডিট (-)\n• ব্যয় (Expenses) বৃদ্ধি পেলে ডেবিট (+), হ্রাস পেলে ক্রেডিট (-)\n• দায় (Liabilities) বৃদ্ধি পেলে ক্রেডিট (+), হ্রাস পেলে ডেবিট (-)\n• আয় (Revenue) বৃদ্ধি পেলে ক্রেডিট (+), হ্রাস পেলে ডেবিট (-)\n• মালিকানাস্বত্ব (Equity) বৃদ্ধি পেলে ক্রেডিট (+), হ্রাস পেলে ডেবিট (-)","keyPoints":["প্রতিটি লেনদেনের দুটি সমপরিমাণ পক্ষ থাকবে (এক পক্ষ ডেবিট, অন্য পক্ষ ক্রেডিট)।","মোট ডেবিট টাকা সর্বদা মোট ক্রেডিট টাকার সমান হবে।"]}],"questions":[{"id":"acc-q-1","question":"হিসাববিজ্ঞানের জনক কে?","type":"mcq","options":["অ্যাডাম স্মিথ","লুকা প্যাসিওলি","এফ ডব্লিউ টেলর","হেনরি ফেওল"],"correctAnswer":1,"answer":"ইতালীয় গণিতবিদ লুকা প্যাসিওলি (১৪৯৪ সাল)।"}],"importantFormulas":["হিসাব সমীকরণ: Assets = Liabilities + Equity (A = L + E)","মালিকানাস্বত্ব (E) = মূলধন (C) + আয় (R) - ব্যয় (Ex) - উত্তোলন (D)"]}]}];
-    const PDFS_DATA = {"bangla-sahitya":{"bookId":"bangla-sahitya","archiveId":"nctb-secondary-9-bangla-sahitya","embedUrl":"https://archive.org/embed/nctb-secondary-9-bangla-sahitya","downloadUrl":"https://archive.org/download/nctb-secondary-9-bangla-sahitya/বাংলা_সাহিত্য.pdf","readerViewUrl":"https://archive.org/details/nctb-secondary-9-bangla-sahitya?view=theater","pdfUrl":"https://archive.org/download/nctb-secondary-9-bangla-sahitya/বাংলা_সাহিত্য.pdf","pdfBackupUrl":"https://archive.org/embed/nctb-secondary-9-bangla-sahpaath","totalPages":248,"fileSizeMb":"16.8 MB","nctbCode":"NCTB-9-01","bookNameBn":"বাংলা সাহিত্য ও ব্যাকরণ","bookNameEn":"Bangla Sahitya & Grammar","digitalPdfPages":[{"pageNumber":1,"chapterTitle":"প্রচ্ছদ ও জাতীয় শিক্ষাক্রম বোর্ড","pageHeader":"জাতীয় শিক্ষাক্রম ও পাঠ্যপুস্তক বোর্ড, বাংলাদেশ • নবম শ্রেণি","contentText":"সাহিত্য সঞ্চয়ন ও বাংলা ভাষার ব্যাকরণ ও নির্মিতি\nনবম শ্রেণি\n\nজাতীয় শিক্ষাক্রম ও পাঠ্যপুস্তক বোর্ড কর্তৃক ২০১৩ শিক্ষাবর্ষ থেকে নবম-দশম শ্রেণির পাঠ্যপুস্তকরূপে নির্ধারিত\n\nমুদ্রণ ও প্রকাশনা:\nজাতীয় শিক্ষাক্রম ও পাঠ্যপুস্তক বোর্ড, ঢাকা।\nগণপ্রজাতন্ত্রী বাংলাদেশ সরকার কর্তৃক বিনামূল্যে বিতরণের জন্য।","keyNote":"সর্বস্বত্ব জাতীয় শিক্ষাক্রম ও পাঠ্যপুস্তক বোর্ড কর্তৃক সংরক্ষিত।"},{"pageNumber":2,"chapterTitle":"সূচিপত্র (Table of Contents)","pageHeader":"সাহিত্য সঞ্চয়ন • সূচিপত্র","contentText":"গদ্যাংশ:\n১. শুভা — রবীন্দ্রনাথ ঠাকুর (পৃষ্ঠা ১-৮)\n২. বই পড়া — প্রমথ চৌধুরী (পৃষ্ঠা ৯-১৬)\n৩. অভাগীর স্বর্গ — শরৎচন্দ্র চট্টোপাধ্যায় (পৃষ্ঠা ১৭-২৬)\n৪. পল্লীসাহিত্য — মুহম্মদ শহীদুল্লাহ্ (পৃষ্ঠা ২৭-৩৪)\n৫. নিমগাছ — বনফুল (পৃষ্ঠা ৩৫-৪০)\n\nকবিতাংশ:\n১. কপোতাক্ষ নদ — মাইকেল মধুসূদন দত্ত (পৃষ্ঠা ৪১-৪৬)\n২. জীবন-সঙ্গীত — হেমচন্দ্র বন্দ্যোপাধ্যায় (পৃষ্ঠা ৪৭-৫২)\n৩. জুতা-আবিষ্কার — রবীন্দ্রনাথ ঠাকুর (পৃষ্ঠা ৫৩-৫৮)\n৪. বঙ্গবাণী — আবদুল হাকিম (পৃষ্ঠা ৫৯-৬৪)\n৫. মানুষ — কাজী নজরুল ইসলাম (পৃষ্ঠা ৬৫-৭২)","keyNote":"জাতীয় শিক্ষাক্রম অনুযায়ী অনুমোদিত পূর্ণাঙ্গ পাঠ্যক্রম।"},{"pageNumber":3,"chapterTitle":"কবিতা: কপোতাক্ষ নদ (মূল পাঠ)","pageHeader":"কপোতাক্ষ নদ — মাইকেল মধুসূদন দত্ত • পৃষ্ঠা ৪১","contentText":"সতত, হে নদ, তুমি পড় মোর মনে!\nসতত তোমার কথা ভাবি এ বিরলে;\nসতত (যেমতি লোক নিশার স্বপনে\nশোনে মায়া-কলধ্বনি) জুড়াই এ কান\nভ্রান্তির ছলনে! বহু দেশে দেখিয়াছি বহু নদ-দলে,\nকিন্তু এ স্নেহের তৃষ্ণা মিটে কার জলে?\nদুগ্ধ-স্রোতোরূপী তুমি জন্মভূমি-স্তনে।\n\nআর কি হে হবে দেখা? —যত দিন যাবে,\nপ্রজারূপে রাজরূপ সাগরেরে দিতে\nবারি-রূপ কর তুমি; এ মিনতি গাবে\nবঙ্গজ জনের কানে, সখে, সখা-রীথে,\nএ প্রবাসে মজি প্রেম-ভাবে\nলইছে যে তব নাম বঙ্গের সংগীতে।","keyNote":"কবির চতুর্দশপদী কবিতাবলী থেকে সংগৃহীত বাংলা সাহিত্যের শ্রেষ্ঠ সনেট।","formulasOrPoints":["অষ্টকের অন্ত্যমিল: কখ কখ কখ কখ","ষষ্ঠকের অন্ত্যমিল: ঘঙচ ঘঙচ","প্রতি চরণে ১৪ মাত্রা ও মোট ১৪টি চরণ।"]}]},"english-first-second":{"bookId":"english-first-second","archiveId":"nctb-secondary-9-english-for-today","embedUrl":"https://archive.org/embed/nctb-secondary-9-english-for-today","downloadUrl":"https://archive.org/download/nctb-secondary-9-english-for-today/English_For_Today.pdf","readerViewUrl":"https://archive.org/details/nctb-secondary-9-english-for-today?view=theater","pdfUrl":"https://archive.org/download/nctb-secondary-9-english-for-today/English_For_Today.pdf","pdfBackupUrl":"https://archive.org/embed/nctb-secondary-9-english-grammar-and-composition","totalPages":212,"fileSizeMb":"16.2 MB","nctbCode":"NCTB-9-02","bookNameBn":"English for Today & Grammar","bookNameEn":"English for Today & Grammar","digitalPdfPages":[{"pageNumber":1,"chapterTitle":"Cover & Editorial Details","pageHeader":"ENGLISH FOR TODAY • Class 9-10 • NCTB","contentText":"ENGLISH FOR TODAY\nClasses IX - X\n\nNational Curriculum and Textbook Board, Bangladesh\nPrescribed by the National Curriculum and Textbook Board as a textbook for classes nine and ten from the academic year 2013.\n\nPublished by National Curriculum and Textbook Board, 69-70 Motijheel C/A, Dhaka.\nFor Free Distribution by the Government of Bangladesh.","keyNote":"Approved curriculum for SSC examination."},{"pageNumber":2,"chapterTitle":"Unit 1: Father of the Nation (Lesson 1)","pageHeader":"Unit 1 • Bangabandhu at the UN • Page 1","contentText":"Lesson 1: Bangabandhu’s Speech at the UN\n\nBangabandhu Sheikh Mujibur Rahman was the first person to deliver a speech in Bangla at the United Nations General Assembly on 25 September 1974. This historic address reflected Bangladesh's unwavering commitment to global peace, human dignity, and justice.\n\nHe stated: \"Peace is an imperative for the survival of humanity. It represents the deepest aspirations of all men and women throughout the world.\"","keyNote":"Historic milestone: First speech delivered in Bangla at UN.","formulasOrPoints":["Date: 25 September 1974","Venue: UN General Assembly, New York","Key theme: Global peace, freedom, and justice."]}]},"general-math":{"bookId":"general-math","archiveId":"nctb-secondary-9-gonit","embedUrl":"https://archive.org/embed/nctb-secondary-9-gonit","downloadUrl":"https://archive.org/download/nctb-secondary-9-gonit/গণিত.pdf","readerViewUrl":"https://archive.org/details/nctb-secondary-9-gonit?view=theater","pdfUrl":"https://archive.org/download/nctb-secondary-9-gonit/গণিত.pdf","pdfBackupUrl":"https://archive.org/embed/nctb-secondary-9-gonit","totalPages":340,"fileSizeMb":"22.8 MB","nctbCode":"NCTB-9-03","bookNameBn":"সাধারণ গণিত","bookNameEn":"General Mathematics","digitalPdfPages":[{"pageNumber":1,"chapterTitle":"প্রচ্ছদ ও মুখবন্ধ","pageHeader":"গণিত • নবম-দশম শ্রেণি • NCTB পাঠ্যপুস্তক","contentText":"গণিত\nনবম-দশম শ্রেণি\nজাতীয় শিক্ষাক্রম ও পাঠ্যপুস্তক বোর্ড, বাংলাদেশ\n\nবীজগণিত, জ্যামিতি, ত্রিকোণমিতি, পরিমিতি ও পরিসংখ্যান\n\nশিক্ষার্থীদের সৃজনশীল চিন্তন ও গাণিতিক দক্ষতা বৃদ্ধির জন্য নতুন সংস্করণ।","keyNote":"সকল অধ্যায়ের উদাহরণ ও অনুশীলনীর সমাধান সহ মুদ্রিত।"},{"pageNumber":2,"chapterTitle":"১ম অধ্যায়: বাস্তব সংখ্যা (Real Numbers)","pageHeader":"১ম অধ্যায়: বাস্তব সংখ্যা • পৃষ্ঠা ১-১০","contentText":"বাস্তব সংখ্যা (Real Numbers):\nদৈনন্দিন কাজে আমরা নানা রকম সংখ্যা ব্যবহার করি। যেমন: ১, ২, ৩, -৫, ১/২, ০.২৫, √২, π ইত্যাদি। এই সকল সংখ্যাকে বাস্তব সংখ্যা বলা হয়।\n\nশ্রেণিবিন্যাস:\n১. স্বাভাবিক সংখ্যা (Natural Numbers, N): {1, 2, 3, 4, 5, ...}\n২. পূর্ণসংখ্যা (Integers, Z): {..., -3, -2, -1, 0, 1, 2, 3, ...}\n৩. ভগ্নাংশ সংখ্যা: p/q আকারের সংখ্যা (যেমন: ১/২, ৩/৪)\n৪. মূলদ সংখ্যা (Rational, Q): যে সংখ্যাকে দুটি পূর্ণসংখ্যার অনুপাতে প্রকাশ করা যায়।\n৫. অমূলদ সংখ্যা (Irrational): যাকে p/q আকারে প্রকাশ করা যায় না (যেমন: √২, √৩, √৫)।","keyNote":"যেকোনো মৌলিক সংখ্যার বর্গমূল সর্বদা অমূলদ সংখ্যা।","formulasOrPoints":["মূলদ সংখ্যার সাধারণ রূপ: p/q (p, q ∈ Z এবং q ≠ 0)","ইউক্লিডের ভাগশেষ প্রতিজ্ঞা: a = bq + r (যেখানে 0 ≤ r < b)"]}]},"higher-math":{"bookId":"higher-math","archiveId":"highermathematics_2025-c910","embedUrl":"https://archive.org/embed/highermathematics_2025-c910","downloadUrl":"https://archive.org/download/highermathematics_2025-c910","readerViewUrl":"https://archive.org/details/highermathematics_2025-c910?view=theater","pdfUrl":"https://archive.org/download/highermathematics_2025-c910","pdfBackupUrl":"https://archive.org/embed/nctb-secondary-9-gonit","totalPages":310,"fileSizeMb":"21.5 MB","nctbCode":"NCTB-9-04","bookNameBn":"উচ্চতর গণিত","bookNameEn":"Higher Mathematics","digitalPdfPages":[{"pageNumber":1,"chapterTitle":"উচ্চতর গণিত প্রচ্ছদ","pageHeader":"উচ্চতর গণিত • নবম শ্রেণি • NCTB","contentText":"উচ্চতর গণিত\nনবম-দশম শ্রেণি\nজাতীয় শিক্ষাক্রম ও পাঠ্যপুস্তক বোর্ড, বাংলাদেশ\n\nসেট ও ফাংশন, বীজগাণিতিক রাশি, দ্বিপদী বিস্তৃতি, স্থানাঙ্ক জ্যামিতি, ত্রিকোণমিতি, ভেক্টর ও সম্ভাবনা।","keyNote":"বিজ্ঞান বিভাগের শিক্ষার্থীদের জন্য আবশ্যিক/ঐচ্ছিক উচ্চতর পাঠ্যবই।"},{"pageNumber":2,"chapterTitle":"১১শ অধ্যায়: স্থানাঙ্ক জ্যামিতি (Coordinate Geometry)","pageHeader":"১১শ অধ্যায়: স্থানাঙ্ক জ্যামিতি • পৃষ্ঠা ২৪০","contentText":"কার্তেসীয় স্থানাঙ্ক ব্যবস্থা:\nসমতলে দুটি পরস্পরছেদী লম্ব রেখা XOX' এবং YOY' বিবেচনা করি। এদের ছেদবিন্দু O হলো মূলবিন্দু (0,0)। সমতলের যেকোনো বিন্দু P এর অবস্থান (x, y) দ্বারা নির্দিষ্ট করা হয়।\n\nদূরত্ব সূত্র:\nদুটি বিন্দু P(x₁, y₁) এবং Q(x₂, y₂) এর দূরত্ব:\nPQ = √[(x₂ - x₁)² + (y₂ - y₁)²]\n\nঢাল (Slope):\nAB সরলরেখার ঢাল m = (y₂ - y₁) / (x₂ - x₁) = tan θ","keyNote":"স্থানাঙ্ক জ্যামিতি বীজগণিত ও জ্যামিতির মেলবন্ধন ঘটায়।"}]},"physics":{"bookId":"physics","archiveId":"ssc-physics-2010_202607","embedUrl":"https://archive.org/embed/ssc-physics-2010_202607","downloadUrl":"https://archive.org/download/ssc-physics-2010_202607","readerViewUrl":"https://archive.org/details/ssc-physics-2010_202607?view=theater","pdfUrl":"https://archive.org/download/ssc-physics-2010_202607","pdfBackupUrl":"https://archive.org/embed/ssc-physics-2010_202607","totalPages":280,"fileSizeMb":"19.1 MB","nctbCode":"NCTB-9-05","bookNameBn":"পদার্থবিজ্ঞান","bookNameEn":"Physics","digitalPdfPages":[{"pageNumber":1,"chapterTitle":"পদার্থবিজ্ঞান প্রচ্ছদ ও পাঠ্যবোর্ড","pageHeader":"পদার্থবিজ্ঞান • নবম শ্রেণি • NCTB","contentText":"পদার্থবিজ্ঞান (Physics)\nনবম-দশম শ্রেণি\nজাতীয় শিক্ষাক্রম ও পাঠ্যপুস্তক বোর্ড, বাংলাদেশ\n\nভৌত রাশি ও পরিমাপ, গতিবিদ্যা, বল ও নিউটনের সূত্রাবলি, কাজ-ক্ষমতা-শক্তি, পদার্থের অবস্থা ও চাপ, বস্তুর ওপর তাপের প্রভাব, তরঙ্গ ও শব্দ।","keyNote":"বিজ্ঞান বিভাগের জন্য পরিপূর্ণ তত্ত্ব ও ব্যবহারিক সহায়িকা।"},{"pageNumber":2,"chapterTitle":"২য় অধ্যায়: গতি ও গতির সমীকরণ","pageHeader":"২য় অধ্যায়: গতি • পৃষ্ঠা ৩০-৪৮","contentText":"গতির সমীকরণসমূহ:\n১. v = u + at\n২. s = [(u + v) / 2] × t\n৩. s = ut + ½ at²\n৪. v² = u² + 2as\n\nএখানে:\nu = আদিবেগ (m/s)\nv = শেষবেগ (m/s)\na = সুষম ত্বরণ (m/s²)\nt = অতিক্রান্ত সময় (s)\ns = সরণ বা দূরত্ব (m)\n\nপড়ন্ত বস্তুর ক্ষেত্রে অভিকর্ষজ ত্বরণ g = ৯.৮ m/s²:\n• v = gt\n• h = ½ gt²\n• v² = 2gh","keyNote":"গতির সমীকরণ কেবল সুষম ত্বরণের ক্ষেত্রেই প্রযোজ্য।"}]},"chemistry":{"bookId":"chemistry","archiveId":"nctb-secondary-9","embedUrl":"https://archive.org/embed/nctb-secondary-9","downloadUrl":"https://archive.org/download/nctb-secondary-9/রসায়ন.pdf","readerViewUrl":"https://archive.org/details/nctb-secondary-9?view=theater","pdfUrl":"https://archive.org/download/nctb-secondary-9/রসায়ন.pdf","pdfBackupUrl":"https://archive.org/embed/nctb-secondary-9","totalPages":260,"fileSizeMb":"17.8 MB","nctbCode":"NCTB-9-06","bookNameBn":"রসায়ন","bookNameEn":"Chemistry","digitalPdfPages":[{"pageNumber":1,"chapterTitle":"রসায়ন প্রচ্ছদ","pageHeader":"রসায়ন • নবম শ্রেণি • NCTB","contentText":"রসায়ন (Chemistry)\nনবম-দশম শ্রেণি\nজাতীয় শিক্ষাক্রম ও পাঠ্যপুস্তক বোর্ড, বাংলাদেশ\n\nপদার্থের অবস্থা, পদার্থের গঠন, পর্যায় সারণি, রাসায়নিক বন্ধন, মোলের ধারণা ও রাসায়নিক গণনা, রাসায়নিক বিক্রিয়া, এসিড-ক্ষারক সমতা ও খনিজ সম্পদ।","keyNote":"মৌলসমূহের ইলেকট্রন বিন্যাস ও বন্ধন প্রকৃতির উপর ভিত্তি করে রচিত।"},{"pageNumber":2,"chapterTitle":"৪র্থ অধ্যায়: পর্যায় সারণি (Periodic Table)","pageHeader":"৪র্থ অধ্যায়: পর্যায় সারণি • পৃষ্ঠা ৬০-৭৮","contentText":"পর্যায় সূত্র:\nমৌলসমূহের ভৌত ও রাসায়নিক ধর্মাবলি তাদের পারমাণবিক সংখ্যা বৃদ্ধির সাথে পর্যায়ক্রমে আবর্তিত হয়।\n\nপর্যায় সারণির মূল বৈশিষ্ট্য:\n• আধুনিক পর্যায় সারণিতে ৭টি পর্যায় এবং ১৮টি গ্রুপ রয়েছে।\n• মৌলের পরমাণুর সবচেয়ে বাইরের শক্তিস্তরের ইলেকট্রন সংখ্যা দ্বারা গ্রুপ নির্ধারিত হয়।\n• পর্যায়বৃত্ত ধর্ম:\n১. পারমাণবিক ব্যাসার্ধ: একই পর্যায়ে বাম থেকে ডানে হ্রাস পায়, একই গ্রুপে উপর থেকে নিচে বৃদ্ধি পায়।\n২. আয়নীকরণ শক্তি: বাম থেকে ডানে বাড়ে, উপর থেকে নিচে কমে।\n৩. তড়িৎ ঋণাত্মকতা: ফ্লোরিনের মান সর্বোচ্চ (৪.০)।","keyNote":"গ্রুপ ১৮ এর মৌলসমূহ নিষ্ক্রিয় গ্যাস হিসেবে পরিচিত।"}]},"biology":{"bookId":"biology","archiveId":"arif-biology-e-book-v-001","embedUrl":"https://archive.org/embed/arif-biology-e-book-v-001","downloadUrl":"https://archive.org/download/arif-biology-e-book-v-001","readerViewUrl":"https://archive.org/details/arif-biology-e-book-v-001?view=theater","pdfUrl":"https://archive.org/download/arif-biology-e-book-v-001","pdfBackupUrl":"https://archive.org/embed/nctb-secondary-9-biggan","totalPages":270,"fileSizeMb":"18.9 MB","nctbCode":"NCTB-9-07","bookNameBn":"জীববিজ্ঞান","bookNameEn":"Biology","digitalPdfPages":[{"pageNumber":1,"chapterTitle":"জীববিজ্ঞান প্রচ্ছদ","pageHeader":"জীববিজ্ঞান • নবম শ্রেণি • NCTB","contentText":"জীববিজ্ঞান (Biology)\nনবম-দশম শ্রেণি\nজাতীয় শিক্ষাক্রম ও পাঠ্যপুস্তক বোর্ড, বাংলাদেশ\n\nজীবন পাঠ, জীবকোষ ও টিস্যু, কোষ বিভাজন, জীবনীশক্তি, খাদ্য ও পুষ্টি, উদ্ভিদে পরিবহন, রক্ত সংবহনতন্ত্র, রেচন প্রক্রিয়া এবং বংশগতি।","keyNote":"উদ্ভিদ ও প্রাণীর অন্তর্গঠন ও শারীরবৃত্তীয় প্রক্রিয়ার পূর্ণাঙ্গ বিবরণ।"},{"pageNumber":2,"chapterTitle":"২য় অধ্যায়: জীবকোষ ও টিস্যু (Cell & Tissue)","pageHeader":"২য় অধ্যায়: কোষের অঙ্গাণু • পৃষ্ঠা ২০-৪০","contentText":"মাইটোকন্ড্রিয়া (Mitochondria):\nকোষের যাবতীয় জৈবনিক কাজের শক্তি উৎপাদনের কেন্দ্রস্থল হওয়ায় মাইটোকন্ড্রিয়াকে কোষের \"পাওয়ার হাউস\" (Powerhouse) বলা হয়।\n• এতে দুই স্তরবিশিষ্ট ফসফোলিপিড বাইলেয়ার পর্দা থাকে। ভেতরের পর্দাটি ভেতরের দিকে আঙুলের মতো ভাঁজ হয়ে ক্রিস্টি গঠন করে।\n• মাইটোকন্ড্রিয়ার ভেতরে রয়েছে ম্যাট্রিক্স, রাইবোসোম এবং নিজস্ব বৃত্তাকার ডিএনএ।\n\nপ্লাস্টিড (Plastid):\nউদ্ভিদ কোষের বর্ণকণিকা।\n১. ক্লোরোপ্লাস্ট: সবুজ রঙের, সালোকসংশ্লেষণ ঘটায়।\n২. ক্রোমোপ্লাস্ট: আকর্ষণীয় লাল, হলুদ বর্ণ দেয়।\n৩. লিউকোপ্লাস্ট: বর্ণহীন, খাদ্য সঞ্চয় করে।","keyNote":"মাইটোকন্ড্রিয়াতে শ্বসনের ক্রেবস চক্র এবং অক্সিডেটিভ ফসফোরাইলেশন ঘটে।"}]},"general-science":{"bookId":"general-science","archiveId":"nctb-secondary-9-biggan","embedUrl":"https://archive.org/embed/nctb-secondary-9-biggan","downloadUrl":"https://archive.org/download/nctb-secondary-9-biggan/বিজ্ঞান.pdf","readerViewUrl":"https://archive.org/details/nctb-secondary-9-biggan?view=theater","pdfUrl":"https://archive.org/download/nctb-secondary-9-biggan/বিজ্ঞান.pdf","pdfBackupUrl":"https://archive.org/embed/nctb-secondary-9-biggan","totalPages":240,"fileSizeMb":"15.3 MB","nctbCode":"NCTB-9-08","bookNameBn":"বিজ্ঞান (অনুসন্ধানী ও অনুশীলনী পাঠ)","bookNameEn":"General Science","digitalPdfPages":[{"pageNumber":1,"chapterTitle":"বিজ্ঞান অনুসন্ধানী পাঠ প্রচ্ছদ","pageHeader":"বিজ্ঞান (অনুসন্ধানী পাঠ) • নবম শ্রেণি • নতুন শিক্ষাক্রম","contentText":"বিজ্ঞান — অনুসন্ধানী পাঠ\nনবম শ্রেণি\nজাতীয় শিক্ষাক্রম ও পাঠ্যপুস্তক বোর্ড, বাংলাদেশ\n\nবল ও শক্তি, মহাকর্ষ, তরঙ্গ ও শব্দ, পদার্থের অভ্যন্তরীণ কাঠামো, জীববৈচিত্র্য, ভূ-প্রকৃতি ও জলবায়ু পরিবর্তন।","keyNote":"নতুন শিক্ষাক্রমের যোগ্যতাভিত্তিক বিজ্ঞান শিক্ষা।"}]},"bangladesh-global-studies":{"bookId":"bangladesh-global-studies","archiveId":"nctb-secondary-9-bangla-o","embedUrl":"https://archive.org/embed/nctb-secondary-9-bangla-o","downloadUrl":"https://archive.org/download/nctb-secondary-9-bangla-o/বাংলাদেশ_ও_বিশ্বপরিচয়.pdf","readerViewUrl":"https://archive.org/details/nctb-secondary-9-bangla-o?view=theater","pdfUrl":"https://archive.org/download/nctb-secondary-9-bangla-o/বাংলাদেশ_ও_বিশ্বপরিচয়.pdf","pdfBackupUrl":"https://archive.org/embed/nctb-secondary-9-bangla-o","totalPages":260,"fileSizeMb":"17.5 MB","nctbCode":"NCTB-9-09","bookNameBn":"বাংলাদেশ ও বিশ্বপরিচয়","bookNameEn":"Bangladesh & Global Studies","digitalPdfPages":[{"pageNumber":1,"chapterTitle":"বাংলাদেশ ও বিশ্বপরিচয় প্রচ্ছদ","pageHeader":"বাংলাদেশ ও বিশ্বপরিচয় • নবম শ্রেণি • NCTB","contentText":"বাংলাদেশ ও বিশ্বপরিচয়\nনবম শ্রেণি\nজাতীয় শিক্ষাক্রম ও পাঠ্যপুস্তক বোর্ড, বাংলাদেশ\n\nপূর্ব বাংলার স্বাধিকার আন্দোলন, মহান মুক্তিযুদ্ধ, সৌরজগৎ ও ভূমণ্ডল, বাংলাদেশের নদ-নদী, সামাজিক পরিবর্তন ও সংবিধান।","keyNote":"জাতীয় ইতিহাস ও নাগরিক দায়িত্ববোধ গঠনের মৌলিক পাঠ্য।"}]},"history-social-science":{"bookId":"history-social-science","archiveId":"nctb-secondary-9-o","embedUrl":"https://archive.org/embed/nctb-secondary-9-o","downloadUrl":"https://archive.org/download/nctb-secondary-9-o/ভূগোল_ও_পরিবেশ.pdf","readerViewUrl":"https://archive.org/details/nctb-secondary-9-o?view=theater","pdfUrl":"https://archive.org/download/nctb-secondary-9-o/ভূগোল_ও_পরিবেশ.pdf","pdfBackupUrl":"https://archive.org/embed/nctb-secondary-9-islam","totalPages":200,"fileSizeMb":"14.2 MB","nctbCode":"NCTB-9-10","bookNameBn":"ইতিহাস ও সামাজিক বিজ্ঞান","bookNameEn":"History & Social Science","digitalPdfPages":[{"pageNumber":1,"chapterTitle":"ইতিহাস ও সামাজিক বিজ্ঞান প্রচ্ছদ","pageHeader":"ইতিহাস ও সামাজিক বিজ্ঞান • নবম শ্রেণি • নতুন শিক্ষাক্রম","contentText":"ইতিহাস ও সামাজিক বিজ্ঞান\nনবম শ্রেণি\nজাতীয় শিক্ষাক্রম ও পাঠ্যপুস্তক বোর্ড, বাংলাদেশ\n\nআত্মপরিচয়, সমাজ রূপান্তর, প্রাচীন সভ্যতার বিকাশ, বিজ্ঞানের ইতিহাস ও সামাজিক ন্যায়বিচার।","keyNote":"সমাজ ও ইতিহাসের আন্তঃসম্পর্ক বোঝার সহায়ক।"}]},"digital-technology":{"bookId":"digital-technology","archiveId":"nctb-secondary-9-tothyo-o-jogajog-projukti","embedUrl":"https://archive.org/embed/nctb-secondary-9-tothyo-o-jogajog-projukti","downloadUrl":"https://archive.org/download/nctb-secondary-9-tothyo-o-jogajog-projukti/তথ্য_ও_যোগাযোগ_প্রযুক্তি.pdf","readerViewUrl":"https://archive.org/details/nctb-secondary-9-tothyo-o-jogajog-projukti?view=theater","pdfUrl":"https://archive.org/download/nctb-secondary-9-tothyo-o-jogajog-projukti/তথ্য_ও_যোগাযোগ_প্রযুক্তি.pdf","pdfBackupUrl":"https://archive.org/embed/nctb-secondary-9-tothyo-o-jogajog-projukti","totalPages":190,"fileSizeMb":"13.9 MB","nctbCode":"NCTB-9-11","bookNameBn":"ডিজিটাল প্রযুক্তি ও আইসিটি","bookNameEn":"Digital Technology & ICT","digitalPdfPages":[{"pageNumber":1,"chapterTitle":"ডিজিটাল প্রযুক্তি প্রচ্ছদ","pageHeader":"ডিজিটাল প্রযুক্তি • নবম শ্রেণি • নতুন শিক্ষাক্রম","contentText":"ডিজিটাল প্রযুক্তি\nনবম শ্রেণি\nজাতীয় শিক্ষাক্রম ও পাঠ্যপুস্তক বোর্ড, বাংলাদেশ\n\nসাইবার নিরাপত্তা ও নেটওয়ার্কিং, তথ্য যাচাইকরণ, অ্যালগরিদম ও পাইথন প্রোগ্রামিং, কৃত্রিম বুদ্ধিমত্তা ও ভবিষ্যৎ প্রযুক্তি।","keyNote":"ডিজিটাল যুগের স্মার্ট নাগরিক গড়ে তোলার ব্যবহারিক বই।"}]},"islam-moral-education":{"bookId":"islam-moral-education","archiveId":"nctb-secondary-9-islam-shikkha","embedUrl":"https://archive.org/embed/nctb-secondary-9-islam-shikkha","downloadUrl":"https://archive.org/download/nctb-secondary-9-islam-shikkha/ইসলাম_ও_নৈতিক_শিক্ষা.pdf","readerViewUrl":"https://archive.org/details/nctb-secondary-9-islam-shikkha?view=theater","pdfUrl":"https://archive.org/download/nctb-secondary-9-islam-shikkha/ইসলাম_ও_নৈতিক_শিক্ষা.pdf","pdfBackupUrl":"https://archive.org/embed/nctb-secondary-9-islam-shikkha","totalPages":210,"fileSizeMb":"14.8 MB","nctbCode":"NCTB-9-12","bookNameBn":"ইসলাম ও নৈতিক শিক্ষা","bookNameEn":"Islam & Moral Education","digitalPdfPages":[{"pageNumber":1,"chapterTitle":"ইসলাম ও নৈতিক শিক্ষা প্রচ্ছদ","pageHeader":"ইসলাম ও নৈতিক শিক্ষা • নবম শ্রেণি • NCTB","contentText":"ইসলাম ও নৈতিক শিক্ষা\nনবম শ্রেণি\nজাতীয় শিক্ষাক্রম ও পাঠ্যপুস্তক বোর্ড, বাংলাদেশ\n\nআকাইদ ও বিশ্বাস, ইবাদত, আখলাক বা উত্তম চরিত্র, শরিয়তের উৎসসমূহ এবং মহানবী (সা.) ও বিশিষ্ট ব্যক্তিবর্গের জীবনাদর্শ।","keyNote":"উন্নত চরিত্র ও মানবিক মূল্যবোধ গঠনের মূল দিশা।"}]},"agriculture-home-science":{"bookId":"agriculture-home-science","archiveId":"nctb-secondary-9-shikkha","embedUrl":"https://archive.org/embed/nctb-secondary-9-shikkha","downloadUrl":"https://archive.org/download/nctb-secondary-9-shikkha/কৃষিশিক্ষা.pdf","readerViewUrl":"https://archive.org/details/nctb-secondary-9-shikkha?view=theater","pdfUrl":"https://archive.org/download/nctb-secondary-9-shikkha/কৃষিশিক্ষা.pdf","pdfBackupUrl":"https://archive.org/embed/nctb-secondary-9-shikkha","totalPages":230,"fileSizeMb":"16.0 MB","nctbCode":"NCTB-9-13","bookNameBn":"কৃষি শিক্ষা ও গার্হস্থ্য বিজ্ঞান","bookNameEn":"Agriculture & Home Science","digitalPdfPages":[{"pageNumber":1,"chapterTitle":"কৃষি শিক্ষা প্রচ্ছদ","pageHeader":"কৃষি শিক্ষা ও গার্হস্থ্য বিজ্ঞান • নবম শ্রেণি • NCTB","contentText":"কৃষি শিক্ষা ও গার্হস্থ্য বিজ্ঞান\nনবম শ্রেণি\nজাতীয় শিক্ষাক্রম ও পাঠ্যপুস্তক বোর্ড, বাংলাদেশ\n\nমাটি ও সার ব্যবস্থাপনা, বীজ প্রযুক্তি, উদ্যান ফসল, মৎস্য ও প্রাণিসম্পদ পালন, পারিবারিক পুষ্টি ও শিশু বিকাশ।","keyNote":"কৃষি প্রযুক্তি ও স্বনির্ভর জীবনযাত্রার প্রায়োগিক পাঠ।"}]},"life-livelihoods-health":{"bookId":"life-livelihoods-health","archiveId":"nctb-secondary-6-shikkha-o","embedUrl":"https://archive.org/embed/nctb-secondary-6-shikkha-o","downloadUrl":"https://archive.org/download/nctb-secondary-6-shikkha-o","readerViewUrl":"https://archive.org/details/nctb-secondary-6-shikkha-o?view=theater","pdfUrl":"https://archive.org/download/nctb-secondary-6-shikkha-o","pdfBackupUrl":"https://archive.org/embed/nctb-secondary-6-shikkha-o","totalPages":180,"fileSizeMb":"12.5 MB","nctbCode":"NCTB-9-14","bookNameBn":"জীবন ও জীবিকা এবং স্বাস্থ্য সুরক্ষা","bookNameEn":"Life, Livelihoods & Health","digitalPdfPages":[{"pageNumber":1,"chapterTitle":"জীবন ও জীবিকা এবং স্বাস্থ্য সুরক্ষা প্রচ্ছদ","pageHeader":"জীবন ও জীবিকা এবং স্বাস্থ্য সুরক্ষা • নবম শ্রেণি • নতুন শিক্ষাক্রম","contentText":"জীবন ও জীবিকা এবং স্বাস্থ্য সুরক্ষা\nনবম শ্রেণি\nজাতীয় শিক্ষাক্রম ও পাঠ্যপুস্তক বোর্ড, বাংলাদেশ\n\nপেশা অন্বেষণ ও আর্থিক সাক্ষরতা, উদ্যোক্তা তৈরি, বয়ঃসন্ধিকালীন শারীরিক ও মানসিক স্বাস্থ্য, প্রাথমিক চিকিৎসা ও সুস্থ জীবনযাপন।","keyNote":"বাস্তব জীবনের চ্যালেঞ্জ মোকাবিলার জন্য প্রস্তুতকারী বিষয়।"}]},"art-and-culture":{"bookId":"art-and-culture","archiveId":"nctb-secondary-8-o","embedUrl":"https://archive.org/embed/nctb-secondary-8-o","downloadUrl":"https://archive.org/download/nctb-secondary-8-o","readerViewUrl":"https://archive.org/details/nctb-secondary-8-o?view=theater","pdfUrl":"https://archive.org/download/nctb-secondary-8-o","pdfBackupUrl":"https://archive.org/embed/nctb-secondary-8-o","totalPages":160,"fileSizeMb":"11.8 MB","nctbCode":"NCTB-9-15","bookNameBn":"শিল্প ও সংস্কৃতি","bookNameEn":"Art & Culture","digitalPdfPages":[{"pageNumber":1,"chapterTitle":"শিল্প ও সংস্কৃতি প্রচ্ছদ","pageHeader":"শিল্প ও সংস্কৃতি • নবম শ্রেণি • NCTB","contentText":"শিল্প ও সংস্কৃতি\nনবম শ্রেণি\nজাতীয় শিক্ষাক্রম ও পাঠ্যপুস্তক বোর্ড, বাংলাদেশ\n\nরেখা ও রঙের খেলা, লোকশিল্প ও কারুশিল্প, সঙ্গীত ও নাট্যকলা, নান্দনিকতা ও বাংলার লোকঐতিহ্য।","keyNote":"সাংস্কৃতিক মূল্যবোধ ও সৃজনশীল মেধা বিকাশের পাঠ।"}]},"finance-banking-accounting":{"bookId":"finance-banking-accounting","archiveId":"financabaking9","embedUrl":"https://archive.org/embed/financabaking9","downloadUrl":"https://archive.org/download/financabaking9","readerViewUrl":"https://archive.org/details/financabaking9?view=theater","pdfUrl":"https://archive.org/download/financabaking9","pdfBackupUrl":"https://archive.org/embed/financabaking9","totalPages":220,"fileSizeMb":"15.4 MB","nctbCode":"NCTB-9-16","bookNameBn":"ব্যবসায় উদ্যোগ ও হিসাববিজ্ঞান","bookNameEn":"Business Studies, Finance & Accounting","digitalPdfPages":[{"pageNumber":1,"chapterTitle":"ব্যবসায় উদ্যোগ ও ফিন্যান্স প্রচ্ছদ","pageHeader":"ফিন্যান্স, ব্যাংকিং ও ব্যবসায় উদ্যোগ • নবম-দশম শ্রেণি • NCTB","contentText":"ব্যবসায় উদ্যোগ, ফিন্যান্স ও ব্যাংকিং এবং হিসাববিজ্ঞান\nনবম-দশম শ্রেণি\nজাতীয় শিক্ষাক্রম ও পাঠ্যপুস্তক বোর্ড, বাংলাদেশ\n\nঅর্থের সময়মূল্য, মূলধন বাজেটিং, ব্যাংকিং ব্যবস্থার উৎপত্তি, দু-তরফা দাখিলা পদ্ধতি, জাবেদা ও খতিয়ান।","keyNote":"ব্যবসায় শিক্ষা শাখার শিক্ষার্থীদের ভিত্তিপ্রস্তর।"}]}};
-    const FORMULAS_DATA = [{"id":"f-p-1","subject":"পদার্থবিজ্ঞান","chapter":"গতি (Motion)","title":"গতির ১ম সমীকরণ","formula":"v = u + at","variables":"v = শেষবেগ, u = আদিবেগ, a = ত্বরণ, t = সময়","application":"নির্দিষ্ট ত্বরণে গতিশীল বস্তুর শেষবেগ নির্ণয়ে ব্যবহৃত হয়।"},{"id":"f-p-2","subject":"পদার্থবিজ্ঞান","chapter":"গতি (Motion)","title":"গতির দূরত্ব নির্ণয়","formula":"s = ut + ½ at²","variables":"s = দূরত্ব/সরণ, u = আদিবেগ, a = ত্বরণ, t = সময়","application":"আদিবেগ ও ত্বরণ জানা থাকলে অতিক্রান্ত দূরত্ব বের করতে।"},{"id":"f-p-3","subject":"পদার্থবিজ্ঞান","chapter":"গতি (Motion)","title":"বেগ ও দূরত্বের সম্পর্ক","formula":"v² = u² + 2as","variables":"v = শেষবেগ, u = আদিবেগ, a = ত্বরণ, s = দূরত্ব","application":"সময় (t) জানা না থাকলে শেষবেগ বা ত্বরণ বের করতে।"},{"id":"f-p-4","subject":"পদার্থবিজ্ঞান","chapter":"বল (Force)","title":"নিউটনের ২য় সূত্র (প্রযুক্ত বল)","formula":"F = ma","variables":"F = বল (Newton), m = ভর (kg), a = ত্বরণ (m/s²)","application":"ভর ও ত্বরণ হতে প্রযুক্ত বলের মান নির্ণয় করতে।"},{"id":"f-p-5","subject":"পদার্থবিজ্ঞান","chapter":"বল (Force)","title":"ভরবেগের সংরক্ষণ সূত্র","formula":"m₁u₁ + m₂u₂ = m₁v₁ + m₂v₂","variables":"m₁, m₂ = ভর; u₁, u₂ = আদিবেগ; v₁, v₂ = শেষবেগ","application":"দুটি বস্তুর সংঘর্ষের পর মিলিত বা পৃথক বেগ নির্ণয়ে।"},{"id":"f-p-6","subject":"পদার্থবিজ্ঞান","chapter":"কাজ ও শক্তি","title":"গতিশক্তি (Kinetic Energy)","formula":"Ek = ½ mv²","variables":"Ek = গতিশক্তি (Joule), m = ভর, v = বেগ","application":"চলন্ত কোনো বস্তুর শক্তি পরিমাণ নির্ণয়ে।"},{"id":"f-p-7","subject":"পদার্থবিজ্ঞান","chapter":"কাজ ও শক্তি","title":"বিভবশক্তি (Potential Energy)","formula":"Ep = mgh","variables":"Ep = বিভবশক্তি, m = ভর, g = ৯.৮ m/s², h = উচ্চতা","application":"নির্দিষ্ট উচ্চতায় কোনো বস্তুর সঞ্চিত শক্তি বের করতে।"},{"id":"f-p-8","subject":"পদার্থবিজ্ঞান","chapter":"পদার্থের চাপ","title":"তরলের অভ্যন্তরে চাপ","formula":"P = h × ρ × g","variables":"P = চাপ (Pa), h = গভীরতা (m), ρ = ঘনত্ব (kg/m³), g = ৯.৮ m/s²","application":"পানির বা যেকোনো তরলের নিচে চাপ পরিমাপে।"},{"id":"f-m-1","subject":"সাধারণ গণিত","chapter":"বীজগাণিতিক রাশি","title":"বর্গের মৌলিক সূত্র","formula":"(a + b)² = a² + 2ab + b²","variables":"a ও b দুটি যেকোনো বীজগণিতীয় রাশি","application":"দ্বিপদী রাশির বর্গ নির্ণয় ও সরলীকরণ।"},{"id":"f-m-2","subject":"সাধারণ গণিত","chapter":"বীজগাণিতিক রাশি","title":"বর্গের অন্তর সূত্র","formula":"a² - b² = (a + b)(a - b)","variables":"a ও b বীজগাণিতিক পদ","application":"উৎপাদকে বিশ্লেষণ ও ভগ্নাংশের মান নির্ণয়।"},{"id":"f-m-3","subject":"সাধারণ গণিত","chapter":"বীজগাণিতিক রাশি","title":"ঘনের সূত্র ও মান নির্ণয়","formula":"a³ + b³ = (a + b)³ - 3ab(a + b)","variables":"a + b এবং ab এর মান জানা থাকলে","application":"a³ + b³ বা x³ + 1/x³ এর মান নির্ণয়ে।"},{"id":"f-m-4","subject":"সাধারণ গণিত","chapter":"ত্রিকোণমিতি","title":"মৌলিক ত্রিকোণমিতিক অভেদ","formula":"sin² θ + cos² θ = 1","variables":"θ হলো যেকোনো সূক্ষ্মকোণ","application":"sin θ এর মান থেকে cos θ নির্ণয়।"},{"id":"f-m-5","subject":"সাধারণ গণিত","chapter":"ত্রিকোণমিতি","title":"sec ও tan এর সম্পর্ক","formula":"sec² θ - tan² θ = 1 => sec² θ = 1 + tan² θ","variables":"θ কোণের পরিমাপ","application":"ত্রিকোণমিতিক প্রমাণ ও সমীকরণ সমাধান।"},{"id":"f-m-6","subject":"সাধারণ গণিত","chapter":"পরিমিতি (Mensuration)","title":"বৃত্তের ক্ষেত্রফল ও পরিধি","formula":"ক্ষেত্রফল = πr², পরিধি = 2πr","variables":"r = ব্যাসার্ধ, π ≈ ৩.১৪১৬","application":"বৃত্তাকার পার্ক, চাকা ইত্যাদির পরিমাপ।"},{"id":"f-hm-1","subject":"উচ্চতর গণিত","chapter":"স্থানাঙ্ক জ্যামিতি","title":"দুই বিন্দুর দূরত্ব সূত্র","formula":"d = √[(x₂ - x₁)² + (y₂ - y₁)²]","variables":"(x₁, y₁) ও (x₂, y₂) দুটি বিন্দু","application":"সমতলে ত্রিভুজ বা চতুর্ভুজের বাহুর দৈর্ঘ্য নির্ণয়ে।"},{"id":"f-hm-2","subject":"উচ্চতর গণিত","chapter":"স্থানাঙ্ক জ্যামিতি","title":"সরলরেখার ঢাল (Slope)","formula":"m = (y₂ - y₁) / (x₂ - x₁)","variables":"রেখাটির দুটি স্থানাঙ্ক বিন্দু","application":"রেখা সমান্তরাল বা লম্ব হওয়ার শর্ত যাচাই।"},{"id":"f-c-1","subject":"রসায়ন","chapter":"পদার্থের গঠন","title":"কক্ষপথে সর্বোচ্চ ইলেকট্রন সংখ্যা","formula":"সর্বোচ্চ ইলেকট্রন = 2n²","variables":"n = প্রধান কোয়ান্টাম সংখ্যা বা শক্তিস্তরের সংখ্যা (n = 1, 2, 3...)","application":"K, L, M, N শেলে কতটি ইলেকট্রন থাকতে পারে তা জানতে।"},{"id":"f-c-2","subject":"রসায়ন","chapter":"মোল ও রাসায়নিক গণনা","title":"মোল সংখ্যা নির্ণয়","formula":"n = w / M = V / 22.4","variables":"n = মোল, w = ভর (গ্রাম), M = আণবিক ভর, V = আয়তন (লিটার, STP তে)","application":"রাসায়নিক বিক্রিয়ায় যৌগের পরিমাণ ও অনুপাত নির্ণয়ে।"}];
-
-    let selectedCat = 'all';
-    let currentBook = null;
-    let currentChapterIndex = 0;
-    let readerCurrentSubMode = 'text';
-
-    function getPdfUrl(bookId) {
-      const meta = PDFS_DATA[bookId];
-      if (!meta) return 'https://archive.org/download/nctb-secondary-9-bangla-sahitya';
-      try {
-        return encodeURI(meta.pdfUrl || meta.downloadUrl);
-      } catch (e) {
-        return meta.downloadUrl || meta.pdfUrl;
-      }
-    }
-
-    function getEmbedUrl(bookId) {
-      const meta = PDFS_DATA[bookId];
-      if (!meta) return 'https://archive.org/embed/nctb-secondary-9-bangla-sahitya';
-      return meta.embedUrl || ('https://archive.org/embed/' + meta.archiveId);
-    }
-
-    // Render Books Grid
-    function renderBooks() {
-      const grid = document.getElementById('booksGrid');
-      grid.innerHTML = '';
-
-      const query = (document.getElementById('searchBox')?.value || '').toLowerCase().trim();
-
-      const filtered = BOOKS_DATA.filter(b => {
-        const matchCat = selectedCat === 'all' || b.category === selectedCat;
-        const matchQ = !query || b.title.toLowerCase().includes(query) || b.titleEn.toLowerCase().includes(query) || b.description.toLowerCase().includes(query);
-        return matchCat && matchQ;
-      });
-
-      filtered.forEach(book => {
-        const meta = PDFS_DATA[book.id] || { totalPages: 240, fileSizeMb: '16.5 MB' };
-        const pdfUrl = getPdfUrl(book.id);
-
-        const card = document.createElement('div');
-        card.className = 'book-card';
-        card.innerHTML = `
-          <div class="book-card-header">
-            <span class="book-category-tag">${book.categoryBn}</span>
-            <div class="book-card-title">${book.title}</div>
-            <div class="book-card-subtitle">${book.titleEn}</div>
-          </div>
-          <div class="book-card-body">
-            <div class="book-card-desc">${book.description}</div>
-            <div class="book-meta-strip">
-              <span>অধ্যায়: <strong>${book.chapters.length} টি</strong></span>
-              <span>মোট পৃষ্ঠা: <strong>${meta.totalPages || 200}</strong></span>
-              <span>সাইজ: <strong>${meta.fileSizeMb || '16 MB'}</strong></span>
-            </div>
-            <div class="book-actions-group">
-              <button class="btn-read-full" onclick="openBookReader('${book.id}', false)">
-                📖 সম্পূর্ণ বইটি পড়ুন (মূল পাঠ) ➔
-              </button>
-              <div class="btn-row">
-                <button class="btn-sub-action" onclick="openBookReader('${book.id}', true)">
-                  📄 আসল পিডিএফ
-                </button>
-                <a href="${pdfUrl}" target="_blank" download="${book.title}.pdf" class="btn-sub-action btn-download-action">
-                  ⬇ ডাউনলোড
-                </a>
-              </div>
-            </div>
-          </div>
-        `;
-        grid.appendChild(card);
-      });
-    }
-
-    // Filter Categories
-    function filterCategory(cat, el) {
-      selectedCat = cat;
-      document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
-      el.classList.add('active');
-      renderBooks();
-    }
-
-    function handleSearch() {
-      renderBooks();
-    }
-
-    // OPEN BOOK READER (Never blank, never pitch-black, full content visible immediately)
-    function openBookReader(bookId, openInPdfMode) {
-      const b = BOOKS_DATA.find(x => x.id === bookId);
-      if (!b) return;
-      currentBook = b;
-      currentChapterIndex = 0;
-
-      const meta = PDFS_DATA[bookId] || { totalPages: 240, fileSizeMb: '16.5 MB' };
-      const pdfUrl = getPdfUrl(bookId);
-      const embedUrl = getEmbedUrl(bookId);
-
-      document.getElementById('view-books').style.display = 'none';
-      document.getElementById('view-book-reader').style.display = 'block';
-
-      document.getElementById('readerBookTitle').innerText = b.title;
-      document.getElementById('readerBookGrade').innerText = b.titleEn + ' • মোট পৃষ্ঠা: ' + (meta.totalPages || 200) + ' • ' + b.classGrade;
-
-      document.getElementById('pdfHeroTitle').innerText = b.title + ' — সম্পূর্ণ আসল বই';
-      document.getElementById('pdfHeroSubtitle').innerText = 'জাতীয় শিক্ষাক্রম ও পাঠ্যপুস্তক বোর্ড অনুমোদিত • মোট ' + (meta.totalPages || 200) + ' পৃষ্ঠা • সাইজ: ' + (meta.fileSizeMb || '16.5 MB');
-
-      document.getElementById('btnPdfOpenDirect').href = pdfUrl;
-      document.getElementById('btnPdfDownloadDirect').href = pdfUrl;
-      document.getElementById('readerPdfFrame').src = embedUrl;
-
-      // Populate Chapters Sidebar
-      const sidebar = document.getElementById('chapterListButtons');
-      sidebar.innerHTML = '';
-      b.chapters.forEach((ch, idx) => {
-        const btn = document.createElement('button');
-        btn.className = 'chapter-item-btn' + (idx === 0 ? ' active' : '');
-        btn.innerText = (ch.chapterNumber ? ch.chapterNumber + '. ' : '') + ch.title;
-        btn.onclick = () => selectChapter(idx);
-        sidebar.appendChild(btn);
-      });
-
-      renderCurrentChapter();
-
-      if (openInPdfMode) {
-        switchReaderMode('pdf');
-      } else {
-        switchReaderMode('text');
-      }
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function selectChapter(idx) {
-      currentChapterIndex = idx;
-      document.querySelectorAll('.chapter-item-btn').forEach((btn, i) => {
-        if (i === idx) btn.classList.add('active');
-        else btn.classList.remove('active');
-      });
-      renderCurrentChapter();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function renderCurrentChapter() {
-      if (!currentBook) return;
-      const ch = currentBook.chapters[currentChapterIndex] || currentBook.chapters[0];
-      const pane = document.getElementById('chapterContentArea');
-
-      let sectionsHtml = '';
-      if (ch.sections && ch.sections.length > 0) {
-        sectionsHtml = ch.sections.map(s => {
-          let pointsHtml = '';
-          if (s.keyPoints && s.keyPoints.length > 0) {
-            pointsHtml = `
-              <div class="key-points-box">
-                <div class="key-points-title">📌 জরুরি পয়েন্ট ও মূল ধারণা:</div>
-                <ul>${s.keyPoints.map(p => `<li>${p}</li>`).join('')}</ul>
-              </div>
-            `;
-          }
-          return `
-            <div class="section-block">
-              <h4 class="section-title">【${s.title}】</h4>
-              <div class="section-text">${s.content}</div>
-              ${pointsHtml}
-            </div>
-          `;
-        }).join('');
-      }
-
-      let questionsHtml = '';
-      if (ch.questions && ch.questions.length > 0) {
-        questionsHtml = `
-          <div class="questions-box">
-            <h4>💡 সৃজনশীল ও অনুশীলনীর প্রশ্নোত্তর:</h4>
-            ${ch.questions.map((q, i) => `
-              <div class="question-item">
-                <div class="question-prompt">${i + 1}. ${q.question}</div>
-                <div class="question-ans">উত্তর: ${q.answer || 'সঠিক উত্তর অনুচ্ছেদে দ্রষ্টব্য'}</div>
-              </div>
-            `).join('')}
-          </div>
-        `;
-      }
-
-      pane.innerHTML = `
-        <div class="chapter-badge-strip">
-          <span>${currentBook.title} • অধ্যায় ${ch.chapterNumber || currentChapterIndex + 1}</span>
-          <span style="color:var(--primary); font-weight:800;">অনুমোদিত মূল পাঠ</span>
-        </div>
-        <h3 class="chapter-header-title">${ch.title}</h3>
-        <div class="chapter-summary-card">
-          <strong>সারসংক্ষেপ:</strong> ${ch.summary}
-        </div>
-        ${sectionsHtml}
-        ${questionsHtml}
-      `;
-    }
-
-    function switchReaderMode(mode) {
-      readerCurrentSubMode = mode;
-      const btnText = document.getElementById('btnReaderModeText');
-      const btnPdf = document.getElementById('btnReaderModePdf');
-      const boxText = document.getElementById('readerTextContainer');
-      const boxPdf = document.getElementById('readerPdfContainer');
-
-      if (mode === 'text') {
-        btnText.classList.add('active');
-        btnPdf.classList.remove('active');
-        boxText.style.display = 'grid';
-        boxPdf.style.display = 'none';
-      } else {
-        btnText.classList.remove('active');
-        btnPdf.classList.add('active');
-        boxText.style.display = 'none';
-        boxPdf.style.display = 'block';
-      }
-    }
-
-    function reloadReaderPdfIframe() {
-      const frame = document.getElementById('readerPdfFrame');
-      const current = frame.src;
-      frame.src = '';
-      setTimeout(() => { frame.src = current; }, 150);
-    }
-
-    function closeBookReader() {
-      document.getElementById('view-book-reader').style.display = 'none';
-      document.getElementById('view-books').style.display = 'block';
-      const frame = document.getElementById('readerPdfFrame');
-      if (frame) frame.src = '';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // Switch Main Navigation Tabs
-    function showTab(tab) {
-      ['books', 'calculator', 'formulas', 'notes'].forEach(t => {
-        const el = document.getElementById('view-' + t);
-        if (el) el.style.display = (t === tab) ? 'block' : 'none';
-        const btn = document.getElementById('btn-tab-' + t);
-        if (btn) {
-          if (t === tab) btn.classList.add('active');
-          else btn.classList.remove('active');
-        }
-      });
-
-      document.getElementById('view-book-reader').style.display = 'none';
-
-      if (tab === 'formulas') renderFormulas();
-      if (tab === 'notes') loadNote();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // Calculator Logic
-    let calcVal = '0';
-    let calcOpPending = null;
-    let calcPrev = null;
-
-    function updateCalcScreen() {
-      document.getElementById('calcDisplay').innerText = calcVal;
-    }
-    function calcNum(n) {
-      if (calcVal === '0' && n !== '.') calcVal = n;
-      else calcVal += n;
-      updateCalcScreen();
-    }
-    function calcClear() {
-      calcVal = '0';
-      calcOpPending = null;
-      calcPrev = null;
-      updateCalcScreen();
-    }
-    function calcOp(op) {
-      calcPrev = parseFloat(calcVal);
-      calcOpPending = op;
-      calcVal = '0';
-    }
-    function calcFunc(fn) {
-      let v = parseFloat(calcVal);
-      if (fn === 'sqrt') v = Math.sqrt(v);
-      if (fn === 'sq') v = v * v;
-      if (fn === 'sin') v = Math.sin((v * Math.PI) / 180);
-      if (fn === 'cos') v = Math.cos((v * Math.PI) / 180);
-      if (fn === 'tan') v = Math.tan((v * Math.PI) / 180);
-      calcVal = String(parseFloat(v.toFixed(6)));
-      updateCalcScreen();
-    }
-    function calcEvaluate() {
-      if (!calcOpPending || calcPrev === null) return;
-      const cur = parseFloat(calcVal);
-      let res = 0;
-      if (calcOpPending === '+') res = calcPrev + cur;
-      if (calcOpPending === '-') res = calcPrev - cur;
-      if (calcOpPending === '*') res = calcPrev * cur;
-      if (calcOpPending === '/') res = cur === 0 ? 'Error' : calcPrev / cur;
-      calcVal = String(res);
-      calcOpPending = null;
-      calcPrev = null;
-      updateCalcScreen();
-    }
-
-    // Formulas Bank
-    function renderFormulas() {
-      const container = document.getElementById('formulasContainer');
-      container.innerHTML = '';
-      FORMULAS_DATA.forEach(f => {
-        const item = document.createElement('div');
-        item.className = 'formula-card';
-        item.innerHTML = `
-          <div class="formula-subject">${f.subjectBn || f.subject} • ${f.chapter || ''}</div>
-          <div class="formula-title">${f.title}</div>
-          <div class="formula-math">${f.formula}</div>
-          <div class="formula-desc">${f.description}</div>
-        `;
-        container.appendChild(item);
-      });
-    }
-
-    // Notebook save/load
-    function saveNote() {
-      const title = document.getElementById('noteTitle').value;
-      const text = document.getElementById('noteText').value;
-      localStorage.setItem('mybook_offline_note_title', title);
-      localStorage.setItem('mybook_offline_note_text', text);
-      alert('নোট সফলভাবে ব্রাউজারে সংরক্ষিত হয়েছে!');
-    }
-    function loadNote() {
-      document.getElementById('noteTitle').value = localStorage.getItem('mybook_offline_note_title') || '';
-      document.getElementById('noteText').value = localStorage.getItem('mybook_offline_note_text') || '';
-    }
-    function downloadNote() {
-      const title = document.getElementById('noteTitle').value || 'MyBook_Note';
-      const text = document.getElementById('noteText').value || '';
-      const blob = new Blob([title + '\n\n' + text], { type: 'text/plain;charset=utf-8' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = title + '.txt';
-      a.click();
-    }
-
-    // Initialize
-    window.addEventListener('DOMContentLoaded', () => {
-      renderBooks();
-    });
-  </script>
 </body>
 </html>
