@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>আল আহসান ইসলামিক এআই - Al-Ahsan Islamic AI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Hind Siliguri', sans-serif; background-color: #f8fafc; color: #1e293b; }
+    .font-arabic { font-family: 'Amiri', serif; direction: rtl; }
+    .islamic-pattern { background-color: #f8fafc; background-image: radial-gradient(rgba(16, 185, 129, 0.12) 1.2px, transparent 1.2px); background-size: 28px 28px; }
+  </style>
+</head>
+<body class="islamic-pattern min-h-screen flex flex-col">
+  <!-- Header -->
+  <header class="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-emerald-100 shadow-sm px-3 py-2.5">
+    <div class="max-w-4xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-10 h-10 rounded-2xl bg-emerald-600 flex items-center justify-center text-white font-bold">আ</div>
+        <div>
+          <h1 class="text-base font-bold text-slate-900 leading-tight">আল আহসান</h1>
+          <p class="text-[10px] text-emerald-800 font-semibold bg-emerald-50 px-1.5 rounded-full inline-block">ইসলামিক এআই</p>
+        </div>
+      </div>
+      <button id="apiKeyBtn" class="text-xs text-emerald-800 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-xl">⚡ এআই সংযুক্ত</button>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <main class="flex-1 max-w-3xl w-full mx-auto p-3 flex flex-col">
+    <div id="homeView" class="flex-1 flex flex-col justify-center items-center text-center">
+      <p class="font-arabic text-3xl text-emerald-800 font-bold mb-2">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+      <h2 class="text-2xl font-extrabold text-slate-900 mt-2">আল আহসান ইসলামিক এআই</h2>
+      <p class="text-sm text-slate-600 mt-2">পবিত্র কুরআন ও সহীহ হাদিসের প্রামাণ্য দলিলের আলোকে ইসলামিক জ্ঞান সহকারী</p>
+    </div>
+    <div id="chatFeed" class="hidden flex-1 space-y-4 pb-20"></div>
+  </main>
+
+  <!-- Fixed Input Bar -->
+  <div class="fixed bottom-0 left-0 w-full bg-white p-3 border-t border-emerald-100 shadow-lg">
+    <div class="max-w-3xl mx-auto flex items-center gap-2 bg-emerald-50 rounded-full px-4 py-2">
+      <input id="userInput" type="text" placeholder="প্রশ্ন লিখুন..." class="flex-1 bg-transparent focus:outline-none text-sm" />
+      <button id="sendBtn" class="text-emerald-600 font-bold">পাঠান</button>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('sendBtn').addEventListener('click', handleSend);
+    document.getElementById('userInput').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') handleSend();
+    });
+
+    async function handleSend() {
+      const input = document.getElementById('userInput');
+      const text = input.value.trim();
+      if (!text) return;
+      document.getElementById('homeView').classList.add('hidden');
+      document.getElementById('chatFeed').classList.remove('hidden');
+      document.getElementById('chatFeed').innerHTML += `<div class="bg-emerald-100 p-3 rounded-2xl ml-auto w-fit">${text}</div>`;
+      input.value = '';
+      // API call logic goes here...
+    }
+  </script>
+</body>
+</html>
