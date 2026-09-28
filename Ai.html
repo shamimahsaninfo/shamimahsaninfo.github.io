@@ -3,216 +3,930 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>আল আহসান ইসলামিক এআই</title>
+    <title>My Book AI - আমার বই এআই (পার্সোনাল ডিজিটাল শিক্ষক)</title>
+    <meta name="description" content="বাংলাদেশের প্রথম সম্পূর্ণ NCTB কারিকুলাম ভিত্তিক শিক্ষা AI—যা স্কুল থেকে বিশ্ববিদ্যালয় পর্যন্ত প্রতিটি শিক্ষার্থীর জন্য একটি ব্যক্তিগত ডিজিটাল শিক্ষক হিসেবে কাজ করবে।" />
+    
+    <!-- Tailwind CSS & Google Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons & Alpine.js for interactive reactivity -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
         body {
-            background-color: #f8fafc;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            color: #1e293b;
+            font-family: 'Hind Siliguri', 'Plus Jakarta Sans', sans-serif;
         }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 selection:bg-emerald-100 selection:text-emerald-900 min-h-screen flex flex-col"
+      x-data="bookAiApp()" x-init="initApp()">
 
-        /* Header Theme */
-        header {
-            background: #ffffff;
-            padding: 10px 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid #e2e8f0;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.03);
-        }
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .logo-box {
-            width: 36px;
-            height: 36px;
-            background: #00b09b;
-            border-radius: 8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .logo-box svg {
-            width: 22px;
-            height: 22px;
-            fill: #ffffff;
-        }
-        .brand-title {
-            font-size: 1rem;
-            font-weight: 700;
-            color: #0f172a;
-        }
-        .badge-pill {
-            background: #e6f4ea;
-            color: #137333;
-            font-size: 0.7rem;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-weight: 600;
-            border: 1px solid #ceead6;
-        }
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .icon-btn {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 16px;
-            padding: 5px 10px;
-            font-size: 0.75rem;
-            color: #475569;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            cursor: pointer;
-        }
+    <!-- Premium Educational Header -->
+    <header class="bg-gradient-to-r from-emerald-800 via-emerald-700 to-teal-800 text-white border-b border-emerald-950 shadow-md sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-col sm:flex-row items-center justify-between gap-4">
+            
+            <!-- Logo & Brand -->
+            <div class="flex items-center gap-3">
+                <div class="bg-white text-emerald-700 p-2 rounded-xl shadow-inner flex items-center justify-center border-2 border-emerald-400">
+                    <i data-lucide="book-open-check" class="w-7 h-7 stroke-[2.5]"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-2xl font-black tracking-tight">আমার বই এআই</span>
+                        <span class="bg-red-500 text-white font-bold text-[10px] px-1.5 py-0.5 rounded-full uppercase tracking-wider animate-pulse">NCTB AI</span>
+                    </div>
+                    <p class="text-xs text-emerald-200">বাংলাদেশের ১ম ডিজিটাল পার্সোনাল এআই শিক্ষক 🎓</p>
+                </div>
+            </div>
 
-        /* Main Container */
-        .main-container {
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 850px;
-            width: 100%;
-            margin: 0 auto;
-        }
+            <!-- Google Sign-in and User Panel -->
+            <div class="flex items-center gap-3">
+                <template x-if="user">
+                    <div class="bg-emerald-900/50 hover:bg-emerald-900/70 border border-emerald-600/40 px-3.5 py-1.5 rounded-2xl flex items-center gap-3 transition-all">
+                        <template x-if="user.photoURL">
+                            <img :src="user.photoURL" alt="User" class="w-8 h-8 rounded-full border border-white" />
+                        </template>
+                        <template x-if="!user.photoURL">
+                            <div class="bg-emerald-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm" x-text="user.displayName.charAt(0)"></div>
+                        </template>
+                        <div class="text-left hidden md:block">
+                          <div class="text-xs font-semibold text-white leading-tight" x-text="user.displayName"></div>
+                          <div class="text-[10px] text-emerald-300 leading-none" x-text="user.email"></div>
+                        </div>
+                        <button @click="handleLogout()" title="লগআউট করুন" class="text-emerald-300 hover:text-white transition-colors p-1.5 rounded-lg hover:bg-emerald-800">
+                            <i data-lucide="log-out" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </template>
 
-        /* Welcome Screen Layout */
-        .welcome-screen {
-            text-align: center;
-            margin: auto 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            padding: 10px;
-        }
-        .arabic-bismillah {
-            font-size: 1.7rem;
-            color: #0d9488;
-            font-weight: bold;
-        }
-        .bismillah-sub {
-            font-size: 0.8rem;
-            color: #64748b;
-            margin-bottom: 8px;
-        }
-        .hero-logo-box {
-            width: 70px;
-            height: 70px;
-            background: #00b09b;
-            border-radius: 18px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 8px 16px rgba(0,176,155,0.2);
-            margin-bottom: 5px;
-        }
-        .hero-logo-box svg {
-            width: 38px;
-            height: 38px;
-            fill: #ffffff;
-        }
-        .welcome-screen h2 {
-            font-size: 1.25rem;
-            color: #0f172a;
-            font-weight: 700;
-        }
-        .welcome-screen p {
-            font-size: 0.85rem;
-            color: #475569;
-            max-width: 480px;
-            line-height: 1.5;
-        }
-        .feature-chips {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 6px;
-        }
-        .chip {
-            background: #ffffff;
-            border: 1px solid #cbd5e1;
-            padding: 5px 12px;
-            border-radius: 16px;
-            font-size: 0.75rem;
-            color: #334155;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
+                <template x-if="!user">
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs text-emerald-100 hidden lg:block mr-1">গুগল চ্যাটে শেয়ার করতে:</span>
+                        <button @click="handleLogin()" :disabled="isLoggingIn" class="flex items-center gap-2.5 bg-white text-slate-700 px-4 py-2 rounded-xl text-sm font-semibold transition-all shadow-sm hover:shadow-md hover:bg-slate-50 border border-slate-200 cursor-pointer">
+                            <span x-show="isLoggingIn" class="animate-spin text-emerald-600 mr-1">&#8635;</span>
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="w-4 h-4 inline-block align-middle">
+                                <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
+                                <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path>
+                                <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path>
+                                <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path>
+                            </svg>
+                            <span>গুগল দিয়ে লগইন</span>
+                        </button>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </header>
 
-        /* Chat History */
-        .chat-history {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            display: none; 
-        }
-        .message {
-            max-width: 85%;
-            padding: 12px 16px;
-            border-radius: 14px;
-            line-height: 1.6;
-            font-size: 0.92rem;
-            word-wrap: break-word;
-            white-space: pre-wrap;
-        }
-        .message.user {
-            background-color: #00b09b;
-            color: white;
-            align-self: flex-end;
-            border-bottom-right-radius: 3px;
-        }
-        .message.ai {
-            background-color: #ffffff;
-            color: #1e293b;
-            align-self: flex-start;
-            border-bottom-left-radius: 3px;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
-        }
-        .message.loading {
-            color: #64748b;
-            font-style: italic;
-        }
+    <!-- Main Body Workspace -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Left Sidebar: Level selector, Digital Bookshelf -->
+        <aside class="lg:col-span-4 flex flex-col gap-5">
+            
+            <!-- Section A: Level Selector -->
+            <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
+                <h2 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3 flex items-center gap-2">
+                    <i data-lucide="graduation-cap" class="w-4 h-4 text-emerald-600"></i>
+                    আপনার শিক্ষাগত স্তর সিলেক্ট করুন
+                </h2>
+                <div class="flex flex-col gap-2">
+                    <template x-for="level in levels" :key="level.id">
+                        <button @click="selectLevel(level.id)"
+                                :class="selectedLevelId === level.id ? 'border-emerald-500 bg-emerald-50/60 shadow-sm' : 'border-slate-100 hover:border-slate-200 hover:bg-slate-50/50'"
+                                class="w-full text-left p-3 rounded-xl border transition-all cursor-pointer">
+                            <div class="flex items-center justify-between">
+                                <span :class="selectedLevelId === level.id ? 'text-emerald-800 font-bold' : 'text-slate-700 font-medium'" class="text-sm" x-text="level.name"></span>
+                                <span x-show="selectedLevelId === level.id" class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                            </div>
+                            <span class="text-[11px] text-slate-500 mt-0.5 block" x-text="level.subtitle"></span>
+                        </button>
+                    </template>
+                </div>
+            </div>
 
-        /* Input Footer */
-        .footer-section {
-            background: #f8fafc;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 10px 16px;
+            <!-- Section B: Bookshelf Subjects -->
+            <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm flex-grow">
+                <h2 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-4 flex items-center gap-2">
+                    <i data-lucide="book-marked" class="w-4 h-4 text-emerald-600"></i>
+                    ডিজিটাল বুকশেলফ (বইসমূহ)
+                </h2>
+                
+                <div class="grid grid-cols-1 gap-2.5">
+                    <template x-for="(sub, sIdx) in activeLevelSubjects" :key="sIdx">
+                        <button @click="selectSubject(sub)"
+                                :class="selectedSubject.name === sub.name ? 'border-emerald-600 bg-gradient-to-br from-emerald-600 to-emerald-700 text-white shadow-md scale-[1.02]' : 'border-slate-200/60 bg-slate-50/40 hover:bg-slate-50 hover:border-slate-300 text-slate-700'"
+                                class="w-full flex items-center gap-3 p-3 rounded-xl border text-left transition-all cursor-pointer">
+                            <div :class="selectedSubject.name === sub.name ? 'bg-emerald-500 text-white' : 'bg-white text-emerald-600 border border-slate-100 shadow-sm'" class="p-2 rounded-lg flex items-center justify-center">
+                                <i data-lucide="book-open" class="w-5 h-5"></i>
+                            </div>
+                            <div class="flex-grow min-w-0">
+                                <h3 class="font-bold text-sm truncate leading-tight" x-text="sub.name"></h3>
+                                <p :class="selectedSubject.name === sub.name ? 'text-emerald-100' : 'text-slate-400'" class="text-[10px]" x-text="'NCTB • ' + sub.englishName"></p>
+                            </div>
+                            <i data-lucide="chevron-right" class="w-4 h-4 opacity-75"></i>
+                        </button>
+                    </template>
+                </div>
+
+                <div class="mt-5 p-3 rounded-xl bg-emerald-50/50 border border-emerald-100 flex items-start gap-2.5">
+                    <i data-lucide="info" class="w-4 h-4 text-emerald-700 shrink-0 mt-0.5"></i>
+                    <div class="text-[11px] text-emerald-900 leading-relaxed">
+                        <strong>শিক্ষার্থী বন্ধু:</strong> যেকোনো বই সিলেক্ট করে ডানপাশে দেওয়া কুইক টপিকগুলোর যেকোনো একটিতে ক্লিক করে সরাসরি পড়াশোনা শুরু করতে পারো!
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Right Side: Learning Workspace and Interactive Output -->
+        <section class="lg:col-span-8 flex flex-col gap-6">
+
+            <!-- Suggested Topics -->
+            <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+                <div class="flex items-center justify-between mb-3.5">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="sparkles" class="w-5 h-5 text-amber-500"></i>
+                        <h2 class="text-base font-bold text-slate-800">
+                            <span class="text-emerald-700" x-text="'[' + selectedSubject.name + ']'"></span> বইয়ের কুইক স্টাডি টপিকস
+                        </h2>
+                    </div>
+                    <span class="text-xs bg-slate-100 text-slate-500 px-2.5 py-1 rounded-full border border-slate-200" x-text="selectedSubject.topics.length + 'টি টপিক'"></span>
+                </div>
+
+                <p class="text-xs text-slate-500 mb-4">
+                    নিচের যেকোনো একটি সাজেস্টেড টপিক সিলেক্ট করে এআই শিক্ষকের সাথে ইন্টারেক্টিভ লার্নিং সেশন শুরু করো:
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <template x-for="(topic, tIdx) in selectedSubject.topics" :key="tIdx">
+                        <button @click="selectTopicAndQuery(topic)"
+                                :class="selectedTopic && selectedTopic.title === topic.title ? 'border-emerald-600 bg-emerald-50/50 shadow-sm ring-1 ring-emerald-500' : 'border-slate-200 hover:border-emerald-400 hover:bg-slate-50/30'"
+                                class="p-3 rounded-xl border text-left transition-all flex flex-col justify-between h-28 cursor-pointer">
+                            <div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-[10px] font-bold tracking-wider text-emerald-700 bg-emerald-100/60 px-1.5 py-0.5 rounded uppercase" x-text="'টপিক ' + (tIdx + 1)"></span>
+                                    <i x-show="selectedTopic && selectedTopic.title === topic.title" data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i>
+                                </div>
+                                <h4 class="font-bold text-xs text-slate-800 mt-2 line-clamp-2 leading-snug" x-text="topic.title"></h4>
+                            </div>
+                            <span class="text-[10px] text-slate-400 font-medium truncate" x-text="topic.englishTitle"></span>
+                        </button>
+                    </template>
+                </div>
+            </div>
+
+            <!-- Custom learning controls -->
+            <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+                <h2 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-4 flex items-center gap-2">
+                    <i data-lucide="brain" class="w-4 h-4 text-emerald-600"></i>
+                    আপনার লার্নিং মোড নির্বাচন করুন
+                </h2>
+
+                <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 mb-5">
+                    <template x-for="mode in modes" :key="mode.id">
+                        <button @click="selectMode(mode.id)"
+                                :class="tutorMode === mode.id ? 'border-emerald-600 bg-emerald-600 text-white shadow-md scale-[1.03]' : 'border-slate-100 hover:bg-slate-50 text-slate-600'"
+                                class="p-3 rounded-xl border text-center transition-all flex flex-col items-center justify-center gap-1.5 cursor-pointer">
+                            <i :data-lucide="mode.icon" class="w-5 h-5"></i>
+                            <span class="font-bold text-[11px] leading-tight block" x-text="mode.label"></span>
+                        </button>
+                    </template>
+                </div>
+
+                <!-- Query form -->
+                <form @submit.prevent="handleTutorQuery()" class="flex gap-2">
+                    <div class="relative flex-grow">
+                        <input type="text" x-model="customQuestion"
+                               placeholder="এআই শিক্ষকের কাছে যেকোনো কাস্টম প্রশ্ন টাইপ করুন (যেমন: 'লব ও হরের চমৎকার বাস্তব উদাহরণ দাও...')"
+                               class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-4 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 focus:bg-white transition-all" />
+                        <button type="button" @click="customQuestion = ''" class="absolute right-3 top-3.5 text-slate-400 hover:text-slate-600 text-xs">মুছে ফেলুন</button>
+                    </div>
+                    <button type="submit" :disabled="isLoading" class="bg-emerald-700 hover:bg-emerald-800 text-white px-5 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-sm shrink-0">
+                        <span x-show="isLoading" class="animate-spin">&#8635;</span>
+                        <i x-show="!isLoading" data-lucide="send" class="w-4 h-4"></i>
+                        <span>জিজ্ঞেস করুন</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Workspace output display -->
+            <div class="bg-white border border-slate-200 rounded-2xl shadow-sm flex flex-col overflow-hidden min-h-[400px]">
+                
+                <div class="bg-slate-50/80 border-b border-slate-200/60 px-5 py-3.5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                    <div class="flex items-center gap-2">
+                        <div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+                        <h3 class="font-bold text-sm text-slate-700">
+                            ডিজিটাল টিচিং ইন্টারফেস: <span x-text="selectedTopic ? selectedTopic.title : 'কাস্টম প্রশ্ন সেশন'"></span>
+                        </h3>
+                    </div>
+
+                    <!-- Sync with Google Chat -->
+                    <template x-if="user">
+                        <div class="flex items-center gap-2 w-full sm:w-auto">
+                            <div class="flex items-center gap-1.5 bg-slate-100 rounded-lg p-1 border border-slate-200">
+                                <span class="text-[10px] text-slate-500 font-bold px-1.5">চ্যাট স্পেস সিলেক্ট করুন:</span>
+                                <select x-model="selectedSpaceName" @change="spaceChanged()" class="bg-white text-[11px] font-semibold text-slate-700 py-0.5 px-1.5 rounded focus:outline-none">
+                                    <template x-for="space in chatSpaces" :key="space.name">
+                                        <option :value="space.name" x-text="space.displayName"></option>
+                                    </template>
+                                    <template x-if="chatSpaces.length === 0">
+                                        <option value="">কোনো স্পেস পাওয়া যায়নি</option>
+                                    </template>
+                                </select>
+                            </div>
+
+                            <button @click="initiateShare()" :disabled="isSharing || (!aiResult && quizQuestions.length === 0)" class="flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 disabled:bg-slate-300 disabled:text-slate-500 text-white text-xs font-bold py-1.5 px-3 rounded-lg shadow-sm transition-all cursor-pointer">
+                                <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
+                                <span>গুগল চ্যাটে শেয়ার</span>
+                            </button>
+                        </div>
+                    </template>
+                </div>
+
+                <!-- Error panel -->
+                <div x-show="errorMessage" class="m-5 p-4 rounded-xl bg-red-50 border border-red-200 flex items-start gap-3">
+                    <i data-lucide="alert-circle" class="w-5 h-5 text-red-600 shrink-0 mt-0.5"></i>
+                    <div class="text-sm text-red-800 font-medium" x-text="errorMessage"></div>
+                </div>
+
+                <!-- Success Banner -->
+                <div x-show="shareSuccess" class="m-5 p-4 rounded-xl bg-emerald-50 border border-emerald-200 flex items-start gap-3 animate-bounce">
+                    <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-600 shrink-0 mt-0.5"></i>
+                    <div class="text-sm text-emerald-800 font-medium" x-text="shareSuccess"></div>
+                </div>
+
+                <!-- Output contents -->
+                <div class="p-6 flex-grow flex flex-col justify-between">
+                    
+                    <!-- Loading state -->
+                    <div x-show="isLoading" class="flex-grow flex flex-col items-center justify-center py-20 text-center">
+                        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-700 mb-4"></div>
+                        <p class="text-base font-bold text-slate-700">আমার বই এআই আপনার ডিজিটাল শিক্ষক হিসেবে ভাবছে...</p>
+                        <p class="text-xs text-slate-400 mt-1">NCTB কারিকুলাম ও সঠিক বৈজ্ঞানিক ব্যাখ্যার সাথে মিলিয়ে নেওয়া হচ্ছে।</p>
+                    </div>
+
+                    <!-- Main Dynamic States -->
+                    <div x-show="!isLoading" class="flex-grow">
+                        
+                        <!-- Quiz display -->
+                        <template x-if="quizQuestions.length > 0">
+                            <div>
+                                <div class="bg-emerald-50/50 p-4 rounded-2xl border border-emerald-100 mb-6 flex items-start gap-3">
+                                    <i data-lucide="award" class="w-6 h-6 text-emerald-700 mt-0.5 shrink-0"></i>
+                                    <div>
+                                        <h4 class="font-bold text-sm text-emerald-900">ইন্টারেক্টিভ সেলফ-অ্যাসেসমেন্ট কুইজ</h4>
+                                        <p class="text-xs text-emerald-700">টপিকটি আপনি কতটুকু বুঝতে পেরেছেন তা যাচাই করতে নিচের প্রশ্নগুলোর উত্তর দিন:</p>
+                                    </div>
+                                </div>
+
+                                <div class="space-y-6">
+                                    <template x-for="(q, qIdx) in quizQuestions" :key="qIdx">
+                                        <div class="border border-slate-200/80 rounded-2xl p-4 bg-slate-50/20 shadow-inner">
+                                            <h5 class="font-bold text-sm text-slate-800 mb-3 flex items-start gap-2">
+                                                <span class="bg-emerald-100 text-emerald-800 w-5 h-5 rounded-full flex items-center justify-center text-xs shrink-0 mt-0.5" x-text="qIdx + 1"></span>
+                                                <span x-text="q.question"></span>
+                                            </h5>
+
+                                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                                <template x-for="(opt, optIdx) in q.options" :key="optIdx">
+                                                    <button @click="selectAnswer(qIdx, optIdx)"
+                                                            :disabled="quizFinished"
+                                                            :class="getQuizBtnClass(q, qIdx, optIdx)"
+                                                            class="p-3 rounded-xl text-left border text-xs transition-all flex items-center justify-between cursor-pointer">
+                                                        <span x-text="opt"></span>
+                                                    </button>
+                                                </template>
+                                            </div>
+
+                                            <!-- Explanation -->
+                                            <div x-show="quizFinished" :class="userAnswers[qIdx] === q.correctIndex ? 'bg-emerald-50/60 border-emerald-100 text-emerald-900' : 'bg-red-50/60 border-red-100 text-red-900'" class="mt-3 p-3 rounded-xl border text-xs leading-relaxed">
+                                                <strong class="block font-bold mb-1" x-text="userAnswers[qIdx] === q.correctIndex ? '✓ চমৎকার, সঠিক উত্তর!' : '✗ ভুল উত্তর! সঠিক উত্তর ছিল: ' + q.options[q.correctIndex]"></strong>
+                                                <span class="text-slate-600" x-text="q.explanation"></span>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </div>
+
+                                <!-- Submit / Score details -->
+                                <div class="mt-8 pt-4 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+                                    <button x-show="!quizFinished" @click="finishQuiz()" :disabled="Object.keys(userAnswers).length < quizQuestions.length" class="w-full sm:w-auto bg-emerald-700 hover:bg-emerald-800 disabled:bg-slate-200 disabled:text-slate-400 text-white px-8 py-3 rounded-xl font-bold text-sm transition-all shadow-sm cursor-pointer">
+                                        কুইজ সাবমিট করুন (<span x-text="Object.keys(userAnswers).length"></span>/4)
+                                    </button>
+                                    
+                                    <div x-show="quizFinished" class="w-full flex flex-col sm:flex-row items-center justify-between gap-4 bg-emerald-50/30 p-4 rounded-2xl border border-emerald-100">
+                                        <div class="flex items-center gap-3">
+                                            <div class="bg-emerald-600 text-white font-black text-xl w-12 h-12 rounded-2xl flex items-center justify-center shadow-md" x-text="quizScore + '/4'"></div>
+                                            <div>
+                                                <h5 class="font-bold text-sm text-slate-800">আপনার স্কোর কার্ড!</h5>
+                                                <p class="text-xs text-slate-500" x-text="quizScore === 4 ? 'অসাধারণ! আপনি প্রতিটি বিষয় অত্যন্ত সুন্দরভাবে রপ্ত করেছেন।' : 'চমৎকার চেষ্টা! ভুল হওয়া প্রশ্নগুলোর ব্যাখ্যা পড়ে আবার প্র্যাকটিস করুন।'"></p>
+                                            </div>
+                                        </div>
+                                        <button @click="resetQuiz()" class="flex items-center gap-2 bg-white text-emerald-700 border border-emerald-200 px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-sm hover:shadow-md cursor-pointer">
+                                            <span>আবার শুরু করুন</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+
+                        <!-- Planner list check layout -->
+                        <template x-if="tutorMode === 'planner' && aiResult">
+                            <div>
+                                <div class="bg-cyan-50/50 border border-cyan-100 rounded-2xl p-4 flex items-start gap-3 mb-6">
+                                    <i data-lucide="calendar" class="w-6 h-6 text-cyan-700 shrink-0 mt-0.5"></i>
+                                    <div>
+                                        <h4 class="font-bold text-sm text-cyan-950">ডেইলি স্টাডি চেকলিস্ট</h4>
+                                        <p class="text-xs text-cyan-800">আজকের লার্নিং টার্গেট সম্পূর্ণ করতে কাজগুলো শেষ করে মার্ক করুন:</p>
+                                    </div>
+                                </div>
+
+                                <form @submit.prevent="addPlannerTask()" class="flex gap-2 mb-6">
+                                    <input type="text" x-model="newTaskText" placeholder="নতুন নিজস্ব কোনো কাজ যোগ করুন (যেমন: 'স্যারকে হোমওয়ার্ক জমা দেওয়া')" class="flex-grow bg-slate-50 border border-slate-200 rounded-xl px-4 py-2 text-xs focus:outline-none focus:ring-1 focus:ring-emerald-500" />
+                                    <button type="submit" class="bg-cyan-700 hover:bg-cyan-800 text-white px-4 rounded-xl text-xs font-bold flex items-center gap-1 cursor-pointer shrink-0">
+                                        <span>যোগ করুন</span>
+                                    </button>
+                                </form>
+
+                                <div class="space-y-2">
+                                    <template x-for="task in plannerTasks" :key="task.id">
+                                        <div :class="task.done ? 'bg-slate-50 border-slate-200/60 line-through text-slate-400' : 'bg-white border-slate-150 text-slate-700 shadow-sm'" class="flex items-center justify-between p-3.5 rounded-xl border transition-all">
+                                            <div @click="toggleTask(task.id)" class="flex items-center gap-3 flex-grow cursor-pointer">
+                                                <div :class="task.done ? 'bg-emerald-600 border-emerald-600 text-white' : 'border-slate-300 bg-white'" class="w-5 h-5 rounded-md flex items-center justify-center border">
+                                                    <span x-show="task.done" class="text-xs">&#10003;</span>
+                                                </div>
+                                                <span class="text-xs font-medium leading-relaxed" x-text="task.text"></span>
+                                            </div>
+                                            <button @click="removeTask(task.id)" class="text-slate-300 hover:text-red-500 p-1">
+                                                <i data-lucide="x-circle" class="w-4 h-4"></i>
+                                            </button>
+                                        </div>
+                                    </template>
+                                </div>
+
+                                <div class="mt-8 pt-6 border-t border-slate-200/80">
+                                    <h5 class="font-bold text-xs text-slate-500 uppercase tracking-wider mb-3">এআই রুটিন মডিফায়ার ব্যাখ্যা</h5>
+                                    <div class="text-xs leading-relaxed text-slate-600 bg-slate-50 p-4 rounded-xl border" x-html="formattedAiResult"></div>
+                                </div>
+                            </div>
+                        </template>
+
+                        <!-- Standard concept explanation / markdown display -->
+                        <template x-if="aiResult && quizQuestions.length === 0 && tutorMode !== 'planner'">
+                            <div class="prose prose-slate max-w-none text-sm text-slate-700 leading-relaxed" x-html="formattedAiResult"></div>
+                        </template>
+
+                        <!-- Welcome Screen -->
+                        <template x-if="!aiResult && quizQuestions.length === 0">
+                            <div class="text-center py-20 flex-grow flex flex-col items-center justify-center">
+                                <div class="bg-emerald-50 text-emerald-700 w-16 h-16 rounded-full flex items-center justify-center border-2 border-emerald-200 mb-4 shadow-sm">
+                                    <i data-lucide="book-open" class="w-8 h-8 stroke-[1.8]"></i>
+                                </div>
+                                <h4 class="font-extrabold text-lg text-emerald-950 mb-1.5">আমার বই এআই ক্লাসরুমে স্বাগতম!</h4>
+                                <p class="text-xs text-slate-500 max-w-md mx-auto leading-relaxed">
+                                    বাম পাশের মেনু থেকে আপনার ক্লাসের স্তর নির্বাচন করুন, পছন্দসই বইটি বুকশেলফ থেকে বের করুন এবং যেকোনো সাজেস্টেড টপিকে ক্লিক করে পড়া শুরু করুন।
+                                </p>
+                                
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-lg mt-8 text-left">
+                                    <div class="bg-white border border-slate-200 p-2.5 rounded-xl shadow-sm">
+                                        <h6 class="font-bold text-[11px] text-emerald-800 leading-none">NCTB কারিকুলাম</h6>
+                                        <span class="text-[9px] text-slate-400 block mt-1">১ম থেকে ১২শ শ্রেণী</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-2.5 rounded-xl shadow-sm">
+                                        <h6 class="font-bold text-[11px] text-emerald-800 leading-none">বাস্তব উদাহরণ</h6>
+                                        <span class="text-[9px] text-slate-400 block mt-1">সহজ দেশী এনালজি</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-2.5 rounded-xl shadow-sm">
+                                        <h6 class="font-bold text-[11px] text-emerald-800 leading-none">এমসিকিউ কুইজ</h6>
+                                        <span class="text-[9px] text-slate-400 block mt-1">সরাসরি প্র্যাকটিস</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-2.5 rounded-xl shadow-sm">
+                                        <h6 class="font-bold text-[11px] text-emerald-800 leading-none">গুগল চ্যাট সিঙ্ক</h6>
+                                        <span class="text-[9px] text-slate-400 block mt-1">সহজে গ্রুপ স্টাডি</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-850 mt-12 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+                <div class="flex items-center gap-2 text-white font-bold text-sm mb-1">
+                    <i data-lucide="book-open-check" class="w-4 h-4 text-emerald-500"></i>
+                    <span>আমার বই এআই - My Book AI</span>
+                </div>
+                <p>বাংলাদেশের শিক্ষার্থীদের পড়াশোনা আরও সহজ, আধুনিক ও আনন্দময় করতে প্রথম এআই উদ্যোগ।</p>
+            </div>
+            <div class="text-slate-500 text-[10px] text-center sm:text-right">
+                <p>© 2026 My Book AI. সর্বস্বত্ব সংরক্ষিত।</p>
+                <p class="mt-1 text-emerald-500/70">Powered by Google Gemini & Express Server</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CONFIRMATION MODAL FOR GOOGLE CHAT SHARE (Access mutative Workspace APIs safely) -->
+    <div x-show="shareConfirmOpen" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center z-50 p-4" x-transition>
+        <div class="bg-white rounded-3xl border border-slate-200 shadow-2xl max-w-lg w-full overflow-hidden">
+            
+            <div class="bg-gradient-to-r from-emerald-800 to-emerald-700 text-white px-6 py-4 flex items-center gap-3">
+                <div class="bg-white/10 p-1.5 rounded-lg text-emerald-100">
+                    <i data-lucide="share-2" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <h4 class="font-extrabold text-sm leading-tight">গুগল চ্যাটে শেয়ার করার নিশ্চয়তা</h4>
+                    <p class="text-[10px] text-emerald-200">আপনার ব্যক্তিগত পড়াশোনার ডাটা সিলেক্টেড স্পেসে পাঠানো হচ্ছে</p>
+                </div>
+            </div>
+
+            <div class="p-6 space-y-4">
+                <div class="flex items-start gap-3 bg-amber-50 p-3 rounded-xl border border-amber-200 text-amber-900 text-xs">
+                    <i data-lucide="alert-circle" class="w-5 h-5 shrink-0 text-amber-700 mt-0.5"></i>
+                    <div>
+                        <strong>সতর্কতা:</strong> আপনি কি নিশ্চিত যে আপনি নিচের সম্পূর্ণ পড়াশোনার রিপোর্টটি গুগল চ্যাট স্পেস <span class="font-bold text-emerald-800" x-text="'&ldquo;' + (selectedSpace ? selectedSpace.displayName : '') + '&rdquo;'"></span>-এ পোস্ট করতে চান?
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[10px] uppercase font-bold text-slate-400 tracking-wider mb-1.5">বার্তা প্রিভিউ:</label>
+                    <textarea readonly x-text="messageToShare" class="w-full bg-slate-50 border border-slate-200 rounded-2xl p-4 font-mono text-[10.5px] text-slate-700 leading-relaxed focus:outline-none h-48 select-all shadow-inner"></textarea>
+                </div>
+            </div>
+
+            <div class="bg-slate-50 px-6 py-4 border-t border-slate-200 flex items-center justify-end gap-3">
+                <button @click="shareConfirmOpen = false" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-500 hover:text-slate-700 hover:bg-slate-100 transition-all cursor-pointer">
+                    বাতিল করুন
+                </button>
+                <button @click="confirmShare()" class="bg-emerald-700 hover:bg-emerald-800 text-white px-5 py-2 rounded-xl text-xs font-bold shadow-sm transition-all cursor-pointer flex items-center gap-1.5">
+                    <span>হ্যাঁ, শেয়ার করুন</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK Imports via Module -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
+        import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+
+        // Fetch config and set up firebase
+        window.firebaseLogin = async function() {
+            try {
+                const configRes = await fetch('/firebase-applet-config.json');
+                const firebaseConfig = await configRes.json();
+                const app = initializeApp(firebaseConfig);
+                const auth = getAuth(app);
+                const provider = new GoogleAuthProvider();
+                provider.addScope('https://www.googleapis.com/auth/chat.spaces.readonly');
+                provider.addScope('https://www.googleapis.com/auth/chat.messages.create');
+                
+                const result = await signInWithPopup(auth, provider);
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                return {
+                    user: result.user,
+                    token: credential.accessToken
+                };
+            } catch(e) {
+                console.error(e);
+                throw e;
+            }
+        };
+
+        window.firebaseSignOut = async function() {
+            try {
+                const configRes = await fetch('/firebase-applet-config.json');
+                const firebaseConfig = await configRes.json();
+                const app = initializeApp(firebaseConfig);
+                const auth = getAuth(app);
+                await auth.signOut();
+            } catch(e) {
+                console.error(e);
+            }
+        };
+    </script>
+
+    <!-- App State and Interactive Logic -->
+    <script>
+        function bookAiApp() {
+            return {
+                levels: [],
+                activeLevelSubjects: [],
+                selectedLevelId: 'high_school',
+                selectedSubject: null,
+                selectedTopic: null,
+                customQuestion: '',
+                tutorMode: 'explain',
+                isLoading: false,
+                aiResult: '',
+                formattedAiResult: '',
+                errorMessage: '',
+                quizQuestions: [],
+                userAnswers: {},
+                quizScore: 0,
+                quizFinished: false,
+                user: null,
+                token: null,
+                chatSpaces: [],
+                selectedSpace: null,
+                selectedSpaceName: '',
+                isSharing: false,
+                shareSuccess: '',
+                shareConfirmOpen: false,
+                messageToShare: '',
+                newTaskText: '',
+                isLoggingIn: false,
+                plannerTasks: [
+                    { id: '1', text: 'আজকের নির্ধারিত টপিক রিডিং পড়া', done: false },
+                    { id: '2', text: '২টি গুরুত্বপূর্ণ গাণিতিক সমস্যার সমাধান করা', done: false },
+                    { id: '3', text: 'অধ্যায়ের ওপর একটি সেলফ-অ্যাসেসমেন্ট কুইজ দেওয়া', done: false },
+                    { id: '4', text: 'গুরুত্বপূর্ণ সূত্র ও সংজ্ঞাগুলো খাতায় নোট করা', done: false }
+                ],
+                modes: [
+                    { id: 'explain', label: 'ধারণা বুঝুন', icon: 'sparkles' },
+                    { id: 'summary', label: 'নোট ও সারাংশ', icon: 'file-text' },
+                    { id: 'quiz', label: 'এমসিকিউ কুইজ', icon: 'award' },
+                    { id: 'problem_solve', label: 'ধাপে ধাপে সমাধান', icon: 'calculator' },
+                    { id: 'planner', label: '데일리 স্টাডি প্ল্যান', icon: 'calendar' }
+                ],
+
+                async initApp() {
+                    // Seeded syllabus levels
+                    this.levels = [
+                        {
+                            id: 'primary',
+                            name: 'প্রাথমিক বিদ্যালয় (শ্রেণী ১-৫)',
+                            subtitle: 'সহজ ভাষায় খেলার ছলে শেখা ও রঙিন উদাহরণ',
+                            subjects: [
+                                {
+                                    name: 'আমার বাংলা বই',
+                                    englishName: 'Bangla',
+                                    topics: [
+                                        { title: 'আমাদের গ্রাম কবিতা', englishTitle: 'Our Village Poem', prompt: 'নকশীকাজ ও প্রাকৃতিক বৈচিত্র্যের ওপর ভিত্তি করে "আমাদের গ্রাম" কবিতার ভাবার্থ এবং কবি বন্দে আলী মিয়ার লেখনীর সহজ ব্যাখ্যা দাও।' },
+                                        { title: 'ভাষা শহীদদের কথা', englishTitle: 'Language Martyrs', prompt: '১৯৫২ সালের ২১শে ফেব্রুয়ারির ভাষা আন্দোলনের প্রেক্ষাপট এবং সালাম, বরকত, রফিক ও জব্বারের আত্মত্যাগের ইতিহাস ছোট বাচ্চাদের উপযোগী করে গল্প আকারে বর্ণনা করো।' },
+                                        { title: 'যুক্তবর্ণের সহজ নিয়ম', englishTitle: 'Conjunction Letters', prompt: 'বাংলা ভাষার প্রধান কয়েকটি যুক্তবর্ণ (যেমন: ক্ষ, জ্ঞ, ষ্ণ, হ্ম) ভেঙে উচ্চারণসহ সহজে শিখিয়ে দাও।' }
+                                    ]
+                                },
+                                {
+                                    name: 'প্রাথমিক গণিত',
+                                    englishName: 'Mathematics',
+                                    topics: [
+                                        { title: 'ঐকিক নিয়মের ধারণা', englishTitle: 'Unitary Method', prompt: '৫টি খাতার দাম ১০০ টাকা হলে ৩টি খাতার দাম কত? এই ঐকিক নিয়মের অংকটি বাস্তব জীবনের উদাহরণ দিয়ে অত্যন্ত সহজে ধাপে ধাপে বুঝিয়ে দাও।' },
+                                        { title: 'ভগ্নাংশ ও লব-হর', englishTitle: 'Fractions', prompt: 'একটি আপেল ৪ ভাগ করে ১ ভাগ নেওয়ার গল্প দিয়ে ভগ্নাংশ, লব এবং হরের ধারণা ছবি আঁকার মতো করে পরিষ্কার করো।' },
+                                        { title: 'গুণ ও ভাগের সম্পর্ক', englishTitle: 'Multiplication & Division', prompt: 'গুণ ও ভাগের মধ্যকার বিপরীত সম্পর্ক কীভাবে কাজ করে তা ১০টি মার্বেল ব্যবহার করে খেলার ছলে বুঝিয়ে বলো।' }
+                                    ]
+                                },
+                                {
+                                    name: 'প্রাথমিক বিজ্ঞান',
+                                    englishName: 'Science',
+                                    topics: [
+                                        { title: 'সুস্থ জীবনের জন্য খাদ্য', englishTitle: 'Food for Healthy Life', prompt: 'সুষম খাদ্য কী? ফলমূল ও শাকসবজি খাওয়ার উপকারিতা এবং জাঙ্ক ফুডের অপকারিতা শিশুদের উপযোগী করে বুঝিয়ে বলো।' },
+                                        { title: 'পরিবেশ দূষণ ও প্রতিকার', englishTitle: 'Environmental Pollution', prompt: 'আমাদের চারপাশের পানি, বায়ু ও শব্দ কীভাবে দূষিত হচ্ছে এবং প্লাস্টিক বর্জন করে কীভাবে আমরা পরিবেশ রক্ষা করতে পারি তা সহজ ভাষায় বর্ণনা করো।' },
+                                        { title: 'উদ্ভিদ ও প্রাণীর পার্থক্য', englishTitle: 'Plants vs Animals', prompt: 'উদ্ভিদ নিজের খাদ্য নিজে তৈরি করতে পারে কিন্তু প্রাণী পারে না কেন? সালোকসংশ্লেষণ প্রক্রিয়াটি কঠিন কোনো বৈজ্ঞানিক শব্দ ছাড়াই সহজ করে বোঝাও।' }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            id: 'high_school',
+                            name: 'মাধ্যমিক ও উচ্চ মাধ্যমিক (শ্রেণী ৬-১২)',
+                            subtitle: 'NCTB কারিকুলাম ভিত্তিক গভীর বিশ্লেষণ ও পরীক্ষার প্রস্তুতি',
+                            subjects: [
+                                {
+                                    name: 'পদার্থবিজ্ঞান',
+                                    englishName: 'Physics',
+                                    topics: [
+                                        { title: 'নিউটনের গতির সূত্রসমূহ', englishTitle: "Newton's Laws", prompt: 'নিউটনের গতির তিনটি সূত্র বাংলাদেশের চলমান রিকশা বা বাসের বাস্তব উদাহরণ ও গাণিতিক সমীকরণসহ গভীর বিশ্লেষণ করো।' },
+                                        { title: 'কাজ, ক্ষমতা ও শক্তি', englishTitle: 'Work, Power, Energy', prompt: 'কাজ এবং শক্তির মধ্যকার সম্পর্ক কী? গতিশক্তি ও বিভব শক্তির বাস্তব উদাহরণ এবং শক্তির নিত্যতা সূত্রটি ব্যাখ্যা করো।' },
+                                        { title: 'শব্দ ও তরঙ্গ', englishTitle: 'Sound and Waves', prompt: 'শব্দ কীভাবে এক স্থান থেকে অন্য স্থানে তরঙ্গের মাধ্যমে ভ্রমণ করে? কম্পাঙ্ক, তরঙ্গদৈর্ঘ্য ও প্রতিধ্বনির চমৎকার ব্যাখ্যা দাও।' }
+                                    ]
+                                },
+                                {
+                                    name: 'রসায়ন',
+                                    englishName: 'Chemistry',
+                                    topics: [
+                                        { title: 'পর্যায় সারণির গোপন রহস্য', englishTitle: 'Periodic Table', prompt: 'পর্যায় সারণি মনে রাখার সহজ কৌশল এবং যোজনী, পারমাণবিক সংখ্যা ও ইলেকট্রন বিন্যাসের মধ্যকার সম্পর্ক পানির মতো সহজ করে ব্যাখ্যা করো।' },
+                                        { title: 'রাসায়নিক বন্ধন', englishTitle: 'Chemical Bonding', prompt: 'আয়নিক ও সমযোজী বন্ধন কীভাবে গঠিত হয়? সোডিয়াম ক্লোরাইড (লবণ) ও পানির অণু গঠনের উদাহরণ দিয়ে বুঝিয়ে দাও।' },
+                                        { title: 'জৈব রসায়ন (Organic Chemistry)', englishTitle: 'Organic Chemistry', prompt: 'হাইড্রোকার্বন কী? অ্যালকেন, অ্যালকিন ও অ্যালকাইন চেনার সহজ উপায় এবং তাদের বিক্রিয়া সহজে মনে রাখার কৌশল কী?' }
+                                    ]
+                                },
+                                {
+                                    name: 'তথ্য ও যোগাযোগ প্রযুক্তি (ICT)',
+                                    englishName: 'ICT',
+                                    topics: [
+                                        { title: 'কম্পিউটার নেটওয়ার্কিং', englishTitle: 'Computer Networks', prompt: 'LAN, WAN, MAN এবং ওয়াইফাই, ব্লুটুথ কীভাবে কাজ করে? বাস, স্টার ও মেশ টপোলজির বাস্তব চিত্রসহ পার্থক্য বুঝিয়ে দাও।' },
+                                        { title: 'ডিজিটাল নিরাপত্তা ও সাইবার ক্রাইম', englishTitle: 'Cyber Security', prompt: 'অনলাইনে পাসওয়ার্ড হ্যাকিং, ফিশিং লিংক চেনার উপায় এবং সামাজিক যোগাযোগ মাধ্যমে নিরাপদে থাকার ৫টি সোনালী নিয়ম কী কী?' },
+                                        { title: 'HTML ও ওয়েব ডিজাইন', englishTitle: 'HTML & Web Design', prompt: 'এইচটিএমএল-এর মূল স্ট্রাকচার, হেডিং, প্যারাগ্রাফ ও ইমেজ ট্যাগ এবং একটি সুন্দর টেবিল তৈরির কোড সহজে ব্যাখ্যা করো।' }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            id: 'university',
+                            name: 'বিশ্ববিদ্যালয় ভর্তি ও উচ্চ শিক্ষা',
+                            subtitle: 'উন্নত সমস্যা সমাধান, গবেষণা ধারণা ও ক্যারিয়ার গাইড',
+                            subjects: [
+                                {
+                                    name: 'কম্পিউটার বিজ্ঞান (CSE)',
+                                    englishName: 'Computer Science',
+                                    topics: [
+                                        { title: 'ডাটা স্ট্রাকচার ও অ্যালগরিদম', englishTitle: 'Data Structures & Algorithms', prompt: 'টাইম কমপ্লেক্সিটি (Big O Notation) এবং বাবল সর্ট ও কুইক সর্টের কার্যপ্রণালী কোডসহ বিস্তারিত আলোচনা করো।' },
+                                        { title: 'কৃত্রিম বুদ্ধিমত্তা ও মেশিন লার্নিং', englishTitle: 'Artificial Intelligence & ML', prompt: 'সুপারভাইজড ও আনসুপারভাইজড লার্নিংয়ের পার্থক্য কী? নিউরাল নেটওয়ার্ক কীভাবে মানুষের মস্তিষ্কের মতো চিন্তা করে তা সহজ ভাষায় বোঝাও।' },
+                                        { title: 'অবজেক্ট ওরিয়েন্টেড প্রোগ্রামিং (OOP)', englishTitle: 'OOP Concepts', prompt: 'OOP এর ৪টি মূল স্তম্ভ: ইনক্যাপসুলেশন, ইনহেরিটেন্স, পলিমরফিজম ও অ্যাবস্ট্রাকশন বাস্তব জীবনের এনালজি দিয়ে সি++ বা জাভা কোডসহ বুঝিয়ে দাও।' }
+                                    ]
+                                },
+                                {
+                                    name: 'উচ্চতর গণিত ও পদার্থবিদ্যা',
+                                    englishName: 'Higher Math & Physics',
+                                    topics: [
+                                        { title: 'ক্যালকুলাস - অন্তরীকরণ ও সমাকলন', englishTitle: 'Calculus Principles', prompt: 'অন্তরীকরণ (Differentiation) এবং সমাকলন (Integration) বাস্তব জীবনে কোথায় ব্যবহৃত হয়? তাদের জ্যামিতিক তাৎপর্য বিস্তারিত বুঝিয়ে বলো।' },
+                                        { title: 'আইনস্টাইনের আপেক্ষিকতার তত্ত্ব', englishTitle: 'Theory of Relativity', prompt: 'বিশেষ আপেক্ষিকতা তত্ত্বের সময় সম্প্রসারণ (Time Dilation) এবং দৈর্ঘ্য সংকোচন (Length Contraction) বিষয় দুটি সাধারণ মানুষের উপযোগী করে বৈজ্ঞানিক প্রমাণসহ ব্যাখ্যা করো।' },
+                                        { title: 'কোয়ান্টাম মেকানিক্সের সূচনা', englishTitle: 'Quantum Mechanics', prompt: 'কোয়ান্টাম এন্ট্যাঙ্গেলমেন্ট এবং হাইজেনবার্গের অনিশ্চয়তা নীতি মূলত কী নির্দেশ করে তা বিস্তারিত ব্যাখ্যা করো।' }
+                                    ]
+                                }
+                            ]
+                        }
+                    ];
+
+                    this.selectLevel('high_school');
+                    setTimeout(() => lucide.createIcons(), 300);
+                },
+
+                selectLevel(levelId) {
+                    this.selectedLevelId = levelId;
+                    const level = this.levels.find(l => l.id === levelId);
+                    this.activeLevelSubjects = level ? level.subjects : [];
+                    if (this.activeLevelSubjects.length > 0) {
+                        this.selectSubject(this.activeLevelSubjects[0]);
+                    }
+                },
+
+                selectSubject(sub) {
+                    this.selectedSubject = sub;
+                    this.selectedTopic = null;
+                },
+
+                selectTopicAndQuery(topic) {
+                    this.selectedTopic = topic;
+                    this.handleTutorQuery(topic);
+                },
+
+                selectMode(modeId) {
+                    this.tutorMode = modeId;
+                    if (this.selectedTopic) {
+                        this.handleTutorQuery(this.selectedTopic, modeId);
+                    }
+                },
+
+                formatMarkdown(text) {
+                    if (!text) return '';
+                    let html = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+                    html = html.replace(/^### (.*$)/gim, '<h4 class="text-lg font-bold text-slate-800 mt-4 mb-2">$1</h4>');
+                    html = html.replace(/^## (.*$)/gim, '<h3 class="text-xl font-bold text-emerald-800 mt-5 mb-3 border-b pb-1 border-slate-200">$1</h3>');
+                    html = html.replace(/^# (.*$)/gim, '<h2 class="text-2xl font-black text-emerald-950 mt-6 mb-4">$1</h2>');
+                    html = html.replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-emerald-950">$1</strong>');
+                    html = html.replace(/\*(.*?)\*/g, '<em class="italic">$1</em>');
+                    html = html.replace(/```([\s\S]*?)```/g, '<pre class="bg-slate-900 text-emerald-400 p-4 rounded-xl font-mono text-sm overflow-x-auto my-3 border border-slate-800 shadow-inner">$1</pre>');
+                    html = html.replace(/`([^`]+)`/g, '<code class="bg-emerald-50 text-emerald-700 px-1.5 py-0.5 rounded font-mono text-xs border border-emerald-100">$1</code>');
+                    html = html.replace(/^\s*-\s+(.*$)/gim, '<li class="ml-6 list-disc text-slate-700 my-1">$1</li>');
+                    html = html.replace(/^\s*\*\s+(.*$)/gim, '<li class="ml-6 list-disc text-slate-700 my-1">$1</li>');
+                    html = html.replace(/---/g, '<hr class="border-t-2 border-dashed border-emerald-100 my-6" />');
+                    html = html.replace(/\n/g, '<br />');
+                    return html;
+                },
+
+                async handleTutorQuery(overrideTopic, overrideMode) {
+                    const activeTopic = overrideTopic || this.selectedTopic;
+                    const activeMode = overrideMode || this.tutorMode;
+                    const topicTitle = activeTopic ? activeTopic.title : "কাস্টম টপিক";
+                    const topicText = activeTopic ? activeTopic.prompt : this.customQuestion;
+
+                    if (!topicText.trim()) {
+                        this.errorMessage = 'অনুগ্রহ করে একটি টপিক নির্বাচন করুন অথবা আপনার প্রশ্ন লিখুন!';
+                        return;
+                    }
+
+                    this.isLoading = true;
+                    this.errorMessage = '';
+                    this.aiResult = '';
+                    this.formattedAiResult = '';
+                    this.quizQuestions = [];
+                    this.userAnswers = {};
+                    this.quizFinished = false;
+
+                    let promptToSend = '';
+                    let systemInstruction = '';
+                    let responseSchema = undefined;
+                    let responseMimeType = undefined;
+
+                    if (activeMode === 'explain') {
+                        systemInstruction = `You are 'My Book AI' (আমার বই এআই), an expert personal digital teacher/tutor tailored for Bangladeshi students following the NCTB curriculum. Explain concepts with real-world Bangladeshi analogies.`;
+                        promptToSend = `টপিক: "${topicTitle}". বিস্তারিত ব্যাখ্যা: ${topicText}. অনুগ্রহ করে আমাকে এই বিষয়টি খুব সহজে বুঝিয়ে দাও।`;
+                    } else if (activeMode === 'summary') {
+                        systemInstruction = `You are 'My Book AI', an elite academic summarizer. Create beautifully organized high-yield revision notes.`;
+                        promptToSend = `টপিক: "${topicTitle}". মূল টেক্সট: ${topicText}. এই বিষয়ের একটি সংক্ষিপ্ত আকর্ষণীয় রিভিশন নোট তৈরি করে দাও।`;
+                    } else if (activeMode === 'problem_solve') {
+                        systemInstruction = `You are 'My Book AI' (আমার বই এআই) - an expert problem solver. Explain calculations step-by-step.`;
+                        promptToSend = `সমস্যা/প্রশ্ন: "${topicText}". দয়া করে এই সমস্যাটি আমাকে ধাপে ধাপে বুঝিয়ে দাও।`;
+                    } else if (activeMode === 'quiz') {
+                        systemInstruction = `You are 'My Book AI' (আমার বই এআই) - an interactive assessment engine. You MUST generate exactly 4 high-quality MCQs in valid JSON format.`;
+                        promptToSend = `টপিক: "${topicTitle}". কুইজ তৈরি করে দাও ৪টি।`;
+                        responseMimeType = 'application/json';
+                        responseSchema = {
+                            type: 'ARRAY',
+                            items: {
+                                type: 'OBJECT',
+                                properties: {
+                                    question: { type: 'STRING' },
+                                    options: { type: 'ARRAY', items: { type: 'STRING' } },
+                                    correctIndex: { type: 'INTEGER' },
+                                    explanation: { type: 'STRING' }
+                                },
+                                required: ['question', 'options', 'correctIndex', 'explanation']
+                            }
+                        };
+                    } else if (activeMode === 'planner') {
+                        systemInstruction = `You are 'My Book AI' (আমার বই এআই) - personal academic coordinator. Create study checklist.`;
+                        promptToSend = `টপিক: "${topicTitle}". আমার জন্য ৫টি নির্দিষ্ট রুটিন তৈরি করে দাও।`;
+                    }
+
+                    try {
+                        const response = await fetch('/api/gemini/tutor', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                systemInstruction,
+                                contents: promptToSend,
+                                responseSchema,
+                                responseMimeType
+                            })
+                        });
+
+                        if (!response.ok) throw new Error('সার্ভার রেসপন্স ব্যর্থ হয়েছে।');
+                        const data = await response.json();
+
+                        if (activeMode === 'quiz') {
+                            this.quizQuestions = JSON.parse(data.text);
+                            this.aiResult = "কুইজ প্রস্তুত!";
+                        } else {
+                            this.aiResult = data.text;
+                            this.formattedAiResult = this.formatMarkdown(data.text);
+                        }
+                    } catch (e) {
+                        this.errorMessage = 'এআই শিক্ষকের সাথে যোগাযোগ করা সম্ভব হয়নি। আবার চেষ্টা করুন।';
+                    } finally {
+                        this.isLoading = false;
+                        setTimeout(() => lucide.createIcons(), 300);
+                    }
+                },
+
+                async handleLogin() {
+                    this.isLoggingIn = true;
+                    try {
+                        const data = await window.firebaseLogin();
+                        this.user = data.user;
+                        this.token = data.token;
+                        await this.fetchSpaces();
+                    } catch(e) {
+                        this.errorMessage = "লগইন সম্পন্ন করা যায়নি।";
+                    } finally {
+                        this.isLoggingIn = false;
+                    }
+                },
+
+                async handleLogout() {
+                    await window.firebaseSignOut();
+                    this.user = null;
+                    this.token = null;
+                    this.chatSpaces = [];
+                    this.selectedSpace = null;
+                },
+
+                async fetchSpaces() {
+                    try {
+                        const res = await fetch('https://chat.googleapis.com/v1/spaces', {
+                            headers: { Authorization: `Bearer ${this.token}` },
+                        });
+                        if (res.ok) {
+                            const data = await res.json();
+                            this.chatSpaces = data.spaces || [];
+                            if (this.chatSpaces.length > 0) {
+                                this.selectedSpace = this.chatSpaces[0];
+                                this.selectedSpaceName = this.chatSpaces[0].name;
+                            }
+                        }
+                    } catch (e) {
+                        console.error(e);
+                    }
+                },
+
+                spaceChanged() {
+                    const space = this.chatSpaces.find(s => s.name === this.selectedSpaceName);
+                    if (space) this.selectedSpace = space;
+                },
+
+                initiateShare() {
+                    let text = `📚 *My Book AI — পড়াশোনা ও কুইজ রিপোর্ট* 📚\n━━━━━━━━━━━━━━━━━━━━━━\n`;
+                    if (this.quizQuestions.length > 0) {
+                        this.quizQuestions.forEach((q, idx) => {
+                            text += `❓ প্রশ্ন ${idx + 1}: ${q.question}\n`;
+                        });
+                    } else {
+                        text += this.aiResult.substring(0, 500) + '...\n';
+                    }
+                    this.messageToShare = text;
+                    this.shareConfirmOpen = true;
+                },
+
+                async confirmShare() {
+                    this.shareConfirmOpen = false;
+                    this.isSharing = true;
+                    try {
+                        const res = await fetch(`https://chat.googleapis.com/v1/${this.selectedSpace.name}/messages`, {
+                            method: 'POST',
+                            headers: {
+                                'Authorization': `Bearer ${this.token}`,
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ text: this.messageToShare }),
+                        });
+                        if (res.ok) {
+                            this.shareSuccess = 'গুগল চ্যাটে সফলভাবে শেয়ার করা হয়েছে! 🎉';
+                            setTimeout(() => this.shareSuccess = '', 5000);
+                        } else {
+                            throw new Error();
+                        }
+                    } catch (e) {
+                        this.errorMessage = 'শেয়ারিং ব্যর্থ হয়েছে।';
+                    } finally {
+                        this.isSharing = false;
+                    }
+                },
+
+                selectAnswer(qIdx, optIdx) {
+                    this.userAnswers[qIdx] = optIdx;
+                },
+
+                finishQuiz() {
+                    let score = 0;
+                    this.quizQuestions.forEach((q, idx) => {
+                        if (this.userAnswers[idx] === q.correctIndex) score++;
+                    });
+                    this.quizScore = score;
+                    this.quizFinished = true;
+                },
+
+                resetQuiz() {
+                    this.userAnswers = {};
+                    this.quizFinished = false;
+                    this.quizScore = 0;
+                },
+
+                toggleTask(id) {
+                    const task = this.plannerTasks.find(t => t.id === id);
+                    if (task) task.done = !task.done;
+                },
+
+                addPlannerTask() {
+                    if (!this.newTaskText.trim()) return;
+                    this.plannerTasks.push({
+                        id: Date.now().toString(),
+                        text: this.newTaskText,
+                        done: false
+                    });
+                    this.newTaskText = '';
+                },
+
+                removeTask(id) {
+                    this.plannerTasks = this.plannerTasks.filter(t => t.id !== id);
+                },
+
+                getQuizBtnClass(q, qIdx, optIdx) {
+                    const isSelected = this.userAnswers[qIdx] === optIdx;
+                    const isThisCorrectOpt = optIdx === q.correctIndex;
+                    if (isSelected) {
+                        if (this.quizFinished) {
+                            return (this.userAnswers[qIdx] === q.correctIndex) 
+                                ? 'bg-emerald-500 border-emerald-500 text-white font-bold' 
+                                : 'bg-red-500 border-red-500 text-white font-bold';
+                        }
+                        return 'border-emerald-600 bg-emerald-50 text-emerald-950 font-bold';
+                    } else if (this.quizFinished && isThisCorrectOpt) {
+                        return 'border-emerald-500 bg-emerald-50 text-emerald-800 font-bold border-2';
+                    }
+                    return 'border-slate-200 hover:bg-slate-50 bg-white text-slate-700';
+                }
+            };
         }
-        .input-box-container {
-            background: #ffffff;
-            border: 1.5px solid #00b09b;
-            border-radius: 28px;
-            display: flex;
-            align-items: center;
-            padding: 6px 8px 6px 14px;
-            width: 100%;
-            max-width: 750px;
-            box-shadow: 0 4px 12px rgba(0,176,155,0.08);
-        }
-        .mic-icon {
+    </script>
+</body>
+</html>
