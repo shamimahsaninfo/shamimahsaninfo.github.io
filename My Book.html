@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>মাই বুক কুইজ - My Book Quiz</title>
+  <style>
+    :root {
+      --primary: #00A884;
+      --primary-dark: #007960;
+      --primary-light: #E0F7F3;
+      --text-color: #003731;
+      --bg-color: #F4FAF8;
+      --white: #FFFFFF;
+      --wrong: #D32F2F;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Roboto, 'Hind Siliguri', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 16px;
+      text-align: center;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .logo-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--white);
+      color: var(--primary);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .header-stats {
+      display: flex;
+      justify-content: space-around;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 8px 16px;
+      border-radius: 20px;
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    main {
+      flex: 1;
+      padding: 16px;
+      max-width: 600px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .class-scroll {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+    }
+
+    .chip {
+      background: var(--white);
+      color: var(--primary);
+      border: 1.5px solid var(--primary);
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      white-space: nowrap;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .chip.active {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 12px;
+      box-shadow: 0 4px 12px rgba(0, 168, 132, 0.08);
+      border: 1px solid rgba(0, 168, 132, 0.15);
+      text-align: center;
+    }
+
+    .book-cover {
+      width: 100%;
+      height: 110px;
+      background: var(--primary);
+      color: var(--white);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      padding: 10px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      width: 100%;
+    }
+
+    .quiz-container {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 4px 16px rgba(0, 168, 132, 0.12);
+      border: 1px solid var(--primary-light);
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .option-btn {
+      background: var(--white);
+      border: 1.5px solid var(--primary-light);
+      color: var(--text-color);
+      padding: 14px;
+      border-radius: 14px;
+      text-align: left;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .option-btn.correct {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    .option-btn.wrong {
+      background: var(--wrong);
+      color: var(--white);
+    }
+
+    nav {
+      position: sticky;
+      bottom: 0;
+      background: var(--white);
+      display: flex;
+      justify-content: space-around;
+      padding: 12px;
+      border-top: 1px solid var(--primary-light);
+    }
+
+    .nav-btn {
+      background: none;
+      border: none;
+      color: var(--text-color);
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-container">
+      <div class="logo-icon">📖</div>
+      <h1 style="font-size: 20px;">মাই বুক কুইজ</h1>
+    </div>
+    <div class="header-stats">
+      <span>🪙 কয়েস: <span id="userCoins">250</span></span>
+      <span>🔥 স্ট্রিক: <span id="userStreak">1</span></span>
+      <span>🎓 শ্রেণি: ৯ম-১০ম</span>
+    </div>
+  </header>
+
+  <main>
+    <section id="tabHome">
+      <div class="class-scroll">
+        <button class="chip active">সকল শ্রেণি</button>
+        <button class="chip">১ম-৫ম শ্রেণি</button>
+        <button class="chip">৮ম শ্রেণি</button>
+        <button class="chip">৯ম-১০ম শ্রেণি</button>
+        <button class="chip">একাদশ-দ্বাদশ (HSC)</button>
+      </div>
+
+      <div style="background: var(--primary); color: var(--white); padding: 16px; border-radius: 16px; margin-bottom: 16px;">
+        <h3>🚀 আনলিমিটেড কুইজ প্রতিযোগিতা</h3>
+        <p style="font-size: 13px; margin: 6px 0 12px 0;">কোনো সীমাবদ্ধতা ছাড়া আনলিমিটেড কুইজ খেলুন এবং পয়েন্ট অর্জন করুন।</p>
+        <button class="btn" style="background: var(--white); color: var(--primary);" onclick="startQuiz('অনন্ত কুইজ')">এখনই শুরু করুন</button>
+      </div>
+
+      <h3 style="margin-bottom: 12px;">পাঠ্যবই ও অনুশীলনী</h3>
+      <div class="grid" id="booksGrid"></div>
+    </section>
+
+    <section id="tabQuiz" class="hidden">
+      <div class="quiz-container">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-weight: bold;">
+          <span id="quizSubjectTitle">পদার্থবিজ্ঞান</span>
+          <span>প্রশ্ন <span id="qCurrent">1</span>/10</span>
+        </div>
+        <div id="questionText" style="font-size: 18px; font-weight: bold;">বলের এস.আই একক কী?</div>
+        <div class="options" id="optionsContainer"></div>
+        <button class="btn hidden" id="btnNext" style="margin-top: 16px;" onclick="nextQuestion()">পরবর্তী প্রশ্ন ➔</button>
+      </div>
+    </section>
+  </main>
+
+  <nav>
+    <button class="nav-btn" onclick="switchTab('Home')">📖 হোম</button>
+    <button class="nav-btn" onclick="switchTab('Quiz')">⚡ কুইজ</button>
+  </nav>
+
+  <script>
+    const books = [
+      { title: "পদার্থবিজ্ঞান 2025", class: "৯ম-১০ম শ্রেণি" },
+      { title: "রসায়ন 2025", class: "৯ম-১০ম শ্রেণি" },
+      { title: "জীববিজ্ঞান 2025", class: "৯ম-১০ম শ্রেণি" },
+      { title: "গণিত 2025", class: "৯ম-১০ম শ্রেণি" },
+      { title: "তথ্য ও যোগাযোগ প্রযুক্তি", class: "৯ম-১০ম শ্রেণি" },
+      { title: "হাদিস শরিফ", class: "৯ম-১০ম শ্রেণি" }
+    ];
+
+    let coins = 250;
+    let currentQIdx = 0;
+    let questions = [];
+
+    function renderBooks() {
+      const container = document.getElementById('booksGrid');
+      container.innerHTML = '';
+      books.forEach(b => {
+        container.innerHTML += `
+          <div class="card">
+            <div class="book-cover">
+              <span style="font-size: 28px;">📖</span>
+              <div style="font-weight: bold; margin-top: 6px;">${b.title}</div>
+            </div>
+            <button class="btn" onclick="startQuiz('${b.title}')">কুইজ খেলুন</button>
+          </div>
+        `;
+      });
+    }
+
+    function startQuiz(title) {
+      document.getElementById('quizSubjectTitle').innerText = title;
+      questions = Array.from({length: 10}, (_, i) => {
+        const a = Math.floor(Math.random() * 15) + 2;
+        const b = Math.floor(Math.random() * 10) + 1;
+        const ans = a * b;
+        return {
+          q: `[প্রশ্ন ${i+1}] ${title}: ${a} × ${b} = কত?`,
+          opts: [ans, ans+2, Math.max(1, ans-3), ans+5].sort(() => Math.random() - 0.5),
+          ans: ans
+        };
+      });
+      currentQIdx = 0;
+      showQ();
+      switchTab('Quiz');
+    }
+
+    function showQ() {
+      const q = questions[currentQIdx];
+      document.getElementById('qCurrent').innerText = currentQIdx + 1;
+      document.getElementById('questionText').innerText = q.q;
+      document.getElementById('btnNext').classList.add('hidden');
+      const container = document.getElementById('optionsContainer');
+      container.innerHTML = '';
+      q.opts.forEach(opt => {
+        container.innerHTML += `<div class="option-btn" onclick="checkAns(${opt}, ${q.ans}, this)">${opt}</div>`;
+      });
+    }
+
+    function checkAns(val, correct, el) {
+      document.querySelectorAll('.option-btn').forEach(b => b.style.pointerEvents = 'none');
+      if (val === correct) {
+        el.classList.add('correct');
+        coins += 10;
+        document.getElementById('userCoins').innerText = coins;
+      } else {
+        el.classList.add('wrong');
+      }
+      document.getElementById('btnNext').classList.remove('hidden');
+    }
+
+    function nextQuestion() {
+      currentQIdx++;
+      if (currentQIdx < questions.length) showQ();
+      else { alert('কুইজ সম্পন্ন হয়েছে! কয়েন অর্জিত হয়েছে।'); switchTab('Home'); }
+    }
+
+    function switchTab(tab) {
+      document.getElementById('tabHome').classList.add('hidden');
+      document.getElementById('tabQuiz').classList.add('hidden');
+      document.getElementById('tab' + tab).classList.remove('hidden');
+    }
+
+    renderBooks();
+  </script>
+</body>
+</html>
