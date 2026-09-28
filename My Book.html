@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>মাই বুক কুইজ - My Book Quiz</title>
+  <title>মাই বুক কুইজ - Quiz Duel Mode</title>
   <style>
     :root {
       --primary: #00A884;
@@ -13,13 +13,14 @@
       --bg-color: #F4FAF8;
       --white: #FFFFFF;
       --wrong: #D32F2F;
+      --gold: #FFB300;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Roboto, 'Hind Siliguri', sans-serif;
+      font-family: 'Segoe UI', Roboto, 'Hind Siliguri', 'Kalpurush', sans-serif;
       -webkit-tap-highlight-color: transparent;
     }
 
@@ -168,27 +169,10 @@
       border: 1.5px solid var(--primary-light);
     }
 
-    .timer-container {
-      width: 100%;
-      height: 8px;
-      background: var(--primary-light);
-      border-radius: 10px;
-      overflow: hidden;
-      margin-bottom: 20px;
-    }
-
-    .timer-progress {
-      height: 100%;
-      background: var(--primary);
-      width: 100%;
-      transition: width 1s linear;
-    }
-
     .options-list {
       display: flex;
       flex-direction: column;
       gap: 12px;
-      margin-top: 18px;
     }
 
     .option-item {
@@ -213,6 +197,84 @@
     .option-item.wrong {
       background: var(--wrong);
       color: var(--white);
+    }
+
+    /* QUIZ DUEL STYLES */
+    .duel-versus-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--primary-light);
+      padding: 14px 18px;
+      border-radius: 18px;
+      margin-bottom: 18px;
+      border: 1.5px solid var(--primary);
+    }
+
+    .player-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .player-avatar {
+      width: 42px;
+      height: 42px;
+      background: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      border: 2px solid var(--primary);
+    }
+
+    .score-badge {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .vs-badge {
+      background: var(--primary);
+      color: var(--white);
+      padding: 6px 12px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    .duel-timer {
+      text-align: center;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    /* MODAL OVERLAY */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 55, 49, 0.6);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    .modal-content {
+      background: var(--white);
+      width: 90%;
+      max-width: 400px;
+      padding: 28px;
+      border-radius: 24px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
 
     nav {
@@ -248,6 +310,7 @@
           <div style="font-size: 11px; opacity: 0.9;">১ম - ১২াশ শ্রেণির কুইজ</div>
         </div>
       </div>
+      <button onclick="switchMainTab('Stats')" style="background: rgba(255,255,255,0.25); border: none; color: var(--white); padding: 8px 14px; border-radius: 20px; font-weight: bold; font-size: 13px; cursor: pointer;">📊 পরিসংখ্যান</button>
     </div>
     <div class="stats-row">
       <div>🪙 কয়েন: <span id="coinsCount">250</span></div>
@@ -257,7 +320,7 @@
   </header>
 
   <main>
-    <!-- TAB 1: HOME -->
+    <!-- VIEW 1: HOME -->
     <section id="viewHome">
       <div class="class-scroll">
         <button class="chip active" onclick="filterByClass('সকল শ্রেণি', this)">সকল শ্রেণি</button>
@@ -268,173 +331,265 @@
         <button class="chip" onclick="filterByClass('একাদশ-দ্বাদশ (HSC)', this)">একাদশ-দ্বাদশ (HSC)</button>
       </div>
 
-      <div style="background: var(--primary); color: var(--white); padding: 20px; border-radius: 20px; margin-bottom: 20px;">
-        <h3>🚀 আনলিমিটেড কুইজ ব্যাটল</h3>
-        <p style="font-size: 13px; margin: 6px 0 14px 0;">কোনো সীমা ছাড়া যত খুশি কুইজ খেলে কয়েন জিতুন!</p>
-        <button class="btn" style="background: var(--white); color: var(--primary);" onclick="startQuiz('অনন্ত কুইজ প্রতিযোগিতা', 'সকল শ্রেণি')">এখনই খেলুন</button>
+      <!-- Real-Time Quiz Duel Banner -->
+      <div style="background: var(--primary); color: var(--white); padding: 20px; border-radius: 20px; margin-bottom: 16px; border: 2px solid var(--white);">
+        <h3 style="font-size: 18px; margin-bottom: 6px;">⚔️ ১-বনাম-১ রিয়েল-টাইম কুইজ ডুয়েল (Quiz Duel)</h3>
+        <p style="font-size: 13px; opacity: 0.92; margin-bottom: 14px;">অন্য যেকোনো শিক্ষার্থীর সাথে সরাসরি ৫ প্রশ্নের রিয়েল-টাইম ডুয়েল লড়ুন এবং বিজয়ী হয়ে ৫০ কয়েন জিতুন!</p>
+        <button class="btn" style="background: var(--white); color: var(--primary);" onclick="startQuizDuel()">⚔️ ডুয়েল ম্যাচ চ্যালেঞ্জ শুরু করুন</button>
       </div>
 
       <h3 style="margin-bottom: 14px; font-size: 17px;">পাঠ্যবই ও অনুশীলনসমূহ</h3>
       <div class="grid" id="booksGrid"></div>
     </section>
 
-    <!-- TAB 2: QUIZ -->
-    <section id="viewQuiz" class="hidden">
+    <!-- VIEW 2: QUIZ DUEL PLAYER -->
+    <section id="viewDuel" class="hidden">
       <div class="quiz-card">
-        <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-weight: 700;">
-          <span id="quizTitle" style="color: var(--primary);">পদার্থবিজ্ঞান 2025</span>
-          <span>প্রশ্ন <span id="qIdx">1</span>/10</span>
+        <!-- Live Versus Score Header -->
+        <div class="duel-versus-header">
+          <div class="player-box">
+            <div class="player-avatar" id="p1Avatar">🎓</div>
+            <div>
+              <div style="font-size: 13px; font-weight: 800;" id="p1Name">আপনি</div>
+              <div class="score-badge" id="p1Score">০/৫</div>
+            </div>
+          </div>
+
+          <div class="vs-badge">VS</div>
+
+          <div class="player-box">
+            <div>
+              <div style="font-size: 13px; font-weight: 800;" id="p2Name">সাকিব 🇧🇩</div>
+              <div class="score-badge" id="p2Score">০/৫</div>
+            </div>
+            <div class="player-avatar">👨‍🎓</div>
+          </div>
         </div>
 
-        <div class="timer-container">
-          <div class="timer-progress" id="timerFill"></div>
-        </div>
+        <div class="duel-timer">⏱️ <span id="duelTimerCount">15</span>s</div>
 
-        <div id="qText" style="font-size: 19px; font-weight: 800; margin-bottom: 20px;">বলের এস.আই একক কী?</div>
+        <div style="font-size: 13px; font-weight: bold; color: var(--primary); margin-bottom: 6px;" id="duelQCategory">রসায়ন 2025 • প্রশ্ন ১/৫</div>
+        <div id="duelQText" style="font-size: 18px; font-weight: 800; margin-bottom: 20px;">সোডিয়াম (Na) এর পারমাণবিক সংখ্যা কত?</div>
 
-        <div class="options-list" id="optsBox"></div>
+        <div class="options-list" id="duelOptsBox"></div>
 
-        <button class="btn hidden" id="btnNext" style="margin-top: 20px;" onclick="handleNextQuestion()">পরবর্তী প্রশ্ন ➔</button>
+        <div id="duelExpBox" class="hidden" style="margin-top: 16px; padding: 12px; background: var(--primary-light); border-radius: 12px; font-size: 14px;"></div>
       </div>
     </section>
 
-    <!-- TAB 3: LEADERBOARD -->
+    <!-- VIEW 3: STATS -->
+    <section id="viewStats" class="hidden">
+      <h3 style="margin-bottom: 14px;">📊 কুইজ পরিসংখ্যান</h3>
+      <div class="quiz-card">
+        <div style="display: flex; justify-content: space-around; text-align: center; margin-bottom: 16px;">
+          <div><div style="font-size: 22px; font-weight: 800; color: var(--primary);">12</div><div style="font-size: 12px;">মোট কুইজ</div></div>
+          <div><div style="font-size: 22px; font-weight: 800; color: var(--primary);">85%</div><div style="font-size: 12px;">গড় স্কোর</div></div>
+          <div><div style="font-size: 22px; font-weight: 800; color: var(--gold);">250 🪙</div><div style="font-size: 12px;">কয়েন</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 4: LEADERBOARD -->
     <section id="viewLeaderboard" class="hidden">
-      <h3 style="margin-bottom: 14px;">🏆 বিশ্বব্যাপী লিডারবোর্ড</h3>
+      <h3 style="margin-bottom: 14px;">🏆 বিশ্বব্যাপী লাইভ লিডারবোর্ড</h3>
       <div style="background: var(--primary); color: var(--white); padding: 20px; border-radius: 20px; text-align: center; margin-bottom: 16px;">
-        <h2>👑 ১ নম্বর: সাকিব হাসান (১৫,৪০০ 🪙)</h2>
-        <p style="font-size: 13px; margin-top: 4px;">সারা বিশ্বের কুইজারদের সাথে প্রতিযোগিতা করুন</p>
+        <h2>👑 ১ নম্বর: সাকিব হাসান 🇧🇩 (১৫,৪০০ 🪙)</h2>
+      </div>
+    </section>
+
+    <!-- VIEW 5: PROFILE -->
+    <section id="viewProfile" class="hidden">
+      <div class="card" style="padding: 24px; margin-bottom: 16px;">
+        <div id="profAvatarDisplay" style="font-size: 36px; margin-bottom: 8px;">🎓</div>
+        <h2 id="profNameDisplay">কুইজ শিক্ষার্থী</h2>
+        <p style="color: var(--primary-dark); font-weight: bold;" id="profClassDisplay">৯ম-১০ম শ্রেণি</p>
       </div>
     </section>
   </main>
 
+  <!-- MATCHMAKING SEARCH MODAL OVERLAY -->
+  <div id="matchModal" class="modal-overlay hidden">
+    <div class="modal-content">
+      <div style="font-size: 40px; margin-bottom: 12px;">🔎</div>
+      <h3 style="margin-bottom: 8px; color: var(--primary);">প্রতিদ্বন্দ্বী খোঁজা হচ্ছে...</h3>
+      <p style="font-size: 13px; color: var(--text-color); margin-bottom: 18px;">সারা বিশ্বের অনলাইন শিক্ষার্থীদের থেকে ১ জন প্লেয়ার ম্যাচ করা হচ্ছে...</p>
+      <div style="width: 100%; height: 6px; background: var(--primary-light); border-radius: 10px; overflow: hidden;">
+        <div style="width: 100%; height: 100%; background: var(--primary); animation: searchBar 1.5s infinite linear;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WINNER RESULT MODAL OVERLAY -->
+  <div id="winnerModal" class="modal-overlay hidden">
+    <div class="modal-content">
+      <div style="font-size: 50px; margin-bottom: 12px;" id="winIcon">🏆</div>
+      <h2 style="margin-bottom: 8px; color: var(--primary);" id="winTitle">অভিনন্দন! আপনি বিজয়ী!</h2>
+      <p style="font-size: 14px; margin-bottom: 16px;" id="winSubtext">আপনি ৫/৫ স্কোর করে ৫০ টি বোনাস কয়েন অর্জন করেছেন!</p>
+      <button class="btn" onclick="closeWinnerModal()">হোম পেজে ফিরে যান</button>
+    </div>
+  </div>
+
   <nav>
     <button class="nav-btn" onclick="switchMainTab('Home')">📖 হোম</button>
+    <button class="nav-btn" onclick="startQuizDuel()">⚔️ ডুয়েল</button>
+    <button class="nav-btn" onclick="switchMainTab('Stats')">📊 পরিসংখ্যান</button>
     <button class="nav-btn" onclick="switchMainTab('Leaderboard')">🏆 লিডারবোর্ড</button>
   </nav>
 
   <script>
-    const allBooksData = [
-      { title: "পদার্থবিজ্ঞান 2025", class: "৯ম-১০ম শ্রেণি" },
-      { title: "রসায়ন 2025", class: "৯ম-১০ম শ্রেণি" },
-      { title: "জীববিজ্ঞান 2025", class: "৯ম-১০ম শ্রেণি" },
-      { title: "গণিত 2025", class: "৯ম-১০ম শ্রেণি" },
-      { title: "তথ্য ও যোগাযোগ প্রযুক্তি", class: "৯ম-১০ম শ্রেণি" },
-      { title: "হাদিস শরিফ 2025", class: "৯ম-১০ম শ্রেণি" },
-      { title: "উচ্চতর গণিত ১ম পত্র", class: "একাদশ-দ্বাদশ (HSC)" },
-      { title: "বিজ্ঞান 2025", class: "৮ম শ্রেণি" },
-      { title: "প্রাথমিক গণিত", class: "১ম-৫ম শ্রেণি" }
+    const duelQuestions = [
+      { cat: "রসায়ন 2025", q: "সোডিয়াম (Na) এর পারমাণবিক সংখ্যা কত?", opts: ["১১", "১২", "১৯", "১৭"], correct: "১১", exp: "সোডিয়ামের পারমাণবিক সংখ্যা ১১।" },
+      { cat: "পদার্থবিজ্ঞান 2025", q: "বলের এস.আই (S.I.) একক কোনটি?", opts: ["নিউটন (N)", "প্যাসকেল (Pa)", "জুল (J)", "ওয়াট (W)"], correct: "নিউটন (N)", exp: "বলের একক নিউটন (N)।" },
+      { cat: "জীববিজ্ঞান 2025", q: "মানুষের লোহিত রক্তকণিকার গড় আয়ু কত দিন?", opts: ["১২০ দিন", "৬০ দিন", "১৫ দিন", "১৮০ দিন"], correct: "১২০ দিন", exp: "RBC এর গড় আয়ু ১২০ দিন।" },
+      { cat: "তথ্য ও যোগাযোগ প্রযুক্তি", q: "কম্পিউটারের ব্রেইন বলা হয় কোনটিকে?", opts: ["সিপিইউ (CPU)", "র্যাম (RAM)", "মনিটর", "মাউস"], correct: "সিপিইউ (CPU)", exp: "CPU হলো কম্পিউটারের প্রধান প্রসেসর।" },
+      { cat: "উচ্চতর গণিত 2025", q: "sin²θ + cos²θ এর মান কত?", opts: ["১", "০", "২", "১/২"], correct: "১", exp: "ত্রিকোণমিতিক অভেদানুসারে sin²θ + cos²θ = ১।" }
     ];
 
-    let userCoins = 250;
-    let quizList = [];
-    let currentIdx = 0;
-    let timerTimer = null;
+    const opponentsList = ["সাকিব হাসান 🇧🇩", "আরিফুল ইসলাম 🇧🇩", "সুমাইয়া রহমান 🇧🇩", "তানভীর আহমেদ 🇧🇩"];
 
-    function renderBooksGrid(selectedClass = 'সকল শ্রেণি') {
+    let p1Score = 0;
+    let p2Score = 0;
+    let duelQIdx = 0;
+    let duelTimer = null;
+    let duelTimeLeft = 15;
+    let userCoins = 250;
+
+    function startQuizDuel() {
+      document.getElementById('matchModal').classList.remove('hidden');
+      setTimeout(() => {
+        document.getElementById('matchModal').classList.add('hidden');
+        p1Score = 0;
+        p2Score = 0;
+        duelQIdx = 0;
+        const opponentName = opponentsList[Math.floor(Math.random() * opponentsList.length)];
+        document.getElementById('p2Name').innerText = opponentName;
+        document.getElementById('p1Score').innerText = '০/৫';
+        document.getElementById('p2Score').innerText = '০/৫';
+        loadDuelQuestion();
+        switchMainTab('Duel');
+      }, 1800);
+    }
+
+    function loadDuelQuestion() {
+      clearInterval(duelTimer);
+      const q = duelQuestions[duelQIdx];
+      document.getElementById('duelQCategory').innerText = `${q.cat} • প্রশ্ন ${duelQIdx+1}/৫`;
+      document.getElementById('duelQText').innerText = q.q;
+      document.getElementById('duelExpBox').classList.add('hidden');
+
+      const box = document.getElementById('duelOptsBox');
+      box.innerHTML = '';
+      q.opts.forEach(opt => {
+        box.innerHTML += `<div class="option-item" onclick="onDuelSelect('${opt}', '${q.correct}', this)">${opt}</div>`;
+      });
+
+      startDuelTimer();
+    }
+
+    function startDuelTimer() {
+      duelTimeLeft = 15;
+      document.getElementById('duelTimerCount').innerText = duelTimeLeft;
+      duelTimer = setInterval(() => {
+        duelTimeLeft--;
+        document.getElementById('duelTimerCount').innerText = duelTimeLeft;
+        if (duelTimeLeft <= 0) {
+          clearInterval(duelTimer);
+          onDuelSelect('TIME_OUT', duelQuestions[duelQIdx].correct, null);
+        }
+      }, 1000);
+    }
+
+    function onDuelSelect(selectedVal, correctVal, el) {
+      clearInterval(duelTimer);
+      document.querySelectorAll('#duelOptsBox .option-item').forEach(b => b.style.pointerEvents = 'none');
+
+      const isCorrect = selectedVal === correctVal;
+      if (isCorrect) {
+        if (el) el.classList.add('correct');
+        p1Score++;
+        document.getElementById('p1Score').innerText = `${p1Score}/৫`;
+      } else {
+        if (el) el.classList.add('wrong');
+      }
+
+      // Simulated Real-Time Opponent Action
+      if (Math.random() > 0.3) {
+        p2Score++;
+        document.getElementById('p2Score').innerText = `${p2Score}/৫`;
+      }
+
+      document.getElementById('duelExpBox').innerText = 'ব্যাখ্যা: ' + duelQuestions[duelQIdx].exp;
+      document.getElementById('duelExpBox').classList.remove('hidden');
+
+      setTimeout(() => {
+        duelQIdx++;
+        if (duelQIdx < duelQuestions.length) {
+          loadDuelQuestion();
+        } else {
+          finishDuelMatch();
+        }
+      }, 2200);
+    }
+
+    function finishDuelMatch() {
+      const winModal = document.getElementById('winnerModal');
+      const winTitle = document.getElementById('winTitle');
+      const winSub = document.getElementById('winSubtext');
+      const winIcon = document.getElementById('winIcon');
+
+      if (p1Score > p2Score) {
+        winIcon.innerText = '🏆';
+        winTitle.innerText = 'অভিনন্দন! আপনি বিজয়ী!';
+        winSub.innerText = `আপনি ${p1Score}-${p2Score} ব্যবধানে জিতে ৫০টি বোনাস কয়েন অর্জন করেছেন!`;
+        userCoins += 50;
+        document.getElementById('coinsCount').innerText = userCoins;
+      } else if (p1Score === p2Score) {
+        winIcon.innerText = '⚔️';
+        winTitle.innerText = 'ম্যাচ সমতা (Draw)!';
+        winSub.innerText = `উভয় খেলোয়াড় ${p1Score}-${p2Score} পয়েন্ট অর্জন করেছেন।`;
+      } else {
+        winIcon.innerText = '💪';
+        winTitle.innerText = 'পরবর্তী ম্যাচে শুভকামনা!';
+        winSub.innerText = `প্রতিদ্বন্দ্বী ${p2Score}-${p1Score} পয়েন্টে জয়ী হয়েছেন। আরো অনুশীলন করুন!`;
+      }
+
+      winModal.classList.remove('hidden');
+    }
+
+    function closeWinnerModal() {
+      document.getElementById('winnerModal').classList.add('hidden');
+      switchMainTab('Home');
+    }
+
+    function switchMainTab(tabName) {
+      ['Home', 'Quiz', 'Duel', 'Stats', 'Leaderboard', 'Profile'].forEach(v => {
+        const el = document.getElementById('view' + v);
+        if (el) el.classList.add('hidden');
+      });
+      document.getElementById('view' + tabName).classList.remove('hidden');
+    }
+
+    const allBooksData = [
+      { title: "রসায়ন 2025", class: "৯ম-১০ম শ্রেণি" },
+      { title: "পদার্থবিজ্ঞান 2025", class: "৯ম-১০ম শ্রেণি" },
+      { title: "জীববিজ্ঞান 2025", class: "৯ম-১০ম শ্রেণি" },
+      { title: "গণিত 2025", class: "৯ম-১০ম শ্রেণি" }
+    ];
+
+    function renderBooksGrid() {
       const grid = document.getElementById('booksGrid');
       grid.innerHTML = '';
-      const filtered = selectedClass === 'সকল শ্রেণি' ? allBooksData : allBooksData.filter(b => b.class.includes(selectedClass));
-
-      filtered.forEach(book => {
+      allBooksData.forEach(book => {
         grid.innerHTML += `
           <div class="card">
             <div class="book-cover">
               <span style="font-size: 30px;">📖</span>
               <div style="font-weight: 800; margin-top: 6px;">${book.title}</div>
             </div>
-            <button class="btn" onclick="startQuiz('${book.title}', '${book.class}')">কুইজ খেলুন</button>
+            <button class="btn" onclick="startQuizDuel()">ডুয়েল কুইজ</button>
           </div>
         `;
       });
-    }
-
-    function filterByClass(className, element) {
-      document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
-      element.classList.add('active');
-      document.getElementById('classBadge').innerText = className;
-      renderBooksGrid(className);
-    }
-
-    function startQuiz(subjectTitle) {
-      document.getElementById('quizTitle').innerText = subjectTitle;
-      quizList = Array.from({length: 10}, (_, i) => {
-        const a = Math.floor(Math.random() * 15) + 3;
-        const b = Math.floor(Math.random() * 10) + 2;
-        const correct = a * b;
-        return {
-          q: `[প্রশ্ন ${i+1}/১০] ${subjectTitle}: ${a} × ${b} = কত?`,
-          opts: [correct, correct + 4, Math.max(1, correct - 5), correct + 10].sort(() => Math.random() - 0.5),
-          correct: correct
-        };
-      });
-      currentIdx = 0;
-      loadQuestion();
-      switchMainTab('Quiz');
-    }
-
-    function loadQuestion() {
-      clearInterval(timerTimer);
-      const q = quizList[currentIdx];
-      document.getElementById('qIdx').innerText = currentIdx + 1;
-      document.getElementById('qText').innerText = q.q;
-      document.getElementById('btnNext').classList.add('hidden');
-
-      const optsBox = document.getElementById('optsBox');
-      optsBox.innerHTML = '';
-
-      q.opts.forEach(opt => {
-        optsBox.innerHTML += `<div class="option-item" onclick="onSelectOption(${opt}, ${q.correct}, this)">${opt}</div>`;
-      });
-
-      startCountdown();
-    }
-
-    function startCountdown() {
-      let remainingTime = 30;
-      const fill = document.getElementById('timerFill');
-      fill.style.width = '100%';
-
-      timerTimer = setInterval(() => {
-        remainingTime--;
-        fill.style.width = (remainingTime / 30 * 100) + '%';
-        if (remainingTime <= 0) {
-          clearInterval(timerTimer);
-          onSelectOption(-1, quizList[currentIdx].correct, null);
-        }
-      }, 1000);
-    }
-
-    function onSelectOption(selectedVal, correctVal, el) {
-      clearInterval(timerTimer);
-      document.querySelectorAll('.option-item').forEach(btn => btn.style.pointerEvents = 'none');
-
-      if (selectedVal === correctVal) {
-        if (el) el.classList.add('correct');
-        userCoins += 10;
-        document.getElementById('coinsCount').innerText = userCoins;
-      } else {
-        if (el) el.classList.add('wrong');
-      }
-
-      document.getElementById('btnNext').classList.remove('hidden');
-    }
-
-    function handleNextQuestion() {
-      currentIdx++;
-      if (currentIdx < quizList.length) {
-        loadQuestion();
-      } else {
-        alert('🎉 কুইজ সম্পন্ন হয়েছে! ১০টি পয়েন্ট অর্জিত হয়েছে।');
-        switchMainTab('Home');
-      }
-    }
-
-    function switchMainTab(tabName) {
-      document.getElementById('viewHome').classList.add('hidden');
-      document.getElementById('viewQuiz').classList.add('hidden');
-      document.getElementById('viewLeaderboard').classList.add('hidden');
-      document.getElementById('view' + tabName).classList.remove('hidden');
     }
 
     renderBooksGrid();
