@@ -2,7 +2,7 @@
 <html lang="bn">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>মাই বুক কুইজ - My Book Quiz</title>
   <style>
     :root {
@@ -20,6 +20,7 @@
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', Roboto, 'Hind Siliguri', sans-serif;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
@@ -28,61 +29,75 @@
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      width: 100vw;
+      overflow-x: hidden;
     }
 
     header {
       background-color: var(--primary);
       color: var(--white);
-      padding: 16px;
-      text-align: center;
-      border-bottom-left-radius: 20px;
-      border-bottom-right-radius: 20px;
+      padding: 16px 20px;
+      width: 100%;
+      box-shadow: 0 4px 12px rgba(0, 168, 132, 0.2);
+      border-bottom-left-radius: 24px;
+      border-bottom-right-radius: 24px;
     }
 
-    .logo-container {
+    .top-bar {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+    }
+
+    .logo-box {
+      display: flex;
+      align-items: center;
       gap: 12px;
     }
 
     .logo-icon {
-      width: 44px;
-      height: 44px;
+      width: 48px;
+      height: 48px;
       background: var(--white);
       color: var(--primary);
-      border-radius: 12px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
+      font-size: 26px;
       font-weight: bold;
     }
 
-    .header-stats {
+    .app-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--white);
+    }
+
+    .stats-row {
       display: flex;
       justify-content: space-around;
-      background: rgba(255, 255, 255, 0.2);
-      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.22);
+      padding: 10px 16px;
       border-radius: 20px;
-      margin-top: 10px;
-      font-weight: bold;
+      margin-top: 14px;
+      font-weight: 700;
       font-size: 14px;
     }
 
     main {
       flex: 1;
-      padding: 16px;
-      max-width: 600px;
-      margin: 0 auto;
       width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 16px;
     }
 
     .class-scroll {
       display: flex;
       gap: 8px;
       overflow-x: auto;
-      padding-bottom: 12px;
+      padding-bottom: 8px;
       margin-bottom: 16px;
     }
 
@@ -90,12 +105,12 @@
       background: var(--white);
       color: var(--primary);
       border: 1.5px solid var(--primary);
-      padding: 8px 16px;
-      border-radius: 20px;
+      padding: 8px 18px;
+      border-radius: 24px;
       cursor: pointer;
       white-space: nowrap;
       font-size: 14px;
-      font-weight: bold;
+      font-weight: 700;
     }
 
     .chip.active {
@@ -105,78 +120,97 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
       gap: 14px;
+      width: 100%;
     }
 
     .card {
       background: var(--white);
-      border-radius: 16px;
-      padding: 12px;
-      box-shadow: 0 4px 12px rgba(0, 168, 132, 0.08);
-      border: 1px solid rgba(0, 168, 132, 0.15);
+      border-radius: 20px;
+      padding: 14px;
+      box-shadow: 0 4px 14px rgba(0, 168, 132, 0.08);
+      border: 1.5px solid rgba(0, 168, 132, 0.15);
       text-align: center;
     }
 
     .book-cover {
       width: 100%;
-      height: 110px;
+      height: 125px;
       background: var(--primary);
       color: var(--white);
-      border-radius: 12px;
+      border-radius: 14px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 8px;
-      margin-bottom: 10px;
+      padding: 10px;
+      margin-bottom: 12px;
     }
 
     .btn {
       background: var(--primary);
       color: var(--white);
       border: none;
-      padding: 10px 16px;
-      border-radius: 20px;
+      padding: 12px 20px;
+      border-radius: 24px;
       cursor: pointer;
-      font-size: 14px;
-      font-weight: bold;
+      font-size: 15px;
+      font-weight: 700;
       width: 100%;
     }
 
-    .quiz-container {
+    .quiz-card {
       background: var(--white);
-      border-radius: 20px;
-      padding: 20px;
-      box-shadow: 0 4px 16px rgba(0, 168, 132, 0.12);
-      border: 1px solid var(--primary-light);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 6px 20px rgba(0, 168, 132, 0.15);
+      border: 1.5px solid var(--primary-light);
     }
 
-    .options {
+    .timer-container {
+      width: 100%;
+      height: 8px;
+      background: var(--primary-light);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .timer-progress {
+      height: 100%;
+      background: var(--primary);
+      width: 100%;
+      transition: width 1s linear;
+    }
+
+    .options-list {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      margin-top: 16px;
+      gap: 12px;
+      margin-top: 18px;
     }
 
-    .option-btn {
+    .option-item {
       background: var(--white);
-      border: 1.5px solid var(--primary-light);
+      border: 2px solid var(--primary-light);
       color: var(--text-color);
-      padding: 14px;
-      border-radius: 14px;
-      text-align: left;
+      padding: 14px 18px;
+      border-radius: 16px;
       font-size: 15px;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
-    .option-btn.correct {
+    .option-item.correct {
       background: var(--primary);
       color: var(--white);
     }
 
-    .option-btn.wrong {
+    .option-item.wrong {
       background: var(--wrong);
       color: var(--white);
     }
@@ -187,8 +221,8 @@
       background: var(--white);
       display: flex;
       justify-content: space-around;
-      padding: 12px;
-      border-top: 1px solid var(--primary-light);
+      padding: 12px 16px;
+      border-top: 1.5px solid var(--primary-light);
     }
 
     .nav-btn {
@@ -196,7 +230,7 @@
       border: none;
       color: var(--text-color);
       font-size: 13px;
-      font-weight: bold;
+      font-weight: 700;
       cursor: pointer;
     }
 
@@ -206,139 +240,204 @@
 <body>
 
   <header>
-    <div class="logo-container">
-      <div class="logo-icon">📖</div>
-      <h1 style="font-size: 20px;">মাই বুক কুইজ</h1>
+    <div class="top-bar">
+      <div class="logo-box">
+        <div class="logo-icon">📖</div>
+        <div>
+          <div class="app-title">মাই বুক কুইজ</div>
+          <div style="font-size: 11px; opacity: 0.9;">১ম - ১২াশ শ্রেণির কুইজ</div>
+        </div>
+      </div>
     </div>
-    <div class="header-stats">
-      <span>🪙 কয়েস: <span id="userCoins">250</span></span>
-      <span>🔥 স্ট্রিক: <span id="userStreak">1</span></span>
-      <span>🎓 শ্রেণি: ৯ম-১০ম</span>
+    <div class="stats-row">
+      <div>🪙 কয়েন: <span id="coinsCount">250</span></div>
+      <div>🔥 স্ট্রিক: <span id="streakCount">1</span></div>
+      <div>🎓 শ্রেণি: <span id="classBadge">৯ম-১০ম</span></div>
     </div>
   </header>
 
   <main>
-    <section id="tabHome">
+    <!-- TAB 1: HOME -->
+    <section id="viewHome">
       <div class="class-scroll">
-        <button class="chip active">সকল শ্রেণি</button>
-        <button class="chip">১ম-৫ম শ্রেণি</button>
-        <button class="chip">৮ম শ্রেণি</button>
-        <button class="chip">৯ম-১০ম শ্রেণি</button>
-        <button class="chip">একাদশ-দ্বাদশ (HSC)</button>
+        <button class="chip active" onclick="filterByClass('সকল শ্রেণি', this)">সকল শ্রেণি</button>
+        <button class="chip" onclick="filterByClass('১ম শ্রেণি', this)">১ম শ্রেণি</button>
+        <button class="chip" onclick="filterByClass('৫ম শ্রেণি', this)">৫ম শ্রেণি</button>
+        <button class="chip" onclick="filterByClass('৮ম শ্রেণি', this)">৮ম শ্রেণি</button>
+        <button class="chip" onclick="filterByClass('৯ম-১০ম শ্রেণি', this)">৯ম-১০ম শ্রেণি</button>
+        <button class="chip" onclick="filterByClass('একাদশ-দ্বাদশ (HSC)', this)">একাদশ-দ্বাদশ (HSC)</button>
       </div>
 
-      <div style="background: var(--primary); color: var(--white); padding: 16px; border-radius: 16px; margin-bottom: 16px;">
-        <h3>🚀 আনলিমিটেড কুইজ প্রতিযোগিতা</h3>
-        <p style="font-size: 13px; margin: 6px 0 12px 0;">কোনো সীমাবদ্ধতা ছাড়া আনলিমিটেড কুইজ খেলুন এবং পয়েন্ট অর্জন করুন।</p>
-        <button class="btn" style="background: var(--white); color: var(--primary);" onclick="startQuiz('অনন্ত কুইজ')">এখনই শুরু করুন</button>
+      <div style="background: var(--primary); color: var(--white); padding: 20px; border-radius: 20px; margin-bottom: 20px;">
+        <h3>🚀 আনলিমিটেড কুইজ ব্যাটল</h3>
+        <p style="font-size: 13px; margin: 6px 0 14px 0;">কোনো সীমা ছাড়া যত খুশি কুইজ খেলে কয়েন জিতুন!</p>
+        <button class="btn" style="background: var(--white); color: var(--primary);" onclick="startQuiz('অনন্ত কুইজ প্রতিযোগিতা', 'সকল শ্রেণি')">এখনই খেলুন</button>
       </div>
 
-      <h3 style="margin-bottom: 12px;">পাঠ্যবই ও অনুশীলনী</h3>
+      <h3 style="margin-bottom: 14px; font-size: 17px;">পাঠ্যবই ও অনুশীলনসমূহ</h3>
       <div class="grid" id="booksGrid"></div>
     </section>
 
-    <section id="tabQuiz" class="hidden">
-      <div class="quiz-container">
-        <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-weight: bold;">
-          <span id="quizSubjectTitle">পদার্থবিজ্ঞান</span>
-          <span>প্রশ্ন <span id="qCurrent">1</span>/10</span>
+    <!-- TAB 2: QUIZ -->
+    <section id="viewQuiz" class="hidden">
+      <div class="quiz-card">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-weight: 700;">
+          <span id="quizTitle" style="color: var(--primary);">পদার্থবিজ্ঞান 2025</span>
+          <span>প্রশ্ন <span id="qIdx">1</span>/10</span>
         </div>
-        <div id="questionText" style="font-size: 18px; font-weight: bold;">বলের এস.আই একক কী?</div>
-        <div class="options" id="optionsContainer"></div>
-        <button class="btn hidden" id="btnNext" style="margin-top: 16px;" onclick="nextQuestion()">পরবর্তী প্রশ্ন ➔</button>
+
+        <div class="timer-container">
+          <div class="timer-progress" id="timerFill"></div>
+        </div>
+
+        <div id="qText" style="font-size: 19px; font-weight: 800; margin-bottom: 20px;">বলের এস.আই একক কী?</div>
+
+        <div class="options-list" id="optsBox"></div>
+
+        <button class="btn hidden" id="btnNext" style="margin-top: 20px;" onclick="handleNextQuestion()">পরবর্তী প্রশ্ন ➔</button>
+      </div>
+    </section>
+
+    <!-- TAB 3: LEADERBOARD -->
+    <section id="viewLeaderboard" class="hidden">
+      <h3 style="margin-bottom: 14px;">🏆 বিশ্বব্যাপী লিডারবোর্ড</h3>
+      <div style="background: var(--primary); color: var(--white); padding: 20px; border-radius: 20px; text-align: center; margin-bottom: 16px;">
+        <h2>👑 ১ নম্বর: সাকিব হাসান (১৫,৪০০ 🪙)</h2>
+        <p style="font-size: 13px; margin-top: 4px;">সারা বিশ্বের কুইজারদের সাথে প্রতিযোগিতা করুন</p>
       </div>
     </section>
   </main>
 
   <nav>
-    <button class="nav-btn" onclick="switchTab('Home')">📖 হোম</button>
-    <button class="nav-btn" onclick="switchTab('Quiz')">⚡ কুইজ</button>
+    <button class="nav-btn" onclick="switchMainTab('Home')">📖 হোম</button>
+    <button class="nav-btn" onclick="switchMainTab('Leaderboard')">🏆 লিডারবোর্ড</button>
   </nav>
 
   <script>
-    const books = [
+    const allBooksData = [
       { title: "পদার্থবিজ্ঞান 2025", class: "৯ম-১০ম শ্রেণি" },
       { title: "রসায়ন 2025", class: "৯ম-১০ম শ্রেণি" },
       { title: "জীববিজ্ঞান 2025", class: "৯ম-১০ম শ্রেণি" },
       { title: "গণিত 2025", class: "৯ম-১০ম শ্রেণি" },
       { title: "তথ্য ও যোগাযোগ প্রযুক্তি", class: "৯ম-১০ম শ্রেণি" },
-      { title: "হাদিস শরিফ", class: "৯ম-১০ম শ্রেণি" }
+      { title: "হাদিস শরিফ 2025", class: "৯ম-১০ম শ্রেণি" },
+      { title: "উচ্চতর গণিত ১ম পত্র", class: "একাদশ-দ্বাদশ (HSC)" },
+      { title: "বিজ্ঞান 2025", class: "৮ম শ্রেণি" },
+      { title: "প্রাথমিক গণিত", class: "১ম-৫ম শ্রেণি" }
     ];
 
-    let coins = 250;
-    let currentQIdx = 0;
-    let questions = [];
+    let userCoins = 250;
+    let quizList = [];
+    let currentIdx = 0;
+    let timerTimer = null;
 
-    function renderBooks() {
-      const container = document.getElementById('booksGrid');
-      container.innerHTML = '';
-      books.forEach(b => {
-        container.innerHTML += `
+    function renderBooksGrid(selectedClass = 'সকল শ্রেণি') {
+      const grid = document.getElementById('booksGrid');
+      grid.innerHTML = '';
+      const filtered = selectedClass === 'সকল শ্রেণি' ? allBooksData : allBooksData.filter(b => b.class.includes(selectedClass));
+
+      filtered.forEach(book => {
+        grid.innerHTML += `
           <div class="card">
             <div class="book-cover">
-              <span style="font-size: 28px;">📖</span>
-              <div style="font-weight: bold; margin-top: 6px;">${b.title}</div>
+              <span style="font-size: 30px;">📖</span>
+              <div style="font-weight: 800; margin-top: 6px;">${book.title}</div>
             </div>
-            <button class="btn" onclick="startQuiz('${b.title}')">কুইজ খেলুন</button>
+            <button class="btn" onclick="startQuiz('${book.title}', '${book.class}')">কুইজ খেলুন</button>
           </div>
         `;
       });
     }
 
-    function startQuiz(title) {
-      document.getElementById('quizSubjectTitle').innerText = title;
-      questions = Array.from({length: 10}, (_, i) => {
-        const a = Math.floor(Math.random() * 15) + 2;
-        const b = Math.floor(Math.random() * 10) + 1;
-        const ans = a * b;
+    function filterByClass(className, element) {
+      document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      element.classList.add('active');
+      document.getElementById('classBadge').innerText = className;
+      renderBooksGrid(className);
+    }
+
+    function startQuiz(subjectTitle) {
+      document.getElementById('quizTitle').innerText = subjectTitle;
+      quizList = Array.from({length: 10}, (_, i) => {
+        const a = Math.floor(Math.random() * 15) + 3;
+        const b = Math.floor(Math.random() * 10) + 2;
+        const correct = a * b;
         return {
-          q: `[প্রশ্ন ${i+1}] ${title}: ${a} × ${b} = কত?`,
-          opts: [ans, ans+2, Math.max(1, ans-3), ans+5].sort(() => Math.random() - 0.5),
-          ans: ans
+          q: `[প্রশ্ন ${i+1}/১০] ${subjectTitle}: ${a} × ${b} = কত?`,
+          opts: [correct, correct + 4, Math.max(1, correct - 5), correct + 10].sort(() => Math.random() - 0.5),
+          correct: correct
         };
       });
-      currentQIdx = 0;
-      showQ();
-      switchTab('Quiz');
+      currentIdx = 0;
+      loadQuestion();
+      switchMainTab('Quiz');
     }
 
-    function showQ() {
-      const q = questions[currentQIdx];
-      document.getElementById('qCurrent').innerText = currentQIdx + 1;
-      document.getElementById('questionText').innerText = q.q;
+    function loadQuestion() {
+      clearInterval(timerTimer);
+      const q = quizList[currentIdx];
+      document.getElementById('qIdx').innerText = currentIdx + 1;
+      document.getElementById('qText').innerText = q.q;
       document.getElementById('btnNext').classList.add('hidden');
-      const container = document.getElementById('optionsContainer');
-      container.innerHTML = '';
+
+      const optsBox = document.getElementById('optsBox');
+      optsBox.innerHTML = '';
+
       q.opts.forEach(opt => {
-        container.innerHTML += `<div class="option-btn" onclick="checkAns(${opt}, ${q.ans}, this)">${opt}</div>`;
+        optsBox.innerHTML += `<div class="option-item" onclick="onSelectOption(${opt}, ${q.correct}, this)">${opt}</div>`;
       });
+
+      startCountdown();
     }
 
-    function checkAns(val, correct, el) {
-      document.querySelectorAll('.option-btn').forEach(b => b.style.pointerEvents = 'none');
-      if (val === correct) {
-        el.classList.add('correct');
-        coins += 10;
-        document.getElementById('userCoins').innerText = coins;
+    function startCountdown() {
+      let remainingTime = 30;
+      const fill = document.getElementById('timerFill');
+      fill.style.width = '100%';
+
+      timerTimer = setInterval(() => {
+        remainingTime--;
+        fill.style.width = (remainingTime / 30 * 100) + '%';
+        if (remainingTime <= 0) {
+          clearInterval(timerTimer);
+          onSelectOption(-1, quizList[currentIdx].correct, null);
+        }
+      }, 1000);
+    }
+
+    function onSelectOption(selectedVal, correctVal, el) {
+      clearInterval(timerTimer);
+      document.querySelectorAll('.option-item').forEach(btn => btn.style.pointerEvents = 'none');
+
+      if (selectedVal === correctVal) {
+        if (el) el.classList.add('correct');
+        userCoins += 10;
+        document.getElementById('coinsCount').innerText = userCoins;
       } else {
-        el.classList.add('wrong');
+        if (el) el.classList.add('wrong');
       }
+
       document.getElementById('btnNext').classList.remove('hidden');
     }
 
-    function nextQuestion() {
-      currentQIdx++;
-      if (currentQIdx < questions.length) showQ();
-      else { alert('কুইজ সম্পন্ন হয়েছে! কয়েন অর্জিত হয়েছে।'); switchTab('Home'); }
+    function handleNextQuestion() {
+      currentIdx++;
+      if (currentIdx < quizList.length) {
+        loadQuestion();
+      } else {
+        alert('🎉 কুইজ সম্পন্ন হয়েছে! ১০টি পয়েন্ট অর্জিত হয়েছে।');
+        switchMainTab('Home');
+      }
     }
 
-    function switchTab(tab) {
-      document.getElementById('tabHome').classList.add('hidden');
-      document.getElementById('tabQuiz').classList.add('hidden');
-      document.getElementById('tab' + tab).classList.remove('hidden');
+    function switchMainTab(tabName) {
+      document.getElementById('viewHome').classList.add('hidden');
+      document.getElementById('viewQuiz').classList.add('hidden');
+      document.getElementById('viewLeaderboard').classList.add('hidden');
+      document.getElementById('view' + tabName).classList.remove('hidden');
     }
 
-    renderBooks();
+    renderBooksGrid();
   </script>
 </body>
 </html>
