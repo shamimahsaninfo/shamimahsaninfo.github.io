@@ -100,7 +100,11 @@ footer{text-align:center;color:var(--mut);font-size:13px;padding:24px 0}
       <button class="btn ghost" id="tabReg" onclick="authMode('reg')">রেজিস্ট্রেশন</button>
     </div>
     <div id="regFields" class="hidden">
-      <input id="rName" placeholder="পূর্ণ নাম">
+      <input id="rName" placeholder="শিক্ষার্থীর পূর্ণ নাম">
+      <div style="display:flex;gap:8px">
+        <input id="rFather" placeholder="পিতার নাম" style="flex:1">
+        <input id="rMother" placeholder="মাতার নাম" style="flex:1">
+      </div>
       <select id="rClass"><option value="">শ্রেণি নির্বাচন করুন</option><option>১ম</option><option>২য়</option><option>৩য়</option><option>৪র্থ</option><option>৫ম</option><option>৬ষ্ঠ</option><option>৭ম</option><option>৮ম</option><option>৯ম</option><option>১০ম</option><option>একাদশ</option><option>দ্বাদশ</option><option>ইবতেদায়ী</option><option>দাখিল</option><option>আলিম</option></select>
       <input id="rSchool" placeholder="স্কুল / মাদ্রাসার নাম">
       <input id="rGuardianPhone" placeholder="অভিভাবকের মোবাইল নম্বর">
@@ -153,37 +157,18 @@ footer{text-align:center;color:var(--mut);font-size:13px;padding:24px 0}
 
 <section class="page" id="p-ai">
   <div class="card">
-    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
-      <h2>🤖 এআই টিউটর (ডুয়েল মোড)</h2>
-      <span class="badge" style="background:#e0f2fe;color:#0369a1;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600">Gemini Live API + অফলাইন মোড</span>
-    </div>
-    <p style="color:var(--mut);font-size:14px;margin:6px 0 10px">লাইভ উত্তরের জন্য নিচে Google AI Studio-র ফ্রি Gemini API Key দিন। Key ছাড়া অফলাইনেও মূল বিষয়গুলোর সমাধান মিলবে।</p>
-    
-    <div style="display:flex;gap:8px;align-items:center;margin-bottom:12px">
-      <input id="apiKey" type="password" placeholder="Enter Gemini API Key (ঐচ্ছিক)" style="flex:1">
-      <button class="btn ghost" onclick="saveKey()">সেভ Key</button>
-    </div>
-
-    <!-- নোটবক্স: এআই আচরণ ও চরিত্র নিয়ন্ত্রণ -->
-    <div style="background:var(--bg);padding:12px;border-radius:10px;border:1px solid var(--bdr);margin-bottom:12px">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-        <label style="font-weight:700;font-size:13px;color:var(--txt)">📝 এআই আচরণ ও নির্দেশনা নোটবক্স (Custom Persona):</label>
-        <button class="btn ghost" style="padding:4px 10px;font-size:12px" onclick="saveAIInstruction()">সংরক্ষণ</button>
-      </div>
-      <textarea id="aiPromptBox" rows="2" style="width:100%;padding:8px;border-radius:6px;border:1px solid var(--bdr);font-family:inherit;font-size:13px;resize:vertical;background:var(--card);color:var(--txt)" placeholder="এখানে যা লিখে দেবেন এআই ঠিক সেরকম আচরণ করবে (যেমন: 'তুমি দাখিল শ্রেণির আরবি শিক্ষক হিসেবে উত্তর দাও' বা 'সহজ কথায় শুধু পয়েন্ট আকারে সমাধান দাও')"></textarea>
-      <div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;align-items:center">
-        <span style="font-size:11px;color:var(--mut)">কুইক প্রিসেট:</span>
-        <button type="button" class="btn ghost" style="padding:2px 8px;font-size:11px" onclick="setPresetPrompt('তুমি একজন বিজ্ঞ ও স্নেহশীল গণিত শিক্ষক। সব সমাধান ধাপে ধাপে, স্পষ্ট সমীকরণ ও সহজ বাংলায় বুঝিয়ে দাও।')">📐 গণিত শিক্ষক</button>
-        <button type="button" class="btn ghost" style="padding:2px 8px;font-size:11px" onclick="setPresetPrompt('তুমি একজন মাদ্রাসা শিক্ষক। কুরআন, হাদিস ও ইসলামী শরীয়তের আলোকে সুন্দর শিষ্টাচারের সাথে খাঁটি রেফারেন্স দিয়ে উত্তর দাও।')">📖 কুরআন ও আরবি শিক্ষক</button>
-        <button type="button" class="btn ghost" style="padding:2px 8px;font-size:11px" onclick="setPresetPrompt('তুমি একজন বন্ধুসুলভ প্রাইভেট টিউটর। জটিল বিষয়গুলো বাস্তব জীবনের মজার উদাহরণ দিয়ে সহজ করে বুঝিয়ে দাও।')">🤝 বন্ধুসুলভ শিক্ষক</button>
-        <button type="button" class="btn ghost" style="padding:2px 8px;font-size:11px" onclick="setPresetPrompt('কোনো বাড়তি কথা না বলে সরাসরি পরীক্ষার খাতায় লেখার মতো সাজানো বুলেট পয়েন্টে উত্তর দাও।')">⚡ সংক্ষিপ্ত বুলেট পয়েন্ট</button>
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px">
+      <h2>🤖 এআই একাডেমিক শিক্ষক</h2>
+      <div id="aiStatusBadge" style="display:inline-flex;align-items:center;gap:6px;background:var(--card-sub);padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;border:1px solid var(--bdr)">
+        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#10b981"></span>
+        <span id="activeModelLabel">Google Gemini (অ্যাডমিন পরিচালিত)</span>
       </div>
     </div>
-
+    <p style="color:var(--mut);font-size:13px;margin:2px 0 12px">যেকোনো প্রশ্ন লিখুন — গণিত, কুরআন, হাদিস, বাংলা, বিজ্ঞান বা ব্যাকরণের সঠিক ও নির্ভুল সমাধান পেতে।</p>
     <div class="chatbox" id="chat"></div>
-    <div style="display:flex;gap:8px">
-      <input id="chatInput" placeholder="আপনার প্রশ্ন লিখুন..." onkeydown="if(event.key==='Enter')sendAI()">
-      <button class="btn" onclick="sendAI()">পাঠান</button>
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <input id="chatInput" placeholder="আপনার প্রশ্ন এখানে লিখুন..." onkeydown="if(event.key==='Enter')sendAI()">
+      <button class="btn" onclick="sendAI()">প্রশ্ন পাঠান</button>
     </div>
   </div>
 </section>
@@ -230,14 +215,71 @@ footer{text-align:center;color:var(--mut);font-size:13px;padding:24px 0}
 </section>
 
 <section class="page" id="p-admin">
-  <div class="card"><h2>🛡️ সুপার অ্যাডমিন প্যানেল</h2><p style="color:var(--mut);font-size:14px">শুধু alahsanfoundation.info@gmail.com এই প্যানেল দেখতে পাবেন।</p></div>
-  <div class="card"><h3>ব্র্যান্ডিং ও থিম</h3>
-    <input id="admName" placeholder="প্ল্যাটফর্মের নাম">
-    <input id="admNotice" placeholder="হোমপেজ নোটিশ টেক্সট">
-    <select id="admTheme"><option value="ocean">ওশান ব্লু</option><option value="emerald">এমারেল্ড গ্রিন</option><option value="saffron">জাফরান গোল্ড</option><option value="purple">রয়েল পার্পল</option><option value="rose">রোজ পিংক</option></select>
-    <button class="btn" onclick="saveAdmin()">সংরক্ষণ করুন</button>
+  <div class="card"><h2>🛡️ সুপার অ্যাডমিন কন্ট্রোল সেন্টার</h2><p style="color:var(--mut);font-size:14px">শুধুমাত্র অনুমোদিত অ্যাডমিন (alahsanfoundation.info@gmail.com) এখানে প্রবেশ করতে পারবেন। প্ল্যাটফর্মের সকল ফিচার, ডেটা ও এআই নিয়ন্ত্রণ কেন্দ্র এখানে।</p></div>
+
+  <!-- AI Global Settings -->
+  <div class="card" style="border-left:4px solid #0284c7">
+    <h3>⚙️ গুগল জেমিনি এআই সেন্ট্রাল সেটিংস</h3>
+    <p style="color:var(--mut);font-size:13px;margin:4px 0 12px">এখানে সেট করা Key, মডেল ও নির্দেশনা পুরো প্ল্যাটফর্মের সব শিক্ষার্থীর এআই টিউটরে প্রযোজ্য হবে।</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px">
+      <div style="flex:1;min-width:260px">
+        <label style="font-size:12px;font-weight:600">🔑 অফিশিয়াল Gemini API Key (গ্লোবাল):</label>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <input id="admApiKey" type="password" placeholder="AIza..." style="flex:1">
+          <button class="btn ghost" onclick="saveAdminApiKey()">সেভ</button>
+        </div>
+      </div>
+      <div style="flex:1;min-width:220px">
+        <label style="font-size:12px;font-weight:600">🧠 গুগল এআই মডেল সিলেকশন (মডেল পরিবর্তন করুন):</label>
+        <select id="admModel" style="width:100%;margin-top:4px">
+          <option value="gemini-2.0-flash">Gemini 2.0 Flash (রেকমেন্ডেড — দ্রুত)</option>
+          <option value="gemini-2.0-flash-lite">Gemini 2.0 Flash-Lite (সাশ্রয়ী)</option>
+          <option value="gemini-1.5-pro">Gemini 1.5 Pro (উচ্চ গুণগত মান)</option>
+          <option value="gemini-1.5-flash">Gemini 1.5 Flash (ব্যালেন্সড)</option>
+        </select>
+      </div>
+    </div>
+    <label style="font-size:12px;font-weight:600">📝 গ্লোবাল এআই নোটবক্স (এআই কীভাবে আচরণ করবে — সবার জন্য):</label>
+    <textarea id="admAiPrompt" rows="3" style="width:100%;padding:8px;border-radius:6px;border:1px solid var(--bdr);font-family:inherit;font-size:13px;background:var(--card);color:var(--txt);margin-top:4px" placeholder="যেমন: তুমি একজন বাংলাদেশি দাখিল ও এসএসসি শিক্ষক, সহজ বাংলায় উদাহরণ দিয়ে সমাধান করবে..."></textarea>
+    <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap">
+      <button class="btn ghost" style="padding:4px 10px;font-size:12px" onclick="setAdmPresetPrompt('তুমি একজন বিজ্ঞ ও স্নেহশীল গণিত শিক্ষক। সব সমাধান ধাপে ধাপে, স্পষ্ট সমীকরণ ও সহজ বাংলায় বুঝিয়ে দাও।')">📐 গণিত শিক্ষক</button>
+      <button class="btn ghost" style="padding:4px 10px;font-size:12px" onclick="setAdmPresetPrompt('তুমি একজন মাদ্রাসা শিক্ষক। কুরআন, হাদিস ও ইসলামী শরীয়তের আলোকে সুন্দর শিষ্টাচারের সাথে খাঁটি রেফারেন্স দিয়ে উত্তর দাও।')">📖 কুরআন ও আরবি শিক্ষক</button>
+      <button class="btn ghost" style="padding:4px 10px;font-size:12px" onclick="setAdmPresetPrompt('তুমি একজন বন্ধুসুলভ প্রাইভেট টিউটর। জটিল বিষয়গুলো বাস্তব জীবনের মজার উদাহরণ দিয়ে সহজ করে বুঝিয়ে দাও।')">🤝 বন্ধুসুলভ শিক্ষক</button>
+      <button class="btn ghost" style="padding:4px 10px;font-size:12px" onclick="setAdmPresetPrompt('কোনো বাড়তি কথা না বলে সরাসরি পরীক্ষার খাতায় লেখার মতো সাজানো বুলেট পয়েন্টে উত্তর দাও।')">⚡ সংক্ষিপ্ত পয়েন্ট</button>
+      <button class="btn" style="padding:6px 16px;font-size:13px" onclick="saveAdminAI()">সব সংরক্ষণ করুন</button>
+    </div>
   </div>
-  <div class="card"><h3>কয়েন নিয়ম</h3>
+
+  <!-- Student / Guardian Full Monitoring & Control -->
+  <div class="card" style="border-left:4px solid #059669">
+    <h3>👥 শিক্ষার্থী ও অভিভাবক ম্যানেজমেন্ট (সম্পূর্ণ কন্ট্রোল)</h3>
+    <p style="color:var(--mut);font-size:13px;margin:4px 0 8px">এখান থেকে যেকোনো শিক্ষার্থীর নাম, শ্রেণি, পিতার নাম, মাতার নাম, ফোন ও অন্যান্য তথ্য সম্পাদনা বা মুছে ফেলা যাবে।</p>
+    <div style="overflow-x:auto"><table id="studentTable"></table></div>
+    <input id="searchStudent" placeholder="🔍 নাম/ক্লাস/ফোন দিয়ে খুঁজুন..." oninput="renderStudents()" style="margin-top:10px">
+  </div>
+
+  <!-- Branding & Theme -->
+  <div class="card" style="border-left:4px solid #d97706">
+    <h3>🎨 ব্র্যান্ডিং, নোটিশ ও প্রিমিয়াম থিম</h3>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px">
+      <input id="admName" placeholder="প্ল্যাটফর্মের নাম" style="flex:1;min-width:200px">
+      <input id="admNotice" placeholder="হোমপেজ নোটিশ টেক্সট" style="flex:1;min-width:200px">
+    </div>
+    <label style="font-size:12px;font-weight:600">✨ বিশ্বমানের প্রিমিয়াম থিম সিলেকশন (সারা বিশ্বের শিক্ষার্থীদের উপযোগী):</label>
+    <select id="admTheme" style="width:100%;margin-top:4px">
+      <option value="ocean">🌊 ওশান ব্লু — ক্লাসিক অ্যাকাডেমিক</option>
+      <option value="midnight">🌌 মিডনাইট প্রিমিয়াম — প্রফেশনাল এন্টারপ্রাইজ</option>
+      <option value="emerald">💎 এমারল্ড গ্রিন — ন্যাচারাল ক্যাম্পাস</option>
+      <option value="royal">👑 রয়েল ইন্ডিগো — এক্সক্লুসিভ এডুকেশন</option>
+      <option value="ivory">🏛️ আইভরি গোল্ড — ট্র্যাডিশনাল লিগ্যাসি</option>
+      <option value="slate">🪨 স্লেট স্টিল — মডার্ন মিনিমাল</option>
+    </select>
+    <button class="btn" onclick="saveAdmin()" style="margin-top:10px">সংরক্ষণ করুন</button>
+  </div>
+
+  <!-- Coin rules -->
+  <div class="card" style="border-left:4px solid #dc2626">
+    <h3>🪙 কয়েন ও রিওয়ার্ড নিয়ম</h3>
     <div style="display:flex;gap:10px;flex-wrap:wrap">
       <input id="coinLogin" type="number" placeholder="দৈনিক লগইন কয়েন" style="flex:1;min-width:140px">
       <input id="coinQuiz" type="number" placeholder="প্রতি সঠিক উত্তরের কয়েন" style="flex:1;min-width:140px">
@@ -245,8 +287,13 @@ footer{text-align:center;color:var(--mut);font-size:13px;padding:24px 0}
     </div>
     <button class="btn" onclick="saveCoins()">কয়েন নিয়ম সংরক্ষণ</button>
   </div>
-  <div class="card"><h3>লাইভ শিক্ষার্থী ও অভিভাবক মনিটরিং</h3>
-    <div style="overflow-x:auto"><table id="studentTable"></table></div>
+
+  <!-- Book links manager -->
+  <div class="card" style="border-left:4px solid #7c3aed">
+    <h3>🔗 বইয়ের লিংক ম্যানেজার (সরকারি/ক্লাউড PDF আপডেট)</h3>
+    <p style="color:var(--mut);font-size:13px">যেকোনো বইয়ের অফিশিয়াল এনসিটিবি/গুগল ড্রাইভ/ক্লাউড পিডিএফ লিঙ্ক আপডেট করুন।</p>
+    <div id="bookLinkManager" style="display:flex;flex-direction:column;gap:8px"></div>
+    <button class="btn" onclick="saveBookLinks()">বইয়ের লিঙ্ক সংরক্ষণ</button>
   </div>
 </section>
 
@@ -379,11 +426,16 @@ function sendAI(){
   var inp=document.getElementById("chatInput"),text=inp.value.trim();if(!text)return;
   inp.value="";var box=document.getElementById("chat");
   var d1=document.createElement("div");d1.className="msg u";d1.textContent=text;box.appendChild(d1);box.scrollTop=box.scrollHeight;
+  
   var key=Lget("mybook_gemini_key","");
+  var model=Lget("mybook_gemini_model","gemini-2.0-flash");
   var customInstruction=Lget("mybook_ai_instruction","তুমি একজন বাংলাদেশি একাডেমিক শিক্ষক ও মেন্টর। সহজ, স্পষ্ট ও শিক্ষার্থীবান্ধব বাংলায় উত্তর দাও।");
+  
   if(key){
-    var promptPayload="[নির্দেশনা: "+customInstruction+"]\n\nশিক্ষার্থীর প্রশ্ন: "+text;
-    fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key="+encodeURIComponent(key),{
+    var promptPayload="[একাডেমিক শিক্ষক নির্দেশনা: "+customInstruction+"]\n\nশিক্ষার্থীর প্রশ্ন: "+text;
+    var apiUrl="https://generativelanguage.googleapis.com/v1beta/models/"+encodeURIComponent(model)+":generateContent?key="+encodeURIComponent(key);
+    
+    fetch(apiUrl,{
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify({contents:[{parts:[{text:promptPayload}]}]})
@@ -391,14 +443,14 @@ function sendAI(){
     .then(function(r){return r.json()})
     .then(function(d){
       var ans=d&&d.candidates&&d.candidates[0]&&d.candidates[0].content&&d.candidates[0].content.parts&&d.candidates[0].content.parts[0]&&d.candidates[0].content.parts[0].text;
-      var d2=document.createElement("div");d2.className="msg a";d2.textContent=ans||"উত্তর পাওয়া যায়নি, আবার চেষ্টা করুন।";box.appendChild(d2);box.scrollTop=box.scrollHeight;
+      var d2=document.createElement("div");d2.className="msg a";d2.textContent=ans||"উত্তর পাওয়া যায়নি, অনুগ্রহ করে আবার চেষ্টা করুন।";box.appendChild(d2);box.scrollTop=box.scrollHeight;
     })
     .catch(function(){
-      var d3=document.createElement("div");d3.className="msg a";d3.textContent="সংযোগে সমস্যা হয়েছে। Gemini API Key ও ইন্টারনেট সংযোগ পরীক্ষা করুন।";box.appendChild(d3);
+      var d3=document.createElement("div");d3.className="msg a";d3.textContent="সংযোগে সমস্যা হয়েছে। অ্যাডমিন প্যানেলের Gemini API Key ও ইন্টারনেট সংযোগ পরীক্ষা করুন।";box.appendChild(d3);
     });
   }else{
     var m=null;for(var i=0;i<OFFLINE.length;i++){if(OFFLINE[i].q.test(text)){m=OFFLINE[i];break}}
-    var ans2=m?m.a:"[অফলাইন মোড] আপনার প্রশ্নটি সংরক্ষিত ডাটাবেজের বাইরের। উপরে আপনার ফ্রি Google Gemini API Key দিন, তাহলে আপনার কাস্টম নোটবক্স নির্দেশনায় লাইভ উত্তর পাওয়া যাবে।";
+    var ans2=m?m.a:"[স্মার্ট মোড] আপনার প্রশ্নটির জন্য অ্যাডমিন প্যানেলে (alahsanfoundation.info@gmail.com) ফ্রি Gemini API Key ও পছন্দসই মডেল সেট করা হলে বিশ্বমানের লাইভ এআই উত্তর পাওয়া যাবে।";
     var d4=document.createElement("div");d4.className="msg a";d4.textContent=ans2;box.appendChild(d4);box.scrollTop=box.scrollHeight;
   }
 }
@@ -513,16 +565,122 @@ else{mk.innerHTML="";for(var j=0;j<mine.length;j++){var b=mine[j];
 mk.innerHTML+='<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)"><span style="flex:1">🔖 <b>'+b.book+'</b> — পেজ '+bnNum(b.page)+'</span><button class="btn gray" onclick="goMark(\''+j+'\')">যান</button></div>'}}}
 else{mk.innerHTML='<p style="color:var(--mut)">লগইন করলে আপনার বুকমার্ক এখানে দেখা যাবে।</p>'}}
 function goMark(){showPage("library")}
-function renderStudents(){if(!user||user.role!=="admin")return;
-var st=Lget("mybook_students",[]);
-document.getElementById("admName").value=Lget("mybook_name","My Book — Ilm Praxis");
-document.getElementById("admNotice").value=Lget("mybook_notice","");
-document.getElementById("admTheme").value=Lget("mybook_theme","ocean");
-var c=Lget("mybook_coins",{login:2,quiz:5,read:1});
-document.getElementById("coinLogin").value=c.login;document.getElementById("coinQuiz").value=c.quiz;document.getElementById("coinRead").value=c.read;
-var t=document.getElementById("studentTable");
-t.innerHTML="<tr><th>নাম</th><th>শ্রেণি</th><th>প্রতিষ্ঠান</th><th>অভিভাবকের ফোন</th><th>কয়েন</th><th>রোল</th></tr>"+
-(st.length?st.map(function(s){return "<tr><td>"+s.name+"</td><td>"+s.cls+"</td><td>"+s.school+"</td><td>"+s.gphone+"</td><td>🪙 "+bnNum(s.coins)+"</td><td>"+s.role+"</td></tr>"}).join(""):"<tr><td colspan='6' style='text-align:center;color:var(--mut)'>এখনো কোনো শিক্ষার্থী যুক্ত হয়নি</td></tr>")}
+function renderStudents(){
+  if(!user||user.role!=="admin")return;
+  var st=Lget("mybook_students",[]);
+  var q=document.getElementById("searchStudent")?document.getElementById("searchStudent").value.toLowerCase():"";
+  if(q){
+    st=st.filter(function(s){
+      return (s.name||"").toLowerCase().indexOf(q)>-1 || (s.cls||"").toLowerCase().indexOf(q)>-1 || (s.gphone||"").indexOf(q)>-1 || (s.school||"").toLowerCase().indexOf(q)>-1;
+    });
+  }
+  document.getElementById("admName").value=Lget("mybook_name","My Book — Ilm Praxis");
+  document.getElementById("admNotice").value=Lget("mybook_notice","");
+  document.getElementById("admTheme").value=Lget("mybook_theme","ocean");
+  if(document.getElementById("admApiKey")) document.getElementById("admApiKey").value=Lget("mybook_gemini_key","");
+  if(document.getElementById("admModel")) document.getElementById("admModel").value=Lget("mybook_gemini_model","gemini-2.0-flash");
+  if(document.getElementById("admAiPrompt")) document.getElementById("admAiPrompt").value=Lget("mybook_ai_instruction","তুমি একজন অভিজ্ঞ বাংলাদেশি শিক্ষক। শিক্ষার্থীদের যেকোনো প্রশ্নের উত্তর স্পষ্ট, খাঁটি ও সহজ বাংলায় ধাপে ধাপে বুঝিয়ে দাও।");
+  
+  var c=Lget("mybook_coins",{login:2,quiz:5,read:1});
+  document.getElementById("coinLogin").value=c.login;
+  document.getElementById("coinQuiz").value=c.quiz;
+  document.getElementById("coinRead").value=c.read;
+  
+  var t=document.getElementById("studentTable");
+  t.innerHTML="<tr><th>শিক্ষার্থীর নাম</th><th>শ্রেণি</th><th>প্রতিষ্ঠান</th><th>পিতা ও মাতা</th><th>অভিভাবকের ফোন</th><th>কয়েন</th><th>অ্যাকশন</th></tr>"+
+  (st.length?st.map(function(s,idx){
+    var pInfo = "পিতা: "+(s.father||"–")+"<br>মাতা: "+(s.mother||"–");
+    return "<tr><td><b>"+s.name+"</b><br><small style='color:var(--mut)'>"+s.email+"</small></td><td>"+s.cls+"</td><td>"+s.school+"</td><td style='font-size:12px'>"+pInfo+"</td><td>"+s.gphone+"</td><td>🪙 "+bnNum(s.coins)+"</td><td><button class='btn ghost' style='padding:2px 8px;font-size:12px;margin-right:4px' onclick='openEditStudent("+idx+")'>✏️ এডিট</button><button class='btn red' style='padding:2px 8px;font-size:12px;background:#ef4444;color:#fff' onclick='deleteStudent("+idx+")'>🗑️ মুছুন</button></td></tr>";
+  }).join(""):"<tr><td colspan='7' style='text-align:center;color:var(--mut);padding:14px'>কোনো শিক্ষার্থী পাওয়া যায়নি</td></tr>");
+}
+
+function openEditStudent(idx){
+  var st=Lget("mybook_students",[]);
+  var s=st[idx];
+  if(!s)return;
+  document.getElementById("editIdx").value=idx;
+  document.getElementById("edName").value=s.name||"";
+  document.getElementById("edFather").value=s.father||"";
+  document.getElementById("edMother").value=s.mother||"";
+  document.getElementById("edSchool").value=s.school||"";
+  document.getElementById("edClass").value=s.cls||"";
+  document.getElementById("edCoins").value=s.coins||0;
+  document.getElementById("edPhone").value=s.gphone||"";
+  document.getElementById("editStudentModal").style.display="flex";
+}
+
+function closeEditModal(){
+  document.getElementById("editStudentModal").style.display="none";
+}
+
+function saveEditedStudent(){
+  var idx=parseInt(document.getElementById("editIdx").value,10);
+  var st=Lget("mybook_students",[]);
+  if(!st[idx])return;
+  st[idx].name=document.getElementById("edName").value.trim()||st[idx].name;
+  st[idx].father=document.getElementById("edFather").value.trim();
+  st[idx].mother=document.getElementById("edMother").value.trim();
+  st[idx].school=document.getElementById("edSchool").value.trim();
+  st[idx].cls=document.getElementById("edClass").value;
+  st[idx].coins=parseInt(document.getElementById("edCoins").value,10)||0;
+  st[idx].gphone=document.getElementById("edPhone").value.trim();
+  Lset("mybook_students",st);
+  if(user && user.email===st[idx].email){
+    user.name=st[idx].name;
+    user.coins=st[idx].coins;
+    user.cls=st[idx].cls;
+    user.school=st[idx].school;
+    saveUser(user);
+  }
+  closeEditModal();
+  renderStudents();
+  renderLeaderboard();
+  toast("✅ শিক্ষার্থীর তথ্য সফলভাবে আপডেট করা হয়েছে!");
+}
+
+function deleteStudent(idx){
+  if(!confirm("আপনি কি নিশ্চিতভাবে এই শিক্ষার্থীর সমস্ত রেকর্ড মুছে ফেলতে চান?"))return;
+  var st=Lget("mybook_students",[]);
+  st.splice(idx,1);
+  Lset("mybook_students",st);
+  renderStudents();
+  renderLeaderboard();
+  toast("🗑️ শিক্ষার্থীর তথ্য মুছে ফেলা হয়েছে।");
+}
+
+function saveAdminApiKey(){
+  var k=document.getElementById("admApiKey").value.trim();
+  Lset("mybook_gemini_key",k);
+  toast("✅ Gemini API Key সফলভাবে সেভ করা হয়েছে!");
+  updateAiStatusBadge();
+}
+
+function setAdmPresetPrompt(p){
+  document.getElementById("admAiPrompt").value=p;
+}
+
+function saveAdminAI(){
+  var k=document.getElementById("admApiKey").value.trim();
+  var m=document.getElementById("admModel").value;
+  var p=document.getElementById("admAiPrompt").value.trim();
+  Lset("mybook_gemini_key",k);
+  Lset("mybook_gemini_model",m);
+  Lset("mybook_ai_instruction",p);
+  toast("✅ এআই সেন্ট্রাল সেটিংস (Key, Model ও Persona) আপডেট করা হয়েছে!");
+  updateAiStatusBadge();
+}
+
+function updateAiStatusBadge(){
+  var lbl=document.getElementById("activeModelLabel");
+  if(!lbl)return;
+  var k=Lget("mybook_gemini_key","");
+  var m=Lget("mybook_gemini_model","gemini-2.0-flash");
+  if(k){
+    lbl.textContent="Google "+m+" (লাইভ সংযুক্ত)";
+  }else{
+    lbl.textContent="স্মার্ট একাডেমিক মোড (অফলাইন রেডি)";
+  }
+}
 function saveAdmin(){var n=document.getElementById("admName").value.trim()||"My Book — Ilm Praxis";
 Lset("mybook_name",n);document.getElementById("appTitle").textContent=n;
 Lset("mybook_notice",document.getElementById("admNotice").value.trim());
@@ -533,5 +691,51 @@ function saveCoins(){Lset("mybook_coins",{login:+document.getElementById("coinLo
 document.getElementById("appTitle").textContent=Lget("mybook_name","My Book — Ilm Praxis");
 renderLibrary();
 </script>
+
+<!-- Student Edit Modal for Admin -->
+<div id="editStudentModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:9999;align-items:center;justify-content:center;backdrop-filter:blur(3px)">
+  <div class="card" style="max-width:500px;width:90%;margin:auto;max-height:90vh;overflow-y:auto;box-shadow:0 20px 40px rgba(0,0,0,0.3)">
+    <h3>✏️ শিক্ষার্থীর তথ্য ও অভিভাবক সম্পাদনা</h3>
+    <p style="color:var(--mut);font-size:13px;margin:4px 0 12px">অ্যাডমিন হিসেবে আপনি সব তথ্য সরাসরি আপডেট বা কয়েন পরিবর্তন করতে পারেন।</p>
+    <input type="hidden" id="editIdx">
+    <label style="font-size:12px;font-weight:600">শিক্ষার্থীর নাম:</label>
+    <input id="edName" style="margin-bottom:8px">
+    <div style="display:flex;gap:8px">
+      <div style="flex:1">
+        <label style="font-size:12px;font-weight:600">পিতার নাম:</label>
+        <input id="edFather" style="margin-bottom:8px">
+      </div>
+      <div style="flex:1">
+        <label style="font-size:12px;font-weight:600">মাতার নাম:</label>
+        <input id="edMother" style="margin-bottom:8px">
+      </div>
+    </div>
+    <label style="font-size:12px;font-weight:600">প্রতিষ্ঠান (স্কুল / মাদ্রাসা):</label>
+    <input id="edSchool" style="margin-bottom:8px">
+    <div style="display:flex;gap:8px">
+      <div style="flex:1">
+        <label style="font-size:12px;font-weight:600">শ্রেণি:</label>
+        <select id="edClass" style="margin-bottom:8px;width:100%">
+          <option value="দাখিল ৯ম-১০ম">দাখিল ৯ম-১০ম</option>
+          <option value="দাখিল ৮ম">দাখিল ৮ম</option>
+          <option value="সাধারণ ৯ম-১০ম">সাধারণ ৯ম-১০ম</option>
+          <option value="আলিম">আলিম</option>
+          <option value="ইবতেদায়ী ৫">ইবতেদায়ী ৫</option>
+        </select>
+      </div>
+      <div style="flex:1">
+        <label style="font-size:12px;font-weight:600">কয়েন সংখ্যা:</label>
+        <input type="number" id="edCoins" style="margin-bottom:8px">
+      </div>
+    </div>
+    <label style="font-size:12px;font-weight:600">অভিভাবকের মোবাইল নম্বর:</label>
+    <input id="edPhone" style="margin-bottom:12px">
+    <div style="display:flex;gap:10px;justify-content:flex-end">
+      <button class="btn gray" onclick="closeEditModal()">বাতিল</button>
+      <button class="btn" onclick="saveEditedStudent()">আপডেট সংরক্ষণ</button>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
